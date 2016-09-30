@@ -4,27 +4,27 @@
 
 // Icon-sizing
 [m-Icon~="xsmall"] {
-  width: .875em;
-  height: .875em;
+  width: rem-calc(16);
+  height: rem-calc(16);
   top: -.06125em;
 }
 
 [m-Icon~="small"] {
-  width: 1em;
-  height: 1em;
+  width: rem-calc(24);
+  height: rem-calc(24);
 }
 
 [m-Icon~="medium"] {
-  width: 1.25em;
-  height: 1.25em;
+  width: rem-calc(32);
+  height: rem-calc(32);
 }
 
 [m-Icon~="large"] {
-  width: 3em;
-  height: 3em;
+  width: rem-calc(48);
+  height: rem-calc(48);
 }
 
 [m-Icon~="xlarge"] {
-  width: 6em;
-  height: 6em;
+  width: rem-calc(96);
+  height: rem-calc(96);
 }

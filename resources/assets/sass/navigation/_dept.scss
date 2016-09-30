@@ -1,7 +1,7 @@
 .dept-navigation {
   background: transparent;
   color: #fefefe;
-  transition: opacity 0.3s ease-out .2s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
 
   @include breakpoint(medium down) {
     max-height: 1px;
@@ -22,7 +22,7 @@
     max-height: 100%;
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.5s ease-in .3s;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
     z-index: 1200;
 
     .menu {
@@ -47,8 +47,11 @@
 
   @include breakpoint(large) {
     background: $black;
+    min-height: $dept-nav-height;
     position: absolute;
-    top: 74vh;
+    top: 550px; // Clear the Duplo
+    top: 65vh;
+    margin-top: rem-calc($site-header-height-small + 4); // Add height of master header for clearance
     width: 100%;
     z-index: 1000;
     opacity: 1;
@@ -75,46 +78,61 @@
   }
 }
 
-// .duplo-blocks[m-Grid="1"]
 
 /* Small menu. */
 .menu-toggle {
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: rem-calc(8);
   box-shadow: none;
   color: $white;
   display: inline-block;
-  height: ($site-search-field-height - px-calc($topbar-padding * 2));
-  min-width: 40px;
+  height: em(44px);
+  min-width: em(44);
   position: relative;
-  padding: em(9px) em(12px);
-  transition: all .3s;
+  transform: scale(1);
+  transition: border-radius 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:active,
-  &:focus {
-    background-color: transparentize($black,.75);
-    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+  &[aria-expanded="true"] {
+    background-color: $white;
+    border-radius: 50%;
+    color: neutral(6);
+    transform: scale(1.15);
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.36));
+    z-index: 1201;
   }
 
   @include breakpoint(large) {
     display: none;
   }
 }
-  .menu-toggle[aria-expanded="true"] {
-    z-index: 1201;
+
+  // Hide the Department menu toggle if not on a Department page
+  body[class^="home"] {
+    .menu-toggle { display: none !important; }
   }
 
-// Menu icon bars
+/// Menu icon bars wrapper
+.bubblewrap {
+  margin: auto;
+  padding: em(9px) em(12px);
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/// Menu icon bars
 .bar {
   background-color: currentColor;
   width: 20px;
   height: 1px;
   position: absolute;
   top: 15px;
-  right: 11px;
+  right: 12px;
   transform-origin: 50% 50%;
-  transition: all 0.2s ease-out;
-
-  // &.first {}
+  transition: all 0.2s ease-out 0.2s;
 
   &.second {
     margin-top: 7px;
@@ -126,22 +144,22 @@
 }
 
 .menu-toggle[aria-expanded="true"] {
+
   .bar.first {
-    margin-top: 10px;
+    margin-top: 6px;
     transform: rotate(45deg);
-    transition: all 0.2s ease-out .3s;
+    transition: all 0.2s ease-out .2s;
   }
 
   .bar.second {
     opacity: 0;
-    // margin-top: 7px;
-    transition: all 0.2s ease-out .3s;
+    transition: all 0.2s ease-out .2s;
   }
 
   .bar.third {
-    margin-top: 10px;
+    margin-top: 6px;
     transform: rotate(-45deg);
-    transition: all 0.2s ease-out .3s;
+    transition: all 0.2s ease-out .2s;
   }
 
 }

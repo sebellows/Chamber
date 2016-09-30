@@ -7,15 +7,16 @@
 ( function() {
 
   const ROOT     = document.documentElement,
-        BODY     = document.body;
+        BODY     = document.body,
+        NAV      = document.querySelector( '#deptNavigation' );
 
-  if ( ! NAV || 'undefined' === typeof BUTTON ) {
+  if ( ! NAV ) {
+  // if ( document.getElementById( 'deptNavigation' ) !== 'undefined' ) {
     return;
   }
 
-  const NAV      = document.querySelector( '#deptNavigation' ),
-        BUTTON   = document.querySelector( '.menu-toggle' ),
-        BACKDROP = document.querySelector( '.menu-backdrop' ),
+  const BUTTON   = document.querySelector( '.menu-toggle' ),
+        MASTHEAD = document.querySelector( '#masthead' ),
         MENU     = NAV.getElementsByTagName( 'ul' )[0],
         LINKS    = MENU.getElementsByTagName( 'a' ),
         SUBMENUS = MENU.getElementsByTagName( 'ul' );
@@ -40,12 +41,13 @@
       NAV.className = NAV.className.replace( ' is-active', '' );
       BUTTON.setAttribute( 'aria-expanded', 'false' );
       MENU.setAttribute( 'aria-expanded', 'false' );
-      BACKDROP.className = BACKDROP.className.replace( ' is-visible', '' );
+      MASTHEAD.removeAttribute('style');
     } else {
       NAV.className += ' is-active';
       BUTTON.setAttribute( 'aria-expanded', 'true' );
       MENU.setAttribute( 'aria-expanded', 'true' );
-      BACKDROP.className += ' is-visible';
+      BODY.classList.add('dept-navigation-is-open');
+      MASTHEAD.style.zIndex = 'initial';
     }
   };
 

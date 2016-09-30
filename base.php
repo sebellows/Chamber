@@ -11,7 +11,7 @@ use Chamber\Wrapper;
 	<body <?php body_class(); ?>>
 		<a class="skip-link show-on-focus" href="#content"><?php esc_html_e( 'Skip to content', 'chamber' ); ?></a>
 		<!--[if IE]>
-			<div class="alert alert-warning">
+			<div class="callout" m-UI="warning">
 				<?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'chamber'); ?>
 			</div>
 		<![endif]-->

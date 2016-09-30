@@ -3,16 +3,19 @@
 // Wrapper for the whole global search form
 .search-form {
   background-color: color(brand-dark);
-  border-top: 1px solid rgba(0,0,0,.5);
   padding: rem-calc(11 15 10 15);
 
   // props that get reset at large breakpoint
   display: none;
   position: absolute;
-  top: 100%; left: 0;
+  top: 100%; right: 0;
   width: 100%;
 
-  @include breakpoint(medium) {
+  @include breakpoint(medium only) {
+    max-width: 15em;
+  }
+
+  @include breakpoint(large) {
     display: block;
     padding: 0 rem-calc(7.5);
     position: relative;
@@ -24,7 +27,7 @@
 
 .search-toggle {
   background-color: transparent;
-  border-radius: 8px;
+  border-radius: rem-calc(8);
   box-shadow: none;
   color: $white;
   display: inline-block;
@@ -38,7 +41,7 @@
     box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
   }
 
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     display: none;
   }
 }
@@ -53,7 +56,7 @@
   position: absolute;
   top: 10px; right: rem-calc(15);
 
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     display: block;
     top: 0; right: rem-calc(8);
   }

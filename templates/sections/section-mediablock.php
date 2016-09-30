@@ -24,14 +24,14 @@ if( get_row_layout() == 'media_block' ) :
                 <div class="flex-video widescreen media"><?php echo $media; ?></div>
             </figure>
 
-            <div class="callout" m-UI="<?php echo Colors\set($color_class); ?>">
+            <div class="callout" m-UI="<?php echo Colors\set($color_class); ?>" m-Pad="medium large">
 
                 <?php if ($rubric) : ?>
                     <h2 class="rubric"><?php echo $rubric; ?></h2>
                 <?php endif; ?>
 
                 <?php if ($title) : ?>
-                    <h3><?php echo $title; ?></h3>
+                    <h2><?php echo $title; ?></h2>
                 <?php endif; ?>
 
                 <?php if ($summary) : ?>

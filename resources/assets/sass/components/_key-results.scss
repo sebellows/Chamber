@@ -4,6 +4,12 @@
   }
 }
 
+.result {
+  @include breakpoint(small only) {
+    width: 100%;
+  }
+}
+
 .result-number {
   color: color(brand);
   font-family: $header-font-family;

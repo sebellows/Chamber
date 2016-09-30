@@ -1,32 +1,39 @@
 .site-navigation {
+	.menu > li > a {
+		border-radius: 2px;
+		font-size: em(12);
+		font-weight: 700;
+		text-transform: uppercase;
+		padding: rem-calc(8 12);
+
+		@include breakpoint(large) {
+			font-size: em(14);
+		}
+	}
+
 	.active > a {
-		background: transparent;
-		border: 1px solid $primary-color;
+		background-color: color(brand-dark);
+		box-shadow: inset 0 0 5px transparentize($black,.2);
 	}
 
 	li.button-link {
 		> a {
-			background-color: color(brand-dark);
-			border: 0 none;
-			border-radius: 4px;
+			background: transparent;
+			border: 1px solid $primary-color;
 			margin: rem-calc(0 5 0 0);
-			box-shadow: 0 1px 3px transparentize($black,.2);
+			transition: background-color 0.25s linear;
 		}
 
 		> a:active,
 		> a:focus,
 		&.active > a {
-			background-color: shade(color(brand-dark),10%);
-			border: 0 none;
-			box-shadow: inset 0 0 3px transparentize($black,.5);
+			background: transparent;
+			border: 1px solid $primary-color;
 		}
 	}
 }
 	// Non-mobile hover state
-	[data-whatinput="mouse"] .site-navigation li.button-link > a {
-		&:hover {
-			background-color: tint(color(brand-dark),10%);
-			border: 0 none;
-			box-shadow: 0 1px 8px transparentize($black,.26);
-		}
+	[data-whatinput="mouse"] .site-navigation li.button-link > a:hover {
+		background-color: $primary-color;
+		border: 1px solid $primary-color;
 	}

@@ -1,8 +1,8 @@
 .mediabox {
-  @include flex-grid-column(12,0);
+  @include flex-callout(12);
 
   @include breakpoint(large) {
-    @include flex-grid-column(8,0);
+    @include flex-callout(8);
   }
 }
 
@@ -13,10 +13,10 @@
 
   .callout {
     margin-bottom: 0;
-    @include flex-grid-column(12, 30);
+    @include flex-callout(12);
 
     @include breakpoint(large) {
-      @include flex-grid-column(4, 60);
+      @include flex-callout(4);
     }
   }
 
@@ -27,8 +27,7 @@
     text-transform: uppercase;
   }
 
-  h3 {
-    font-size: 2em;
+  h2 {
     line-height: 1.1;
     text-transform: uppercase;
   }

@@ -47,7 +47,6 @@ use Chamber\Assets;
 		<div class="top-bar-right">
 
 			<nav id="site-navigation" class="site-navigation" role="navigation">
-				<!-- <button class="menu-toggle" aria-controls="site-menu" aria-expanded="false"><?php // esc_html_e( 'Site Menu', 'chamber' ); ?></button> -->
 				<?php
 				if (has_nav_menu('site_navigation')) :
 				  wp_nav_menu(['theme_location' => 'site_navigation', 'menu_class' => 'menu']);
@@ -62,27 +61,27 @@ use Chamber\Assets;
 		<!-- Phone number and general email address for Flint &amp; Genesee -->
 		<dl class="site-contact" m-InlineList>
 			<dt class="screen-reader-text">Contact Flint &amp; Genesee by phone or email</dt>
-			<dd class="site-contact-info" rel="phone"><span class="contact-toggle" data-toggle="phoneNumber"></span><span class="icon" m-Icon="phone medium"><svg aria-role="presentation" viewBox="0 0 24 24" style="fill:#fefefe;"><use xlink:href="#icon-phone"></use></svg></span><span id="phoneNumber" class="show-for-large" data-toggler=".is-toggled">(810)-600-1404</span></dd>
-			<dd class="site-contact-info"><a href="mailto:info@flintandgenesee.org"><span class="icon" m-Icon="email medium"><svg aria-role="presentation" viewBox="0 0 24 24" style="fill:#fefefe;"><use xlink:href="#icon-email"></use></svg></span><span id="emailAddress" class="show-for-large">info@flintandgenesee.org</span></a></dd>
+			<dd class="site-contact-info" rel="phone"><span class="contact-toggle" data-toggle="phoneNumber"></span><span class="icon" m-Icon="phone small"><svg aria-role="presentation" viewBox="0 1 24 24" style="fill:#fefefe;"><use xlink:href="#icon-phone"></use></svg></span><span id="phoneNumber" data-toggler=".is-toggled">(810)-600-1404</span></dd>
+			<dd class="site-contact-info"><a href="mailto:info@flintandgenesee.org"><span class="icon" m-Icon="email small"><svg aria-role="presentation" viewBox="0 0 24 24" style="fill:#fefefe;"><use xlink:href="#icon-email"></use></svg></span><span id="emailAddress">info@flintandgenesee.org</span></a></dd>
 		</dl>
 
 		<!-- Search form toggle button for mobile and smaller viewports -->
 		<button class="search-toggle" aria-controls="search-form" aria-expanded="false" data-toggle="searchForm">
 			<span class="screen-reader-text">Access the search field</span>
-			<span class="icon" m-Icon="search small"><svg role="presentation"><use xlink:href="#icon-search" viewbox="0 0 24 24"></use></svg></span>
+			<span class="icon" m-Icon="search small"><svg role="presentation" viewbox="0 -1 24 24"><use xlink:href="#icon-search"></use></svg></span>
 		</button>
 
 		<!-- Search form -->
 		<?php get_search_form(true); ?>
 
 		<!-- Department menu toggle button -->
-		<div class="menu-backdrop" aria-presentation></div>
 		<button class="menu-toggle" aria-controls="dept-menu" aria-expanded="false">
 			<span class="screen-reader-text">Department Menu</span>
-			<!-- <span class="icon" m-Icon="menu medium"><svg aria-role="presentation" viewBox="0 0 24 24" style="fill:#fefefe;"><use xlink:href="#icon-menu"></use></svg></span> -->
-		    <span class="bar first"></span>
-	        <span class="bar second"></span>
-	        <span class="bar third"></span>
+		    <div class="bubblewrap">
+		    	<span class="bar first"></span>
+		        <span class="bar second"></span>
+		        <span class="bar third"></span>
+		    </div>
 		</button>
 
 	</div><!-- .top-bar-bottom -->

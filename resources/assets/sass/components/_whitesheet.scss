@@ -1,28 +1,28 @@
 .whitesheet-header,
 .whitesheet-body {
-  padding-top: rem-calc(15);
-  padding-bottom: rem-calc(15);
-  @include flex-grid-column(12, 30);
+  // padding-top: rem-calc(15);
+  // padding-bottom: rem-calc(15);
+  @include flex-callout(12);
 
-  @include breakpoint(medium) {
-    padding-top: rem-calc(20);
-    padding-bottom: rem-calc(20);
-  }
+  // @include breakpoint(large) {
+  //   padding-top: rem-calc(20);
+  //   padding-bottom: rem-calc(20);
+  // }
 }
 
 .whitesheet-header {
-  h2 {
+  h1, h2 {
     margin-bottom: 0;
   }
 
-  @include breakpoint(medium) {
-    @include flex-grid-column(4, 60);  
+  @include breakpoint(large) {
+    @include flex-callout(4);  
   }
 }
 
 .whitesheet-body {
-  @include breakpoint(medium) {
-    @include flex-grid-column(8, 60);  
+  @include breakpoint(large) {
+    @include flex-callout(8);  
   }
 
   .lead {
@@ -41,8 +41,7 @@
 }
 
 .whitesheet-content {
-  
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     font-size: em(18);
   }
 }

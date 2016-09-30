@@ -1,4 +1,7 @@
 <?php
+
+if ( ! is_front_page() ) :
+
 ?>
 
 <nav id="deptNavigation" class="dept-navigation">
@@ -27,3 +30,5 @@
 ?>
 
 </nav><!-- END .dept-navigation-container -->
+
+<?php endif; ?>

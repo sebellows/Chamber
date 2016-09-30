@@ -1,16 +1,20 @@
 .duplo-blocks {
-  border-top: rem-calc(2.5px) solid $body-background;
-  border-bottom: rem-calc(2.5px) solid $body-background;
-  margin-bottom: rem-calc(30px);
+  border-top: rem-calc(2.5) solid $body-background;
+  border-bottom: rem-calc(2.5) solid $body-background;
+  margin-bottom: rem-calc(30);
   position: relative;
   width: 100vw;
   max-width: 100%;
   @include clearfix();
+
+  @include breakpoint(large) {
+    margin-bottom: rem-calc(75);
+  }
 }
 
 .duplo {
   background: linear-gradient(45deg,rgba(0,0,0,0.75),rgba(0,0,0,0));
-  border: rem-calc(2.5px) solid $body-background;
+  border: rem-calc(2.5) solid $body-background;
   height: 450px;
   height: 40vh;
   position: relative;
@@ -36,7 +40,7 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
-  padding: rem-calc(20);
+  padding: rem-calc(16 20);
   text-shadow: 0 1px 1px rgba(0,55,85,0.5);
   position: relative;
   z-index: 1;
@@ -52,11 +56,11 @@
   }
 
   h2 {
-    line-height: 1.1;
+    line-height: 1.2;
   }
 
-  @include breakpoint(medium) {
-    padding: rem-calc(20 30);
+  @include breakpoint(large) {
+    padding: rem-calc(24 30);
   }
 }
 
@@ -95,31 +99,30 @@
   border-left: 0 !important;
   @include grid-col(12,0);
 
-  h2 {
-    font-size: 2.625em;
-  }
+  h2 { font-size: em(48); }
 
   @include breakpoint(medium) {
+    height: 550px;
     height: 65vh;
   }
 }
-  [m-DuploCount="1"] {
-    .duplo-content {
-      margin: 0 auto;
-      // padding: rem-calc(30);
-      max-width: $global-width;
-    }
 
-    @include breakpoint(medium) {
-      .duplo {
-        height: 56.5vh;
+[m-DuploCount="1"] .duplo {
+  border-left: 0 !important;
+  @include grid-col(12,0);
 
-        h2 {
-          font-size: 3.875em;
-        }
-      }
-    }
+  h2 {
+    font-size: em(42);
   }
+
+  .duplo-content {
+    @include breakpoint(medium down) {
+      justify-content: center;      
+    }
+    margin: 0 auto;
+    max-width: $global-width;
+  }
+}
 
 // 2 Blocks
 [m-DuploCount="2"] .duplo {
@@ -164,6 +167,7 @@
 
     h2 {
       font-size: 1.25em;
+      margin-bottom: 0;
     }
 
     p { display: none; }
@@ -173,11 +177,16 @@
       @include grid-col(5,0);
 
       h2 {
-        font-size: 1.75em;
+        font-size: 1.5em;
       }
     }
 
     @include breakpoint(large) {
+
+      h2 {
+        margin-bottom: rem-calc(8);
+      }
+
       p {
         display: block;
       }
@@ -185,7 +194,7 @@
 
     @include breakpoint(xlarge) {
       h2 {
-        font-size: 2em;
+        font-size: 1.75em;
       }
     }
   }
@@ -240,6 +249,7 @@
 
       h2 {
         font-size: 1.5em;
+        margin-bottom: 0;
       }
 
       p { display: none; }
@@ -247,6 +257,10 @@
       @include breakpoint(medium) {
         height: 32.5vh;
         @include grid-col(3,0);
+
+        h2 {
+          margin-bottom: rem-calc(8);
+        }
 
         p { display: block; }
       }

@@ -112,11 +112,11 @@ $body-antialiased: true;
 
 /// Global value used for margin on components.
 /// @type Number
-$global-margin: 1rem;
+$global-margin: rem-calc(16);
 
 /// Global value used for padding on components.
 /// @type Number
-$global-padding: 1rem;
+$global-padding: rem-calc(16);
 
 /// Global font weight used for normal type.
 /// @type Keyword | Number
@@ -195,11 +195,11 @@ $header-sizes: (
     'h6': 16, // 16
   ),
   medium: (
-    'h1': 48,
-    'h2': 40,
-    'h3': 31,
-    'h4': 25,
-    'h5': 20,
+    'h1': 40,
+    'h2': 32,
+    'h3': 24,
+    'h4': 20,
+    'h5': 18,
     'h6': 16,
   ),
 );

@@ -1,16 +1,16 @@
 // Callout Padding
 [m-Pad~="small"] {
-  padding: rem-calc(8 10);
+  padding: rem-calc(12 15);
 }
 
 [m-Pad~="medium"] {
   @include breakpoint(medium) {
-    padding: rem-calc(12 15);
+    padding: rem-calc(16 20);
   }
 }
 
 [m-Pad~="large"] {
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     padding: rem-calc(24 30);
   }
 }
@@ -68,6 +68,9 @@
 [m-Grid~="6"] > a,
 [m-Grid~="6"] > div {
   @include breakpoint(medium) {
+    @include flex-callout(6);
+  }
+  @include breakpoint(large) {
     @include flex-callout(4);
   }
 }

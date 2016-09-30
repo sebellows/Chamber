@@ -4,11 +4,11 @@
   background-color: color(brand);
   padding-top: $site-header-height-small;
   position: relative;
-  // z-index: 1200;
+  z-index: 100;
 
   @include breakpoint(medium) {
     // padding-top: $site-header-height;
-    padding-top: 86px;
+    // padding-top: 86px;
     padding-top: 0;
   }
 
@@ -17,9 +17,12 @@
   }
 }
 
+/// Logo area in the Masthead
 .site-branding {
   background-color: $white;
   color: $white;
+  display: flex;
+  align-items: center;
   height: $site-header-height-small;
   padding: 10px 15px;
   position: absolute;
@@ -57,18 +60,23 @@
     position: relative;
   }
 }
-
-.site-logo {
-  display:block;
-  font-family: sans-serif;
-  line-height: 0;
-  max-width: 315px;
-  text-decoration:none;
-
-  @include breakpoint(large down) {
-    max-width: 275px;
+  /// The `H1` tag inside of `.site-branding` that contains `.site-logo`
+  .site-title {
+    margin-bottom: 0;
   }
-}
+
+  /// The link that holds the image
+  .site-logo {
+    display:block;
+    font-family: sans-serif;
+    line-height: 0;
+    max-width: 315px;
+    text-decoration:none;
+
+    @include breakpoint(large down) {
+      max-width: 275px;
+    }
+  }
 
 // Site Description
 // located in `.top-bar-top .top-bar-left`
@@ -76,20 +84,25 @@
   display: block;
   padding-right: 1rem;
   position: absolute;
-  top: 75px;
+  top: 82px;
   z-index: 1;
 
   @include breakpoint(small down) {
     max-width: 200px;
   }
 
-  @include breakpoint(medium) {
-    // position: absolute;
-    // top: -70px;
-    // left: 400px;
+  @media screen and #{breakpoint(medium)} and (max-width: em(840)) {
+    display: none;
   }
 
   @include breakpoint(medium) {
+    // display: none;
+    position: relative;
+    top: initial;
+    left: initial;
+  }
+
+  @include breakpoint(large) {
     display: table-cell;
     vertical-align: middle;
     position: relative;
@@ -101,10 +114,10 @@
   .top-bar {
     background-color: color(brand);
     color: $white;
-    // display: block;
     flex-wrap: wrap;
     align-items: center;
     position: relative;
+    min-height: $site-header-top-bar-top-height;
 
     .top-bar-left,
     .top-bar-right {
@@ -119,17 +132,12 @@
 
     @include breakpoint(medium) {
       justify-content: space-between;
-      padding-left: 65px;
+      padding-left: em(65);
     }
 
-    // @media (min-width: em(755px)) {
-    // @include breakpoint(xlarge) {
-    //   padding-left: 65px;
+    // @include breakpoint(large) {
+    //   height: $site-header-top-bar-top-height;
     // }
-
-    @include breakpoint(xlarge) {
-      height: 60px;
-    }
   }
 
     .top-bar-left {
@@ -147,6 +155,7 @@
   //  contains Contact Information, Searchform, and Dept-Navigation `menu-toggle`
   .top-bar--bottom {
     background-color: color(brand-dark);
+    min-height: $site-header-top-bar-bottom-height;
 
     @include breakpoint(medium down) {
       justify-content: flex-end;
@@ -175,15 +184,14 @@
   $bg: transparentize($black, .1);
 
   background: $bg;
-  // color: $black;
   display: block !important;
-  padding: 3px 7px;
+  padding: em(5,12) em(10,12);
   position: absolute;
   top: 40px;
   text-align: center;
   white-space: nowrap;
   filter: drop-shadow(0 2px 6px $black);
-  z-index: 1;
+  z-index: 2;
   @include horizontal-center;
 
   &::before {
@@ -201,23 +209,18 @@
   font-weight: 400;
   position: relative;
 
-  span {
-    font-size: em(12px);
-  }
+  span { font-size: em(12); }
 
   @include breakpoint(medium down) {
-    border-radius: 8px;
+    border-radius: rem-calc(8);
     box-shadow: none;
     color: $white;
     display: inline-block;
     height: ($site-search-field-height - px-calc($topbar-padding * 2));
-    padding: em(9px) em(12px);
-    transition: all .3s;
+    padding: em(9) em(12);
+    transition: all .3s linear;
 
-    &:active,
-    &:focus {
-      @include is-toggled;
-    }
+    span[id] { display: none; }
   }
 
   @include breakpoint(large) {
@@ -233,19 +236,16 @@
 }
 
 @include breakpoint(medium down) {
-  .site-contact .is-toggled,
-  .no-touchevents .site-contact-info:hover span:last-of-type {
+  .site-contact .is-toggled {
     @include is-toggled;
   }
 
-  .no-touchevents {
-    .contact-toggle {
-      background: transparent;
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 1;
-    }
+  .contact-toggle {
+    background: transparent;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
   }
 }
 
