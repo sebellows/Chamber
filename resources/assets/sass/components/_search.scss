@@ -51,8 +51,7 @@
   background-color: transparent;
   display: none;
   min-height: 32px;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding: rem-calc(0 4 0 4);
   position: absolute;
   top: 10px; right: rem-calc(15);
 
