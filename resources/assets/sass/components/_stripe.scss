@@ -1,0 +1,18 @@
+.stripe {
+  @include breakpoint(small only) {
+    margin-left: rem-calc(15);
+    margin-right: rem-calc(15);
+  }
+  > .row {
+    background-color: $white;
+    // box-shadow: 0 1px 3px rgba(0,0,0,.26);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    margin-bottom: rem-calc(30px);
+
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+

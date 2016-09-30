@@ -1,0 +1,62 @@
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	@include element-invisible;
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+// Captions
+.wp-caption-text {
+  border-bottom: 1px solid currentColor;
+  color: neutral(3);
+  font-size: .8125em;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: left;
+  padding-bottom: .5em;
+}
+  .wp-caption {
+    .wp-caption-text {
+      margin-top: .25em;
+    }
+  }
+
+// Media alignment
+.alignnone {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.aligncenter {
+  display: block;
+  margin: rem-calc((($global-lineheight * $base-font-size) / 2)) auto;
+  height: auto;
+}
+
+.alignleft,
+.alignright {
+  margin-bottom: rem-calc((($global-lineheight * $base-font-size) / 2));
+  height: auto;
+}
+	@include breakpoint(small) {
+	  // Only float if not on an extra small device
+	  .alignleft {
+	    float: left;
+	    margin-right: rem-calc((($global-lineheight * $base-font-size) / 2));
+	  }
+
+	  .alignright {
+	    float: right;
+	    margin-left: rem-calc((($global-lineheight * $base-font-size) / 2));
+	  }
+	}
+
+// Do not show the outline on the skip link target.
+#content[tabindex="-1"]:focus {
+  outline: 0;
+}

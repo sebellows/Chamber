@@ -1,0 +1,24 @@
+{
+  "name": "chamber",
+  "type": "wordpress-theme",
+  "license": "MIT",
+  "description": "The WordPress theme of the Flint & Genesee Chamber of Commerce.",
+  "homepage": "https://flintandgenesee.org/",
+  "authors": [
+    {
+      "name": "Sean Bellows",
+      "email": "seanbellows@gmail.com",
+      "homepage": "https://github.com/sebellows"
+    }
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "composer/installers": "~1.0",
+    "illuminate/support": "5.3.x-dev",
+    "symfony/var-dumper": "~3.0"
+  },
+  "minimum-stability": "dev"
+}

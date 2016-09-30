@@ -1,0 +1,207 @@
+/*!
+Theme Name: chamber
+Theme URI: http://underscores.me/
+Author: Sean Bellows
+Author URI: http://seanbellows.com
+Description: The theme for the Flint & Genesee website
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: chamber
+Tags:
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Normalize
+# Typography
+# Elements
+# Forms
+# Navigation
+  ## Links
+  ## Menus
+# Accessibility
+# Alignments
+# Clearings
+# Widgets
+# Content
+  ## Posts and pages
+  ## Comments
+# Infinite scroll
+# Media
+  ## Captions
+  ## Galleries
+--------------------------------------------------------------*/
+
+@import "global/global";
+
+/*--------------------------------------------------------------
+# Foundation 6 + Motion-UI
+--------------------------------------------------------------*/
+// settings for Foundation
+@import "settings";
+
+// CHAMBER
+// Variables and settings based on or using Foundation settings
+@import "common"; // custom overrides of Foundation's global.scss
+
+// FOUNDATION 6
+// @import '../../../node_modules/foundation-sites/scss/global';
+@import '../../../node_modules/foundation-sites/scss/grid/grid';
+@import '../../../node_modules/foundation-sites/scss/typography/typography';
+@import '../../../node_modules/foundation-sites/scss/forms/forms';
+@import '../../../node_modules/foundation-sites/scss/components/visibility';
+@import '../../../node_modules/foundation-sites/scss/components/float';
+@import '../../../node_modules/foundation-sites/scss/components/button';
+@import '../../../node_modules/foundation-sites/scss/components/button-group';
+@import '../../../node_modules/foundation-sites/scss/components/accordion-menu';
+@import '../../../node_modules/foundation-sites/scss/components/accordion';
+@import '../../../node_modules/foundation-sites/scss/components/badge';
+@import '../../../node_modules/foundation-sites/scss/components/breadcrumbs';
+@import '../../../node_modules/foundation-sites/scss/components/callout';
+@import '../../../node_modules/foundation-sites/scss/components/close-button';
+@import '../../../node_modules/foundation-sites/scss/components/drilldown';
+@import '../../../node_modules/foundation-sites/scss/components/dropdown-menu';
+@import '../../../node_modules/foundation-sites/scss/components/dropdown';
+@import '../../../node_modules/foundation-sites/scss/components/flex';
+@import '../../../node_modules/foundation-sites/scss/components/flex-video';
+@import '../../../node_modules/foundation-sites/scss/components/label';
+@import '../../../node_modules/foundation-sites/scss/components/media-object';
+@import '../../../node_modules/foundation-sites/scss/components/menu';
+@import '../../../node_modules/foundation-sites/scss/components/menu-icon';
+@import '../../../node_modules/foundation-sites/scss/components/off-canvas';
+@import '../../../node_modules/foundation-sites/scss/components/orbit';
+@import '../../../node_modules/foundation-sites/scss/components/pagination';
+@import '../../../node_modules/foundation-sites/scss/components/progress-bar';
+@import '../../../node_modules/foundation-sites/scss/components/reveal';
+@import '../../../node_modules/foundation-sites/scss/components/slider';
+@import '../../../node_modules/foundation-sites/scss/components/sticky';
+@import '../../../node_modules/foundation-sites/scss/components/switch';
+@import '../../../node_modules/foundation-sites/scss/components/table';
+@import '../../../node_modules/foundation-sites/scss/components/tabs';
+@import '../../../node_modules/foundation-sites/scss/components/title-bar';
+@import '../../../node_modules/foundation-sites/scss/components/top-bar';
+@import '../../../node_modules/foundation-sites/scss/components/thumbnail';
+@import '../../../node_modules/foundation-sites/scss/components/tooltip';
+
+@mixin foundation-custom($flex: false) {
+  @if $flex {
+    $global-flexbox: true !global;
+  }
+  @include foundation-global-styles;
+  @if not $flex {
+    @include foundation-grid;
+  }
+  @else {
+    @include foundation-flex-grid;
+  }
+  @include foundation-typography;
+  @include foundation-forms;
+  @include foundation-button;
+  // @include foundation-accordion;
+  // @include foundation-accordion-menu;
+  // @include foundation-badge;
+  @include foundation-breadcrumbs;
+  // @include foundation-button-group;
+  @include foundation-callout;
+  @include foundation-close-button;
+  @include foundation-menu;
+  // @include foundation-menu-icon;
+  // @include foundation-drilldown-menu;
+  // @include foundation-dropdown;
+  // @include foundation-dropdown-menu;
+  @include foundation-flex-video;
+  @include foundation-label;
+  @include foundation-media-object;
+  // @include foundation-off-canvas;
+  // @include foundation-orbit;
+  @include foundation-pagination;
+  // @include foundation-progress-bar;
+  // @include foundation-slider;
+  // @include foundation-sticky;
+  @include foundation-reveal;
+  // @include foundation-switch;
+  @include foundation-table;
+  @include foundation-tabs;
+  @include foundation-thumbnail;
+  @include foundation-title-bar;
+  @include foundation-tooltip;
+  @include foundation-top-bar;
+  @include foundation-visibility-classes;
+  @include foundation-float-classes;
+
+  @if $flex {
+    @include foundation-flex-classes;
+  }
+}
+
+@include foundation-custom(true);
+
+/// MOTION-UI
+@import "../../../node_modules/motion-ui/src/settings";
+@import '../../../node_modules/motion-ui/src/util/animation';
+@import '../../../node_modules/motion-ui/src/util/args';
+@import '../../../node_modules/motion-ui/src/util/keyframe';
+@import '../../../node_modules/motion-ui/src/util/selector';
+@import '../../../node_modules/motion-ui/src/util/series';
+@import '../../../node_modules/motion-ui/src/util/transition';
+@import '../../../node_modules/motion-ui/src/util/unit';
+
+@import '../../../node_modules/motion-ui/src/effects/fade';
+@import '../../../node_modules/motion-ui/src/effects/hinge';
+@import '../../../node_modules/motion-ui/src/effects/slide';
+@import '../../../node_modules/motion-ui/src/effects/zoom';
+@import '../../../node_modules/motion-ui/src/effects/slide';
+
+@import '../../../node_modules/motion-ui/src/transitions/fade';
+@import '../../../node_modules/motion-ui/src/transitions/hinge';
+@import '../../../node_modules/motion-ui/src/transitions/slide';
+@import '../../../node_modules/motion-ui/src/transitions/zoom';
+@import '../../../node_modules/motion-ui/src/transitions/spin';
+
+// Cut from 'motion-ui/src/transitions/classes.scss' because I do not want to load the classes
+@mixin -motion-ui-defaults {
+  transition-duration: map-get($motion-ui-speeds, default);
+  transition-timing-function: map-get($motion-ui-easings, default);
+}
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+@import "typography/typography";
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+@import "elements/elements";
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+@import "forms/forms";
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+@import "navigation/navigation";
+
+/*--------------------------------------------------------------
+# Media
+--------------------------------------------------------------*/
+@import "media/media";
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+@import "components/components";
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "layout/layout";
+
+/*--------------------------------------------------------------
+# Modifiers
+--------------------------------------------------------------*/
+@import "modifiers/modifiers";

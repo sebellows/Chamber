@@ -1,0 +1,38 @@
+.attraction-details {
+  border: 1px solid color(cvb);
+  margin-bottom: 1rem;
+
+  .callout {
+    border: 0 none;
+    font-size: rem-calc(12);
+    margin-bottom: 0;
+
+    @include breakpoint(medium) {
+      width: 50%;
+
+      &:first-child {
+        border-right: 1px solid color(cvb);
+        padding-right: rem-calc(15);
+      }
+    }
+  }
+
+  h3, h4, h5 {
+    font-family: $body-font-family;
+    margin: 0;
+  }
+
+  h3 {
+    background-color: color(cvb);
+    color: $white;
+    font-size: .875em;
+    line-height: 2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0 10px;
+  }
+
+  h4, h5 {
+    font-size: 1em;
+  }
+}

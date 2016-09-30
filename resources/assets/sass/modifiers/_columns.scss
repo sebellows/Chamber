@@ -1,0 +1,11 @@
+@include breakpoint(medium) {
+  [m-Cols="2"],
+  [m-Cols="two"] {
+    columns: 2;
+  }
+
+  [m-Cols="3"],
+  [m-Cols="three"] {
+    columns: 3;
+  }
+}

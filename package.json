@@ -1,0 +1,34 @@
+{
+  "name": "chamber",
+  "version": "1.0.0",
+  "description": "The WordPress theme of Flint & Genesee Chamber of Commerce",
+  "main": "app.js",
+  "scripts": {
+    "test": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebellows/chamber.git"
+  },
+  "keywords": [
+    "Flint",
+    "Genesee"
+  ],
+  "author": "Sean Bellows",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sebellows/chamber/issues"
+  },
+  "homepage": "https://github.com/sebellows/chamber#readme",
+  "dependencies": {
+    "flickity": "~2.0.2",
+    "foundation-sites": "^6.2.3",
+    "isotope-layout": "^3.0.1",
+    "motion-ui": "^1.2.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^6.0.0-11",
+    "laravel-elixir-browsersync-official": "^1.0.0"
+  }
+}

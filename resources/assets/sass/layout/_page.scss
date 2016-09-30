@@ -1,0 +1,43 @@
+.page-content {
+  background-color: $white;
+  box-shadow: 0 1px 3px rgba(0,0,0,.26);
+  margin-top: 4em;
+  @include flex-grid-row();
+}
+
+.page-header,
+.page-content-body-inner {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
+  @include flex-grid-column(12, 30);
+}
+
+.page-header {
+  @include breakpoint(large) {
+    padding-top: rem-calc(30);
+    padding-bottom: rem-calc(30);
+    @include flex-grid-column(4, 60);
+  }
+}
+
+.page-content-body {
+  @include hover-link;
+
+  @include breakpoint(large) {
+    padding-bottom: rem-calc(30);
+    @include flex-grid-column(8, 0);
+  }
+}
+
+.page-content-body-inner {
+  @include breakpoint(large) {
+    @include flex-grid-column(10, null);
+    padding: rem-calc(30) rem-calc(30) rem-calc(30) 0;
+  }
+}
+
+.page-title {
+  font-size: 2.5em;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}

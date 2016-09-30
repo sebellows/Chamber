@@ -1,0 +1,332 @@
+{
+    "key": "group_57cf941943fc6",
+    "title": "Attraction Fields",
+    "fields": [
+        {
+            "key": "field_57cf9b4666799",
+            "label": "Street Address:",
+            "name": "attr_street_address",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_57cf9b8a6679a",
+            "label": "Apt.\/Suite:",
+            "name": "attr_apt_suite",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_57cf9bb56679b",
+            "label": "City:",
+            "name": "attr_city",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_57cf9bc26679c",
+            "label": "State:",
+            "name": "attr_state",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "10",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "al": "AL",
+                "ak": "AK",
+                "az": "AZ",
+                "ar": "AR",
+                "ca": "CA",
+                "co": "CO",
+                "ct": "CT",
+                "de": "DE",
+                "fl": "FL",
+                "ga": "GA",
+                "hi": "HI",
+                "id": "ID",
+                "il": "IL",
+                "in": "IN",
+                "ia": "IA",
+                "ks": "KS",
+                "ky": "KY",
+                "la": "LA",
+                "me": "ME",
+                "md": "MD",
+                "ma": "MA",
+                "mi": "MI",
+                "mn": "MN",
+                "ms": "MS",
+                "mo": "MO",
+                "mt": "MT",
+                "ne": "NE",
+                "nv": "NV",
+                "nh": "NH",
+                "nj": "NJ",
+                "nm": "NM",
+                "ny": "NY",
+                "nc": "NC",
+                "nd": "ND",
+                "oh": "OH",
+                "ok": "OK",
+                "or": "OR",
+                "pa": "PA",
+                "ri": "RI",
+                "sc": "SC",
+                "sd": "SD",
+                "tn": "TN",
+                "tx": "TX",
+                "ut": "UT",
+                "vt": "VT",
+                "va": "VA",
+                "wa": "WA",
+                "wv": "WV",
+                "wi": "WI",
+                "wy": "WY"
+            },
+            "default_value": [
+                "mi"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 1,
+            "return_format": "array",
+            "placeholder": ""
+        },
+        {
+            "key": "field_57cf9c586679d",
+            "label": "Postal Code:",
+            "name": "attr_postal_code",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_57cf9c6f6679e",
+            "label": "Phone:",
+            "name": "attr_phone",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_57cf9c8b6679f",
+            "label": "Fax:",
+            "name": "attr_fax",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_57cf9c9f667a0",
+            "label": "Email:",
+            "name": "attr_email",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_57cf9ce5667a1",
+            "label": "Website",
+            "name": "attr_website",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_57cf96e5e7070",
+            "label": "Add Google Map",
+            "name": "attr_add_google_map",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "add": "Add a Google map to the location information?"
+            },
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_57cf95a4e706f",
+            "label": "Google Map",
+            "name": "attr_google_map",
+            "type": "google_map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_57cf96e5e7070",
+                        "operator": "==",
+                        "value": "add"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "43.016730",
+            "center_lng": "-83.690112",
+            "zoom": "",
+            "height": ""
+        },
+        {
+            "key": "field_57cf978be7071",
+            "label": "Hours",
+            "name": "attr_hours",
+            "type": "textarea",
+            "instructions": "Add the days of the week and times that this attraction is open.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_57cf9807e7072",
+            "label": "Admission",
+            "name": "attr_admission",
+            "type": "textarea",
+            "instructions": "Are there are admission costs?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "attraction"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Contact and location information for Attractions.",
+    "modified": 1473865918
+}

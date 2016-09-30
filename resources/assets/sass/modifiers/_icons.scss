@@ -1,0 +1,30 @@
+////
+//// Icon Modifiers
+////
+
+// Icon-sizing
+[m-Icon~="xsmall"] {
+  width: .875em;
+  height: .875em;
+  top: -.06125em;
+}
+
+[m-Icon~="small"] {
+  width: 1em;
+  height: 1em;
+}
+
+[m-Icon~="medium"] {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+[m-Icon~="large"] {
+  width: 3em;
+  height: 3em;
+}
+
+[m-Icon~="xlarge"] {
+  width: 6em;
+  height: 6em;
+}

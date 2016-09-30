@@ -1,0 +1,22 @@
+.meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  max-width: 340px;
+  @include hover-link;
+
+  dt, dd {
+    font-size: rem-calc(12);
+    margin: 0;
+  }
+
+  dt {
+    flex: 0 0 18%;
+    min-width: 50px;
+  }
+
+  dd {
+    flex: 0 0 82%;
+  }
+}

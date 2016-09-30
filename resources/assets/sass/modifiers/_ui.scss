@@ -1,0 +1,150 @@
+[m-UI~="primary"] {
+  background-color: map-get($foundation-palette, primary);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="paper"] {
+  background-color: $white !important;
+}
+
+// Neutrals (grays)
+[m-UI~="neutral light"] {
+  background-color: neutral(2);
+  // color: neutral(5);
+  @include consistent-color(neutral(5));
+}
+
+[m-UI~="neutral medium"] {
+  background-color: neutral(4);
+  @include consistent-color($white);
+  // color: $white;
+}
+
+[m-UI~="neutral dark"] {
+  background-color: neutral(6);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+// Notification colors
+[m-UI~="alert"] {
+  background-color: map-get($foundation-palette, alert);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="success"] {
+  background-color: map-get($foundation-palette, success);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="warning"] {
+  background-color: map-get($foundation-palette, warning);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+// FGCC main brand color
+[m-UI~="brand"] {
+  background-color: color(brand);
+  @include consistent-color($white);
+  //color: $white;
+
+  &[m-UI~="light"] {
+    background-color: color(brand-light);
+    @include consistent-color($white);
+    //color: $white;
+  }
+
+  &[m-UI~="medium"] {
+    background-color: color(brand-medium);
+    @include consistent-color($white);
+    //color: $white;
+  }
+
+  &[m-UI~="dark"] {
+    background-color: color(brand-dark);
+    @include consistent-color($white);
+    //color: $white;
+  }
+}
+
+// Chamber Dept. Color Scheme
+[m-UI~="cvb"] {
+  background-color: color(cvb);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="development"] {
+  background-color: color(development);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="education"] {
+  background-color: color(education);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="members"] {
+  background-color: color(members);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+[m-UI~="shared"] {
+  background-color: color(shared);
+  @include consistent-color($white);
+  //color: $white;
+}
+
+/// Background Overlay
+///
+[m-UI~="bgOverlay"] {
+  background-color: $black !important;
+  @include consistent-color($white);
+  //color: $white;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  position: relative;
+
+  .backdrop {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: .1;
+  }
+}
+
+/// Button Colors
+///
+.button {
+  &[m-UI~="brand"] {
+    @include button(
+      false,
+      color(brand),
+      color(brand),
+      $white,
+      $button-fill
+    );
+    &[m-UI~="dark"] {
+      background-color: color(brand-dark);
+    }
+  }
+
+  &[m-UI~="shadow"] {
+    box-shadow: 0 1px 3px rgba(0,0,0,.26);
+  }
+}
+
+nav,
+menu {
+  .button {
+    margin-bottom: 0 !important;
+  }
+}

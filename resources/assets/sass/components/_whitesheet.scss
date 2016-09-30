@@ -1,0 +1,48 @@
+.whitesheet-header,
+.whitesheet-body {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
+  @include flex-grid-column(12, 30);
+
+  @include breakpoint(medium) {
+    padding-top: rem-calc(20);
+    padding-bottom: rem-calc(20);
+  }
+}
+
+.whitesheet-header {
+  h2 {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(medium) {
+    @include flex-grid-column(4, 60);  
+  }
+}
+
+.whitesheet-body {
+  @include breakpoint(medium) {
+    @include flex-grid-column(8, 60);  
+  }
+
+  .lead {
+    font-size: em(22);
+    font-style: italic;
+    font-weight: 300;
+
+    b, strong {
+      font-weight: normal;
+    }
+
+    i, em {
+      font-style: normal;
+    }
+  }
+}
+
+.whitesheet-content {
+  
+  @include breakpoint(medium) {
+    font-size: em(18);
+  }
+}

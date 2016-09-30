@@ -1,0 +1,159 @@
+.sidebar-primary .widget {
+  h1, h2, h3, h4, h5, h6 {
+    clear: initial;
+  }
+
+  h4 {
+    color: color(brand);
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+
+    > li {
+      border-bottom: 2px dotted $medium-gray;
+      padding: rem-calc(8) 0;
+
+      // hack to clear a thumbnail. clearfix does not work.
+      overflow: hidden;
+
+      &:last-child {
+        border-bottom: 0 none;
+      }
+
+      a {
+        color: $body-font-color;
+      }
+    }
+  }
+
+  /* Make sure select elements fit in widgets. */
+  select {
+    max-width: 100%;
+  }
+
+  // sub-classes
+  .rsswidget,
+  .chamber-cpt-widget {
+    color: $body-font-color;
+  }
+
+  li a.rsswidget {
+    display: block;
+  }
+
+  time,
+  .rss-date {
+    color: $dark-gray;
+    font-size: $small-font-size;
+    text-transform: uppercase;
+  }
+
+  .rssSummary {
+    color: transparentize($black,.25);
+  }
+}
+
+.widget-post-thumbnail img {
+  position: relative;
+  top: 3px;
+}
+
+// Sidebar-specific rules
+.sidebar .widget-1of2 {
+  color: $body-font-color;
+
+  @include flex-grid-column(12, rem-calc(30));
+
+  @include breakpoint(medium) {
+    @include flex-grid-column(6, rem-calc(30));
+  }
+
+  @include breakpoint(large) {
+    @include flex-grid-column(6, rem-calc(30));
+  }
+
+  li h4 {
+    font: inherit;
+    margin-bottom: 0;
+  }
+}
+
+// Sidebar-specific rules
+.sidebar .widget-1of3 {
+  @include flex-grid-column(12, rem-calc(30));
+
+  @include breakpoint(medium) {
+    @include flex-grid-column(4, rem-calc(30));
+  }
+
+  @include breakpoint(large) {
+    @include flex-grid-column(4, rem-calc(30));
+  }
+}
+
+// Events widget
+.widget {
+  .event-date,
+  .event-time,
+  .event-location {
+    padding-left: 0;
+  }
+}
+
+// Page-specific rules
+.news .widget {
+  li a.rsswidget {
+    color: color(brand);
+    font-family: $header-font-family;
+    font-size: rem-calc(map-deep-get($header-sizes, small, "h4"));
+    line-height: $header-lineheight;
+
+    @include breakpoint(large) {
+      font-size: rem-calc(map-deep-get($header-sizes, medium, "h4"));
+    }
+  }
+
+  .rssSummary {
+    display: inline;
+  }
+
+  .rss-date + .rssSummary:before {
+    content: " – ";
+  }
+}
+
+
+.widget.quicklinks {
+  ul > li {
+    border-bottom: 2px dotted rgba(0,0,0,.25);
+
+    > a {
+      color: $body-font-color;
+      display: block;
+      font-family: $header-font-family;
+      font-size: 1.125em;
+      font-weight: 700;
+      line-height: 1.2;
+      padding: ($global-padding/2) 0 ($global-padding/2) ($global-padding*1.5);
+      position: relative;
+
+      &:before {
+        content: "\21D2";
+        color: color(cvb);
+        font-family: sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        position: absolute;
+        // top: .5em;
+        left: 0;
+      }
+    }
+
+    &:last-child {
+      border-bottom: 0 none;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+$total-columns: 12;
+
+@mixin flex-callout($size: init) {
+  @if (type-of($size)) == 'number' {
+    flex: 0 0 percentage($size / $total-columns);
+    // max-width prevents columns from wrapping early in IE10/11
+    max-width: percentage($size / $total-columns);
+  }
+  @else if ($size == shrink) {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+  @else if ($size == expand) {
+    flex: 1 1 auto;
+  }
+  @else if ($size == init) {
+    flex: 1;
+  }
+}
+
+@mixin consistent-color($color: currentColor) {
+  &,
+  &:active,
+  &:focus,
+  &:hover {
+    color: $color;
+  }
+}
+
+// Apply styles to a link item ONLY if the Modernizr class `.no-touchevents` is applied to root 
+@mixin no-touchevent() {
+  .no-touchevents & {
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+// Apply hover styles to a link item ONLY if the Modernizr class `.touchevents` is applied to root 
+@mixin on-touchevent() {
+  .touchevents & {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin hover-link($color: $primary-color) {
+  a:not(.button) {
+    border-bottom: 1px solid $primary-color;
+    transition: all .2s ease-in-out;
+
+    &:focus {
+      border-bottom-color: transparentize($primary-color,.75);
+      box-shadow: 0 3px 0 transparentize($primary-color,.5);
+    }
+  }
+
+  .no-touchevents & {
+    a:not(.button):hover {
+      border-bottom-color: transparentize($primary-color,.75);
+      box-shadow: 0 3px 0 transparentize($primary-color,.5);
+    }
+  }
+}

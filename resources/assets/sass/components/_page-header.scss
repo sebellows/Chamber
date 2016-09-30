@@ -1,0 +1,8 @@
+.page-header {
+  @include flex-grid-row;
+  padding-left: rem-calc(15px);
+  padding-right: rem-calc(15px);
+}
+  .main > .page-header:first-child {
+    margin-top: $global-margin;
+  }

@@ -1,0 +1,92 @@
+// Callout Padding
+[m-Pad~="small"] {
+  padding: rem-calc(8 10);
+}
+
+[m-Pad~="medium"] {
+  @include breakpoint(medium) {
+    padding: rem-calc(12 15);
+  }
+}
+
+[m-Pad~="large"] {
+  @include breakpoint(medium) {
+    padding: rem-calc(24 30);
+  }
+}
+
+// @mixin grid-size($size, $bps, $value) {
+//   @for $bp from 1 through length($bps) {
+//     @include breakpoint($bp) {
+//       [m-Grid~="#{$bp} #{$size}"] {
+//         & > a,
+//         & > div {
+//           @include flex-callout($value);
+//         }
+//       }
+//     }
+//   }
+// }
+
+// Callout Grid
+// .callout {
+
+[m-Grid~="2"] > a,
+[m-Grid~="2"] > div {
+  @include breakpoint(medium) {
+    @include flex-callout(6);
+  }
+}
+
+[m-Grid~="3"] > a,
+[m-Grid~="3"] > div {
+  @include breakpoint(medium) {
+    @include flex-callout(4);
+  }
+}
+
+[m-Grid="small 3"] {
+  flex-wrap: nowrap;
+
+  > a,
+  > div {
+    @include flex-callout(4);
+  }
+}
+
+[m-Grid~="4"] > a,
+[m-Grid~="4"] > div {
+  @include breakpoint(medium) {
+    @include flex-callout(6);
+  }
+
+  @include breakpoint(large) {
+    @include flex-callout(3);
+  }
+}
+
+[m-Grid~="6"] > a,
+[m-Grid~="6"] > div {
+  @include breakpoint(medium) {
+    @include flex-callout(4);
+  }
+}
+
+[m-Grid~="8"] > a,
+[m-Grid~="8"] > div {
+  @include breakpoint(medium) {
+    @include flex-callout(6);
+  }
+
+  @include breakpoint(large) {
+    @include flex-callout(3);
+  }
+}
+
+[m-Grid~="9"] > a,
+[m-Grid~="9"] > div {
+  @include breakpoint(medium) {
+    @include flex-callout(4);
+  }
+}
+// }

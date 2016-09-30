@@ -1,0 +1,19 @@
+
+.sidebar {
+  background-color: neutral(1);
+  box-shadow: 0 1px 3px rgba(0,0,0,.26);
+  margin-bottom: rem-calc(30px);
+  @include flex-grid-row();
+
+  h3 {
+    font-size: 2em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: $global-margin;
+  }
+
+  .widget {
+    padding: rem-calc(20 30);
+  }
+}
+

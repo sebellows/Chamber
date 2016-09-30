@@ -1,0 +1,49 @@
+.alt.button {
+  background-color: color(cvb);
+  border: 0 none;
+  color: $white;
+
+  &:hover, &:focus {
+    background-color: scale-color(color(cvb), -20%);
+    border: 0 none;
+    color: $white;
+  }
+}
+
+.reverse.hollow.button {
+  background-color: transparent;
+  border: 1px solid $white;
+  color: $white;
+
+  &:hover, &:focus {
+    background-color: $white;
+    border: 1px solid transparent;
+    color: neutral(3);
+  }
+}
+
+.flat.button {
+  color: #484848;
+  background-color: #e0e0e0;
+  border: 0 none;
+  text-transform: capitalize;
+
+  &:active {
+    color: #373737;
+    background-color: #c7c7c7;
+    border: 0 none;
+  }
+
+  &:focus,
+  &:hover {
+    color: #484848;
+    background-color: #d3d3d3;
+    border: 0 none;
+  }
+}
+
+.icon-button {
+  border: 0 none;
+  margin: 0;
+  padding: rem-calc(8);
+}

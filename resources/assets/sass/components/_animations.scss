@@ -1,0 +1,3 @@
+/* Used on global header search bar on smaller viewports */
+.hinge-in  { @include mui-hinge(in,  top, edge, 2000px, from-back, false, 0.25s, cubic-bezier(0.4, 0, 0.2, 1)); }
+.hinge-out { @include mui-hinge(out, top, edge, 2000px, from-back, false, 0.3s, cubic-bezier(0.4, 0, 0.2, 1)); }

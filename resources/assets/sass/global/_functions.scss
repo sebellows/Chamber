@@ -1,0 +1,146 @@
+/// Functions
+/// 
+
+/// Add a color via its variable key
+/// 
+/// @param {Color} $color - the name of the color to use
+/// @returns {Color} the value of the color key
+/// 
+@function color($key) {
+  @if map-has-key($palette, $key) {
+    @return map-get($palette, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $palette.";
+  @return null;
+}
+
+/// Add a neutral color (i.e. graytone) via its variable key
+/// 
+/// @param {Color} $color - the name of the shade to use
+/// @returns {Color} the shade of the color key
+/// 
+@function neutral($key) {
+  @if map-has-key($neutrals, $key) {
+    @return map-get($neutrals, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $neutrals.";
+  @return null;
+}
+
+// Converts a unitless, pixel, or rem value to em, for use in breakpoints.
+@function em($value, $base: 16px) {
+  // Pixel and unitless values are converted to rems
+  @if unit($value) == 'px' or unitless($value) {
+    $value: rem-calc($value, $base);
+  }
+
+  // Then the value is converted to ems
+  @return strip-unit($value) * 1em;
+}
+
+/// Converts rem value to pixel values.
+/// 
+/// i.e., this undoes Foundations `rem-calc()`
+/// 
+@function px-calc($values, $base: null) {
+  $px-values: ();
+  $count: length($values);
+
+  // If no base is defined, defer to the global font size
+  @if $base == null {
+    $base: $global-font-size;
+  }
+
+  // If the base font size is a %, then multiply it by 16px
+  // This is because 100% font size = 16px in most all browsers
+  @if unit($base) == '%' {
+    $base: ($base / 100%) * 16px;
+  }
+
+  @if $count == 1 {
+    @return -zf-to-px($values, $base);
+  }
+
+  @for $i from 1 through $count {
+    $px-values: append($px-values, -zf-to-px(nth($values, $i), $base));
+  }
+
+  @return $px-values;
+}
+
+/// Converts a rem value to matching px value. *Any* value passed, regardless of unit, is assumed to be a rem value. By default, the base pixel value used to convert the rem value is taken from the `$global-font-size` variable.
+/// @access private
+///
+/// @param {Number} $value - Rem value to convert.
+/// @param {Number} $base [null] - Base for pixel conversion.
+///
+/// @returns {Number} A number in px, calculated based on the given value and the base pixel value. px values are passed through as is.
+@function -zf-to-px($value, $base: null) {
+  // Check if the value is a number
+  @if type-of($value) != 'number' {
+    @warn inspect($value) + ' was passed to px-calc(), which is not a number.';
+    @return $value;
+  }
+
+  // Calculate px if units for $value is not px
+  @if unit($value) != 'px' {
+    $value: (strip-unit($value) * strip-unit($base)) * 1px;
+  }
+
+  // Turn 0px into 0
+  @if $value == 0px {
+    $value: 0;
+  }
+
+  @return $value;
+}
+
+/// The following are from Bourbon (bourbon.io)
+///
+/// Mixes a color with white.
+///
+/// @param {Color} $color
+///
+/// @param {Number (Percentage)} $percent
+///   The amount of white to be mixed in.
+///
+/// @example scss - Usage
+///   .element {
+///     background-color: tint(#6ecaa6, 40%);
+///   }
+///
+/// @example css - CSS Output
+///   .element {
+///     background-color: #a8dfc9;
+///   }
+///
+/// @return {Color}
+
+@function tint($color, $percent) {
+  @return mix(#fff, $color, $percent);
+}
+
+/// Mixes a color with black.
+///
+/// @param {Color} $color
+///
+/// @param {Number (Percentage)} $percent
+///   The amount of black to be mixed in.
+///
+/// @example scss - Usage
+///   .element {
+///     background-color: shade(#ffbb52, 60%);
+///   }
+///
+/// @example css - CSS Output
+///   .element {
+///     background-color: #664a20;
+///   }
+///
+/// @return {Color}
+
+@function shade($color, $percent) {
+  @return mix(#000, $color, $percent);
+}

@@ -1,0 +1,32 @@
+.callout {
+  // Elements
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  // Classes
+  &.section-header {
+    padding-top: 0;
+    padding-bottom: 0;
+    @include flex-grid-column(12);
+
+    @include breakpoint(medium) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    @include breakpoint(large) {
+      @include flex-grid-column(3,60px);
+
+      + .row {
+        width: 75%;
+      }
+    }
+  }
+}
+
+  .stripe .callout,
+  .site-footer .callout {
+    border: 0 none;
+    margin-bottom: 0;
+  }

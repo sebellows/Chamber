@@ -1,0 +1,21 @@
+.key-results {
+  @include breakpoint(small only) {
+    text-align: center;
+  }
+}
+
+.result-number {
+  color: color(brand);
+  font-family: $header-font-family;
+  font-size: rem-calc(64);
+  font-style: normal;
+  font-weight: 700;
+  line-height: (62/64);
+  letter-spacing: -2px;
+  margin-bottom: .125em;
+}
+
+.result-summary {
+  font-size: em(22);
+  font-weight: 300;
+}

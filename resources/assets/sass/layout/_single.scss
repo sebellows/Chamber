@@ -1,0 +1,12 @@
+.single {
+  .post,
+  .attraction {
+    background-color: $white;
+    box-shadow: 0 1px 3px rgba(0,0,0,.26);
+    margin-top: 4em;
+
+    .wp-post-image {
+      width: 100%;
+    }
+  }
+}

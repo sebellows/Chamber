@@ -1,0 +1,35 @@
+.cta-link {
+  box-shadow: none;
+  // color: currentColor;
+  display: block;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+  transition: box-shadow .3s ease-out, transform .3s ease-out;
+  will-change: box-shadow, transform;
+  @include flex-callout(12);
+
+  h3 {
+    margin: 0;
+  }
+
+  small {
+    font-size: 85%;
+    font-weight: 700;
+  }
+}
+  .no-touchevents .cta-link {
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+      transform: scale(1.05);
+      z-index: 1;
+    }
+  }
+
+.cta-content {
+  height: 100%;
+  outline: 1px solid rgba(0, 0, 0, 0.375);
+  outline-offset: 0.46875rem;
+}

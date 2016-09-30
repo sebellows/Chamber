@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "main.js": {
+      "files": [
+        "assets/js/app.js"
+      ],
+      "main": true
+    },
+    "main.css": {
+      "files": [
+        "assets/css/app.scss"
+      ],
+      "main": true
+    },
+    "customizer.js": {
+      "files": [
+        "assets/js/customizer.js"
+      ]
+    }
+  },
+  "config": {
+    "devUrl": "http://flintandgenesee.dev:8888"
+  }
+}

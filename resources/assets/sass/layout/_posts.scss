@@ -1,0 +1,60 @@
+.entry-header,
+.entry-content-body {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
+  @include flex-grid-column(12);
+}
+
+.entry-header {
+  @include breakpoint(large) {
+    padding-top: rem-calc(30);
+    padding-bottom: rem-calc(30);
+    @include flex-grid-column(4, 60px);
+  }
+}
+
+.entry-content {
+  @include hover-link;
+
+  @include breakpoint(large) {
+    padding-bottom: rem-calc(30);
+    @include flex-grid-column(8, 0);
+  }
+}
+
+.entry-content-body {
+  @include breakpoint(large) {
+    @include flex-grid-column(10, 0);
+    padding: rem-calc(30 0);
+  }
+}
+
+.entry-meta {
+  font-size: em(14);
+
+  s {
+    color: color(cvb);
+    font-size: 1.5em;
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+  }
+}
+
+.entry-title {
+  font-size: 2.5em;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.byline {
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &::before {
+    content: "By ";
+    font-weight: normal;
+    text-transform: none;
+  }
+}
