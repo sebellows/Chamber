@@ -1,9 +1,9 @@
 {
   "name": "chamber",
   "type": "wordpress-theme",
-  "license": "MIT",
-  "description": "The WordPress theme of the Flint & Genesee Chamber of Commerce.",
-  "homepage": "https://flintandgenesee.org/",
+  "license": "http://www.gnu.org/licenses/gpl-3.0.html",
+  "description": "A WordPress theme for local public or government organizations, such as a Chamber of Commerce.",
+  "homepage": "https://github.com/sebellows/Chamber",
   "authors": [
     {
       "name": "Sean Bellows",

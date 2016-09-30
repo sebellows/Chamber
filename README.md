@@ -6,7 +6,7 @@ Contributor(s): [Sean Bellows](https://github.com/sebellows/)
 - Tested up to: I don't test
 - Stable tag: define stable?
 - License: GPLv2 or later
-- License URI: http://www.gnu.org/licenses/gpl-2.0.html
+- License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Chamber is a WordPress theme for small community and government organizations like a Chamber of Commerce or a Convention & Visitor's Bureau. This theme is currently under active development and I wouldn't use it if I were you. Yet.
 
