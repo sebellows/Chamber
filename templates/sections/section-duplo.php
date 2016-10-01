@@ -151,7 +151,7 @@ if( get_row_layout('duplo_set') ) :
 
             <div class="duplo" m-Duplo="<?php echo $index; ?>">
                 <?php if ($image) : ?>
-                <?php echo $image; ?>
+                <img src="<?php echo $image; ?>" />
                 <?php endif; ?>
 
                 <div class="duplo-skrim" aria-hidden="true"></div>
