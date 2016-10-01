@@ -79,16 +79,6 @@ function widgets_init() {
 		'after_title'   => '</h3>'
 	]);
 
-	// Global Search Bar.
-	// register_sidebar([
-	// 	'name'          => __('Site Search Bar', 'chamber'),
-	// 	'id'            => 'site-search',
-	// 	'before_widget' => '<div class="%1$s %2$s">',
-	// 	'after_widget'  => '</section>',
-	// 	'before_title'  => '<span class="screen-reader-text">',
-	// 	'after_title'   => '</span>'
-	// ]);
-
 	// ------------------------------------------------------
 	// DEPARTMENT SIDEBARS
 	// ------------------------------------------------------
@@ -96,7 +86,7 @@ function widgets_init() {
 	// CVB Sidebar
 	register_sidebar([
 		'name'          => __('CVB Sidebar', 'chamber'),
-		'id'            => 'cvb-sidebar',
+		'id'            => 'sidebar-cvb',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
@@ -106,7 +96,7 @@ function widgets_init() {
 	// Economic Development Sidebar
 	register_sidebar([
 		'name'          => __('Development Sidebar', 'chamber'),
-		'id'            => 'economic-development-sidebar',
+		'id'            => 'sidebar-economic-development',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
@@ -125,7 +115,7 @@ function widgets_init() {
 	// Education and Training Sidebar
 	register_sidebar([
 		'name'          => __('Education & Training Sidebar', 'chamber'),
-		'id'            => 'education-training-sidebar',
+		'id'            => 'sidebar-education-training',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
@@ -135,7 +125,7 @@ function widgets_init() {
 	// Member Services Sidebar
 	register_sidebar([
 		'name'          => __('Member Services Sidebar', 'chamber'),
-		'id'            => 'member-services-sidebar',
+		'id'            => 'sidebar-member-services',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
@@ -145,7 +135,7 @@ function widgets_init() {
 	// Shared Services Sidebar
 	register_sidebar([
 		'name'          => __('Shared Services Sidebar', 'chamber'),
-		'id'            => 'shared-services-sidebar',
+		'id'            => 'sidebar-shared-services',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
