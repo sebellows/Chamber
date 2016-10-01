@@ -14,6 +14,15 @@
 
   .widget {
     padding: rem-calc(20 30);
+
+    .menu {
+      display: block;
+
+      > li > a {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 }
 

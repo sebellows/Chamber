@@ -4378,6 +4378,11 @@ object {
     margin-bottom: 1rem; }
   .sidebar .widget {
     padding: 1.25rem 1.875rem; }
+    .sidebar .widget .menu {
+      display: block; }
+      .sidebar .widget .menu > li > a {
+        padding-left: 0;
+        padding-right: 0; }
 
 .entry-header,
 .entry-content-body {
