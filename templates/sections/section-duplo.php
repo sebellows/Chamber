@@ -36,6 +36,8 @@ if( get_row_layout('duplo_set') ) :
 
         if (get_the_excerpt() === '') {
             $content = wpautop( $post_content );
+            $content = preg_match_all('%(<p[^>]*>.*?</p>)%i', $content, $matches);
+            $content = $matches [1] [0];
             $content = wordwrap($post_content, $character_count);
             $content = preg_replace("/&amp;/", "&",$content);
             $content = substr($content,0,strpos($content, "\n"));
@@ -151,7 +153,7 @@ if( get_row_layout('duplo_set') ) :
 
             <div class="duplo" m-Duplo="<?php echo $index; ?>">
                 <?php if ($image) : ?>
-                <img class="duplo-image" src="<?php echo $image; ?>" />
+                <?php echo $image; ?>
                 <?php endif; ?>
 
                 <div class="duplo-skrim" aria-hidden="true"></div>
