@@ -22,7 +22,9 @@ use Chamber\Wrapper;
 			get_template_part('templates/header');
 
 			// Department header
-			get_template_part('templates/menu');
+			if (is_page_template( 'landing-page' )) {
+				get_template_part('templates/menu');
+			}
 		?>
 
 		<div class="wrap container" role="document">
