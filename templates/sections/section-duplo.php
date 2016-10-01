@@ -38,7 +38,7 @@ if( get_row_layout('duplo_set') ) :
             $content = wpautop( $post_content );
             $content = preg_match_all('%(<p[^>]*>.*?</p>)%i', $content, $matches);
             $content = $matches [1] [0];
-            $content = wordwrap($post_content, $character_count);
+            $content = wordwrap($content, $character_count);
             $content = preg_replace("/&amp;/", "&",$content);
             $content = substr($content,0,strpos($content, "\n"));
             $content = $content . $continued_mark;
