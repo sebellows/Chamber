@@ -20,8 +20,26 @@ if( get_row_layout('duplo_set') ) :
     endwhile;
     // dd($counter);
     
-    function getPostExcerpt($post_content, $character_count, $continued_mark = '&hellip;') {
-        $content = wordwrap($post_content, $character_count);
+    function first_paragraph() {
+      global $post, $posts;
+
+      $first_para = '';
+
+      ob_start();
+      ob_end_clean();
+
+      $post_content = $post->get('post_content');
+      $post_content = apply_filters('the_content', $post_content);
+      $output = preg_match_all('%(<p[^>]*>.*?</p>)%i', $post_content, $matches);
+      $first_para = $matches [1] [0];
+
+      return $first_para;
+    }
+    
+    function getPostExcerpt($post, $character_count, $continued_mark = '&hellip;') {
+        // $post_content = $post->get('post_content');
+        $first   = first_paragraph($post->get('post_content'));
+        $content = wordwrap($first, $character_count);
         $content = preg_replace("/&amp;/", "&",$content);
         $content = substr($content,0,strpos($content, "\n"));
 
@@ -94,8 +112,7 @@ if( get_row_layout('duplo_set') ) :
                 $post        = collect($post[0]);
                 $id          = $post->get('ID');
                 $title       = $post->get('post_title');
-                $excerpt     = $post->get('post_excerpt');
-                $summary     = !empty($excerpt) ? getPostExcerpt($post->get('post_content'), 96) : $excerpt;
+                $summary     = !empty($post->get('post_excerpt')) ? getPostExcerpt($post, 96) : $post->get('post_excerpt');
                 $link        = get_permalink( $post->get('ID') );
                 $image       = get_the_post_thumbnail( $post->get('ID'), 'large', ['class' => 'duplo-image'] );
             ?>
