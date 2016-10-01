@@ -1,15 +1,10 @@
 <?php
 
-if ( ! is_front_page() ) :
+if ( ! is_front_page() && is_page_template( 'landing-page' ) ) :
 
 ?>
 
 <nav id="deptNavigation" class="dept-navigation">
-
-<button class="close-button" data-close aria-controls="dept-navigation" aria-expanded="false" aria-label="Close reveal">
-    <!-- <span aria-hidden="true">&times;</span> -->
-    <svg role="presentation" viewbox="0 0 24 24"><use xlink:href="#close"></use></svg>
-</button>
 
 <?php
     if ( is_page( 'cvb' ) ) {
