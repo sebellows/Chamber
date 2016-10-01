@@ -45,6 +45,14 @@
   position: relative;
   z-index: 1;
 
+  h2 {
+    line-height: 1.2;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   p {
     color: neutral(2);
     font-size: 1.125em;
@@ -53,10 +61,6 @@
     &:last-child {
       margin-bottom: 0;
     }
-  }
-
-  h2 {
-    line-height: 1.2;
   }
 
   @include breakpoint(large) {

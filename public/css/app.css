@@ -3832,14 +3832,16 @@ object {
   text-shadow: 0 1px 1px rgba(0, 55, 85, 0.5);
   position: relative;
   z-index: 1; }
+  .duplo-content h2 {
+    line-height: 1.2; }
+    .duplo-content h2:last-child {
+      margin-bottom: 0; }
   .duplo-content p {
     color: #cccecf;
     font-size: 1.125em;
     font-style: italic; }
     .duplo-content p:last-child {
       margin-bottom: 0; }
-  .duplo-content h2 {
-    line-height: 1.2; }
   @media screen and (min-width: 64em) {
     .duplo-content {
       padding: 1.5rem 1.875rem; } }
