@@ -94,7 +94,8 @@ if( get_row_layout('duplo_set') ) :
                 $post        = collect($post[0]);
                 $id          = $post->get('ID');
                 $title       = $post->get('post_title');
-                $summary     = $post->get('post_excerpt') ? $post->get('post_excerpt') : getPostExcerpt($post->get('post_content'), 96);
+                $excerpt     = $post->get('post_excerpt');
+                $summary     = !empty($excerpt) ? getPostExcerpt($post->get('post_content'), 96) : $excerpt;
                 $link        = get_permalink( $post->get('ID') );
                 $image       = get_the_post_thumbnail( $post->get('ID'), 'large', ['class' => 'duplo-image'] );
             ?>
