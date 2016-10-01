@@ -70,6 +70,7 @@ if( get_row_layout('duplo_set') ) :
         ob_end_clean();
         $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches);
         $first_img = $matches [1] [0];
+        $first_img = '<img class="duplo-image" src="' . $first_img . '">';
       }
       else {
         $first_img = get_the_post_thumbnail( $post_id, 'large', ['class' => $classname]);
