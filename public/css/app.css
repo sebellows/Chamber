@@ -3404,6 +3404,11 @@ object {
 
 .sidebar-primary ul > li {
   border-bottom: 2px dotted rgba(0, 0, 0, 0.25); }
+  .sidebar-primary ul > li > h4 {
+    color: #131516;
+    font-size: 1.125em;
+    font-weight: 700;
+    line-height: 1.2; }
   .sidebar-primary ul > li > a {
     color: #131516;
     display: block;
@@ -3793,6 +3798,10 @@ object {
   @media screen and (min-width: 64em) {
     .duplo-blocks {
       margin-bottom: 4.6875rem; } }
+
+@media screen and (min-width: 64em) {
+  body.home .duplo-blocks {
+    margin-bottom: 1.875rem; } }
 
 .duplo {
   background: linear-gradient(45deg, rgba(0, 0, 0, 0.75), transparent);
