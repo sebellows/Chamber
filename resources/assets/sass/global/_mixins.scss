@@ -27,6 +27,20 @@ $total-columns: 12;
   }
 }
 
+@mixin arrow-right-icon($arrow-color: currentColor, $width: 1em, $height: 1em) {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20fill%3D%22#{$arrow-color}%22%20d%3D%22M30.88%2C16.4l0-.05%2C0-.07%2C0-.07%2C0-.06a.72.72%2C0%2C0%2C0%2C0-.28l0-.06%2C0-.07%2C0-.07%2C0-.05-.09-.11L16.51%2C1.21a.71.71%2C0%2C0%2C0-1%2C1L28.56%2C15.29H1.71a.71.71%2C0%2C0%2C0%2C0%2C1.43H28.56L15.5%2C29.78a.71.71%2C0%2C1%2C0%2C1%2C1L30.79%2C16.51Z%22/%3E%3C/svg%3E');
+  background-repeat: none;
+  background-position: 50% 50%;
+  background-size: contain;
+  display: inline-block;
+  margin-right: .4em;
+  position: relative;
+  top: -1px;
+  width: $width;
+  height: $height;
+  vertical-align: middle;
+}
+
 // Apply styles to a link item ONLY if the Modernizr class `.no-touchevents` is applied to root 
 @mixin no-touchevent() {
   .no-touchevents & {

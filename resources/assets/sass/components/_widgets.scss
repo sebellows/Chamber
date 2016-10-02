@@ -94,15 +94,6 @@
   }
 }
 
-// Events widget
-.widget {
-  .event-date,
-  .event-time,
-  .event-location {
-    padding-left: 0;
-  }
-}
-
 // Page-specific rules
 .news .widget {
   li a.rsswidget {
@@ -126,7 +117,7 @@
 }
 
 
-.widget.quicklinks {
+.sidebar-primary {
   ul > li {
     border-bottom: 2px dotted rgba(0,0,0,.25);
 
@@ -137,23 +128,24 @@
       font-size: 1.125em;
       font-weight: 700;
       line-height: 1.2;
-      padding: ($global-padding/2) 0 ($global-padding/2) ($global-padding*1.5);
+      padding: ($global-padding/2) 0;
       position: relative;
-
-      &:before {
-        content: "\21D2";
-        color: color(cvb);
-        font-family: sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        position: absolute;
-        // top: .5em;
-        left: 0;
-      }
     }
 
     &:last-child {
       border-bottom: 0 none;
     }
   }
+}
+
+#menu-quicklinks > li > a:before {
+    // content: "\21D2";
+    // color: color(cvb);
+    // font-family: sans-serif;
+    // font-style: normal;
+    // font-weight: normal;
+    // position: absolute;
+    // left: 0;
+    content: "";
+    @include arrow-right-icon(color(cvb));
 }

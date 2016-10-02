@@ -3387,11 +3387,6 @@ object {
       padding-right: 0.9375rem;
       max-width: 33.3333333333%; } }
 
-.widget .event-date,
-.widget .event-time,
-.widget .event-location {
-  padding-left: 0; }
-
 .news .widget li a.rsswidget {
   color: #0f4466;
   font-family: "Roboto Slab", Georgia, serif;
@@ -3407,27 +3402,33 @@ object {
 .news .widget .rss-date + .rssSummary:before {
   content: " – "; }
 
-.widget.quicklinks ul > li {
+.sidebar-primary ul > li {
   border-bottom: 2px dotted rgba(0, 0, 0, 0.25); }
-  .widget.quicklinks ul > li > a {
+  .sidebar-primary ul > li > a {
     color: #131516;
     display: block;
     font-family: "Roboto Slab", Georgia, serif;
     font-size: 1.125em;
     font-weight: 700;
     line-height: 1.2;
-    padding: 0.5rem 0 0.5rem 1.5rem;
+    padding: 0.5rem 0;
     position: relative; }
-    .widget.quicklinks ul > li > a:before {
-      content: "\21D2";
-      color: #eb6b23;
-      font-family: sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      position: absolute;
-      left: 0; }
-  .widget.quicklinks ul > li:last-child {
+  .sidebar-primary ul > li:last-child {
     border-bottom: 0 none; }
+
+#menu-quicklinks > li > a:before {
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20fill%3D%22#eb6b23%22%20d%3D%22M30.88%2C16.4l0-.05%2C0-.07%2C0-.07%2C0-.06a.72.72%2C0%2C0%2C0%2C0-.28l0-.06%2C0-.07%2C0-.07%2C0-.05-.09-.11L16.51%2C1.21a.71.71%2C0%2C0%2C0-1%2C1L28.56%2C15.29H1.71a.71.71%2C0%2C0%2C0%2C0%2C1.43H28.56L15.5%2C29.78a.71.71%2C0%2C1%2C0%2C1%2C1L30.79%2C16.51Z%22/%3E%3C/svg%3E");
+  background-repeat: none;
+  background-position: 50% 50%;
+  background-size: contain;
+  display: inline-block;
+  margin-right: .4em;
+  position: relative;
+  top: -1px;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle; }
 
 .search-form {
   background-color: #003355;
@@ -3842,6 +3843,8 @@ object {
     font-style: italic; }
     .duplo-content p:last-child {
       margin-bottom: 0; }
+    .duplo-content p:empty {
+      display: none !important; }
   @media screen and (min-width: 64em) {
     .duplo-content {
       padding: 1.5rem 1.875rem; } }
@@ -3938,8 +3941,9 @@ object {
   [m-DuploCount="3"] .duplo[m-Duplo="2"]:last-child:not(:first-child), [m-DuploCount="3"] .duplo[m-Duplo="3"]:last-child:not(:first-child) {
     float: right; }
   [m-DuploCount="3"] .duplo[m-Duplo="2"] h2, [m-DuploCount="3"] .duplo[m-Duplo="3"] h2 {
-    font-size: 1.25em;
-    margin-bottom: 0; }
+    font-size: 1.25em; }
+    [m-DuploCount="3"] .duplo[m-Duplo="2"] h2:not(:last-child), [m-DuploCount="3"] .duplo[m-Duplo="3"] h2:not(:last-child) {
+      margin-bottom: 0; }
   [m-DuploCount="3"] .duplo[m-Duplo="2"] p, [m-DuploCount="3"] .duplo[m-Duplo="3"] p {
     display: none; }
   @media screen and (min-width: 40em) {
@@ -3974,6 +3978,8 @@ object {
     float: right; }
   [m-DuploCount="4"] .duplo[m-Duplo="1"] h2 {
     font-size: 2.625em; }
+    [m-DuploCount="4"] .duplo[m-Duplo="1"] h2:not(:last-child) {
+      margin-bottom: 0; }
   @media screen and (min-width: 40em) {
     [m-DuploCount="4"] .duplo[m-Duplo="1"] {
       width: 50%;
@@ -3990,7 +3996,7 @@ object {
   [m-DuploCount="4"] .duplo[m-Duplo="2"]:last-child:not(:first-child) {
     float: right; }
   [m-DuploCount="4"] .duplo[m-Duplo="2"] h2 {
-    font-size: 2.25em; }
+    font-size: 2em; }
   @media screen and (min-width: 40em) {
     [m-DuploCount="4"] .duplo[m-Duplo="2"] {
       width: 50%;

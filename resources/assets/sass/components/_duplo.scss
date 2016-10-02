@@ -61,6 +61,10 @@
     &:last-child {
       margin-bottom: 0;
     }
+
+    &:empty {
+      display: none !important;
+    }
   }
 
   @include breakpoint(large) {
@@ -171,7 +175,10 @@
 
     h2 {
       font-size: 1.25em;
-      margin-bottom: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
     }
 
     p { display: none; }
@@ -223,6 +230,10 @@
 
       h2 {
         font-size: 2.625em;
+
+        &:not(:last-child) {
+          margin-bottom: 0;
+        }
       }
 
       @include breakpoint(medium) {
@@ -237,7 +248,7 @@
       @include grid-col(12,0);
 
       h2 {
-        font-size: 2.25em;
+        font-size: 2em;
       }
 
       @include breakpoint(medium) {
