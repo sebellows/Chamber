@@ -3435,6 +3435,10 @@ object {
   height: 1em;
   vertical-align: middle; }
 
+.widget-post-thumbnail img[width="150"] {
+  max-width: 72px;
+  height: auto !important; }
+
 .search-form {
   background-color: #003355;
   padding: 0.6875rem 0.9375rem 0.625rem 0.9375rem;

@@ -156,3 +156,8 @@
     content: "";
     @include arrow-right-icon(color(cvb));
 }
+
+.widget-post-thumbnail img[width="150"] {
+  max-width: 72px;
+  height: auto !important;
+}
