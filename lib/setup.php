@@ -79,6 +79,16 @@ function widgets_init() {
 		'after_title'   => '</h3>'
 	]);
 
+	// News Room Sidebar
+	register_sidebar([
+		'name'          => __('News Room Sidebar', 'chamber'),
+		'id'            => 'sidebar-news',
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	]);
+
 	// ------------------------------------------------------
 	// DEPARTMENT SIDEBARS
 	// ------------------------------------------------------
@@ -209,6 +219,7 @@ function display_sidebar() {
 		// @link https://codex.wordpress.org/Conditional_Tags
 		is_404(),
 		is_front_page('template-frontpage.php'),
+		is_home(),
 		is_page_template('template-landing.php'),
 		is_page_template('template-attractions.php'),
 		is_single()

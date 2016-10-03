@@ -36,12 +36,22 @@ function body_class($classes) {
 add_filter('body_class', __NAMESPACE__ . '\\body_class');
 
 /**
- * Clean up the_excerpt()
+ * Modify the read more link text for the_excerpt()
  */
-function excerpt_more() {
-	return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'chamber') . '</a>';
+function custom_excerpt_more($more) {
+	global $post;
+
+	return '<a class="readmore" href="' . get_permalink($post->ID) . '">Read More ' . '<svg class="icon" m-Icon="xsmall" role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></a>';
 }
-add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
+add_filter('excerpt_more', __NAMESPACE__ . '\\custom_excerpt_more');
+
+/**
+ * Modify the read more link text for the_content()
+ */
+function custom_content_more() {
+	return '<a class="readmore" href="' . get_permalink() . '">Read More ' . '<svg class="icon" m-Icon="xsmall" role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></a>';
+}
+add_filter('the_content_more_link', __NAMESPACE__ . '\\custom_content_more');
 
 /**
  * Add SVG capabilities
@@ -102,3 +112,62 @@ function the_post_thumbnail_caption() {
 	}
 }
 add_filter('chamber/thumbnail/caption', __NAMESPACE__ . '\\the_post_thumbnail_caption');
+
+/**
+ * Add a Featured Post meta box.
+ * 
+ * @return void
+ */
+function add_featured_meta() {
+    add_meta_box( 'featured_meta', 'Featured Post', __NAMESPACE__ . '\\render_featured_meta', 'post' );
+}
+
+/**
+ * Render a view of the Featured Post meta box.
+ * 
+ * @param  mixed $post
+ * @return the meta box view
+ */
+function render_featured_meta( $post ) {
+    $featured = get_post_meta( $post->ID );
+    ?>
+ 
+	<p>
+	    <div class="featured-callout">
+	        <label class="selectit">
+	            <input type="checkbox" name="featured-post-meta" id="featured-post-meta" value="yes" <?php if ( isset ( $featured['featured-post-meta'] ) ) checked( $featured['featured-post-meta'][0], 'yes' ); ?> />
+	            Feature this post
+	        </label>
+	    </div>
+	</p>
+    <?php
+}
+add_action( 'add_meta_boxes', __NAMESPACE__ . '\\add_featured_meta' );
+
+/**
+ * Saves the featured post meta input.
+ * 
+ * @param  int $post_id
+ * @return void
+ */
+function save_featured_meta( $post_id ) {
+ 
+    // Checks save status
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
+    $is_valid_nonce = ( isset( $_POST[ 'chamber_nonce' ] ) && wp_verify_nonce( $_POST[ 'chamber_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+ 
+    // Exits script depending on save status
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+        return;
+    }
+ 
+	// Checks for input and saves
+	if( isset( $_POST[ 'featured-post-meta' ] ) ) {
+	    update_post_meta( $post_id, 'featured-post-meta', 'yes' );
+	} else {
+	    update_post_meta( $post_id, 'featured-post-meta', '' );
+	}
+}
+add_action( 'save_post', __NAMESPACE__ . '\\save_featured_meta' );
+

@@ -13,16 +13,12 @@ use Chamber\SocialButton;
 
 <?php while (have_posts()) : the_post(); ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<header class="entry-header">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
+		<header class="post-header">
+			<h1 class="post-title"><?php the_title(); ?></h1>
 
 			<?php if (! is_singular( 'attraction' ) ) : ?>
 
-				<div class="entry-meta">
-
-					<?php get_template_part('templates/entry-meta'); ?>
-
-				</div><!-- .entry-meta -->
+				<?php get_template_part('templates/entry-meta'); ?>
 
 			<?php else : ?>
 
@@ -31,13 +27,13 @@ use Chamber\SocialButton;
 
 			<?php endif; ?>
 
-		</header><!-- .entry-header -->
+		</header><!-- .post-header -->
 
-		<div class="entry-content">
+		<div class="post-content">
 
 			<?php echo the_post_thumbnail(); ?>
 
-			<div class="entry-content-body">
+			<div class="post-content-body">
 				<?php the_content(); ?>
 			</div>
 
@@ -69,7 +65,7 @@ use Chamber\SocialButton;
 					]);
 				?>
 			</div>
-		</div><!-- .entry-content -->
+		</div><!-- .post-content -->
 
 		<footer>
 			<div class="row">

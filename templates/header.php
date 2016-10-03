@@ -13,8 +13,6 @@ use Chamber\Assets;
 
 ?>
 
-<?php get_template_part('public/images/chamber', 'sprite.svg') ?>
-
 <header id="masthead" class="site-header" role="banner">
 	<div class="site-branding">
 
@@ -38,7 +36,7 @@ use Chamber\Assets;
 				<div class="site-description">
 					<span class="screen-reader-text"><?php echo $description; ?></span>
 					<?php if (strcmp(strtolower($description), 'see what\s possible')) : ?>
-					<?php echo '<svg aria-role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . Assets\asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
+					<?php echo '<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . Assets\asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>

@@ -15,6 +15,9 @@ use Chamber\Wrapper;
 				<?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'chamber'); ?>
 			</div>
 		<![endif]-->
+
+		<?php get_template_part('public/images/chamber', 'sprite.svg') ?>
+
 		<?php
 			do_action('get_header');
 

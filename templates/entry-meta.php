@@ -9,10 +9,10 @@
  * @package chamber
  */
 
+$content_type = is_single() ? 'post' : 'entry';
+
 ?>
 
-<span class="byline author vcard"><?= esc_html( get_the_author() ); ?></span><!--
---><s>&nbsp;|&nbsp;</s><wbr><!--
---><time class="updated" datetime="<?= get_post_time('c', true); ?>"><?= get_the_date('m.d.y'); ?></time>
-
-<!-- <p class="byline author vcard"><?php /* __('By', 'chamber'); */ ?> <a href="<?php /* get_author_posts_url(get_the_author_meta('ID')); */ ?>" rel="author" class="fn"><?php /* get_the_author(); */ ?></a></p> -->
+<div class="<?php echo $content_type; ?>-meta">
+	<time class="updated" datetime="<?= get_post_time('c', true); ?>"><?= get_the_date('m.d.y'); ?></time>
+</div><!-- .entry-meta -->
