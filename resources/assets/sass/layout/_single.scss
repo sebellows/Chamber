@@ -1,4 +1,8 @@
 .single {
+  .post {
+    @include flex-grid-row();
+  }
+
   .post,
   .attraction {
     background-color: $white;

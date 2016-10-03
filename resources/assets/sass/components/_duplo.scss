@@ -12,6 +12,12 @@
   }
 }
 
+body.home .duplo-blocks {
+  @include breakpoint(large) {
+    margin-bottom: rem-calc(30);
+  }
+}
+
 .duplo {
   background: linear-gradient(45deg,rgba(0,0,0,0.75),rgba(0,0,0,0));
   border: rem-calc(2.5) solid $body-background;
@@ -98,6 +104,29 @@
   bottom: 0;
   left: 0;
   z-index: 1;
+}
+
+//// NEWS ROOM DUPLOS
+///
+.duplo.news-header {
+  background: color(brand-light);
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: rem-calc(16 20);
+  text-shadow: 0 1px 1px rgba(0,55,85,0.5);
+  position: relative;
+  z-index: 1;
+
+  h1 {
+    text-align: center;
+  }
+
+  @include breakpoint(large) {
+    padding: rem-calc(24 30);
+  }
 }
 
 //// Sizes
@@ -286,4 +315,167 @@
         border-right: 0 !important;
       }
     }
+}
+
+//// NEWS DUPLO SIZING
+///
+
+// 2 Blocks
+.duplo-blocks.news-duplo-blocks {
+  &[m-DuploCount="2"] .duplo {
+
+    &[m-Duplo="1"] {
+      @include breakpoint(medium) {
+        @include grid-col(3,0);
+      }
+      @include breakpoint(large) {
+        @include grid-col(2,0);
+      }
+    }
+
+    &[m-Duplo="2"] {
+      @include grid-col(12,0);
+
+      @include breakpoint(medium) {
+        @include grid-col(9,0);
+      }
+      @include breakpoint(large) {
+        @include grid-col(10,0);
+
+        .duplo-content {
+          max-width: 50em;
+        }
+      }
+    }
+
+  }
+
+  // 3 Blocks
+  [m-DuploCount="3"] .duplo {
+
+    &[m-Duplo="1"] {
+      @include breakpoint(medium) {
+        @include grid-col(7,0);
+      }
+    }
+
+    &[m-Duplo="2"],
+    &[m-Duplo="3"] {
+      height: 32.5vh;
+      @include grid-col(6,0);
+
+      h2 {
+        font-size: 1.25em;
+
+        &:not(:last-child) {
+          margin-bottom: 0;
+        }
+      }
+
+      p { display: none; }
+
+      @include breakpoint(medium) {
+        border-right: 0 !important;
+        @include grid-col(5,0);
+
+        h2 {
+          font-size: 1.5em;
+        }
+      }
+
+      @include breakpoint(large) {
+
+        h2 {
+          margin-bottom: rem-calc(8);
+        }
+
+        p {
+          display: block;
+        }
+      }
+
+      @include breakpoint(xlarge) {
+        h2 {
+          font-size: 1.75em;
+        }
+      }
+    }
+
+    @include breakpoint(small only) {
+      &[m-Duplo="2"] {
+        border-left: 0 !important;
+      }
+
+      &[m-Duplo="3"] {
+        border-right: 0 !important;
+      }
+    }
+  }
+
+  // 4 Blocks
+  [m-DuploCount="4"] .duplo {
+
+    &[m-Duplo="1"] {
+      border-left: 0 !important;
+      @include grid-col(12,0);
+
+      h2 {
+        font-size: 2.625em;
+
+        &:not(:last-child) {
+          margin-bottom: 0;
+        }
+      }
+
+      @include breakpoint(medium) {
+        @include grid-col(6,0);
+        height: 65vh;
+      }
+    }
+
+    &[m-Duplo="2"] {
+      border-right: 0 !important;
+      height: 35vh;
+      @include grid-col(12,0);
+
+      h2 {
+        font-size: 2em;
+      }
+
+      @include breakpoint(medium) {
+        @include grid-col(6,0);
+        height: 32.5vh;
+      }
+    }
+
+    &[m-Duplo="3"],
+    &[m-Duplo="4"] {
+      height: 35vh;
+      @include grid-col(6,0);
+
+      h2 {
+        font-size: 1.5em;
+        margin-bottom: 0;
+      }
+
+      p { display: none; }
+
+      @include breakpoint(medium) {
+        height: 32.5vh;
+        @include grid-col(3,0);
+
+        h2 {
+          margin-bottom: rem-calc(8);
+        }
+
+        p { display: block; }
+      }
+    }
+
+    &[m-Duplo="4"] {
+      @include breakpoint(medium) {
+        border-right: 0 !important;
+      }
+    }
+  }
 }

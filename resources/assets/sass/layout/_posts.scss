@@ -1,11 +1,11 @@
-.entry-header,
-.entry-content-body {
+.post-header,
+.post-content-body {
   padding-top: rem-calc(15);
   padding-bottom: rem-calc(15);
   @include flex-grid-column(12);
 }
 
-.entry-header {
+.post-header {
   @include breakpoint(large) {
     padding-top: rem-calc(30);
     padding-bottom: rem-calc(30);
@@ -13,7 +13,7 @@
   }
 }
 
-.entry-content {
+.post-content {
   @include hover-link;
 
   @include breakpoint(large) {
@@ -22,14 +22,14 @@
   }
 }
 
-.entry-content-body {
+.post-content-body {
   @include breakpoint(large) {
     @include flex-grid-column(10, 0);
     padding: rem-calc(30 0);
   }
 }
 
-.entry-meta {
+.post-meta {
   font-size: em(14);
 
   s {
@@ -42,7 +42,7 @@
   }
 }
 
-.entry-title {
+.post-title {
   font-size: 2.5em;
   line-height: 1.15;
   letter-spacing: -1px;

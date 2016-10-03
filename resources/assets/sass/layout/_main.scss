@@ -2,7 +2,6 @@
 .main {
   max-width: 100%;
 
-  .hentry,
   .main-content {
     @include flex-grid-row();
   }

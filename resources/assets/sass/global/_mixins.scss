@@ -67,7 +67,8 @@ $total-columns: 12;
 }
 
 @mixin hover-link($color: $primary-color) {
-  a:not(.button) {
+  a:not(.button),
+  a:not(.readmore) {
     border-bottom: 1px solid $primary-color;
     transition: all .2s ease-in-out;
 
@@ -78,7 +79,8 @@ $total-columns: 12;
   }
 
   .no-touchevents & {
-    a:not(.button):hover {
+    a:not(.button):hover,
+    a:not(.readmore):hover {
       border-bottom-color: transparentize($primary-color,.75);
       box-shadow: 0 3px 0 transparentize($primary-color,.5);
     }

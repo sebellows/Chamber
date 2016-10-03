@@ -1,4 +1,11 @@
 .site-navigation {
+	.menu > li {
+		margin-left: rem-calc(5px);
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
 	.menu > li > a {
 		border-radius: 2px;
 		font-size: em(12);

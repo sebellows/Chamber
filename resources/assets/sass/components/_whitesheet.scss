@@ -1,13 +1,6 @@
 .whitesheet-header,
 .whitesheet-body {
-  // padding-top: rem-calc(15);
-  // padding-bottom: rem-calc(15);
   @include flex-callout(12);
-
-  // @include breakpoint(large) {
-  //   padding-top: rem-calc(20);
-  //   padding-bottom: rem-calc(20);
-  // }
 }
 
 .whitesheet-header {
