@@ -6,7 +6,10 @@
     }
 
     h4 {
-      color: color(brand);
+      color: $body-font-color;
+      font-size: em(18);
+      font-weight: 700;
+      line-height: 1.2;
       margin-bottom: 0;
     }
 
@@ -15,30 +18,44 @@
       margin-left: 0;
 
       > li {
-        border-bottom: 2px dotted $medium-gray;
-        padding: rem-calc(8) 0;
-
-        // hack to clear a thumbnail. clearfix does not work.
-        overflow: hidden;
+        border-bottom: 2px dotted rgba(0,0,0,.25);
+        padding: em(8) 0;
+        overflow: hidden; // hack to clear a thumbnail. clearfix does not work.
 
         &:last-child {
           border-bottom: 0 none;
         }
+      }
+    }
 
-        a {
+    .menu {
+      > li {
+        padding: 0;
+
+        > a {
           color: $body-font-color;
+          display: block;
+          font-family: $header-font-family;
+          font-size: em(18);
+          font-weight: 700;
+          line-height: 1.2;
+          padding: em(16,18) 0;
+          position: relative;
         }
       }
     }
 
-    /* Make sure select elements fit in widgets. */
+    .widget-post-meta {
+      color: color(brand-light);
+    }
+
+    // Make sure select elements fit in widgets.
     select {
       max-width: 100%;
     }
 
     // sub-classes
-    .rsswidget,
-    .chamber-cpt-widget {
+    .rsswidget {
       color: $body-font-color;
     }
 
@@ -48,8 +65,8 @@
 
     time,
     .rss-date {
-      color: $dark-gray;
-      font-size: $small-font-size;
+      color: color(brand-medium);
+      font-size: em(12);
       text-transform: uppercase;
     }
 
@@ -116,39 +133,6 @@
 
   .rss-date + .rssSummary:before {
     content: " – ";
-  }
-}
-
-
-.sidebar-primary {
-  ul > li {
-    border-bottom: 2px dotted rgba(0,0,0,.25);
-
-    > h4 {
-      color: $body-font-color;
-      font-size: 1.125em;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    > a {
-      color: $body-font-color;
-      display: block;
-      font-family: $header-font-family;
-      font-size: 1.125em;
-      font-weight: 700;
-      line-height: 1.2;
-      padding: ($global-padding/2) 0;
-      position: relative;
-    }
-
-    &:last-child {
-      border-bottom: 0 none;
-    }
-  }
-
-  .widget-post-meta {
-    color: color(brand-light);
   }
 }
 

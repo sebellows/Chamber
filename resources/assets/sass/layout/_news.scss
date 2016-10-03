@@ -15,10 +15,10 @@
   border: 0 none;
   box-shadow: none;
 
-  @include flex-grid-column(12);
+  @include flex-grid-column(12, 0);
 
   @include breakpoint(large) {
-    @include flex-grid-column(4, 60);
+    @include flex-grid-column(4, 0);
   }
 }
 
