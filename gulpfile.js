@@ -1,12 +1,13 @@
+var elixir = require('laravel-elixir-svgstore');
 var elixir = require('laravel-elixir');
 var del = require('del');
  
-elixir.extend("remove", function(path) {
-  gulp.task("remove", function() {
-    del(path);
-  });
-  return gulp.start("remove");
-});
+// elixir.extend("remove", function(path) {
+//   gulp.task("remove", function() {
+//     del(path);
+//   });
+//   return gulp.start("remove");
+// });
  
 /*
  |--------------------------------------------------------------------------
@@ -79,10 +80,10 @@ elixir(function(mix) {
 
 	mix.copy([
 		'node_modules/flickity/dist/flickity.min.css'
-		// 'node_modules/magnific-popup/dist/magnific-popup.css',
-		// 'node_modules/motion-ui/dist/motion-ui.min.css'
 	], 'resources/assets/css/vendor')
 	.stylesIn('resources/assets/css/vendor', './public/css/vendor.css');
+
+	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 
 	mix.rollup('./resources/assets/js/foundation.js');
 
@@ -90,11 +91,6 @@ elixir(function(mix) {
 		files: ['{lib,templates}/**/*.php', '*.php', 'public'],
 		proxy: 'flintandgenesee.dev:8888',
 		host: 'flintandgenesee.dev:8888'
-		// port: '8888',
-		// snippetOptions: {
-		// 	whitelist: ['/wp-admin/admin-ajax.php'],
-		// 	blacklist: ['/wp-admin/**']
-		// }
 	});
 
 });
