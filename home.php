@@ -23,7 +23,7 @@
 		?>
 	</div><!-- .news-feed -->
 	
-	<aside id="news-sidebar" class="sidebar news-sidebar" role="complementary">
+	<aside id="news-sidebar" class="sidebar sidebar-news" role="complementary">
 		<?php dynamic_sidebar( 'sidebar-news' ); ?>
 	</aside><!-- #news-sidebar -->
 
