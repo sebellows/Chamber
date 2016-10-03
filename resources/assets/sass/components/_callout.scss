@@ -16,6 +16,7 @@
     }
 
     @include breakpoint(large) {
+      text-align: left;
       @include flex-grid-column(3,60px);
 
       + .row {

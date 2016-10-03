@@ -10,7 +10,11 @@
       font-size: em(18);
       font-weight: 700;
       line-height: 1.2;
-      margin-bottom: 0;
+      margin-bottom: em(8,18);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     ul {
@@ -25,14 +29,9 @@
         &:last-child {
           border-bottom: 0 none;
         }
-      }
-    }
 
-    .menu {
-      > li {
-        padding: 0;
-
-        > a {
+        // Menu items
+        > a:only-child {
           color: $body-font-color;
           display: block;
           font-family: $header-font-family;
@@ -81,6 +80,10 @@
   top: 3px;
 }
 
+.attachment-widget_card {
+  margin-bottom: 1em;
+}
+
 // Sidebar-specific rules
 .sidebar .widget-1of2 {
   color: $body-font-color;
@@ -103,6 +106,10 @@
 
 // Sidebar-specific rules
 .sidebar .widget-1of3 {
+  &:nth-last-child(2) {
+    background-color: $white;
+  }
+
   @include flex-grid-column(12, rem-calc(30));
 
   @include breakpoint(medium) {

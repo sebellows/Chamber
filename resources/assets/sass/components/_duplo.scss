@@ -1,15 +1,23 @@
+.duplo-set {
+  margin-bottom: em(30);
+
+  @include breakpoint(large) {
+    margin-bottom: em(75);
+  }
+}
+  .blog .duplo-set {
+    @include breakpoint(large) {
+      margin-bottom: em(30);
+    }
+  }
+
 .duplo-blocks {
   border-top: rem-calc(2.5) solid $body-background;
   border-bottom: rem-calc(2.5) solid $body-background;
-  margin-bottom: rem-calc(30);
   position: relative;
   width: 100vw;
   max-width: 100%;
   @include clearfix();
-
-  @include breakpoint(large) {
-    margin-bottom: rem-calc(75);
-  }
 }
 
 body.home .duplo-blocks {
@@ -19,9 +27,9 @@ body.home .duplo-blocks {
 }
 
 .duplo {
-  background: linear-gradient(45deg,rgba(0,0,0,0.75),rgba(0,0,0,0));
+  // background: linear-gradient(45deg,rgba(0,0,0,0.75),rgba(0,0,0,0));
   border: rem-calc(2.5) solid $body-background;
-  height: 450px;
+  height: 400px;
   height: 40vh;
   position: relative;
   overflow: hidden;
@@ -60,17 +68,22 @@ body.home .duplo-blocks {
   }
 
   p {
-    color: neutral(2);
+    // color: neutral(1);
     font-size: 1.125em;
     font-style: italic;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: 0;
 
     &:empty {
       display: none !important;
     }
+  }
+
+  time {
+    font-size: em(12);
+    font-weight: 700;
+    letter-spacing: rem-calc(1.5);
+    text-transform: uppercase;
+    margin-bottom: em(10,12);
   }
 
   @include breakpoint(large) {
@@ -122,6 +135,12 @@ body.home .duplo-blocks {
 
   h1 {
     text-align: center;
+
+    @include breakpoint(small only) {
+      br {
+        display: none;
+      }
+    }
   }
 
   @include breakpoint(large) {
@@ -134,11 +153,17 @@ body.home .duplo-blocks {
 // 1 Block
 .duplo[m-Duplo="1"] {
   border-left: 0 !important;
+  height: auto;
   @include grid-col(12,0);
 
   h2 { font-size: em(48); }
 
   @include breakpoint(medium) {
+    height: 360px;
+    height: 40vh;
+  }
+
+  @include breakpoint(large) {
     height: 550px;
     height: 65vh;
   }
@@ -320,18 +345,27 @@ body.home .duplo-blocks {
 //// NEWS DUPLO SIZING
 ///
 
-// 2 Blocks
 .duplo-blocks.news-duplo-blocks {
-  &[m-DuploCount="2"] .duplo {
 
-    &[m-Duplo="1"] {
-      @include breakpoint(medium) {
-        @include grid-col(3,0);
-      }
-      @include breakpoint(large) {
-        @include grid-col(2,0);
-      }
+  // Duplo Header
+  .duplo[m-Duplo="1"] {
+    @include grid-col(12,0);
+
+    @include breakpoint(small only) {
+      border-right: 0 !important;
     }
+
+    @include breakpoint(medium) {
+      @include grid-col(3,0);
+    }
+
+    @include breakpoint(large) {
+      @include grid-col(2,0);
+    }
+  }
+
+  // 2 Blocks
+  &[m-DuploCount="2"] .duplo {
 
     &[m-Duplo="2"] {
       @include grid-col(12,0);
@@ -350,131 +384,51 @@ body.home .duplo-blocks {
 
   }
 
-  // 3 Blocks
-  [m-DuploCount="3"] .duplo {
+  // 4 Blocks
+  &[m-DuploCount="4"] .duplo {
 
-    &[m-Duplo="1"] {
-      @include breakpoint(medium) {
-        @include grid-col(7,0);
-      }
-    }
+    &[m-Duplo="2"] {
 
-    &[m-Duplo="2"],
-    &[m-Duplo="3"] {
-      height: 32.5vh;
-      @include grid-col(6,0);
-
-      h2 {
-        font-size: 1.25em;
-
-        &:not(:last-child) {
-          margin-bottom: 0;
-        }
+      p {
+        display: none;
       }
 
-      p { display: none; }
+      @include breakpoint(small only) {
+        border-left: 0 !important;
+      }
 
       @include breakpoint(medium) {
-        border-right: 0 !important;
-        @include grid-col(5,0);
-
-        h2 {
-          font-size: 1.5em;
-        }
+        @include grid-col(9,0);
+        height: 360px;
+        height: 32.5vh;
       }
 
       @include breakpoint(large) {
-
-        h2 {
-          margin-bottom: rem-calc(8);
-        }
+        @include grid-col(6,0);
+        height: 550px;
+        height: 65vh;
 
         p {
           display: block;
         }
       }
-
-      @include breakpoint(xlarge) {
-        h2 {
-          font-size: 1.75em;
-        }
-      }
-    }
-
-    @include breakpoint(small only) {
-      &[m-Duplo="2"] {
-        border-left: 0 !important;
-      }
-
-      &[m-Duplo="3"] {
-        border-right: 0 !important;
-      }
-    }
-  }
-
-  // 4 Blocks
-  [m-DuploCount="4"] .duplo {
-
-    &[m-Duplo="1"] {
-      border-left: 0 !important;
-      @include grid-col(12,0);
-
-      h2 {
-        font-size: 2.625em;
-
-        &:not(:last-child) {
-          margin-bottom: 0;
-        }
-      }
-
-      @include breakpoint(medium) {
-        @include grid-col(6,0);
-        height: 65vh;
-      }
-    }
-
-    &[m-Duplo="2"] {
-      border-right: 0 !important;
-      height: 35vh;
-      @include grid-col(12,0);
-
-      h2 {
-        font-size: 2em;
-      }
-
-      @include breakpoint(medium) {
-        @include grid-col(6,0);
-        height: 32.5vh;
-      }
     }
 
     &[m-Duplo="3"],
     &[m-Duplo="4"] {
-      height: 35vh;
-      @include grid-col(6,0);
-
-      h2 {
-        font-size: 1.5em;
-        margin-bottom: 0;
-      }
-
-      p { display: none; }
-
       @include breakpoint(medium) {
         height: 32.5vh;
-        @include grid-col(3,0);
-
-        h2 {
-          margin-bottom: rem-calc(8);
-        }
-
-        p { display: block; }
+        @include grid-col(4.5,0);
+      }
+      @include breakpoint(large) {
+        height: 32.5vh;
+        @include grid-col(4,0);
       }
     }
 
-    &[m-Duplo="4"] {
-      @include breakpoint(medium) {
-        border-right: 0 !important;
+    &[m-Duplo="3"] {
+      @include breakpoint(small only) {
+        border-left: 0 none !important;
       }
     }
   }

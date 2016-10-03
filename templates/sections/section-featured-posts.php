@@ -18,6 +18,8 @@ if ($featured->have_posts()) :
         $counter++;
     endwhile;
 
+    $title = Titles\title();
+
 ?>
 
 <section class="duplo-set">
@@ -25,7 +27,7 @@ if ($featured->have_posts()) :
     <div class="duplo-blocks news-duplo-blocks" m-DuploCount="<?php echo $counter; ?>">
 
         <header class="duplo news-header" m-Duplo="1">
-            <h1><?= Titles\title(); ?></h1>
+            <h1><?= wordwrap($title,3,"<br>\n"); ?></h1>
         </header>
 
         <?php
@@ -44,7 +46,9 @@ if ($featured->have_posts()) :
             <div class="duplo-content">
                 <time><?php echo get_the_date('F j, Y'); ?></time>
                 <h2><?php the_title(); ?></h2>
-                <p><?php the_excerpt();?></p>
+                <?php if ( $index === 2 ) : ?>
+                    <p><?php the_excerpt();?></p>
+                <?php endif; ?>
             </div>
 
             <a href="<?php the_permalink(); ?>" class="duplo-link"></a>
