@@ -1,0 +1,94 @@
+.blog .hentry {
+  border-top: 1px solid neutral(3);
+  padding: rem-calc(20 0);
+
+  &:first-of-type {
+    border-top: 0 none;
+  }
+
+  @include breakpoint(medium) {
+    & + .hentry:not(.has-post-thumbnail) {
+      padding-right: rem-calc(15);
+
+      &,
+      & + .hentry:not(.has-post-thumbnail) {
+        float: left;
+        width: 50%;
+      }
+
+      & + .hentry:not(.has-post-thumbnail) {
+        padding-left: rem-calc(15);
+      }
+
+      & + .hentry:not(.has-post-thumbnail) + .hentry:not(.has-post-thumbnail) {
+        padding-left: 0;
+        width: 100%;
+        clear: both;
+        @include clearfix();
+      }
+    }
+    & + .hentry:not(.has-post-thumbnail) ~ .hentry {
+      width: 100%;
+      @include clearfix();
+    }
+  }
+}
+
+.entry-header {
+  clear: both;
+}
+
+.entry-title {
+  font-size: 1.5em;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin-bottom: .5em;
+}
+
+.entry-meta {
+  font-size: em(14);
+
+  s {
+    color: color(cvb);
+    font-size: 1.5em;
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+  }
+
+  time {
+    color: color(brand-light);
+  }
+}
+
+.entry-content {
+  @include hover-link;
+}
+
+.blog .hentry.has-post-thumbnail {
+  @include breakpoint(medium) {
+    width: 100%;
+    clear: both;
+    @include clearfix();
+
+    .entry-header {
+      @include clearfix();
+    }
+
+    .entry-content,
+    .entry-media {
+      float: left;
+      width: 50%;
+    }
+    .entry-media {
+      padding-right: rem-calc(15);
+    }
+    .entry-media img {
+      margin-top: 3px;
+    }
+    .entry-content {
+      padding-left: rem-calc(15);
+    }
+  }
+}

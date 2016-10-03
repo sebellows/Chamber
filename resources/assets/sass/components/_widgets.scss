@@ -1,58 +1,61 @@
-.sidebar-primary .widget {
-  h1, h2, h3, h4, h5, h6 {
-    clear: initial;
-  }
+.sidebar-news,
+.sidebar-primary {
+  .widget {
+    h1, h2, h3, h4, h5, h6 {
+      clear: initial;
+    }
 
-  h4 {
-    color: color(brand);
-    margin-bottom: 0;
-  }
+    h4 {
+      color: color(brand);
+      margin-bottom: 0;
+    }
 
-  ul {
-    list-style: none;
-    margin-left: 0;
+    ul {
+      list-style: none;
+      margin-left: 0;
 
-    > li {
-      border-bottom: 2px dotted $medium-gray;
-      padding: rem-calc(8) 0;
+      > li {
+        border-bottom: 2px dotted $medium-gray;
+        padding: rem-calc(8) 0;
 
-      // hack to clear a thumbnail. clearfix does not work.
-      overflow: hidden;
+        // hack to clear a thumbnail. clearfix does not work.
+        overflow: hidden;
 
-      &:last-child {
-        border-bottom: 0 none;
-      }
+        &:last-child {
+          border-bottom: 0 none;
+        }
 
-      a {
-        color: $body-font-color;
+        a {
+          color: $body-font-color;
+        }
       }
     }
-  }
 
-  /* Make sure select elements fit in widgets. */
-  select {
-    max-width: 100%;
-  }
+    /* Make sure select elements fit in widgets. */
+    select {
+      max-width: 100%;
+    }
 
-  // sub-classes
-  .rsswidget,
-  .chamber-cpt-widget {
-    color: $body-font-color;
-  }
+    // sub-classes
+    .rsswidget,
+    .chamber-cpt-widget {
+      color: $body-font-color;
+    }
 
-  li a.rsswidget {
-    display: block;
-  }
+    li a.rsswidget {
+      display: block;
+    }
 
-  time,
-  .rss-date {
-    color: $dark-gray;
-    font-size: $small-font-size;
-    text-transform: uppercase;
-  }
+    time,
+    .rss-date {
+      color: $dark-gray;
+      font-size: $small-font-size;
+      text-transform: uppercase;
+    }
 
-  .rssSummary {
-    color: transparentize($black,.25);
+    .rssSummary {
+      color: transparentize($black,.25);
+    }
   }
 }
 

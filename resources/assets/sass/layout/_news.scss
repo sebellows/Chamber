@@ -1,0 +1,34 @@
+.news-feed {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
+  @include flex-grid-column(12);
+
+  @include breakpoint(large) {
+    padding-top: rem-calc(24);
+    padding-bottom: rem-calc(24);
+    @include flex-grid-column(8, 60);
+  }
+}
+
+.sidebar-news {
+  background-color: transparent;
+  border: 0 none;
+  box-shadow: none;
+
+  @include flex-grid-column(12);
+
+  @include breakpoint(large) {
+    @include flex-grid-column(4, 60);
+  }
+}
+
+.feed-title,
+.sidebar-news .widgets h3 {
+  border-bottom: 2px solid currentColor;
+  display: inline-block;
+  font-family: $body-font-family;
+  font-size: em(14);
+  letter-spacing: rem-calc(1.5);
+  line-height: normal;
+  text-transform: uppercase;
+}
