@@ -36,7 +36,6 @@ if( get_row_layout('call_to_action_links') ) :
 
             <?php if ($link) : ?>
             <a href="<?php echo $link ?>" class="callout cta-link" m-UI="<?php echo $color_class; ?>">
-            <?php endif; ?>
 
                 <div class="cta-content">
 
@@ -50,6 +49,7 @@ if( get_row_layout('call_to_action_links') ) :
 
                 </div>            
             </a>
+            <?php endif; ?>
 
             <?php endwhile; ?>
 
