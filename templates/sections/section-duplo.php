@@ -97,22 +97,22 @@ if( get_row_layout('duplo_set') ) :
 
             <?php if ($type == 'custom') :
                 while ( have_rows( 'duplo_custom' ) ) : the_row();
-                $image       = get_sub_field('duplo_image');
-                $title       = get_sub_field('duplo_title');
-                $summary     = get_sub_field('duplo_summary');
-                $link        = get_sub_field('duplo_link');
-                $color_class = get_sub_field('duplo_background_color'); 
+                $image        = get_sub_field('duplo_image');
+                $image_src    = wp_get_attachment_image_url( $image['id'], 'post-thumbnail' );
+                $image_srcset = wp_get_attachment_image_srcset( $image['id'], 'post-thumbnail' );
+                $title        = get_sub_field('duplo_title');
+                $summary      = get_sub_field('duplo_summary');
+                $link         = get_sub_field('duplo_link');
+                $color_class  = get_sub_field('duplo_background_color');
             ?>
 
             <div class="duplo" m-Duplo="<?php echo $index; ?>" m-UI="<?php echo Colors\set($color_class); ?>">
                 <?php if ($image) : ?>
                     <img 
                         class="duplo-image" 
-                        src="<?php echo $image['url']; ?>" 
-                        srcset="<?php echo $image['url']; ?>" 
-                        sizes="(max-width: 50em) 50vw, <?php echo $image['sizes']['medium']; ?>" 
-                        width="<?php echo $image['width']; ?>"
-                        height="<?php echo $image['height']; ?>" 
+                        src="<?php echo esc_url( $image_src ); ?>"
+                        srcset="<?php echo esc_attr( $image_srcset ); ?>"
+                        sizes="(max-width: 100vw) 480px"
                         alt="<?php echo $image['alt']; ?>"
                     >
                 <?php endif; ?>

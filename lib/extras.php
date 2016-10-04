@@ -171,3 +171,21 @@ function save_featured_meta( $post_id ) {
 }
 add_action( 'save_post', __NAMESPACE__ . '\\save_featured_meta' );
 
+
+/**
+ * Disable Comments
+ *
+ *  see http://codex.wordpress.org/Function_Reference/comments_open
+ */
+add_filter('comments_open', '__return_false');
+
+/**
+ * Custom Gallery Styles
+ */
+add_filter('use_default_gallery_style', '__return_false');
+
+/**
+ * Remove those damn emojis.
+ */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );

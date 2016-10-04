@@ -24,9 +24,7 @@ $chamber_includes = [
 	'lib/custom-header.php', 	// Implement the Custom Header feature
 	'lib/customizer.php', 		// Customizer additions
 	'lib/colors.php', 			// Theme color helpers
-	'lib/template-tags.php', 	// Custom template tags
-	'lib/social-buttons.php', 	// Social buttons factory
-	// 'lib/jetpack.php' 		// Load Jetpack compatibility file
+	'lib/template-tags.php' 	// Custom template tags
 ];
 
 foreach ($chamber_includes as $file) {

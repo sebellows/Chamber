@@ -198,6 +198,20 @@
 				// JavaScript to be fired on the home page, after the init JS
 			}
 		},
+		'block': {
+			init: function() {
+				// Make click on social sharing buttons open up small pop-up window instead of another tab.
+				$('body').on('click', 'a[m-button~="share"]', function(event) {
+					console.log('It was clicked!');
+				  event.preventDefault();
+				  var url = $(this).attr('href');
+				  window.open(url, 'social_share_window', 'height=320, width=560, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');
+				});
+			},
+			finalize: function() {
+				//
+			}
+		},
 		// About us page, note the change from about-us to about_us.
 		'about_us': {
 			init: function() {

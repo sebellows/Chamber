@@ -89,6 +89,16 @@ function widgets_init() {
 		'after_title'   => '</h3>'
 	]);
 
+	// Share this Post
+	register_sidebar([
+		'name'          => __('Post Footer', 'chamber'),
+		'id'            => 'post-footer',
+		'before_widget' => '<section class="widget %1$s %2$s" role="complementary">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	]);
+
 	// ------------------------------------------------------
 	// DEPARTMENT SIDEBARS
 	// ------------------------------------------------------
@@ -318,6 +328,24 @@ function content_image_sizes_attr( $sizes, $size ) {
 	return $sizes;
 }
 add_filter( 'wp_calculate_image_sizes', __NAMESPACE__.'\\content_image_sizes_attr', 10 , 2 );
+
+/**
+ * Make ACF create the correct srcset code for images added to custom fields.
+ * 
+ * @link https://support.advancedcustomfields.com/forums/topic/wordpress-4-4-responsive-images/
+ */
+add_filter( 'acf_the_content', 'wp_make_content_images_responsive' );
+
+/**
+ * Limit the length of the Excerpt.
+ * 
+ * @param  int $length character limit for the_excerpt().
+ * @return int
+ */
+function excerpt_length($length) {
+  return 96;
+}
+add_filter('excerpt_length', __NAMESPACE__.'\\excerpt_length');
 
 /**
  * Callback function to insert 'styleselect' into the $buttons array

@@ -5,7 +5,8 @@
     margin-bottom: em(75);
   }
 }
-  .blog .duplo-set {
+  .blog .duplo-set,
+  .home .duplo-set {
     @include breakpoint(large) {
       margin-bottom: em(30);
     }
@@ -92,13 +93,13 @@ body.home .duplo-blocks {
 }
 
 .duplo-skrim {
-  background: linear-gradient(45deg, $black, transparent);
+  background: linear-gradient(35deg, $black 0%, transparent 100%);
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  opacity: .8;
+  opacity: 1;
   transition: opacity .3s ease-out;
 
   .duplo:active &,
@@ -156,16 +157,19 @@ body.home .duplo-blocks {
   height: auto;
   @include grid-col(12,0);
 
-  h2 { font-size: em(48); }
+  h2 { font-size: em(40); }
 
   @include breakpoint(medium) {
-    height: 360px;
-    height: 40vh;
+    height: 480px;
+    height: 50vh;
+
+    h2 { font-size: em(48); }
+
   }
 
   @include breakpoint(large) {
-    height: 550px;
-    height: 65vh;
+    height: 640px;
+    height: 70vh;
   }
 }
 
@@ -174,7 +178,7 @@ body.home .duplo-blocks {
   @include grid-col(12,0);
 
   h2 {
-    font-size: em(42);
+    font-size: em(48);
   }
 
   .duplo-content {
@@ -197,6 +201,7 @@ body.home .duplo-blocks {
 
   &[m-Duplo="2"] {
     border-right: 0 !important;
+    height: 320px;
     height: 35vh;
     @include grid-col(12,0);
 
@@ -206,7 +211,8 @@ body.home .duplo-blocks {
 
     @include breakpoint(medium) {
       @include grid-col(4,0);
-      height: 65vh;
+      height: 640px;
+      height: 70vh;
     }
   }
 
@@ -224,7 +230,8 @@ body.home .duplo-blocks {
 
   &[m-Duplo="2"],
   &[m-Duplo="3"] {
-    height: 32.5vh;
+    height: 320px;
+    height: 35vh;
     @include grid-col(6,0);
 
     h2 {
@@ -292,12 +299,14 @@ body.home .duplo-blocks {
 
       @include breakpoint(medium) {
         @include grid-col(6,0);
-        height: 65vh;
+        height: 640px;
+        height: 70vh;
       }
     }
 
     &[m-Duplo="2"] {
       border-right: 0 !important;
+      height: 320px;
       height: 35vh;
       @include grid-col(12,0);
 
@@ -307,12 +316,14 @@ body.home .duplo-blocks {
 
       @include breakpoint(medium) {
         @include grid-col(6,0);
-        height: 32.5vh;
+        height: 320px;
+        height: 35vh;
       }
     }
 
     &[m-Duplo="3"],
     &[m-Duplo="4"] {
+      height: 320px;
       height: 35vh;
       @include grid-col(6,0);
 
@@ -324,7 +335,8 @@ body.home .duplo-blocks {
       p { display: none; }
 
       @include breakpoint(medium) {
-        height: 32.5vh;
+        height: 320px;
+        height: 35vh;
         @include grid-col(3,0);
 
         h2 {
@@ -399,14 +411,14 @@ body.home .duplo-blocks {
 
       @include breakpoint(medium) {
         @include grid-col(9,0);
-        height: 360px;
-        height: 32.5vh;
+        height: 320px;
+        height: 35vh;
       }
 
       @include breakpoint(large) {
         @include grid-col(6,0);
-        height: 550px;
-        height: 65vh;
+        height: 640px;
+        height: 70vh;
 
         p {
           display: block;
@@ -417,11 +429,13 @@ body.home .duplo-blocks {
     &[m-Duplo="3"],
     &[m-Duplo="4"] {
       @include breakpoint(medium) {
-        height: 32.5vh;
+        height: 320px;
+        height: 35vh;
         @include grid-col(4.5,0);
       }
       @include breakpoint(large) {
-        height: 32.5vh;
+        height: 320px;
+        height: 35vh;
         @include grid-col(4,0);
       }
     }

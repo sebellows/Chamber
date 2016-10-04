@@ -23,14 +23,8 @@ $twitter:     #55acee;
 
 /* Non solid icons get a stroke */
 [m-Button~="share"] .icon svg {
-  stroke: $white;
-  fill: none;
-}
-
-/* Solid icons get a fill */
-.icon[m-Icon~="solid"] {
-  fill: $white;
   stroke: none;
+  fill: $white;
 }
 
 [m-Button~="email"] {
