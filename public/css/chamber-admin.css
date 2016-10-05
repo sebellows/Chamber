@@ -2,6 +2,9 @@ figure {
   margin: 0;
   vertical-align: middle; }
 
+menu {
+  padding-left: 0; }
+
 #poststuff h2.hndle {
   font-size: 16px; }
 

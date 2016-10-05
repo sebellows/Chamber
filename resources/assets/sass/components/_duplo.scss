@@ -160,7 +160,7 @@ body.home .duplo-blocks {
   h2 { font-size: em(40); }
 
   @include breakpoint(medium) {
-    height: 480px;
+    height: 400px;
     height: 50vh;
 
     h2 { font-size: em(48); }
@@ -168,8 +168,8 @@ body.home .duplo-blocks {
   }
 
   @include breakpoint(large) {
-    height: 640px;
-    height: 70vh;
+    height: 500px;
+    height: 55vh;
   }
 }
 

@@ -19,7 +19,7 @@
 
     ul {
       list-style: none;
-      margin-left: 0;
+      margin: 0;
 
       > li {
         border-bottom: 2px dotted rgba(0,0,0,.25);
@@ -64,7 +64,7 @@
 
     time,
     .rss-date {
-      color: color(brand-medium);
+      color: neutral(3);
       font-size: em(12);
       text-transform: uppercase;
     }

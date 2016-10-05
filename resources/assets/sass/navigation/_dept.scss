@@ -50,8 +50,8 @@
     min-height: $dept-nav-height;
     position: absolute;
     top: 550px; // Clear the Duplo
-    top: 65vh;
-    margin-top: rem-calc($site-header-height-small + 4); // Add height of master header for clearance
+    top: 70vh;
+    margin-top: rem-calc($site-header-height + 4); // Add height of master header for clearance
     width: 100%;
     z-index: 1000;
     opacity: 1;

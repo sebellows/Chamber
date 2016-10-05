@@ -36,3 +36,15 @@
     font-size: 1em;
   }
 }
+
+.map-thumb {
+    width: 200px;
+    height: 200px;
+    border: #ccc solid 1px;
+    margin: 1em 0;
+}
+
+/* fixes potential theme css conflict */
+.map-thumb img {
+   max-width: inherit !important;
+}

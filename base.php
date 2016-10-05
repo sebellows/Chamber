@@ -46,4 +46,5 @@ use Chamber\Wrapper;
 			wp_footer();
 		?>
 	</body>
+
 </html>

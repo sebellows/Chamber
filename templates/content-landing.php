@@ -10,6 +10,7 @@
 ?>
 
 <?php
+
 // check if the flexible content field has rows of data
 if ( have_rows('landing_page_content') ) : ?>
 

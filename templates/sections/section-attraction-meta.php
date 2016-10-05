@@ -17,7 +17,7 @@ $fax     = get_field('attr_fax');
 
 <div class="attraction-contact">
     <?php if ($map) : ?>
-    <div class="map-thumb"><?php echo the_field('attr_google_map'); ?></div>
+    <div class="map-thumb" style="width:150px;height:150px"><?php echo the_field('attr_google_map'); ?></div>
     <?php endif; ?>
 
     <dl class="meta-list">

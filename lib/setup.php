@@ -39,8 +39,26 @@ function setup() {
 	// http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
 	// http://codex.wordpress.org/Function_Reference/add_image_size
 	add_theme_support('post-thumbnails');
-	set_post_thumbnail_size( 1200, 720 );
-	// add_image_size( 'full-width', 1024, 452, true );
+	set_post_thumbnail_size( 1024, '', false ); // ~4:3, max-height of 768
+
+	// Update the `medium_large` image size set by WP
+	update_option( 'medium_large', 960, '', false );
+
+	// Used for: small screen duplo blocks, galleries, gallery stripes
+	add_image_size( 'vignette', 240, 240, true ); // 1:1
+
+	// Used for: small screen duplo blocks, galleries, gallery stripes
+	add_image_size( 'small', 480, 480, false ); // 1:1
+
+	// Used for: single-block duplo, dynamic whitesheet
+	add_image_size( 'fullwidth', 1600, '', false ); // ~3:1 (Panorama) | ~12:5 (35mm 1970+, Blu-ray 1920x800)
+
+	//// Module-specific sizes
+	// Used for: Isotope/Masonry/cards on small devices
+	add_image_size( 'card-small', 360, 240, true ); // 3:2
+
+	// Used for: Isotope/Masonry/cards on larger devices
+	add_image_size( 'card-large', 480, 360, true ); // 3:2
 
 	// Enable post formats
 	// http://codex.wordpress.org/Post_Formats
@@ -228,7 +246,6 @@ function display_sidebar() {
 		// The sidebar will NOT be displayed if ANY of the following return true.
 		// @link https://codex.wordpress.org/Conditional_Tags
 		is_404(),
-		is_front_page('template-frontpage.php'),
 		is_home(),
 		is_page_template('template-landing.php'),
 		is_page_template('template-attractions.php'),
