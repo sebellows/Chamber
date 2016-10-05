@@ -1,6 +1,6 @@
 <?php
 
-// if ( ! is_front_page() && is_page_template( 'landing-page' ) ) :
+if ( ! is_front_page() && is_page_template( 'landing-page.php' ) ) :
 
 ?>
 
@@ -26,4 +26,4 @@
 
 </nav><!-- END .dept-navigation-container -->
 
-<?php #endif; ?>
+<?php endif; ?>
