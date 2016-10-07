@@ -1,0 +1,85 @@
+.card-grid {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $global-width;
+}
+
+.Card {
+  margin-bottom: rem-calc(60);
+  @include flex-grid-column(6);
+
+  @include breakpoint(medium) {
+    @include flex-grid-column(6);
+  }
+
+  @include breakpoint(large) {
+    @include flex-grid-column(4);
+  }
+
+  @include breakpoint(xlarge) {
+    @include flex-grid-column(3);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: rem-calc(380);
+  position: relative;
+  @include paper-ui;
+}
+
+.card-title {
+  font-size: em(16);
+  line-height: 1;
+  // text-transform: uppercase;
+  margin-bottom: .3em;
+}
+
+.card-meta {
+  color: color(cvb);
+  font-family: $body-font-family;
+  font-size: em(14);
+  line-height: 1.375;
+  text-transform: uppercase;
+  margin-bottom: .5em;
+}
+
+.card-image {
+  max-width: 100%;
+  display: block;
+  position: relative;
+}
+
+.card-content {
+  flex: 1;
+  padding: em(12) em(15);
+}
+
+.card-footer {
+  align-self: flex-end;
+  border-top: 1px solid neutral(1);
+  height: rem-calc(36);
+  padding: em(4) em(15) em(7);
+  width: 100%;
+
+  > a {
+    background-color: transparent;
+    color: neutral(3);
+    font-size: em(10);
+    text-transform: uppercase;
+    margin-right: em(8,10);
+    padding: em(2,10);
+  }
+}
+
+.card-excerpt {
+  font-size: em(15);
+}
+
+.continuedmark {
+  color: color(cvb);
+  font-size: 90%;
+  font-weight: 700;
+  white-space: nowrap;
+}

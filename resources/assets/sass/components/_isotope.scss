@@ -1,0 +1,87 @@
+//// Isotope styles
+#isotope-list {
+  width: 100%;
+}
+
+.isotope-header {
+  margin-bottom: em(30);
+  padding: em(30);
+  justify-content: center;
+
+  @include breakpoint(large) {
+    margin-bottom: em(60);
+    padding: em(60);
+
+    h1 {
+      font-size: em(62);
+      margin-bottom: .5em;
+    }
+  }
+
+}
+
+.isotope-hgroup {
+  margin: 0 auto;
+  padding: em(15);
+  text-align: center;
+  width: 100%;
+  max-width: $global-width;
+}
+
+/// Isotope Filtering
+.isotope-sortable-menu {
+  justify-content: space-between;
+  @include flex-grid-row();
+
+  > a {
+    display: inline-block;
+    font-size: em(12);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1em;
+    opacity: .8;
+
+    &.is-selected {
+      opacity: 1;
+    }
+  }
+
+  .icon {
+    display: block;
+    margin: 0 auto .5em;
+  }
+}
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/// Isotope transitions
+
+.isotope,
+.isotope .isotope-item {
+  transition-duration: 0.8s;
+}
+
+.isotope {
+  transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  transition-property:         transform, opacity;
+}
+
+/// disabling transitions
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  transition-duration: 0s;
+}
