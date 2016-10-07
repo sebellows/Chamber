@@ -8,10 +8,9 @@
 
   const ROOT     = document.documentElement,
         BODY     = document.body,
-        NAV      = document.querySelector( '#deptNavigation' );
+        NAV      = document.querySelector( '.section-navigation' );
 
   if ( ! NAV ) {
-  // if ( document.getElementById( 'deptNavigation' ) !== 'undefined' ) {
     return;
   }
 
@@ -46,7 +45,7 @@
       NAV.className += ' is-active';
       BUTTON.setAttribute( 'aria-expanded', 'true' );
       MENU.setAttribute( 'aria-expanded', 'true' );
-      BODY.classList.add('dept-navigation-is-open');
+      BODY.classList.add('navigation-is-open');
       MASTHEAD.style.zIndex = 'initial';
     }
   };
@@ -198,7 +197,7 @@
 				// JavaScript to be fired on the home page, after the init JS
 			}
 		},
-		'block': {
+		'blog': {
 			init: function() {
 				// Make click on social sharing buttons open up small pop-up window instead of another tab.
 				$('body').on('click', 'a[m-button~="share"]', function(event) {
@@ -206,6 +205,42 @@
 				  event.preventDefault();
 				  var url = $(this).attr('href');
 				  window.open(url, 'social_share_window', 'height=320, width=560, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');
+				});
+			},
+			finalize: function() {
+				//
+			}
+		},
+		'archive': {
+			init: function() {
+				// The ID for the list with all the blog posts
+				var $container = $('.card-grid');
+
+				//Isotope options, 'Card' matches the class in the PHP
+				$container.isotope({
+					itemSelector : '.Card', 
+			  		layoutMode : 'masonry'
+				});
+			 
+				// Add the class selected to the Card that is clicked, and remove from the others
+				var $optionSets = $('.isotope-sortable-menu'),
+				$optionLinks = $optionSets.find('a');
+			 
+				$optionLinks.click(function(){
+				var $this = $(this);
+				// don't proceed if already selected
+				if ( $this.hasClass('is-selected') ) {
+				  return false;
+				}
+				var $optionSet = $this.parents('.isotope-sortable-menu');
+				$optionSets.find('.is-selected').removeClass('is-selected');
+				$this.addClass('is-selected');
+			 
+				// When a Card is clicked, sort the items.
+				 var selector = $(this).attr('data-filter');
+				$container.isotope({ filter: selector });
+			 
+				return false;
 				});
 			},
 			finalize: function() {

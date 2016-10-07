@@ -7,45 +7,44 @@
  * @package chamber
  */
 
-get_header(); ?>
+// Get the post types that will get the Isotope.js treatment from the config file.
+$isotope = (new \Chamber\Config)->get('isotope');
+// Get the names, not the labels
+$posttypes = array_keys($isotope);
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
-		<?php
-		if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'templates/content', get_post_format() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'templates/content', 'none' );
-
-		endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+?>
 
 <?php
-get_sidebar();
-get_footer();
+if ( in_array( is_post_type_archive(), $posttypes ) ) :
+	// get the post type name from the config file and make it plural if it's not.
+	// Note: `get_post_type_object( get_post_type() )->rewrite['slug']` caused errors on category archive pages.
+	$slug = substr($posttypes[0], -1) != 's' ? $posttypes[0] . 's' : $posttypes[0];
+?>
+
+<div id="archive-<?php echo $slug; ?>" class="isotope-archive">
+	<?php 
+	get_template_part('templates/menu', 'archive');
+	?>
+	<div class="card-grid">
+	<?php
+	while (have_posts()) : the_post();
+		get_template_part('templates/content', 'archive-card');
+	endwhile;
+	?>
+	</div>
+</div><!-- .isotope-archive -->
+
+<?php else : ?>
+
+<div class="page-content">
+	<?php
+	get_template_part('templates/page', 'header');
+
+	while (have_posts()) : the_post();
+		get_template_part('templates/content', get_post_format());
+	endwhile;
+	?>
+
+</div><!-- .page-content -->
+
+<?php endif; ?>

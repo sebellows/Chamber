@@ -54,11 +54,11 @@
                 "id": ""
             },
             "choices": {
-                "name:Name": "name:Name",
-                "phone:Phone Number": "phone:Phone Number",
-                "email:Email Address": "email:Email Address",
-                "address:Mailing Address": "address:Mailing Address",
-                "message:Message": "message:Message"
+                "name": "Name",
+                "phone": "Phone Number",
+                "email": "Email Address",
+                "address": "Mailing Address",
+                "message": "Message"
             },
             "default_value": [],
             "layout": "vertical",
@@ -69,14 +69,9 @@
     "location": [
         [
             {
-                "param": "page_type",
+                "param": "page",
                 "operator": "==",
-                "value": "top_level"
-            },
-            {
-                "param": "page_type",
-                "operator": "==",
-                "value": "parent"
+                "value": "348"
             }
         ]
     ],
@@ -88,5 +83,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "A sectional stripe with a contact form.",
-    "modified": 1473865773
+    "modified": 1475734794
 }

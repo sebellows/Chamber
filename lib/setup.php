@@ -2,6 +2,7 @@
 
 namespace Chamber\Setup;
 
+use Chamber\Config;
 use Chamber\Assets;
 
 /**
@@ -15,6 +16,7 @@ function setup() {
 	add_theme_support('soil-nice-search');
 	add_theme_support('soil-jquery-cdn');
 	add_theme_support('soil-relative-urls');
+	add_theme_support('soil-js-to-footer');
 
 	// Enable plugins to manage the document title
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
@@ -23,15 +25,17 @@ function setup() {
 	// Register wp_nav_menu() menus
 	// http://codex.wordpress.org/Function_Reference/register_nav_menus
 	register_nav_menus([
-		'site_navigation'         => __('Site Navigation', 'chamber'),
-		'quick_links'             => __('Quick Links', 'chamber'),
-		'social_links'            => __('Social Links', 'chamber'),
-		'site_information'        => __('Site Information', 'chamber'),
-		'cvb_menu'                => __('CVB', 'chamber'),
-		'member_services_menu'    => __('Member Services Menu', 'chamber'),
-		'development_menu'        => __('Development Menu', 'chamber'),
-		'education_training_menu' => __('Education Training Menu', 'chamber'),
-		'shared_services_menu'    => __('Shared Services Menu', 'chamber')
+		'site_navigation'           => __('Site Navigation Menu', 'chamber'),
+		'quick_links'               => __('Quick Links Menu', 'chamber'),
+		'social_links'              => __('Social Links Menu', 'chamber'),
+		'site_information'          => __('Site Information Menu', 'chamber'),
+		'about_menu'                => __('About Menu', 'chamber'),
+		'news_menu'                 => __('News Menu', 'chamber'),
+		'cvb_menu'                  => __('CVB Menu', 'chamber'),
+		'member_services_menu'      => __('Member Services Menu', 'chamber'),
+		'economic_development_menu' => __('Development Menu', 'chamber'),
+		'education_training_menu'   => __('Education Training Menu', 'chamber'),
+		'shared_services_menu'      => __('Shared Services Menu', 'chamber')
 	]);
 
 	// Enable post thumbnails
@@ -89,8 +93,50 @@ add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 function widgets_init() {
 	// Front Page
 	register_sidebar([
-		'name'          => __('Primary', 'chamber'),
+		'name'          => __('Primary Sidebar', 'chamber'),
 		'id'            => 'sidebar-primary',
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	]);
+
+	// Share this Post
+	register_sidebar([
+		'name'          => __('Post Footer Sidebar', 'chamber'),
+		'id'            => 'sidebar-post-footer',
+		'before_widget' => '<section class="widget %1$s %2$s" role="complementary">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	]);
+
+	register_sidebar([
+		'name'          => __('Footer Sidebar', 'chamber'),
+		'id'            => 'sidebar-footer',
+		'before_widget' => '<div class="widget %1$s %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	]);
+
+	register_sidebar([
+		'name'          => __('Sortable Menu', 'chamber'),
+		'id'            => 'sidebar-isotope-menu',
+		'before_widget' => '<menu class="isotope-widget %1$s %2$s">',
+		'after_widget'  => '</menu>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	]);
+
+	// ------------------------------------------------------
+	// SECTION SIDEBARS
+	// ------------------------------------------------------
+
+	// About Sidebar
+	register_sidebar([
+		'name'          => __('About Sidebar', 'chamber'),
+		'id'            => 'sidebar-about',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
@@ -106,20 +152,6 @@ function widgets_init() {
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>'
 	]);
-
-	// Share this Post
-	register_sidebar([
-		'name'          => __('Post Footer', 'chamber'),
-		'id'            => 'post-footer',
-		'before_widget' => '<section class="widget %1$s %2$s" role="complementary">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
-	// ------------------------------------------------------
-	// DEPARTMENT SIDEBARS
-	// ------------------------------------------------------
 
 	// CVB Sidebar
 	register_sidebar([
@@ -137,15 +169,6 @@ function widgets_init() {
 		'id'            => 'sidebar-economic-development',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
-	register_sidebar([
-		'name'          => __('Footer', 'chamber'),
-		'id'            => 'sidebar-footer',
-		'before_widget' => '<div class="widget %1$s %2$s">',
-		'after_widget'  => '</div>',
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>'
 	]);
@@ -179,60 +202,6 @@ function widgets_init() {
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>'
 	]);
-
-	// ------------------------------------------------------
-	// DEPARTMENT MENUS
-	// ------------------------------------------------------
-
-	// CVB Menu
-	register_sidebar([
-		'name'          => __('CVB Navigation Menu', 'chamber'),
-		'id'            => 'cvb-navigation-menu',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
-	// Economic Development Menu
-	register_sidebar([
-		'name'          => __('Development Navigation Menu', 'chamber'),
-		'id'            => 'economic-development-navigation-menu',
-		'before_widget' => '<nav class="dept-navigation %1$s %2$s">',
-		'after_widget'  => '</nav>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
-	// Education and Training Menu
-	register_sidebar([
-		'name'          => __('Education-Training Navigation Menu', 'chamber'),
-		'id'            => 'education-training-navigation-menu',
-		'before_widget' => '<nav class="dept-navigation %1$s %2$s">',
-		'after_widget'  => '</nav>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
-	// Member Services Menu
-	register_sidebar([
-		'name'          => __('Member Services Navigation Menu', 'chamber'),
-		'id'            => 'member-services-navigation-menu',
-		'before_widget' => '<nav class="dept-navigation %1$s %2$s">',
-		'after_widget'  => '</nav>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
-	// Shared Services Menu
-	register_sidebar([
-		'name'          => __('Shared Services Navigation Menu', 'chamber'),
-		'id'            => 'shared-services-navigation-menu',
-		'before_widget' => '<nav class="dept-navigation %1$s %2$s">',
-		'after_widget'  => '</nav>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
 }
 add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
 
@@ -245,12 +214,13 @@ function display_sidebar() {
 	isset($display) || $display = !in_array(true, [
 		// The sidebar will NOT be displayed if ANY of the following return true.
 		// @link https://codex.wordpress.org/Conditional_Tags
+		is_archive(),
 		is_404(),
 		is_home(),
 		is_front_page(),
-		is_page_template('template-landing.php'),
-		is_page_template('template-attractions.php'),
-		is_single()
+		is_single(),
+		is_page_template('landing-page.php'),
+		is_page_template('app.php')
 	]);
 
 	return apply_filters('chamber/display_sidebar', $display);
@@ -280,7 +250,7 @@ function fonts_url() {
  * UM-Flint assets
  */
 function assets() {
-	wp_enqueue_style( __NAMESPACE__ . '\\fonts_url', fonts_url(), array(), null );
+	wp_enqueue_style( __NAMESPACE__ . '\\fonts_url', fonts_url(), [], null );
 	wp_enqueue_style('chamber/css', get_template_directory_uri() . '/public/css/app.css');
 	wp_enqueue_style('chamber/vendor/css', get_template_directory_uri() . '/public/css/vendor.css');
 
@@ -288,6 +258,10 @@ function assets() {
 		wp_enqueue_script('comment-reply');
 	}
 	// wp_register_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAq5p4b7K-qhSlhT-QTckh_qLE8RiYrZdo');
+	
+	if (is_archive()) {
+		wp_enqueue_script('chamber/js/isotope', get_template_directory_uri() . '/public/js/isotope.pkgd.js');
+	}
 
 	wp_enqueue_script('chamber/js/modernizr', get_template_directory_uri() . '/public/js/modernizr.js');
 	wp_enqueue_script('chamber/foundation/js', get_template_directory_uri() . '/public/js/foundation.js', ['jquery'], null, true);
@@ -314,7 +288,7 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_admin_script' );
 if (class_exists('acf')) {
 	function acf_init() {
 
-	   acf_update_setting('google_api_key', 'AIzaSyAGJp43cm1uMNxkBCNwORsZmD2SYlRp7Eo');
+	   acf_update_setting('google_api_key', 'AIzaSyAS0yll51lLq5yVbqysc6gtKExyIKdURzE');
 
 	}
 	add_action('acf/init', __NAMESPACE__ . '\\acf_init');
@@ -355,17 +329,6 @@ add_filter( 'wp_calculate_image_sizes', __NAMESPACE__.'\\content_image_sizes_att
 add_filter( 'acf_the_content', 'wp_make_content_images_responsive' );
 
 /**
- * Limit the length of the Excerpt.
- * 
- * @param  int $length character limit for the_excerpt().
- * @return int
- */
-function excerpt_length($length) {
-  return 96;
-}
-add_filter('excerpt_length', __NAMESPACE__.'\\excerpt_length');
-
-/**
  * Callback function to insert 'styleselect' into the $buttons array
  *
  * @link http://alisothegeek.com/2011/05/tinymce-styles-dropdown-wordpress-visual-
@@ -390,44 +353,44 @@ add_filter( 'mce_buttons_2', __NAMESPACE__.'\\mce_buttons_2' );
  */
 function mce_before_init_insert_formats( $init_array ) {  
 	// Define the style_formats array
-	$style_formats = array(  
+	$style_formats = [
 		// Each array child is a format with it's own settings
-		array(  
+		[  
 			'title' => 'Inspire Blockquote',
 			'classes' => 'intro-blockquote',
 			'block' => 'blockquote',  
 			'wrapper' => true
-		),  
-		array(  
+		],  
+		[  
 			'title' => 'Cite',  
 			'inline' => 'cite'
-		),
-		array(  
+		],
+		[  
 			'title' => 'Button',  
 			'selector' => 'a',  
 			'classes' => 'button'
-		),
-		array(  
+		],
+		[  
 			'title' => 'Button Alt',  
 			'selector' => 'a',  
 			'classes' => 'alt button'
-		),
-		array(  
+		],
+		[  
 			'title' => 'Button Outline',  
 			'selector' => 'a',  
 			'classes' => 'hollow button'
-		),
-		array(  
+		],
+		[  
 			'title' => 'Button Reverse Outline',  
 			'selector' => 'a',  
 			'classes' => 'reverse hollow button'
-		),
-		array(  
+		],
+		[  
 			'title' => 'Button Flat',  
 			'selector' => 'a',  
 			'classes' => 'flat button'
-		)
-	);  
+		]
+	];  
 	// Insert the array, JSON ENCODED, into 'style_formats'
 	$init_array['style_formats'] = json_encode( $style_formats );  
 	
@@ -454,4 +417,3 @@ function rss_post_thumbnail($content) {
 }
 add_filter('the_excerpt_rss', __NAMESPACE__.'\\rss_post_thumbnail');
 add_filter('the_content_feed', __NAMESPACE__.'\\rss_post_thumbnail');
-

@@ -2,6 +2,7 @@
 /**
  * Template Name: Landing Page
  */
+
 ?>
 
 <?php get_template_part('templates/content', 'landing'); ?>
@@ -13,23 +14,16 @@
 <section class="sidebar sidebar-<?php echo $slug ?>">
 
 <?php
+    $landing_pages = (new \Chamber\Config)->get('landing-pages');
+
     if ( is_front_page() ) {
         dynamic_sidebar('sidebar-primary');
     }
-    elseif ( is_page( 'cvb' ) ) {
-        dynamic_sidebar('sidebar-cvb');
-    }
-    elseif ( is_page( 'economic-development' ) ) {
-        dynamic_sidebar('sidebar-economic-development');
-    }
-    elseif ( is_page( 'education-training' ) ) {
-        dynamic_sidebar('sidebar-education-training');
-    }
-    elseif ( is_page( 'member-services' ) ) {
-        dynamic_sidebar('sidebar-member-services');
-    }
-    elseif ( is_page( 'shared-services' ) ) {
-        dynamic_sidebar('sidebar-shared-services');
+
+    foreach ($landing_pages as $landing_page) {
+        if ( is_page( $landing_page ) ) {
+            dynamic_sidebar('sidebar-' . $landing_page);
+        }
     }
 ?>
 

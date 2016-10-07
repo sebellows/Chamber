@@ -35,6 +35,7 @@ function body_class($classes) {
 }
 add_filter('body_class', __NAMESPACE__ . '\\body_class');
 
+
 /**
  * Modify the read more link text for the_excerpt()
  */
@@ -45,6 +46,7 @@ function custom_excerpt_more($more) {
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\custom_excerpt_more');
 
+
 /**
  * Modify the read more link text for the_content()
  */
@@ -52,6 +54,7 @@ function custom_content_more() {
 	return '<a class="readmore" href="' . get_permalink() . '">Read More ' . '<svg class="icon" m-Icon="xsmall" role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></a>';
 }
 add_filter('the_content_more_link', __NAMESPACE__ . '\\custom_content_more');
+
 
 /**
  * Add SVG capabilities
@@ -61,6 +64,7 @@ function svg_mime_type( $mimes = [] ) {
 	return $mimes;
 }
 add_filter( 'upload_mimes', __NAMESPACE__ . '\\svg_mime_type' );
+
 
 /**
  * Add search form to nav bar
@@ -74,6 +78,7 @@ function add_search_box_to_menu( $items, $args ) {
 	return $items;
 }
 add_filter('wp_nav_menu_items', __NAMESPACE__ . '\\add_search_box_to_menu', 10, 2);
+
 
 /**
  * Get the number of widgets in a sidebar and add a class to the parent container.
@@ -96,6 +101,7 @@ function widget_indexer($params) {
 }
 add_filter('dynamic_sidebar_params', __NAMESPACE__ . '\\widget_indexer');
 
+
 /**
  * Display the caption of the featured image
  * 
@@ -113,6 +119,7 @@ function the_post_thumbnail_caption() {
 }
 add_filter('chamber/thumbnail/caption', __NAMESPACE__ . '\\the_post_thumbnail_caption');
 
+
 /**
  * Add a Featured Post meta box.
  * 
@@ -121,6 +128,7 @@ add_filter('chamber/thumbnail/caption', __NAMESPACE__ . '\\the_post_thumbnail_ca
 function add_featured_meta() {
     add_meta_box( 'featured_meta', 'Featured Post', __NAMESPACE__ . '\\render_featured_meta', 'post' );
 }
+
 
 /**
  * Render a view of the Featured Post meta box.
@@ -143,6 +151,7 @@ function render_featured_meta( $post ) {
     <?php
 }
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\\add_featured_meta' );
+
 
 /**
  * Saves the featured post meta input.
@@ -179,16 +188,19 @@ add_action( 'save_post', __NAMESPACE__ . '\\save_featured_meta' );
  */
 add_filter('comments_open', '__return_false');
 
+
 /**
  * Custom Gallery Styles
  */
 add_filter('use_default_gallery_style', '__return_false');
+
 
 /**
  * Remove those damn emojis.
  */
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
 
 /**
  * HELPERS
@@ -214,3 +226,76 @@ function _get_all_image_sizes() {
 		
 	return $image_sizes;
 }
+
+/**
+ * Get the content of the post if there is no excerpt.
+ *
+ * @param int $limit the character count limit
+ * @param  str $continued_mark glyph or text to communicate that this is abbreviated text
+ * @return str excerpt text
+ */
+function limit_content($content = '', $limit = 120, $continued_mark = '[&hellip;]') {
+	$content = wordwrap($content, $limit);
+
+	if ( strlen($content) > $limit ) {
+		$content = substr($content,0,strpos($content, "\n")) . $continued_mark;
+	}
+
+	return $content;
+}
+
+/**
+ * Get the name of the current page.
+ *
+ * @link http://stackoverflow.com/questions/4837006/how-to-get-the-current-page-name-in-wordpress#answer-4837800
+ * 
+ * @return str the name of the page
+ */
+function get_current_page_name() {
+	$pagename = get_query_var('pagename');  
+
+	if ( !$pagename && $id > 0 ) {  
+	    // If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object  
+	    $post = $wp_query->get_queried_object();  
+	    $pagename = $post->post_name;  
+	}
+
+	return $pagename;
+}
+
+function get_all_pages() {
+	$pages = [];
+
+	$children = collect(\Chamber\Extras\get_child_pages(\Chamber\Extras\get_current_page_name()))->map(function($key) {
+		return $key->post_name;
+	})->toArray();
+
+	$pages = array_merge($sections,$children);
+
+	return $pages;
+}
+
+
+function get_child_pages($page_name) {
+	$children = [];
+
+	// Get the page as an Object
+	$page = get_page_by_title(get_current_page_name());
+
+	$children = get_pages( [ 'child_of' => $page->ID ] );
+
+	return $children;
+}
+
+
+function is_child($post_id) {
+    global $post;
+
+    if(is_page()&&($post->post_parent==$post_id)) {
+       return true;  
+    }
+    else {
+       return false; 
+    }
+}
+

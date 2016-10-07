@@ -16,6 +16,7 @@
  * Please note that missing files will produce a fatal error.
  */
 $chamber_includes = [
+	'lib/config.php',			// Config file
 	'lib/assets.php',			// Scripts and stylesheets
 	'lib/extras.php',			// Custom functions
 	'lib/setup.php',		 	// Theme setup

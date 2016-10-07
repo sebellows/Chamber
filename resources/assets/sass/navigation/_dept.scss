@@ -1,4 +1,4 @@
-.dept-navigation {
+.section-navigation {
   background: transparent;
   color: #fefefe;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
@@ -48,10 +48,10 @@
   @include breakpoint(large) {
     background: $black;
     min-height: $dept-nav-height;
-    position: absolute;
-    top: 550px; // Clear the Duplo
-    top: 70vh;
-    margin-top: rem-calc($site-header-height + 4); // Add height of master header for clearance
+    // position: absolute;
+    // top: 550px; // Clear the Duplo
+    // top: 70vh;
+    // margin-top: rem-calc($site-header-height + 4); // Add height of master header for clearance
     width: 100%;
     z-index: 1000;
     opacity: 1;

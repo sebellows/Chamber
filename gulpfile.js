@@ -34,15 +34,16 @@ elixir(function(mix) {
 
 	mix.copy([
 		'node_modules/motion-ui/dist/motion-ui.js',
-		'node_modules/what-input/dist/what-input.js',
-		'node_modules/isotope-layout/dist/isotope.pkgd.js',
-		'node_modules/flickity/dist/flickity.pkgd.js',
+		'node_modules/what-input/dist/what-input.js'
+		// 'node_modules/flickity/dist/flickity.pkgd.js',
 
 		// Fitie.js has a concatenation order problem
 		// (see https://github.com/jonathantneal/fitie/issues/2#issue-156840198)
 		// 'node_modules/fitie/lib/fitie.init.js',
 		// 'node_modules/fitie/lib/fitie.js'
 	], 'resources/assets/js/vendor');
+
+	mix.copy('node_modules/isotope-layout/dist/isotope.pkgd.js', 'resources/assets/js');
 
 	mix.copy([
 		'node_modules/foundation-sites/dist/plugins/foundation.core.js',
@@ -78,10 +79,12 @@ elixir(function(mix) {
 
 	mix.scripts('customizer.js');
 
-	mix.copy([
-		'node_modules/flickity/dist/flickity.min.css'
-	], 'resources/assets/css/vendor')
-	.stylesIn('resources/assets/css/vendor', './public/css/vendor.css');
+	mix.scripts('isotope.pkgd.js');
+
+	// mix.copy([
+	// 	'node_modules/flickity/dist/flickity.min.css'
+	// ], 'resources/assets/css/vendor')
+	// .stylesIn('resources/assets/css/vendor', './public/css/vendor.css');
 
 	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 

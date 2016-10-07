@@ -8,10 +8,9 @@
 
   const ROOT     = document.documentElement,
         BODY     = document.body,
-        NAV      = document.querySelector( '#deptNavigation' );
+        NAV      = document.querySelector( '.section-navigation' );
 
   if ( ! NAV ) {
-  // if ( document.getElementById( 'deptNavigation' ) !== 'undefined' ) {
     return;
   }
 
@@ -46,7 +45,7 @@
       NAV.className += ' is-active';
       BUTTON.setAttribute( 'aria-expanded', 'true' );
       MENU.setAttribute( 'aria-expanded', 'true' );
-      BODY.classList.add('dept-navigation-is-open');
+      BODY.classList.add('navigation-is-open');
       MASTHEAD.style.zIndex = 'initial';
     }
   };

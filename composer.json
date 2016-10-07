@@ -16,9 +16,7 @@
   ],
   "require": {
     "php": ">=5.5.0",
-    "composer/installers": "~1.0",
-    "illuminate/support": "5.3.x-dev",
-    "symfony/var-dumper": "~3.0"
+    "composer/installers": "~1.0"
   },
   "minimum-stability": "dev"
 }

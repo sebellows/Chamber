@@ -1,29 +1,26 @@
 <?php
 
-if ( ! is_front_page() && is_page_template( 'landing-page.php' ) ) :
+if ( ! is_front_page() && ! is_archive() ) :
+
+    $sections = array_keys((new \Chamber\Config)->get('sections'));
+	
+	$current = \Chamber\Extras\get_current_page_name();
 
 ?>
-
-<nav id="deptNavigation" class="dept-navigation">
 
 <?php
-    if ( is_page( 'cvb' ) ) {
-        dynamic_sidebar('cvb-navigation-menu');
-    }
-    if ( is_page( 'economic-development' ) ) {
-    	dynamic_sidebar('development-navigation-menu');
-    }
-    if ( is_page( 'education-training' ) ) {
-    	dynamic_sidebar('education-training-navigation-menu');
-    }
-    if ( is_page( 'member-services' ) ) {
-    	dynamic_sidebar('member-services-navigation-menu');
-    }
-    if ( is_page( 'shared-services' ) ) {
-    	dynamic_sidebar('shared-services-navigation-menu');
-    }
-?>
+foreach ($sections as $section) {
 
-</nav><!-- END .dept-navigation-container -->
+    if ( $current === $section || get_post(wp_get_post_parent_id($post->ID))->post_name === $section ) :
+    ?>
+
+	<nav class="section-navigation">
+    <?php wp_nav_menu( [ 'theme_location' => $section . '_menu' ] ); ?>
+    </nav>
+
+    <?php 
+	endif;
+}
+?>
 
 <?php endif; ?>
