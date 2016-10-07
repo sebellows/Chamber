@@ -120,15 +120,6 @@ function widgets_init() {
 		'after_title'   => '</h3>'
 	]);
 
-	register_sidebar([
-		'name'          => __('Sortable Menu', 'chamber'),
-		'id'            => 'sidebar-isotope-menu',
-		'before_widget' => '<menu class="isotope-widget %1$s %2$s">',
-		'after_widget'  => '</menu>',
-		'before_title'  => '<h3>',
-		'after_title'   => '</h3>'
-	]);
-
 	// ------------------------------------------------------
 	// SECTION SIDEBARS
 	// ------------------------------------------------------

@@ -263,6 +263,11 @@ function get_current_page_name() {
 	return $pagename;
 }
 
+/**
+ * Get all fo the pages.
+ * 
+ * @return array  An array of all pages
+ */
 function get_all_pages() {
 	$pages = [];
 
@@ -273,6 +278,17 @@ function get_all_pages() {
 	$pages = array_merge($sections,$children);
 
 	return $pages;
+}
+
+/**
+ * Get the parent page of the current post/page.
+ *
+ * @see https://codex.wordpress.org/Function_Reference/wp_get_post_parent_id
+ * 
+ * @return mixed The page object
+ */
+function get_parent_page() {
+	return get_post(wp_get_post_parent_id($post->ID));
 }
 
 
@@ -287,7 +303,13 @@ function get_child_pages($page_name) {
 	return $children;
 }
 
-
+/**
+ * Determine if current page is a child of a parent page.
+ * 
+ * @param  int  $post_id The ID of the parent page.
+ * 
+ * @return boolean
+ */
 function is_child($post_id) {
     global $post;
 
@@ -299,3 +321,18 @@ function is_child($post_id) {
     }
 }
 
+/**
+ * Get all sub pages of the current parent.
+ * 
+ * @return array WP_Query object containing all sub pages of parent
+ */
+function get_all_sub_pages() {
+	// Determine parent page ID
+	$parent_page_id = ( '0' != $post->post_parent ? $post->post_parent : $post->ID );
+	// Build WP_Query() argument array
+	$page_tree_query_args = [ 'post_parent' => $parent_page_id ];
+	// Get child pages as a WP_Query() object
+	$page_tree_query = new WP_Query( $page_tree_query_args );
+
+	return $page_tree_query;
+}

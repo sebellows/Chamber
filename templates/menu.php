@@ -10,15 +10,20 @@ if ( ! is_front_page() && ! is_archive() ) :
 
 <?php
 foreach ($sections as $section) {
-
+	// Check if name of current page OR if the name of the current page's parent matches config section 
     if ( $current === $section || get_post(wp_get_post_parent_id($post->ID))->post_name === $section ) :
+    	// if so then display the section navigation bar
+    	
+	    // If user has assigned menu to this location then display it
+    	if ( has_nav_menu( $section . '_menu' ) ) :
     ?>
 
-	<nav class="section-navigation">
-    <?php wp_nav_menu( [ 'theme_location' => $section . '_menu' ] ); ?>
-    </nav>
+		<nav class="section-navigation">
+	    <?php wp_nav_menu( [ 'theme_location' => $section . '_menu', 'menu_class' => 'menu' ] ); ?>
+	    </nav>
 
     <?php 
+	    endif;
 	endif;
 }
 ?>

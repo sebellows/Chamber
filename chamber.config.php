@@ -112,10 +112,20 @@ return [
 	| @see lib/Setup.php
 	|
 	*/
+	'global_sidebars' => [
+		'primary', 		// front page
+		'news', 		// news uses the home.php template
+		'post-footer', 	// displays social at bottom of single post
+		'footer' 		// footer widgets
+	],
+
 	'sidebars' => [
-		'sidebar-primary',
-		'sidebar-post-footer',
-		'sidebar-footer'
+		'about',
+		'cvb',
+		'economic-development',
+		'education-training',
+		'member-services',
+		'shared-services'
 	],
 
     /*
