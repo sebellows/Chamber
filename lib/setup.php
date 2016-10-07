@@ -208,9 +208,9 @@ function display_sidebar() {
 		is_archive(),
 		is_404(),
 		is_home(),
-		is_front_page(),
+		// is_front_page(),
 		is_single(),
-		is_page_template('landing-page.php'),
+		// is_page_template('landing-page.php'),
 		is_page_template('app.php')
 	]);
 

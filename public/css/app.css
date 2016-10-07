@@ -3340,40 +3340,28 @@ svg.icon,
 #content[tabindex="-1"]:focus {
   outline: 0; }
 
-.sidebar-news .widget h1, .sidebar-news .widget h2, .sidebar-news .widget h3, .sidebar-news .widget h4, .sidebar-news .widget h5, .sidebar-news .widget h6,
-.sidebar-primary .widget h1,
-.sidebar-primary .widget h2,
-.sidebar-primary .widget h3,
-.sidebar-primary .widget h4,
-.sidebar-primary .widget h5,
-.sidebar-primary .widget h6 {
+.sidebar .widget h1, .sidebar .widget h2, .sidebar .widget h3, .sidebar .widget h4, .sidebar .widget h5, .sidebar .widget h6 {
   clear: initial; }
 
-.sidebar-news .widget h4,
-.sidebar-primary .widget h4 {
+.sidebar .widget h4 {
   color: #131516;
   font-size: 1.125em;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.4444444444em; }
-  .sidebar-news .widget h4:last-child,
-  .sidebar-primary .widget h4:last-child {
+  .sidebar .widget h4:last-child {
     margin-bottom: 0; }
 
-.sidebar-news .widget ul,
-.sidebar-primary .widget ul {
+.sidebar .widget ul {
   list-style: none;
   margin: 0; }
-  .sidebar-news .widget ul > li,
-  .sidebar-primary .widget ul > li {
+  .sidebar .widget ul > li {
     border-bottom: 2px dotted rgba(0, 0, 0, 0.25);
     padding: 0.5em 0;
     overflow: hidden; }
-    .sidebar-news .widget ul > li:last-child,
-    .sidebar-primary .widget ul > li:last-child {
+    .sidebar .widget ul > li:last-child {
       border-bottom: 0 none; }
-    .sidebar-news .widget ul > li > a:only-child,
-    .sidebar-primary .widget ul > li > a:only-child {
+    .sidebar .widget ul > li > a:only-child {
       color: #131516;
       display: block;
       font-family: "Roboto Slab", Georgia, serif;
@@ -3383,32 +3371,25 @@ svg.icon,
       padding: 0.8888888889em 0;
       position: relative; }
 
-.sidebar-news .widget .widget-post-meta,
-.sidebar-primary .widget .widget-post-meta {
+.sidebar .widget .widget-post-meta {
   color: #009dd7; }
 
-.sidebar-news .widget select,
-.sidebar-primary .widget select {
+.sidebar .widget select {
   max-width: 100%; }
 
-.sidebar-news .widget .rsswidget,
-.sidebar-primary .widget .rsswidget {
+.sidebar .widget .rsswidget {
   color: #131516; }
 
-.sidebar-news .widget li a.rsswidget,
-.sidebar-primary .widget li a.rsswidget {
+.sidebar .widget li a.rsswidget {
   display: block; }
 
-.sidebar-news .widget time,
-.sidebar-news .widget .rss-date,
-.sidebar-primary .widget time,
-.sidebar-primary .widget .rss-date {
+.sidebar .widget time,
+.sidebar .widget .rss-date {
   color: #959fb0;
   font-size: 0.75em;
   text-transform: uppercase; }
 
-.sidebar-news .widget .rssSummary,
-.sidebar-primary .widget .rssSummary {
+.sidebar .widget .rssSummary {
   color: rgba(19, 21, 22, 0.75); }
 
 .widget-post-thumbnail img {
