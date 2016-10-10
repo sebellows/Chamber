@@ -5206,17 +5206,15 @@ svg.icon,
       max-width: 33.3333333333%; } }
   @media screen and (min-width: 40em) {
     .sidebar-news .widget {
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
+      -ms-flex: 1;
+      flex: 1;
+      max-width: 100%;
       padding-left: 0.9375rem;
-      padding-right: 0.9375rem;
-      max-width: 100%; } }
+      padding-right: 0.9375rem; } }
   @media screen and (min-width: 64em) {
     .sidebar-news .widget {
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
-      padding-left: 0.9375rem;
-      padding-right: 0.9375rem;
+      -ms-flex: 1;
+      flex: 1;
       max-width: 100%; } }
 
 .feed-title,
