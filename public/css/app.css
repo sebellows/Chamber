@@ -3706,6 +3706,7 @@ svg.icon,
   -ms-flex-pack: center;
   justify-content: center;
   margin-top: 1rem;
+  width: 100%;
   margin-left: 0;
   margin-bottom: 1rem; }
   .pagination::before, .pagination::after {
