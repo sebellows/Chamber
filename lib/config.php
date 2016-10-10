@@ -1,6 +1,6 @@
 <?php
 
-namespace Chamber;
+namespace Chamber\Theme;
 
 use Illuminate\Support\Arr;
 

@@ -20,4 +20,5 @@
 	</div><!-- .page-content-body-inner -->
 
 </div><!-- .page-content-body -->
+
 <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'chamber'), 'after' => '</p></nav>']); ?>

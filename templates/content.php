@@ -7,11 +7,8 @@
  * @package chamber
  */
 
-use Chamber\Extras;
-
 ?>
 
-<?php #if ( has_post_thumbnail() ) : ?>
 <article <?php post_class(); ?>>
 
 	<header class="entry-header">

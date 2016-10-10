@@ -1,0 +1,43 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: $global-margin;
+  @include pagination-container;
+
+  ul {
+    margin-#{$global-left}: $pagination-item-spacing;
+    margin-bottom: 0;
+  }
+
+  .current {
+    @include pagination-item-current;
+  }
+
+  .disabled {
+    @include pagination-item-disabled;
+  }
+}
+
+.pagination-previous,
+.pagination-next {
+  font-size: $pagination-font-size;
+  border-radius: $pagination-radius;
+
+  a {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+  }
+}
+
+.pagination-previous a::before,
+.pagination-previous a.disabled::before {
+  content: '\00ab';
+  margin-#{$global-right}: rem-calc(8);
+}
+
+.pagination-next a::after,
+.pagination-next a.disabled::after {
+  content: '\00bb';
+  margin-#{$global-left}: rem-calc(8);
+}

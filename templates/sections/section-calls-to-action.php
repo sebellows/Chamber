@@ -1,6 +1,6 @@
 <?php
 
-use Chamber\Colors;
+use Chamber\Theme\Color;
 
 if( get_row_layout('call_to_action_links') ) :
 
@@ -31,7 +31,7 @@ if( get_row_layout('call_to_action_links') ) :
                 $title       = get_sub_field('cta_title');
                 $summary     = get_sub_field('cta_summary');
                 $link        = get_sub_field('cta_link');
-                $color_class = Colors\set(get_sub_field('cta_background_color'));
+                $color_class = Color::set(get_sub_field('cta_background_color'));
             ?>
 
             <?php if ($link) : ?>

@@ -5,7 +5,7 @@
  * @package chamber
  */
 
-use Chamber\Extras;
+use Chamber\Theme\Helper;
 
 ?>
 
@@ -24,7 +24,7 @@ use Chamber\Extras;
 
 			<?php
 			$content = has_excerpt() ? get_the_excerpt() : get_the_content();
-			$content = \Chamber\Extras\limit_content($content, 96, '<a class="continuedmark" href="' . esc_url( get_permalink() ) . '">&nbsp;&hellip;MORE</a>');
+			$content = Helper::limit_content($content, 96, '<a class="continuedmark" href="' . esc_url( get_permalink() ) . '">&nbsp;&hellip;MORE</a>');
 			?>
 			
 			<span class="card-excerpt"><?php echo $content; ?></span>

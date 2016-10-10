@@ -1,8 +1,8 @@
 <?php
 
-namespace Chamber\CustomHeader;
+namespace Chamber\Theme\CustomHeader;
 
-use Chamber\Assets;
+use Chamber\Theme\Assets;
 
 /**
  * Sample implementation of the Custom Header feature.

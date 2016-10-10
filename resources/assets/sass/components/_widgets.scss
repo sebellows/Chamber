@@ -1,76 +1,76 @@
-.sidebar {
-  .widget {
-    h1, h2, h3, h4, h5, h6 {
-      clear: initial;
-    }
+.sidebar .widget {
+  color: $body-font-color;
 
-    h4 {
-      color: $body-font-color;
-      font-size: em(18);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: em(8,18);
+  h1, h2, h3, h4, h5, h6 {
+    clear: initial;
+  }
+
+  h4 {
+    color: $body-font-color;
+    font-size: em(18);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: em(8,18);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+
+    > li {
+      border-bottom: 2px dotted rgba(0,0,0,.25);
+      padding: em(8) 0;
+      overflow: hidden; // hack to clear a thumbnail. clearfix does not work.
 
       &:last-child {
-        margin-bottom: 0;
+        border-bottom: 0 none;
+      }
+
+      // Menu items
+      > a:only-child {
+        color: $body-font-color;
+        display: block;
+        font-family: $header-font-family;
+        font-size: em(18);
+        font-weight: 700;
+        line-height: 1.2;
+        padding: em(16,18) 0;
+        position: relative;
       }
     }
+  }
 
-    ul {
-      list-style: none;
-      margin: 0;
+  .widget-post-meta {
+    color: color(brand-light);
+  }
 
-      > li {
-        border-bottom: 2px dotted rgba(0,0,0,.25);
-        padding: em(8) 0;
-        overflow: hidden; // hack to clear a thumbnail. clearfix does not work.
+  // Make sure select elements fit in widgets.
+  select {
+    max-width: 100%;
+  }
 
-        &:last-child {
-          border-bottom: 0 none;
-        }
+  // sub-classes
+  .rsswidget {
+    color: $body-font-color;
+  }
 
-        // Menu items
-        > a:only-child {
-          color: $body-font-color;
-          display: block;
-          font-family: $header-font-family;
-          font-size: em(18);
-          font-weight: 700;
-          line-height: 1.2;
-          padding: em(16,18) 0;
-          position: relative;
-        }
-      }
-    }
+  li a.rsswidget {
+    display: block;
+  }
 
-    .widget-post-meta {
-      color: color(brand-light);
-    }
+  time,
+  .rss-date {
+    color: neutral(3);
+    font-size: em(12);
+    text-transform: uppercase;
+  }
 
-    // Make sure select elements fit in widgets.
-    select {
-      max-width: 100%;
-    }
-
-    // sub-classes
-    .rsswidget {
-      color: $body-font-color;
-    }
-
-    li a.rsswidget {
-      display: block;
-    }
-
-    time,
-    .rss-date {
-      color: neutral(3);
-      font-size: em(12);
-      text-transform: uppercase;
-    }
-
-    .rssSummary {
-      color: transparentize($black,.25);
-    }
+  .rssSummary {
+    color: transparentize($black,.25);
   }
 }
 
@@ -84,9 +84,11 @@
 }
 
 // Sidebar-specific rules
-.sidebar .widget-1of2 {
-  color: $body-font-color;
+.widget-1of1 {
+  @include flex-grid-column(12, rem-calc(30));
+}
 
+.widget-1of2 {
   @include flex-grid-column(12, rem-calc(30));
 
   @include breakpoint(medium) {
@@ -95,11 +97,6 @@
 
   @include breakpoint(large) {
     @include flex-grid-column(6, rem-calc(30));
-  }
-
-  li h4 {
-    font: inherit;
-    margin-bottom: 0;
   }
 }
 

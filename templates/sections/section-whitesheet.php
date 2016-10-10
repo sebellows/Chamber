@@ -1,14 +1,11 @@
 <?php
 
-use Chamber\Colors;
-
 if( get_row_layout() == 'white_sheet' ) :
 
     $title       = get_sub_field( 'ws_title' );
     $lead        = get_sub_field( 'ws_lead' );
     $summary     = get_sub_field( 'ws_summary' );
     $columns     = get_sub_field( 'ws_columns' );
-    // dd($columns);
 
     ?>
 

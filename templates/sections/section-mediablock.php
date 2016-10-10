@@ -1,6 +1,6 @@
 <?php
 
-use Chamber\Colors;
+use Chamber\Theme\Color;
 
 if( get_row_layout() == 'media_block' ) :
 
@@ -24,7 +24,7 @@ if( get_row_layout() == 'media_block' ) :
                 <div class="flex-video widescreen media"><?php echo $media; ?></div>
             </figure>
 
-            <div class="callout" m-UI="<?php echo Colors\set($color_class); ?>" m-Pad="medium large">
+            <div class="callout" m-UI="<?php echo Color::set($color_class); ?>" m-Pad="medium large">
 
                 <?php if ($rubric) : ?>
                     <h2 class="rubric"><?php echo $rubric; ?></h2>

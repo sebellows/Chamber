@@ -8,7 +8,7 @@
  */
 
 // Get the post types that will get the Isotope.js treatment from the config file.
-$isotope = (new \Chamber\Config)->get('isotope');
+$isotope = (new \Chamber\Theme\Config)->get('isotope');
 // Get the names, not the labels
 $posttypes = array_keys($isotope);
 

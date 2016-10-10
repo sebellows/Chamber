@@ -1,6 +1,6 @@
 <?php
 
-namespace Chamber\Assets;
+namespace Chamber\Theme\Assets;
 
 /**
  * Get paths for assets

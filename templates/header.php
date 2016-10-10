@@ -9,7 +9,7 @@
  * @package chamber
  */
 
-use Chamber\Assets;
+use Chamber\Theme\Assets;
 
 ?>
 

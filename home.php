@@ -20,7 +20,12 @@
 			while (have_posts()) : the_post();
 				get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format());
 			endwhile;
+
+
+			// Previous/next page navigation.
+			\Chamber\Theme\TemplateTags\post_pagination();
 		?>
+
 	</div><!-- .news-feed -->
 	
 	<aside id="news-sidebar" class="sidebar sidebar-news">
@@ -28,5 +33,3 @@
 	</aside><!-- #news-sidebar -->
 
 </div>
-
-<?php #get_template_part('templates/content-single', get_post_type()); ?>

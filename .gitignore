@@ -6,6 +6,8 @@ node_modules
 npm-debug.log
 vendor
 twig-cache
+resources/assets/images/icons
+public/images/icons
 
 # Compiled source #
 ###################

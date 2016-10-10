@@ -1,6 +1,7 @@
 <?php
 
-use Chamber\Colors;
+use Chamber\Theme\Color;
+use Chamber\Theme\Helper;
 
 if( get_row_layout('duplo_set') ) :
 
@@ -18,66 +19,6 @@ if( get_row_layout('duplo_set') ) :
     while ( have_rows('duplo') ) : the_row();
         $counter++;
     endwhile;
-
-    /**
-     * Get first paragraph of 'post_content'.
-     *
-     * If the post does not have an excerpt, fake one 
-     * using the first paragraph of the post.
-     * 
-     * @param  int    $post_id         the post ID
-     * @param  mixed  $post_content    the post content
-     * @param  int    $character_count character limit for fake excerpt
-     * @param  string $continued_mark  abbreviated text indication mark at end of fake excerpt
-     * @return string                  the excerpt (or fake excerpt)
-     */
-    function get_first_paragraph($post_id, $post_content, $character_count, $continued_mark = '&hellip;') {
-        $content = '';
-
-        if (get_the_excerpt() === '') {
-            $content = wpautop( $post_content );
-            $content = preg_match_all('%(<p[^>]*>.*?</p>)%i', $content, $matches);
-            $content = $matches [1] [0];
-            $content = wordwrap($content, $character_count);
-            $content = preg_replace("/&amp;/", "&",$content);
-            $content = substr($content,0,strpos($content, "\n"));
-            $content = $content . $continued_mark;
-        }
-        else {
-            $post    = $post_id;
-            $content = get_the_excerpt();
-        }
-
-        return $content;
-    }
-
-    /**
-     * Get the first image from a post if it has one.
-     *
-     * If there is no feature-image for the post, try to 
-     * use the first image from it if possible.
-     * 
-     * @param  int    $post_id      the post ID
-     * @param  mixed  $post_content the post content
-     * @param  string $classname    class name to append to the wrapper tag
-     * @return mixed               the first image in the post content
-     */
-    function get_first_image($post_id, $post_content, $classname) {
-      $first_img = '';
-
-      if (get_the_post_thumbnail( $post_id ) === '') {
-        ob_start();
-        ob_end_clean();
-        $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches);
-        $first_img = $matches [1] [0];
-        $first_img = '<img class="duplo-image" src="' . $first_img . '">';
-      }
-      else {
-        $first_img = get_the_post_thumbnail( $post_id, 'large', ['class' => $classname]);
-      }
-
-      return $first_img;
-    }
 
     ?>
 
@@ -106,7 +47,7 @@ if( get_row_layout('duplo_set') ) :
                 $color_class  = get_sub_field('duplo_background_color');
             ?>
 
-            <div class="duplo" m-Duplo="<?php echo $index; ?>" m-UI="<?php echo Colors\set($color_class); ?>">
+            <div class="duplo" m-Duplo="<?php echo $index; ?>" m-UI="<?php echo Color::set($color_class); ?>">
                 <?php if ($image) : ?>
                     <img 
                         class="duplo-image" 
@@ -147,9 +88,9 @@ if( get_row_layout('duplo_set') ) :
                 $id          = $post->get('ID');
                 $title       = $post->get('post_title');
                 $content     = $post->get('post_content');
-                $summary     = get_first_paragraph($id, $content, 96);
+                $summary     = Helper::get_first_paragraph($id, $content, 96);
                 $link        = get_permalink( $post->get('ID') );
-                $image       = get_first_image($id, $content, 'duplo-image');
+                $image       = Helper::get_first_image($id, $content, 'duplo-image');
             ?>
 
             <div class="duplo" m-Duplo="<?php echo $index; ?>">

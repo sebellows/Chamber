@@ -1,7 +1,7 @@
 <?php
 
-use Chamber\Setup;
-use Chamber\Wrapper;
+use Chamber\Theme\Sidebars;
+use Chamber\Theme\Wrapper;
 
 ?>
 
@@ -24,7 +24,7 @@ use Chamber\Wrapper;
 			// Global site header
 			get_template_part('templates/header');
 			
-			get_template_part('templates/menu');
+			\Chamber\Theme\Menus::make_top_level_navs($post->ID, 'section-navigation');
 		?>
 
 		<div class="wrap container" role="document">
@@ -32,10 +32,8 @@ use Chamber\Wrapper;
 				<main class="main">
 					<?php include Wrapper\template_path(); ?>
 				</main><!-- /.main -->
-				<?php if (Setup\display_sidebar()) : ?>
-				<aside class="sidebar">
+				<?php if (Sidebars::display()) : ?>
 					<?php include Wrapper\sidebar_path(); ?>
-				</aside><!-- /.sidebar -->
 				<?php endif; ?>
 			</div><!-- /.content -->
 		</div><!-- /.wrap -->

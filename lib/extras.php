@@ -1,8 +1,8 @@
 <?php
 
-namespace Chamber\Extras;
+namespace Chamber\Theme\Extras;
 
-use Chamber\Setup;
+use Chamber\Theme\Sidebars;
 
 /**
  * Custom functions that act independently of the theme templates.
@@ -27,7 +27,7 @@ function body_class($classes) {
 	}
 
 	// Add class if sidebar is active
-	if (Setup\display_sidebar()) {
+	if (Sidebars::display()) {
 		$classes[] = 'has-sidebar-primary';
 	}
 
@@ -81,28 +81,6 @@ add_filter('wp_nav_menu_items', __NAMESPACE__ . '\\add_search_box_to_menu', 10, 
 
 
 /**
- * Get the number of widgets in a sidebar and add a class to the parent container.
- *
- * @link: https://wordpress.stackexchange.com/questions/54162/get-number-of-widgets-in-sidebar
- */
-function widget_indexer($params) {
-
-	$sidebar_id = $params[0]['id'];
-
-	if ( $sidebar_id == 'sidebar-primary' ) {
-
-			$total_widgets = wp_get_sidebars_widgets();
-			$sidebar_widgets = count($total_widgets[$sidebar_id]);
-
-			$params[0]['before_widget'] = str_replace('class="', 'class="widget-1of' . $sidebar_widgets . ' ', $params[0]['before_widget']);
-	}
-
-	return $params;
-}
-add_filter('dynamic_sidebar_params', __NAMESPACE__ . '\\widget_indexer');
-
-
-/**
  * Display the caption of the featured image
  * 
  * @return array
@@ -121,64 +99,140 @@ add_filter('chamber/thumbnail/caption', __NAMESPACE__ . '\\the_post_thumbnail_ca
 
 
 /**
- * Add a Featured Post meta box.
- * 
- * @return void
+ * Google API Key for adding Google Maps in ACF Pro
  */
-function add_featured_meta() {
-    add_meta_box( 'featured_meta', 'Featured Post', __NAMESPACE__ . '\\render_featured_meta', 'post' );
-}
+if (class_exists('acf')) {
+	function acf_init() {
 
+	   acf_update_setting('google_api_key', 'AIzaSyAS0yll51lLq5yVbqysc6gtKExyIKdURzE');
 
-/**
- * Render a view of the Featured Post meta box.
- * 
- * @param  mixed $post
- * @return the meta box view
- */
-function render_featured_meta( $post ) {
-    $featured = get_post_meta( $post->ID );
-    ?>
- 
-	<p>
-	    <div class="featured-callout">
-	        <label class="selectit">
-	            <input type="checkbox" name="featured-post-meta" id="featured-post-meta" value="yes" <?php if ( isset ( $featured['featured-post-meta'] ) ) checked( $featured['featured-post-meta'][0], 'yes' ); ?> />
-	            Feature this post
-	        </label>
-	    </div>
-	</p>
-    <?php
-}
-add_action( 'add_meta_boxes', __NAMESPACE__ . '\\add_featured_meta' );
-
-
-/**
- * Saves the featured post meta input.
- * 
- * @param  int $post_id
- * @return void
- */
-function save_featured_meta( $post_id ) {
- 
-    // Checks save status
-    $is_autosave = wp_is_post_autosave( $post_id );
-    $is_revision = wp_is_post_revision( $post_id );
-    $is_valid_nonce = ( isset( $_POST[ 'chamber_nonce' ] ) && wp_verify_nonce( $_POST[ 'chamber_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
- 
-    // Exits script depending on save status
-    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
-        return;
-    }
- 
-	// Checks for input and saves
-	if( isset( $_POST[ 'featured-post-meta' ] ) ) {
-	    update_post_meta( $post_id, 'featured-post-meta', 'yes' );
-	} else {
-	    update_post_meta( $post_id, 'featured-post-meta', '' );
 	}
+	add_action('acf/init', __NAMESPACE__ . '\\acf_init');
 }
-add_action( 'save_post', __NAMESPACE__ . '\\save_featured_meta' );
+
+/**
+ * Add custom image sizes attribute to enhance responsive image functionality
+ * for content images
+ *
+ * @link https://github.com/WordPress/twentysixteen/blob/master/functions.php
+ *
+ * @param string $sizes A source size value for use in a 'sizes' attribute.
+ * @param array  $size  Image size. Accepts an array of width and height
+ *                      values in pixels (in that order).
+ * @return string A source size value for use in a content image 'sizes' attribute.
+ */
+function content_image_sizes_attr( $sizes, $size ) {
+	$width = $size[0];
+
+	840 <= $width && $sizes = '(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px';
+
+	if (get_page_template_slug() === 'template-landing.php' || 'single.php') {
+		840 > $width && $sizes = '(max-width: ' . $width . 'px) 100vw, ' . $width . 'px';
+	} else {
+		840 > $width && 600 <= $width && $sizes = '(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px';
+		600 > $width && $sizes = '(max-width: ' . $width . 'px) 85vw, ' . $width . 'px';
+	}
+
+	return $sizes;
+}
+add_filter( 'wp_calculate_image_sizes', __NAMESPACE__.'\\content_image_sizes_attr', 10 , 2 );
+
+/**
+ * Make ACF create the correct srcset code for images added to custom fields.
+ * 
+ * @link https://support.advancedcustomfields.com/forums/topic/wordpress-4-4-responsive-images/
+ */
+add_filter( 'acf_the_content', 'wp_make_content_images_responsive' );
+
+/**
+ * Callback function to insert 'styleselect' into the $buttons array
+ *
+ * @link http://alisothegeek.com/2011/05/tinymce-styles-dropdown-wordpress-visual-
+ *
+ * @param  object(s) $buttons
+ * @return object(s) $buttons
+ */
+function mce_buttons_2( $buttons ) {
+	array_unshift( $buttons, 'styleselect' );
+	return $buttons;
+}
+// Register our callback to the appropriate filter
+add_filter( 'mce_buttons_2', __NAMESPACE__.'\\mce_buttons_2' );
+
+/**
+ * Callback function to filter the MCE settings
+ *
+ * @link http://alisothegeek.com/2011/05/tinymce-styles-dropdown-wordpress-visual-
+ *
+ * @param  array $init_array
+ * @return array
+ */
+function mce_before_init_insert_formats( $init_array ) {  
+	// Define the style_formats array
+	$style_formats = [
+		// Each array child is a format with it's own settings
+		[  
+			'title' => 'Inspire Blockquote',
+			'classes' => 'intro-blockquote',
+			'block' => 'blockquote',  
+			'wrapper' => true
+		],  
+		[  
+			'title' => 'Cite',  
+			'inline' => 'cite'
+		],
+		[  
+			'title' => 'Button',  
+			'selector' => 'a',  
+			'classes' => 'button'
+		],
+		[  
+			'title' => 'Button Alt',  
+			'selector' => 'a',  
+			'classes' => 'alt button'
+		],
+		[  
+			'title' => 'Button Outline',  
+			'selector' => 'a',  
+			'classes' => 'hollow button'
+		],
+		[  
+			'title' => 'Button Reverse Outline',  
+			'selector' => 'a',  
+			'classes' => 'reverse hollow button'
+		],
+		[  
+			'title' => 'Button Flat',  
+			'selector' => 'a',  
+			'classes' => 'flat button'
+		]
+	];  
+	// Insert the array, JSON ENCODED, into 'style_formats'
+	$init_array['style_formats'] = json_encode( $style_formats );  
+	
+	return $init_array;  
+	
+} 
+// Attach callback to 'tiny_mce_before_init' 
+add_filter( 'tiny_mce_before_init', __NAMESPACE__.'\\mce_before_init_insert_formats' );  
+
+/**
+ * Add thumbnails to the RSS Widget
+ * 
+ * @param  array $content
+ * @return array
+ */
+function rss_post_thumbnail($content) {
+	global $post;
+
+	if( has_post_thumbnail($post->ID) ) {
+		$content = '<div class="thumbnail">' . get_the_post_thumbnail($post->ID, 'thumbnail') .
+		'</div>' . '<div class="list-content">' . get_the_content() . '</div>';
+	}
+	return $content;
+}
+add_filter('the_excerpt_rss', __NAMESPACE__.'\\rss_post_thumbnail');
+add_filter('the_content_feed', __NAMESPACE__.'\\rss_post_thumbnail');
 
 
 /**
@@ -200,139 +254,3 @@ add_filter('use_default_gallery_style', '__return_false');
  */
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
-
-
-/**
- * HELPERS
- */
-
-/**
- * Get all image sizes.
- *
- * @source https://gist.github.com/eduardozulian/6467854
- */
-function _get_all_image_sizes() {
-	global $_wp_additional_image_sizes;
-	$default_image_sizes = [ 'thumbnail', 'medium', 'medium_large', 'large' ];
-	 
-	foreach ( $default_image_sizes as $size ) {
-		$image_sizes[$size]['width']	= intval( get_option( "{$size}_size_w") );
-		$image_sizes[$size]['height'] = intval( get_option( "{$size}_size_h") );
-		$image_sizes[$size]['crop']	= get_option( "{$size}_crop" ) ? get_option( "{$size}_crop" ) : false;
-	}
-	
-	if ( isset( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) )
-		$image_sizes = array_merge( $image_sizes, $_wp_additional_image_sizes );
-		
-	return $image_sizes;
-}
-
-/**
- * Get the content of the post if there is no excerpt.
- *
- * @param int $limit the character count limit
- * @param  str $continued_mark glyph or text to communicate that this is abbreviated text
- * @return str excerpt text
- */
-function limit_content($content = '', $limit = 120, $continued_mark = '[&hellip;]') {
-	$content = wordwrap($content, $limit);
-
-	if ( strlen($content) > $limit ) {
-		$content = substr($content,0,strpos($content, "\n")) . $continued_mark;
-	}
-
-	return $content;
-}
-
-/**
- * Get the name of the current page.
- *
- * @link http://stackoverflow.com/questions/4837006/how-to-get-the-current-page-name-in-wordpress#answer-4837800
- * 
- * @return str the name of the page
- */
-function get_current_page_name() {
-	$pagename = get_query_var('pagename');  
-
-	if ( !$pagename && $id > 0 ) {  
-	    // If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object  
-	    $post = $wp_query->get_queried_object();  
-	    $pagename = $post->post_name;  
-	}
-
-	return $pagename;
-}
-
-/**
- * Get all fo the pages.
- * 
- * @return array  An array of all pages
- */
-function get_all_pages() {
-	$pages = [];
-
-	$children = collect(\Chamber\Extras\get_child_pages(\Chamber\Extras\get_current_page_name()))->map(function($key) {
-		return $key->post_name;
-	})->toArray();
-
-	$pages = array_merge($sections,$children);
-
-	return $pages;
-}
-
-/**
- * Get the parent page of the current post/page.
- *
- * @see https://codex.wordpress.org/Function_Reference/wp_get_post_parent_id
- * 
- * @return mixed The page object
- */
-function get_parent_page() {
-	return get_post(wp_get_post_parent_id($post->ID));
-}
-
-
-function get_child_pages($page_name) {
-	$children = [];
-
-	// Get the page as an Object
-	$page = get_page_by_title(get_current_page_name());
-
-	$children = get_pages( [ 'child_of' => $page->ID ] );
-
-	return $children;
-}
-
-/**
- * Determine if current page is a child of a parent page.
- * 
- * @param  int  $post_id The ID of the parent page.
- * 
- * @return boolean
- */
-function is_child($post_id) {
-    global $post;
-
-    if(is_page()&&($post->post_parent==$post_id)) {
-       return true;  
-    }
-    else {
-       return false; 
-    }
-}
-
-/**
- * Get all sub pages of the current parent.
- * 
- * @return array WP_Query object containing all sub pages of parent
- */
-function get_all_sub_pages() {
-	// Determine parent page ID
-	$parent_page_id = ( '0' != $post->post_parent ? $post->post_parent : $post->ID );
-	// Build WP_Query() argument array
-	$page_tree_query_args = [ 'post_parent' => $parent_page_id ];
-	// Get child pages as a WP_Query() object
-	$page_tree_query = new WP_Query( $page_tree_query_args );
-
-	return $page_tree_query;
-}

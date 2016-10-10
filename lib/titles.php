@@ -1,6 +1,6 @@
 <?php
 
-namespace Chamber\Titles;
+namespace Chamber\Theme\Titles;
 
 /**
  * Page titles

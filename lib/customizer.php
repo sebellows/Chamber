@@ -1,8 +1,8 @@
 <?php
 
-namespace Chamber\Customizer;
+namespace Chamber\Theme\Customizer;
 
-use Chamber\Assets;
+use Chamber\Theme\Assets;
 
 /**
  * chamber Theme Customizer.

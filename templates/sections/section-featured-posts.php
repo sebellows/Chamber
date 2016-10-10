@@ -1,6 +1,6 @@
 <?php
 
-use Chamber\Titles;
+use Chamber\Theme\Titles;
 
 $args = array(
     'posts_per_page' => 3,

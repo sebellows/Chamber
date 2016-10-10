@@ -1,6 +1,6 @@
 <?php
 
-namespace Chamber\TemplateTags;
+namespace Chamber\Theme\TemplateTags;
 
 /**
  * Custom template tags for this theme.
@@ -132,10 +132,10 @@ function paging_nav() {
 		return;
 	}
 
-	$paged				= get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
+	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
 	$pagenum_link = html_entity_decode( get_pagenum_link() );
-	$query_args	 = array();
-	$url_parts		= explode( '?', $pagenum_link );
+	$query_args   = array();
+	$url_parts    = explode( '?', $pagenum_link );
 
 	if ( isset( $url_parts[1] ) ) {
 		wp_parse_str( $url_parts[1], $query_args );
@@ -169,6 +169,39 @@ function paging_nav() {
 	</nav><!-- .navigation -->
 	<?php
 	endif;
+}
+
+/**
+ * Customizing `the_posts_pagination`
+ *
+ * Get rid of the container class `nav-links` and use Foundation's pagination
+ * 
+ */
+function post_pagination($args = [], $class = 'pagination') {
+
+    if ($GLOBALS['wp_query']->max_num_pages <= 1) return;
+
+    $args = wp_parse_args( $args, [
+        'mid_size'           => 2,
+        'prev_next'			 => false,
+        'prev_text'          => __('Previous', 'chamber'),
+        'next_text'          => __('Next', 'chamber'),
+        'screen_reader_text' => __('Posts navigation', 'chamber'),
+        'type'				 => 'list',
+    ]);
+
+    $links     = paginate_links($args);
+    $prev_link = get_previous_posts_link($args['prev_text']);
+    $next_link = get_next_posts_link($args['next_text']);
+    $template  = apply_filters( 'navigation_markup_template', '
+    <nav class="%1$s" role="navigation">
+        <h2 class="screen-reader-text">%2$s</h2>
+        <span class="pagination-previous">%3$s</span>
+        <div class="pagination-numbers">%4$s</div>
+        <span class="pagination-next">%5$s</span>
+    </nav>', $args, $class);
+
+    echo sprintf($template, $class, $args['screen_reader_text'], $prev_link, $links, $next_link);
 }
 
 /**

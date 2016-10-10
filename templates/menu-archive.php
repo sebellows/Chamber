@@ -5,7 +5,18 @@
  * @package chamber
  */
 
-$terms = get_terms('attraction_category');
+use Chamber\Theme\Config;
+use Chamber\Theme\Icon;
+
+$config = new Config;
+$isotopes = $config->get('isotope');
+
+foreach ($isotopes as $key => $value) {
+	$posttype = $key;
+	$taxonomy = $value;
+
+	if ( taxonomy_exists($taxonomy) ) :
+		$menu_items = $config->get($posttype);
 
 ?>
 
@@ -18,12 +29,16 @@ $terms = get_terms('attraction_category');
 	</div>
 
 	<menu class="isotope-sortable-menu">
-		<?php foreach($terms as $term) { ?>
-		<a href="javascript:void(0)" data-filter=".<?php echo $term->taxonomy . '-' . $term->slug; ?>">
+		<?php foreach($menu_items as $menu_item) { 
+			$term  = array_get($menu_item, 'term');
+			$label = array_get($menu_item, 'label');
+			$icon  = array_get($menu_item, 'icon');
+		?>
+		<a href="javascript:void(0)" data-filter=".<?php echo $taxonomy . '-' . $term; ?>">
 			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
-				<use xlink:href="#icon-<?php echo $term->slug; ?>"></use>
+				<use xlink:href="#icon-<?php echo $icon; ?>"></use>
 			</svg>
-			<?php echo $term->name; ?>
+			<?php echo $label; ?>
 		</a>
 		<?php } ?>
 		<a href="javascript:void(0)" data-filter="*" class="is-selected">
@@ -35,3 +50,7 @@ $terms = get_terms('attraction_category');
 	</menu>
 
 </header> <!-- end isotope-header -->
+
+	<?php
+	endif;
+}

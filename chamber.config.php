@@ -189,4 +189,45 @@ return [
 		'attraction' => 'attraction_category'
 	],
 
+    /*
+	|--------------------------------------------------------------------------
+	| Attraction Categories
+	|--------------------------------------------------------------------------
+	|
+	| Filterable categories for the Attractions archive using Isotope.js.
+	|
+	*/
+	'attraction' => [
+		[
+			'term'  => 'arts-and-culture',
+			'label' => 'Arts & Culture',
+			'icon'  => 'arts-culture'
+		],
+		[
+			'term'  => 'indoor-recreation',
+			'label' => 'Indoors',
+			'icon'  => 'indoors'
+		],
+		[
+			'term'  => 'outdoor-recreation',
+			'label' => 'Outdoors',
+			'icon'  => 'outdoors'
+		],
+		[
+			'term'  => 'shopping',
+			'label' => 'Shopping',
+			'icon'  => 'shopping-bag'
+		],
+		[
+			'term'  => 'dining',
+			'label' => 'Dining',
+			'icon'  => 'coffee'
+		],
+		[
+			'term'  => 'lodging',
+			'label' => 'Lodging',
+			'icon'  => 'home'
+		]
+	],
+
 ];

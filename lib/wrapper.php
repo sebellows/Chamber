@@ -1,6 +1,6 @@
 <?php
 
-namespace Chamber\Wrapper;
+namespace Chamber\Theme\Wrapper;
 
 /**
  * Theme wrapper

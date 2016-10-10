@@ -1,6 +1,6 @@
 <?php
 
-namespace Chamber\Jetpack;
+namespace Chamber\Theme\Jetpack;
 
 /**
  * Jetpack Compatibility File.

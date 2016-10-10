@@ -31,6 +31,12 @@
       width: 100%;
       @include clearfix();
     }
+    &.has-post-thumbnail + .hentry:not(.has-post-thumbnail) + .hentry:not(.has-post-thumbnail) + .hentry:not(.has-post-thumbnail) {
+      float: left;
+      padding-left: rem-calc(15);
+      width: 50%;
+      clear: right;
+    }
   }
 }
 
