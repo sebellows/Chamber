@@ -21,6 +21,16 @@
     flex-direction: column;
     @include flex-grid-column(4, 0);
   }
+
+  .widget {
+    @include breakpoint(medium) {
+      @include flex-grid-column(12, rem-calc(30));
+    }
+
+    @include breakpoint(large) {
+      @include flex-grid-column(12, rem-calc(30));
+    }
+  }
 }
 
 .feed-title,
