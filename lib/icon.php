@@ -20,7 +20,7 @@ class Icon
 			$icon = '<span class="icon" m-Icon="'.$name.'"><svg role="presentation" viewbox="' . $viewbox . '"><use xlink:href="#' . $name . '</use></svg></span>';
 		}
 
-		else $icon = '<svg class="icon" role="presentation" viewbox="' . $viewbox . '"><use xlink:href="#' . $name . '</use></svg>';
+		else $icon = '<svg class="icon" role="presentation" viewbox="' . $viewbox . '"><use xlink:href="#' . $name . '"></use></svg>';
 
 		return $icon;
 	}
