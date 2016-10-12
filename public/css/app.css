@@ -2952,6 +2952,18 @@ table {
   background: transparent;
   color: #fefefe;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.25s; }
+  .section-navigation h2, .section-navigation h3 {
+    display: none; }
+  .section-navigation .menu-item-has-children:only-child > a {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0); }
+  .section-navigation .menu li > a {
+    display: block;
+    padding: 0 0.9375rem;
+    white-space: nowrap; }
   @media screen and (max-width: 63.9375em) {
     .section-navigation {
       max-height: 1px;
@@ -2977,9 +2989,9 @@ table {
       padding: 1.875rem;
       vertical-align: middle;
       width: 100%; }
-      .section-navigation.is-active .menu > li {
+      .section-navigation.is-active .menu li {
         text-align: center; }
-        .section-navigation.is-active .menu > li > a {
+        .section-navigation.is-active .menu li > a {
           display: block;
           font-size: 1.5em;
           font-weight: 700;
@@ -2992,18 +3004,42 @@ table {
       width: 100%;
       z-index: 1000;
       opacity: 1; }
-      .section-navigation .menu {
-        display: -ms-flexbox;
-        display: flex;
+      .section-navigation .menu,
+      .section-navigation .sub-menu {
         -ms-flex-pack: center;
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
         max-width: 75rem; }
-        .section-navigation .menu > li {
+      .section-navigation .sub-menu {
+        margin: 0;
+        list-style-type: none;
+        width: 100%;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -ms-flex-align: center;
+        align-items: center; }
+        .section-navigation .sub-menu > li {
+          -ms-flex: 0 0 auto;
+          flex: 0 0 auto; }
+          [data-whatinput='mouse'] .section-navigation .sub-menu > li {
+            outline: 0; }
+        .section-navigation .sub-menu > li > a {
+          display: block;
+          padding: 0.7rem 1rem;
+          line-height: 1; }
+        .section-navigation .sub-menu input,
+        .section-navigation .sub-menu a,
+        .section-navigation .sub-menu button {
+          margin-bottom: 0; }
+        .section-navigation .sub-menu > li {
           border-left: 1px solid #cccecf; }
-          .section-navigation .menu > li:last-child {
-            border-right: 1px solid #cccecf; } }
+          .section-navigation .sub-menu > li:last-child {
+            border-right: 1px solid #cccecf; }
+        .section-navigation .sub-menu .menu-item-has-children ul {
+          display: none; } }
   .section-navigation .close-button {
     display: none; }
 
@@ -3289,8 +3325,8 @@ svg.icon,
     color: #131516;
     font-size: 1.125em;
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 0.4444444444em; }
+    line-height: 1.375;
+    margin-bottom: 0.2222222222em; }
     .sidebar .widget h4:last-child {
       margin-bottom: 0; }
   .sidebar .widget ul {
@@ -3311,8 +3347,6 @@ svg.icon,
         line-height: 1.2;
         padding: 0.8888888889em 0;
         position: relative; }
-  .sidebar .widget .widget-post-meta {
-    color: #009dd7; }
   .sidebar .widget select {
     max-width: 100%; }
   .sidebar .widget .rsswidget {
@@ -3321,7 +3355,7 @@ svg.icon,
     display: block; }
   .sidebar .widget time,
   .sidebar .widget .rss-date {
-    color: #959fb0;
+    color: #414550;
     font-size: 0.75em;
     text-transform: uppercase; }
   .sidebar .widget .rssSummary {
@@ -3807,6 +3841,9 @@ svg.icon,
   .stripe > .row .row {
     margin-left: 0;
     margin-right: 0; }
+
+.stripe:first-child {
+  margin-top: 3.75em; }
 
 .highlight {
   text-align: center; }
@@ -4777,6 +4814,15 @@ svg.icon,
   padding: 1.25rem 0; }
   .blog .hentry:first-of-type {
     border-top: 0 none; }
+    .blog .hentry:first-of-type::before, .blog .hentry:first-of-type::after {
+      content: ' ';
+      display: table;
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      -ms-flex-order: 1;
+      order: 1; }
+    .blog .hentry:first-of-type::after {
+      clear: both; }
   @media screen and (min-width: 40em) {
     .blog .hentry + .hentry:not(.has-post-thumbnail) {
       padding-right: 0.9375rem; }
@@ -4852,8 +4898,7 @@ svg.icon,
 
 @media screen and (min-width: 40em) {
   .blog .hentry.has-post-thumbnail {
-    width: 100%;
-    clear: both; }
+    width: 100%; }
     .blog .hentry.has-post-thumbnail::before, .blog .hentry.has-post-thumbnail::after {
       content: ' ';
       display: table;
@@ -5029,7 +5074,7 @@ svg.icon,
 
 .single .post,
 .single .attraction {
-  margin-top: 4em;
+  margin-top: 3.75em;
   background-color: #fefefe;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   max-width: 75rem;
@@ -5191,41 +5236,42 @@ svg.icon,
       padding-right: 1.875rem;
       max-width: 66.6666666667%; } }
 
-.sidebar-news {
+.sidebar-column {
   background-color: transparent;
   border: 0 none;
   box-shadow: none;
+  margin: 0;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
   max-width: 100%; }
   @media screen and (min-width: 64em) {
-    .sidebar-news {
+    .sidebar-column {
       -ms-flex-direction: column;
       flex-direction: column;
       -ms-flex: 0 0 33.3333333333%;
       flex: 0 0 33.3333333333%;
-      max-width: 33.3333333333%; } }
+      max-width: 33.3333333333%;
+      padding-top: 0.25rem; } }
   @media screen and (min-width: 40em) {
-    .sidebar-news .widget {
+    .sidebar-column .widget {
       -ms-flex: 1;
       flex: 1;
-      max-width: 100%;
-      padding-left: 0.9375rem;
-      padding-right: 0.9375rem; } }
+      max-width: 100%; } }
   @media screen and (min-width: 64em) {
-    .sidebar-news .widget {
+    .sidebar-column .widget {
       -ms-flex: 1;
       flex: 1;
       max-width: 100%; } }
 
 .feed-title,
-.sidebar-news .widget h3 {
+.column-widget-title {
   border-bottom: 2px solid currentColor;
   display: inline-block;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.875em;
   letter-spacing: 0.09375rem;
   line-height: normal;
+  margin-bottom: 0.5rem;
   text-transform: uppercase; }
 
 /*--------------------------------------------------------------

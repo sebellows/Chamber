@@ -15,6 +15,7 @@
  *
  * Please note that missing files will produce a fatal error.
  */
+
 $chamber_includes = [
 	'lib/loader.php',			// Load theme customization modules
 	'lib/config.php',			// Config file
@@ -22,7 +23,7 @@ $chamber_includes = [
 	'lib/helper.php',			// Helper functions
 	'lib/extras.php',			// Custom functions
 	'lib/menus.php',			// Theme setup
-	'lib/sidebars.php',			// Theme setup
+	'lib/sidebar.php',			// Theme setup
 	'lib/setup.php',		 	// Theme setup
 	'lib/metaboxes.php',		// Theme setup
 	'lib/titles.php',			// Page titles

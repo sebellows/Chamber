@@ -102,7 +102,7 @@ class NavWalker extends \Walker_Nav_Menu {
  */
 function nav_menu_args($args = '') {
     $nav_menu_args = [];
-    $nav_menu_args['container'] = 'nav';
+    $nav_menu_args['container'] = false;
 
     if (!$args['items_wrap']) {
         $nav_menu_args['items_wrap'] = '<ul class="%2$s">%3$s</ul>';

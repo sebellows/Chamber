@@ -61,7 +61,7 @@ elixir(function(mix) {
 		'node_modules/foundation-sites/dist/plugins/foundation.reveal.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.toggler.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.tooltip.js'
-	], './resources/assets/js/foundation');
+	], 'resources/assets/js/penis');
 
 	mix.copy('resources/assets/images', 'public/images');
 

@@ -1331,7 +1331,7 @@
                                     "name": "cta_link",
                                     "type": "url",
                                     "instructions": "",
-                                    "required": 0,
+                                    "required": 1,
                                     "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
@@ -1385,10 +1385,9 @@
         "custom_fields",
         "discussion",
         "comments",
-        "slug",
+        "revisions",
         "author",
         "format",
-        "page_attributes",
         "featured_image",
         "categories",
         "tags",
@@ -1396,5 +1395,5 @@
     ],
     "active": 1,
     "description": "Flexible content area for Landing Pages",
-    "modified": 1475271889
+    "modified": 1476201376
 }

@@ -9,11 +9,14 @@
  * @package chamber
  */
 
+use Chamber\Theme\Sidebar;
+
 ?>
 
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="row">
-		<?php dynamic_sidebar('sidebar-footer'); ?>
+		<?php #dynamic_sidebar('sidebar-footer'); ?>
+		<?php Sidebar::add('footer'); ?>
 	</div>
 	<!-- .site-info -->
 

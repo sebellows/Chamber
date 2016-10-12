@@ -2,7 +2,8 @@
 
 namespace Chamber\Theme\Extras;
 
-use Chamber\Theme\Sidebars;
+use Chamber\Theme\Setup;
+use Chamber\Theme\Sidebar;
 
 /**
  * Custom functions that act independently of the theme templates.
@@ -27,7 +28,7 @@ function body_class($classes) {
 	}
 
 	// Add class if sidebar is active
-	if (Sidebars::display()) {
+	if (Sidebar::display()) {
 		$classes[] = 'has-sidebar-primary';
 	}
 

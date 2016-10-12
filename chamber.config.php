@@ -112,20 +112,43 @@ return [
 	| @see lib/Setup.php
 	|
 	*/
-	'global_sidebars' => [
-		'primary', 		// front page
-		'news', 		// news uses the home.php template
-		'post-footer', 	// displays social at bottom of single post
-		'footer' 		// footer widgets
-	],
-
 	'sidebars' => [
-		'about',
-		'cvb',
-		'economic-development',
-		'education-training',
-		'member-services',
-		'shared-services'
+		// news uses the home.php template
+		'column' => [
+			'class' => 'widget column-widget',
+			'container' => 'section',
+			'title_tag' => 'h3'
+		],
+		// footer widgets
+		'footer' => [
+			'class' => 'widget footer-widget',
+			'container' => 'section',
+			'title_tag' => 'h4'
+		],
+		// top-level navigation menu container
+		'navigation' => [
+			'class' => 'section-navigation',
+			'container' => 'nav',
+			'title_tag' => 'h2'
+		],
+		// front page
+		'primary' => [
+			'class' => 'widget',
+			'container' => 'section',
+			'title_tag' => 'h3'
+		],
+		// displays social at bottom of single post
+		'post-footer' => [
+			'class' => 'widget post-footer-widget',
+			'container' => 'section',
+			'title_tag' => 'h3'
+		],
+		// for displaying either a tertiary menu or share buttons on default page template
+		'page-header' => [
+			'class' => 'widget page-header-widget',
+			'container' => 'nav',
+			'title_tag' => 'h2'
+		],
 	],
 
     /*
@@ -159,22 +182,6 @@ return [
 		'education-training'   => ['Education & Training'],
 		'member-services'      => ['Member Services'],
 		'shared-services'      => ['Shared Services']
-	],
-
-    /*
-	|--------------------------------------------------------------------------
-	| Landing Pages
-	|--------------------------------------------------------------------------
-	|
-	| Sections that use the `landing-page.php` template
-	|
-	*/
-	'landing-pages' => [
-		'cvb',
-		'economic-development',
-		'education-training',
-		'member-services',
-		'shared-services'
 	],
 
     /*

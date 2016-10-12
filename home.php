@@ -7,6 +7,9 @@
  *
  * @package chamber
  */
+
+use Chamber\Theme\Sidebar;
+
 ?>
 
 <?php get_template_part( 'templates/sections/section', 'featured-posts' ); ?>
@@ -28,8 +31,9 @@
 
 	</div><!-- .news-feed -->
 	
-	<aside id="news-sidebar" class="sidebar sidebar-news">
-		<?php dynamic_sidebar( 'sidebar-news' ); ?>
-	</aside><!-- #news-sidebar -->
+	<aside class="sidebar sidebar-column">
+		<?php #dynamic_sidebar( 'sidebar-column' ); ?>
+		<?php Sidebar::add('column'); ?>
+	</aside><!-- .sidebar-column -->
 
 </div>

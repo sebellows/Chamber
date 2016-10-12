@@ -1,6 +1,7 @@
 <?php
 
-use Chamber\Theme\Sidebars;
+use Chamber\Theme\Setup;
+use Chamber\Theme\Sidebar;
 use Chamber\Theme\Wrapper;
 
 ?>
@@ -24,19 +25,18 @@ use Chamber\Theme\Wrapper;
 			// Global site header
 			get_template_part('templates/header');
 			
-			\Chamber\Theme\Menus::make_top_level_navs($post->ID, 'section-navigation');
+			// dynamic_sidebar('sidebar-navigation');
+			Sidebar::add('navigation');
 		?>
 
-		<div class="wrap container" role="document">
-			<div id="#content" class="content">
-				<main class="main">
-					<?php include Wrapper\template_path(); ?>
-				</main><!-- /.main -->
-				<?php if (Sidebars::display()) : ?>
-					<?php include Wrapper\sidebar_path(); ?>
-				<?php endif; ?>
-			</div><!-- /.content -->
-		</div><!-- /.wrap -->
+		<div id="#content" class="container" role="document">
+			<main class="main">
+				<?php include Wrapper\template_path(); ?>
+			</main><!-- /.main -->
+			<?php if (Sidebar::display()) : ?>
+				<?php include Wrapper\sidebar_path(); ?>
+			<?php endif; ?>
+		</div><!-- /#content -->
 		<?php
 			do_action('get_footer');
 			get_template_part('templates/footer');

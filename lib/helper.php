@@ -27,7 +27,8 @@ class Helper
 	    if (get_the_excerpt() === '') {
 	        $content = wpautop( $post_content );
 	        $content = preg_match_all('%(<p[^>]*>.*?</p>)%i', $content, $matches);
-	        $content = $matches [1] [0];
+	        $matches = array_filter($matches);
+	        $content = !empty($matches) ? $matches [1] [0] : '';
 	        $content = wordwrap($content, $character_count);
 	        $content = preg_replace("/&amp;/", "&",$content);
 	        $content = substr($content,0,strpos($content, "\n"));
@@ -59,8 +60,9 @@ class Helper
 	    ob_start();
 	    ob_end_clean();
 	    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches);
-	    $first_img = $matches [1] [0];
-	    $first_img = '<img class="duplo-image" src="' . $first_img . '">';
+	    $matches = array_filter($matches);
+    	$first_img = !empty($matches) ? $matches[1][0] : '';
+    	$first_img = !empty($matches) ? '<img class="duplo-image" src="' . $first_img . '">' : '';	    	
 	  }
 	  else {
 	    $first_img = get_the_post_thumbnail( $post_id, 'large', ['class' => $classname]);

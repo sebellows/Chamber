@@ -4,6 +4,7 @@
 
   &:first-of-type {
     border-top: 0 none;
+    @include clearfix();
   }
 
   @include breakpoint(medium) {
@@ -77,7 +78,6 @@
 .blog .hentry.has-post-thumbnail {
   @include breakpoint(medium) {
     width: 100%;
-    clear: both;
     @include clearfix();
 
     .entry-header {

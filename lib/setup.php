@@ -5,7 +5,7 @@ namespace Chamber\Theme\Setup;
 use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
 use Chamber\Theme\Menus;
-use Chamber\Theme\Sidebars;
+use Chamber\Theme\Sidebar;
 
 /**
  * Theme setup
@@ -17,6 +17,9 @@ function setup() {
 	add_theme_support('chamber-nice-search');
 	add_theme_support('chamber-jquery-cdn');
 	add_theme_support('chamber-relative-urls');
+
+	// Chamber-CMS plugin supports Blade templates
+	add_theme_support('blade-templates');
 
 	/**
 	 * Moves all scripts to wp_footer
@@ -83,7 +86,7 @@ function setup() {
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
-Sidebars::init();
+Sidebar::init();
 
 /**
  * Register Google fonts.

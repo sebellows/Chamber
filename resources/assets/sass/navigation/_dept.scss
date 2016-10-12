@@ -3,6 +3,20 @@
   color: #fefefe;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
 
+  h2, h3 {
+    display: none;
+  }
+
+  .menu-item-has-children:only-child > a {
+    @include element-invisible;
+  }
+
+  .menu li > a {
+    display: block;
+    padding: rem-calc(0 15);
+    white-space: nowrap;
+  }
+
   @include breakpoint(medium down) {
     max-height: 1px;
     margin-top: -1px;
@@ -31,7 +45,7 @@
       vertical-align: middle;
       width: 100%;
 
-      > li {
+      li {
         text-align: center;
 
         > a {
@@ -56,12 +70,16 @@
     z-index: 1000;
     opacity: 1;
 
-    .menu {
-      display: flex;
+    .menu,
+    .sub-menu {
       justify-content: center;
       margin-left: auto;
       margin-right: auto;
       max-width: $global-width;
+    }
+
+    .sub-menu {
+      @include menu-base;
 
       > li {
         border-left: 1px solid neutral(2);
@@ -69,6 +87,10 @@
         &:last-child {
           border-right: 1px solid neutral(2);
         }
+      }
+
+      .menu-item-has-children ul {
+        display: none;
       }
     }
   }

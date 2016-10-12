@@ -7,6 +7,8 @@
  * @package chamber
  */
 
+use Chamber\Theme\Sidebar;
+
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
@@ -36,7 +38,8 @@
 			</div>
 
 			<footer>
-				<?php dynamic_sidebar( 'post-footer' ); ?>
+				<?php #dynamic_sidebar( 'sidebar-post-footer' ); ?>
+				<?php Sidebar::add('post-footer'); ?>
 			</footer>
 
 		</div><!-- .post-content -->
