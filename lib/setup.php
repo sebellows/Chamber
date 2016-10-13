@@ -1,10 +1,19 @@
 <?php
-
+/**
+ * Sets up custom filters and actions for the theme, as well as configures 
+ * sidebars, menus, images, scripts, and other assets.
+ * 
+ * @package    Chamber Theme
+ * @author     Sean Bellows <sean@seanbellows.com>
+ * @copyright  Copyright (c) 2016, Sean Bellows
+ * @link       https://github.com/sebellows/chamber
+ * @license    http://www.gnu.org/licenses/gpl-3.0.html
+ */
 namespace Chamber\Theme\Setup;
 
 use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
-use Chamber\Theme\Menus;
+use Chamber\Theme\Menu;
 use Chamber\Theme\Sidebar;
 
 /**
@@ -35,7 +44,7 @@ function setup() {
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
 	add_theme_support('title-tag');
 
-	Menus::register_nav_menus();
+	Menu::register_nav_menus();
 
 	// Enable post thumbnails
 	// http://codex.wordpress.org/Post_Thumbnails
@@ -87,6 +96,26 @@ function setup() {
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 Sidebar::init();
+
+
+/**
+ * Determine which pages should NOT display the sidebar
+ */
+function display_sidebar() {
+	static $display;
+
+	isset($display) || $display = !in_array(true, [
+		// The sidebar will NOT be displayed if ANY of the following return true.
+		// @link https://codex.wordpress.org/Conditional_Tags
+		is_archive(),
+		is_404(),
+		is_home(),
+		is_single(),
+		is_page_template('app.php')
+	]);
+
+	return apply_filters( 'chamber/sidebar/display', $display );
+}
 
 /**
  * Register Google fonts.

@@ -23,12 +23,12 @@ if ( in_array( is_post_type_archive(), $posttypes ) ) :
 
 <div id="archive-<?php echo $slug; ?>" class="isotope-archive">
 	<?php 
-	get_template_part('templates/menu', 'archive');
+	get_template_part('templates/isotope', 'archive-menu');
 	?>
 	<div class="card-grid">
 	<?php
 	while (have_posts()) : the_post();
-		get_template_part('templates/content', 'archive-card');
+		get_template_part('templates/isotope', 'archive-card');
 	endwhile;
 	?>
 	</div>

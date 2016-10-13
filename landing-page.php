@@ -5,4 +5,4 @@
 
 ?>
 
-<?php get_template_part('templates/content', 'landing'); ?>
+<?php get_template_part('templates/sections/section', 'landing-page'); ?>

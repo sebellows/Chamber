@@ -16,7 +16,7 @@ if ( have_rows('landing_page_content') ) : ?>
 
     <?php while ( have_rows('landing_page_content') ) : the_row(); ?>
 
-        <?php get_template_part('templates/sections/section', 'duplo'); ?>
+        <?php get_template_part('templates/sections/section', 'duplo-landing-page'); ?>
 
         <?php get_template_part('templates/sections/section', 'highlights'); ?>
 

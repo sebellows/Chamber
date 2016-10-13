@@ -24,12 +24,21 @@ use Chamber\Theme\Wrapper;
 
 			// Global site header
 			get_template_part('templates/header');
-			
-			// dynamic_sidebar('sidebar-navigation');
-			Sidebar::add('navigation');
 		?>
 
-		<div id="#content" class="container" role="document">
+		<?php if ( have_rows('duplo') || have_rows('duplo_block') || is_active_sidebar('sidebar-navigation') ) : ?>
+		<section class="page-fold">
+			<?php 
+				get_template_part('templates/sections/section', 'duplo');
+
+				if ( Setup\display_sidebar() ) {
+					Sidebar::add('navigation');
+				}
+			?>
+		</section>
+		<?php endif; ?>
+
+		<div id="#content" class="content" role="document">
 			<main class="main">
 				<?php include Wrapper\template_path(); ?>
 			</main><!-- /.main -->

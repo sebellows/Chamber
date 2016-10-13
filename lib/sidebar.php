@@ -63,7 +63,7 @@ class Sidebar
 			throw new \Exception('{$sidebar} is not a string!');
 		}
 
-		if ( array_key_exists($sidebar, $sidebars) ) {
+		if ( array_key_exists($sidebar, $sidebars) && self::display() ) {
 			return dynamic_sidebar('sidebar-' . $sidebar);
 		}
 	}
@@ -103,6 +103,19 @@ class Sidebar
 		$params[0]['before_widget'] = str_replace('class="', 'class="widget-1of' . $sidebar_widgets . ' ', $params[0]['before_widget']);
 
 		return $params;
+	}
+
+	/**
+	 * Function for grabbing a dynamic sidebar name.
+	 *
+	 * @global array   $wp_registered_sidebars
+	 * @param  string  $sidebar_id
+	 * @return string
+	 */
+	public static function get( $sidebar_id ) {
+		global $wp_registered_sidebars;
+
+		return isset( $wp_registered_sidebars[ $sidebar_id ] ) ? $wp_registered_sidebars[ $sidebar_id ]['name'] : '';
 	}
 
 }

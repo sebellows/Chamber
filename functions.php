@@ -20,9 +20,13 @@ $chamber_includes = [
 	'lib/loader.php',			// Load theme customization modules
 	'lib/config.php',			// Config file
 	'lib/assets.php',			// Scripts and stylesheets
+	'lib/breadcrumb-trail.php',
+	'lib/template-media.php',
+	'lib/template.php',
+	'lib/attr.php',
 	'lib/helper.php',			// Helper functions
 	'lib/extras.php',			// Custom functions
-	'lib/menus.php',			// Theme setup
+	'lib/menu.php',				// Theme setup
 	'lib/sidebar.php',			// Theme setup
 	'lib/setup.php',		 	// Theme setup
 	'lib/metaboxes.php',		// Theme setup

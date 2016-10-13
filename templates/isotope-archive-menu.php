@@ -16,8 +16,14 @@ foreach ($isotopes as $key => $value) {
 	$taxonomy = $value;
 
 	if ( taxonomy_exists($taxonomy) ) :
-		$menu_items = $config->get($posttype);
-
+		// $terms = get_terms($taxonomy);
+		$args = [
+		    'taxonomy'     => $taxonomy,
+		    'parent'        => 0,
+		    'number'        => 6,
+		    'hide_empty'    => false           
+		];
+		$terms = get_terms( $args );
 ?>
 
 <header class="isotope-header" m-UI="cvb">
@@ -29,16 +35,12 @@ foreach ($isotopes as $key => $value) {
 	</div>
 
 	<menu class="isotope-sortable-menu">
-		<?php foreach($menu_items as $menu_item) { 
-			$term  = array_get($menu_item, 'term');
-			$label = array_get($menu_item, 'label');
-			$icon  = array_get($menu_item, 'icon');
-		?>
-		<a href="javascript:void(0)" data-filter=".<?php echo $taxonomy . '-' . $term; ?>">
+		<?php foreach($terms as $term) { ?>
+		<a href="javascript:void(0)" data-filter=".<?php echo $term->taxonomy . '-' . $term->slug; ?>">
 			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
-				<use xlink:href="#icon-<?php echo $icon; ?>"></use>
+				<use xlink:href="#icon-<?php echo $term->slug; ?>"></use>
 			</svg>
-			<?php echo $label; ?>
+			<?php echo $term->name; ?>
 		</a>
 		<?php } ?>
 		<a href="javascript:void(0)" data-filter="*" class="is-selected">

@@ -22,9 +22,9 @@ if ($featured->have_posts()) :
 
 ?>
 
-<section class="duplo-set">
+<section class="duplo-feed duplo-set">
 
-    <div class="duplo-blocks news-duplo-blocks" m-DuploCount="<?php echo $counter; ?>">
+    <div class="duplo-blocks" m-DuploCount="<?php echo $counter; ?>">
 
         <header class="duplo news-header" m-Duplo="1">
             <h1><?= wordwrap($title,3,"<br>\n"); ?></h1>

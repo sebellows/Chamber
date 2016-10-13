@@ -12,7 +12,7 @@ use Chamber\Theme\Sidebar;
 
 ?>
 
-<?php get_template_part( 'templates/sections/section', 'featured-posts' ); ?>
+<?php get_template_part( 'templates/sections/section', 'duplo-feed' ); ?>
 
 <div class="sleeve">
 	<div id="news-feed" class="compartment news-feed">

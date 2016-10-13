@@ -19,3 +19,8 @@
 .stripe:first-child {
   margin-top: em(60);
 }
+
+.stripe.duplo-set:first-child {
+  margin-top: 0;
+  @include clearfix;
+}

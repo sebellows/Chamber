@@ -5,7 +5,7 @@ namespace Chamber\Theme;
 use Chamber\Theme\Config;
 use Chamber\Theme\Helper;
 
-class Menus
+class Menu
 {
     protected static $sections = [];
 
@@ -21,10 +21,23 @@ class Menus
             'news_menu'                 => __('News Menu', 'chamber'),
             'cvb_menu'                  => __('CVB Menu', 'chamber'),
             'member_services_menu'      => __('Member Services Menu', 'chamber'),
-            'economic_development_menu' => __('Development Menu', 'chamber'),
+            'economic_development_menu' => __('Economic Development Menu', 'chamber'),
             'education_training_menu'   => __('Education Training Menu', 'chamber'),
             'shared_services_menu'      => __('Shared Services Menu', 'chamber')
         ]);
+    }
+
+    /**
+     * Function for grabbing a WP nav menu theme location name.
+     *
+     * @param  string  $location
+     * @return string
+     */
+    public static function get_location( $location ) {
+
+        $locations = get_registered_nav_menus();
+
+        return isset( $locations[ $location ] ) ? $locations[ $location ] : '';
     }
 
     /**

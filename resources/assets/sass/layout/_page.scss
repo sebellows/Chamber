@@ -1,3 +1,17 @@
+.page-fold {
+  margin-bottom: em(30);
+
+  @include breakpoint(large) {
+    margin-bottom: em(60);
+  }
+}
+  .blog .page-fold,
+  .home .page-fold {
+    @include breakpoint(large) {
+      margin-bottom: em(30);
+    }
+  }
+
 .page-content {
   margin-top: 4em;
   @include paper-ui;
