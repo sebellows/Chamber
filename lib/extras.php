@@ -40,7 +40,7 @@ add_filter( 'acf_the_content', 'wp_make_content_images_responsive' );
 # Register our callback to the appropriate filter
 add_filter( 'mce_buttons_2', __NAMESPACE__.'\\mce_buttons_2' );
 # Attach callback to 'tiny_mce_before_init' 
-add_filter( 'tiny_mce_before_init', __NAMESPACE__.'\\stargazer_tiny_mce_before_init' );
+add_filter( 'tiny_mce_before_init', __NAMESPACE__.'\\tiny_mce_before_init' );
 # Callback function to filter the MCE settings
 add_filter( 'tiny_mce_before_init', __NAMESPACE__.'\\mce_before_init_insert_formats' );  
 
