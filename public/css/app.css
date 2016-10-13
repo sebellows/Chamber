@@ -4120,6 +4120,17 @@ svg.icon,
   left: 0;
   z-index: 1; }
 
+.site-header + .content .stripe.duplo-set {
+  margin-bottom: 1.875em; }
+  @media screen and (min-width: 64em) {
+    .site-header + .content .stripe.duplo-set {
+      margin-bottom: 3.75em; } }
+
+@media screen and (min-width: 64em) {
+  .blog .site-header + .content .stripe.duplo-set,
+  .home .site-header + .content .stripe.duplo-set {
+    margin-bottom: 1.875em; } }
+
 .duplo.news-header {
   background: #009dd7;
   color: #fefefe;

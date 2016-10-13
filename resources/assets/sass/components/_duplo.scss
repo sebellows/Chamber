@@ -107,6 +107,20 @@
   z-index: 1;
 }
 
+.site-header + .content .stripe.duplo-set {
+  margin-bottom: em(30);
+
+  @include breakpoint(large) {
+    margin-bottom: em(60);
+  }
+}
+  .blog .site-header + .content .stripe.duplo-set,
+  .home .site-header + .content .stripe.duplo-set {
+    @include breakpoint(large) {
+      margin-bottom: em(30);
+    }
+  }
+
 //// NEWS ROOM DUPLOS
 ///
 .duplo.news-header {
