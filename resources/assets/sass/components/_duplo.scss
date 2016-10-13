@@ -107,6 +107,7 @@
   z-index: 1;
 }
 
+.duplo-feed,
 .site-header + .content .stripe.duplo-set {
   margin-bottom: em(30);
 
@@ -114,7 +115,6 @@
     margin-bottom: em(60);
   }
 }
-  .blog .site-header + .content .stripe.duplo-set,
   .home .site-header + .content .stripe.duplo-set {
     @include breakpoint(large) {
       margin-bottom: em(30);
@@ -399,7 +399,7 @@
   }
 
   // 2 Blocks
-  &[m-DuploCount="2"] .duplo {
+  [m-DuploCount="2"] .duplo {
 
     &[m-Duplo="2"] {
       @include grid-col(12,0);
@@ -419,7 +419,7 @@
   }
 
   // 4 Blocks
-  &[m-DuploCount="4"] .duplo {
+  [m-DuploCount="4"] .duplo {
 
     &[m-Duplo="2"] {
 
