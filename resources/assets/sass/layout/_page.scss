@@ -13,7 +13,8 @@
   }
 
 .page-content {
-  margin-top: 4em;
+  margin-top: em(60);
+  margin-bottom: em(30);
   @include paper-ui;
   @include flex-grid-row();
 }
