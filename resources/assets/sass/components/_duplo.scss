@@ -377,8 +377,11 @@
     }
 
     .duplo-title {
-      font-size: em(62);
       text-align: center;
+
+      @include breakpoint(large) {
+        font-size: em(62);
+      }
     }
   }
 }
