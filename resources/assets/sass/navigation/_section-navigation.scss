@@ -85,7 +85,7 @@
     }
   }
 
-  @include breakpoint(xlarge) {
+  @include breakpoint(large) {
     background: $black;
     min-height: $dept-nav-height;
     // position: absolute;
