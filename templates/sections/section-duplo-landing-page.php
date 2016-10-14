@@ -48,7 +48,7 @@ if( get_row_layout('duplo_set') ) :
                 $text_only    = !$image ? ' display-type' : '';
             ?>
 
-            <div class="duplo<?= echo $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">
+            <div class="duplo<?= $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">
                 <?php if ($image) : ?>
                     <img 
                         class="duplo-image" 
