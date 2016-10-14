@@ -18,8 +18,6 @@ class Sidebar
 
 		add_action('widgets_init', __CLASS__.'::register');
 		add_filter('dynamic_sidebar_params', __CLASS__ . '::indexer');
-
-		self::display();
 	}
 
 	/**
@@ -40,9 +38,6 @@ class Sidebar
 	    foreach ( $sidebars as $sidebar => $value ) {
 	        $name = ucwords(str_replace(['-', '_'], ' ', $sidebar)) . ' Sidebar';
 	        $id   = 'sidebar-' . $sidebar;
-	        // $data['class']     = empty($class) ? 'widget' : $class;
-	        // $data['container'] = !is_null($container) ? $container : 'section';
-	        // $data['title_tag'] = !is_null($title_tag) ? $title_tag : 'h3';
 
 	        register_sidebar([
 	            'name'          => __($name, 'chamber'),
@@ -79,8 +74,8 @@ class Sidebar
 			// @link https://codex.wordpress.org/Conditional_Tags
 			is_archive(),
 			is_404(),
-			is_home(),
-			is_single(),
+			// is_home(),
+			// is_single(),
 			is_page_template('app.php')
 		]);
 
@@ -94,10 +89,10 @@ class Sidebar
 	 */
 	public static function indexer( $params )
 	{
-
 		$sidebar_id = $params[0]['id'];
 
 		$total_widgets = wp_get_sidebars_widgets();
+
 		$sidebar_widgets = count($total_widgets[$sidebar_id]);
 
 		$params[0]['before_widget'] = str_replace('class="', 'class="widget-1of' . $sidebar_widgets . ' ', $params[0]['before_widget']);

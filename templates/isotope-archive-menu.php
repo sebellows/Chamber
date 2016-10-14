@@ -18,13 +18,15 @@ foreach ($isotopes as $key => $value) {
 	if ( taxonomy_exists($taxonomy) ) :
 		// $terms = get_terms($taxonomy);
 		$args = [
-		    'taxonomy'     => $taxonomy,
+		    'taxonomy'      => $taxonomy,
+		    'orderby'		=> 'term_id',
 		    'parent'        => 0,
 		    'number'        => 6,
-		    'hide_empty'    => false           
+		    'hide_empty'    => true,
+		    'get'			=> 'all'
 		];
 		$terms = get_terms( $args );
-?>
+	?>
 
 <header class="isotope-header" m-UI="cvb">
 
@@ -36,7 +38,7 @@ foreach ($isotopes as $key => $value) {
 
 	<menu class="isotope-sortable-menu">
 		<?php foreach($terms as $term) { ?>
-		<a href="javascript:void(0)" data-filter=".<?php echo $term->taxonomy . '-' . $term->slug; ?>">
+		<a href="javascript:void(0)" data-filter=".<?php echo $term->slug; ?>">
 			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
 				<use xlink:href="#icon-<?php echo $term->slug; ?>"></use>
 			</svg>
@@ -50,6 +52,8 @@ foreach ($isotopes as $key => $value) {
 			All
 		</a>
 	</menu>
+
+	<small><?php #print_r($terms); ?></small>
 
 </header> <!-- end isotope-header -->
 

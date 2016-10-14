@@ -23,7 +23,7 @@ if ( have_rows('duplo_block') ) :
 
     <section class="duplo-banner duplo-set">
 
-        <div class="duplo-blocks" m-DuploCount="<?php echo $counter; ?>">
+        <div class="duplo-blocks" m-DuploCount="<?= $counter; ?>">
 
             <?php 
                 while ( have_rows( 'duplo_block' ) ) : the_row();
@@ -45,15 +45,15 @@ if ( have_rows('duplo_block') ) :
                     $color_class  = get_sub_field('duplo_block_background_color');
                     ?>
 
-                    <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '" m-Duplo="<?php echo $index; ?>"' ?> m-UI="<?php echo Color::set($color_class); ?>">
+                    <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '" m-Duplo="<?= $index; ?>"' ?> m-UI="<?= Color::set($color_class); ?>">
                         <?php if ($image) : ?>
 
                             <img 
                                 class="duplo-image" 
-                                src="<?php echo esc_url( $image_src ); ?>"
-                                srcset="<?php echo esc_attr( $image_srcset ); ?>"
+                                src="<?= esc_url( $image_src ); ?>"
+                                srcset="<?= esc_attr( $image_srcset ); ?>"
                                 sizes="(max-width: 100vw) 480px"
-                                alt="<?php echo $image['alt']; ?>"
+                                alt="<?= $image['alt']; ?>"
                             >
 
                             <div class="duplo-skrim" aria-hidden="true"></div>
@@ -71,7 +71,7 @@ if ( have_rows('duplo_block') ) :
                         </div>
 
                         <?php if ($link) : ?>
-                            <a href="<?php echo $link; ?>" class="duplo-link"></a>
+                            <a href="<?= $link; ?>" class="duplo-link"></a>
                         <?php endif; ?>
                     </div>
 
@@ -92,9 +92,9 @@ if ( have_rows('duplo_block') ) :
                     $image       = Helper::get_first_image($id, $content, 'duplo-image');
                 ?>
 
-                <div class="duplo" m-Duplo="<?php echo $index; ?>">
+                <div class="duplo" m-Duplo="<?= $index; ?>">
                     <?php if ($image) : ?>
-                    <?php echo $image; ?>
+                    <?= $image; ?>
                     <?php endif; ?>
 
                     <div class="duplo-skrim" aria-hidden="true"></div>
@@ -110,7 +110,7 @@ if ( have_rows('duplo_block') ) :
                     </div>
 
                     <?php if ($link) : ?>
-                        <a href="<?php echo $link; ?>" class="duplo-link"></a>
+                        <a href="<?= $link; ?>" class="duplo-link"></a>
                     <?php endif; ?>
                 </div>
 

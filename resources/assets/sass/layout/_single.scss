@@ -1,10 +1,10 @@
 .single {
-  .post {
+  .hentry {
+    margin-bottom: em(30);
     @include flex-grid-row();
   }
 
-  .post,
-  .attraction {
+  .hentry {
     margin-top: em(60);
     @include paper-ui;
     @include flex-grid-row();

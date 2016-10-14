@@ -214,6 +214,24 @@ function mce_before_init_insert_formats( $init_array ) {
 			'wrapper' => true
 		],  
 		[  
+			'title' => '2-Column',  
+			'block' => 'div',
+			'classes' => 'column-text-2',
+			'wrapper' => true
+		],  
+		[  
+			'title' => '2-Column Ruled',  
+			'block' => 'div',
+			'classes' => 'column-text-2--ruled',
+			'wrapper' => true
+		],  
+		[  
+			'title' => 'Span Columns',
+			'block' => 'div',
+			'classes' => 'column-text-2--span-all',
+			'wrapper' => true
+		],  
+		[  
 			'title' => 'Cite',  
 			'inline' => 'cite'
 		],

@@ -21,26 +21,26 @@ if( get_row_layout() == 'media_block' ) :
         <div class="row">
 
             <figure class="mediabox">
-                <div class="flex-video widescreen media"><?php echo $media; ?></div>
+                <div class="flex-video widescreen media"><?= $media; ?></div>
             </figure>
 
-            <div class="callout" m-UI="<?php echo Color::set($color_class); ?>" m-Pad="medium large">
+            <div class="callout" m-UI="<?= Color::set($color_class); ?>" m-Pad="medium large">
 
                 <?php if ($rubric) : ?>
-                    <h2 class="rubric"><?php echo $rubric; ?></h2>
+                    <h2 class="rubric"><?= $rubric; ?></h2>
                 <?php endif; ?>
 
                 <?php if ($title) : ?>
-                    <h2><?php echo $title; ?></h2>
+                    <h2><?= $title; ?></h2>
                 <?php endif; ?>
 
                 <?php if ($summary) : ?>
-                    <?php echo $summary; ?>
+                    <?= $summary; ?>
                 <?php endif; ?>
                
                 <?php if ($more_link) : ?>
-                    <a class="readmore" href="<?php echo $more_link; ?>">
-                        <?php echo $more_text; ?>&ensp;<span class="icon" m-Icon="small square-plus"><svg role="presentation"><use xlink:href="#icon-square-plus"></use></svg></span>
+                    <a class="readmore" href="<?= $more_link; ?>">
+                        <?= $more_text; ?>&ensp;<span class="icon" m-Icon="small square-plus"><svg role="presentation"><use xlink:href="#icon-square-plus"></use></svg></span>
                     </a>
                 <?php endif; ?>
          

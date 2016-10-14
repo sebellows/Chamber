@@ -18,11 +18,57 @@ $total-columns: 12;
   }
 }
 
+// Apply styles for state ONLY if the Modernizr class `.no-touchevents` is applied to root 
+@mixin force-root($force: false) {
+  @if ($force == true) {
+    :root & {
+      @content;
+    }
+  }
+  @else {
+    :root & {
+      @content;
+    }
+  }
+}
+
+// Apply styles for state ONLY if the Modernizr class `.no-touchevents` is applied to root 
+@mixin no-touchevent($force: false) {
+  @if ($force == true) {
+    :root.no-touchevents & {
+      @content;
+    }
+  }
+  @else {
+    :root.no-touchevents & {
+      @content;
+    }
+  }
+}
+
+// Apply styles for state ONLY if the Modernizr class `.touchevents` is applied to root 
+@mixin on-touchevent($force: false) {
+  @if ($force == true) {
+    :root.touchevents & {
+      @content;
+    }
+  }
+  @else {
+    .touchevents & {
+      @content;
+    }
+  }
+}
+
 //// Base UI for Stripes and the main content area
 ///
 @mixin paper-ui() {
   background-color: $white;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+@mixin paper-transition($props: all) {
+  transition: $props 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 //// Make link color consistent across states
@@ -36,37 +82,39 @@ $total-columns: 12;
   }
 }
 
-@mixin arrow-right-icon($arrow-color: currentColor, $width: 1em, $height: 1em) {
-  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20fill%3D%22#{$arrow-color}%22%20d%3D%22M30.88%2C16.4l0-.05%2C0-.07%2C0-.07%2C0-.06a.72.72%2C0%2C0%2C0%2C0-.28l0-.06%2C0-.07%2C0-.07%2C0-.05-.09-.11L16.51%2C1.21a.71.71%2C0%2C0%2C0-1%2C1L28.56%2C15.29H1.71a.71.71%2C0%2C0%2C0%2C0%2C1.43H28.56L15.5%2C29.78a.71.71%2C0%2C1%2C0%2C1%2C1L30.79%2C16.51Z%22/%3E%3C/svg%3E');
+//// Global styling for time and meta information
+///
+@mixin time-meta-style($color: neutral(4), $fontSize: 12, $fontWeight: 700) {
+  color: $color;
+  font-size: em($fontSize);
+  font-weight: $fontWeight;
+  letter-spacing: rem-calc(1.5);
+  text-transform: uppercase;
+}
+
+@mixin css-icon( $width: 1em, $height: 1em ) {
   background-repeat: none;
   background-position: 50% 50%;
   background-size: contain;
   display: inline-block;
-  margin-right: .4em;
-  position: relative;
-  top: -1px;
   width: $width;
   height: $height;
+}
+
+%align-icon {
+  position: relative;
+  top: -1px;
   vertical-align: middle;
 }
 
-// Apply styles to a link item ONLY if the Modernizr class `.no-touchevents` is applied to root 
-@mixin no-touchevent() {
-  .no-touchevents & {
-    &:active,
-    &:focus {
-      @content;
-    }
-  }
+@mixin arrow-right-icon( $color: currentColor, $width: 1em, $height: 1em ) {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20fill%3D%22#{$color}%22%20d%3D%22M30.88%2C16.4l0-.05%2C0-.07%2C0-.07%2C0-.06a.72.72%2C0%2C0%2C0%2C0-.28l0-.06%2C0-.07%2C0-.07%2C0-.05-.09-.11L16.51%2C1.21a.71.71%2C0%2C0%2C0-1%2C1L28.56%2C15.29H1.71a.71.71%2C0%2C0%2C0%2C0%2C1.43H28.56L15.5%2C29.78a.71.71%2C0%2C1%2C0%2C1%2C1L30.79%2C16.51Z%22/%3E%3C/svg%3E');
+  @include css-icon($width, $height);
 }
 
-// Apply hover styles to a link item ONLY if the Modernizr class `.touchevents` is applied to root 
-@mixin on-touchevent() {
-  .touchevents & {
-    &:hover {
-      @content;
-    }
-  }
+@mixin fat-arrow-icon( $color: currentColor, $width: 1em, $height: 1em ) {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22#{$color}%22%20d%3D%22M30.79%2C15.5%2C22.33%2C7a.7.7%2C0%2C0%2C0-1%2C1l3%2C3H1.7a.7.7%2C0%2C1%2C0%2C0%2C1.41h24L29.3%2C16l-3.59%2C3.59H1.7A.7.7%2C0%2C0%2C0%2C1.7%2C21H24.3l-3%2C3a.7.7%2C0%2C1%2C0%2C1%2C1l8.46-8.46A.7.7%2C0%2C0%2C0%2C30.79%2C15.5Z%22/%3E%0A%3C/svg%3E');
+  @include css-icon($width, $height);
 }
 
 @mixin center-block() {
@@ -75,21 +123,78 @@ $total-columns: 12;
   margin-right: auto;
 }
 
-@mixin hover-link($color: $primary-color) {
-  a:not(.button):not(.readmore) {
-    border-bottom: 1px solid $primary-color;
-    transition: all .2s ease-in-out;
+//// Apply to an parent element to pass on to any child links
+///
+@mixin add-text-link-style($textDecoration: underline, $color: color(brand-medium), $force: true) {
+  a:not([class]) {
+    color: $color;
+    text-decoration: $textDecoration;
+    @include paper-transition(color);
+  }
 
-    &:focus {
-      border-bottom-color: transparentize($primary-color,.75);
-      box-shadow: 0 3px 0 transparentize($primary-color,.5);
+  // Force an override of a parent style by calling on the document root for specificity
+  @if ($force == true) {
+    @include force-root($force) {
+      a:not([class]):active,
+      a:not([class]):focus {
+        color: currentColor;
+      }
+    }
+    @include no-touchevent($force) {
+      a:not([class]):hover {
+        color: currentColor;
+      }
     }
   }
 
-  .no-touchevents & {
-    a:not(.button):not(.readmore):hover {
-      border-bottom-color: transparentize($primary-color,.75);
-      box-shadow: 0 3px 0 transparentize($primary-color,.5);
+  @else {
+    a:not([class]):active,
+    a:not([class]):focus {
+      color: currentColor;
+    }
+
+    @include no-touchevent {
+      a:not([class]):hover {
+        color: currentColor;
+      }
+    }
+  }
+}
+
+//// Apply directly to links
+///
+@mixin text-link-style($textDecoration: underline, $color: color(brand-medium), $force: true) {
+  &:not([class]) {
+    color: $color;
+    text-decoration: $textDecoration;
+    @include paper-transition(color);
+  }
+
+  // Force an override of a parent style by calling on the document root for specificity
+  @if ($force == true) {
+    @include force-root($force) {
+      &:not([class]):active,
+      &:not([class]):focus {
+        color: currentColor;
+      }
+    }
+    @include no-touchevent($force) {
+      &:hover {
+        color: currentColor;
+      }
+    }
+  }
+
+  @else {
+    &:not([class]):active,
+    &:not([class]):focus {
+      color: currentColor;
+    }
+
+    @include on-touchevent {
+      &:not([class]):hover {
+        color: currentColor;
+      }
     }
   }
 }

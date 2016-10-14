@@ -24,7 +24,7 @@ if ($featured->have_posts()) :
 
 <section class="duplo-feed duplo-set">
 
-    <div class="duplo-blocks" m-DuploCount="<?php echo $counter; ?>">
+    <div class="duplo-blocks" m-DuploCount="<?= $counter; ?>">
 
         <header class="duplo news-header" m-Duplo="1">
             <h1><?= wordwrap($title,3,"<br>\n"); ?></h1>
@@ -36,7 +36,7 @@ if ($featured->have_posts()) :
             $index = $featured->current_post + 2;
         ?>
 
-        <div class="duplo" m-Duplo="<?php echo $index; ?>">
+        <div class="duplo" m-Duplo="<?= $index; ?>">
             <?php if ( has_post_thumbnail())  : ?>
                 <?php the_post_thumbnail( 'full', [ 'class' => 'duplo-image' ] ); ?>
             <?php endif; ?>
@@ -44,7 +44,7 @@ if ($featured->have_posts()) :
             <div class="duplo-skrim" aria-hidden="true"></div>
 
             <div class="duplo-content">
-                <time><?php echo get_the_date('F j, Y'); ?></time>
+                <time><?= get_the_date('F j, Y'); ?></time>
                 <h2><?php the_title(); ?></h2>
                 <?php if ( $index === 2 ) : ?>
                     <p><?php the_excerpt();?></p>

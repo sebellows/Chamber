@@ -1,7 +1,13 @@
 .page-header {
-  @include flex-grid-row;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: rem-calc(15px);
   padding-right: rem-calc(15px);
+  max-width: $global-width;
+
+  h1 {
+    margin-bottom: rem(60);
+  }
 }
   .main > .page-header:first-child {
     margin-top: $global-margin;

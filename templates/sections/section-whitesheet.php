@@ -16,7 +16,7 @@ if( get_row_layout() == 'white_sheet' ) :
             <header class="callout whitesheet-header" m-Pad="medium large">
 
             <?php if ($title) : ?>
-                <h1><?php echo $title; ?></h1>
+                <h1><?= $title; ?></h1>
             <?php endif; ?>
 
             </header>
@@ -24,12 +24,12 @@ if( get_row_layout() == 'white_sheet' ) :
             <div class="callout whitesheet-body" m-Pad="medium large">
 
             <?php if ($lead) : ?>
-                <p class="lead"><?php echo $lead; ?></p>
+                <p class="lead"><?= $lead; ?></p>
             <?php endif; ?>
 
             <?php if ($summary) : ?>
-                <div class="whitesheet-content" m-Cols="<?php echo $columns; ?>">
-                    <?php echo $summary; ?>
+                <div class="whitesheet-content" m-Cols="<?= $columns; ?>">
+                    <?= $summary; ?>
                 </div>
             <?php endif; ?>
            

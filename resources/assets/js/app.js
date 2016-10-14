@@ -52,6 +52,13 @@
 				  var url = $(this).attr('href');
 				  window.open(url, 'social_share_window', 'height=320, width=560, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');
 				});
+
+				// Set images in `.entry-content` to non-floating blocks if they're horizontal
+				$('.entry-content img').each( function ( $w, $h ) {
+					$w = $(this).width();
+					$h = $(this).height();
+					($w > $h) ? $(this).addClass('inline-image-h') : $(this).addClass('inline-image-v');
+				});
 			},
 			finalize: function() {
 				//

@@ -23,21 +23,21 @@
 }
 
 .flat.button {
-  color: #484848;
-  background-color: #e0e0e0;
+  color: neutral(5);
+  background-color: neutral(0);
   border: 0 none;
   text-transform: capitalize;
 
   &:active {
-    color: #373737;
-    background-color: #c7c7c7;
+    color: shade(neutral(5), 10%);
+    background-color: neutral(1);
     border: 0 none;
   }
 
   &:focus,
   &:hover {
-    color: #484848;
-    background-color: #d3d3d3;
+    color: neutral(5);
+    background-color: shade(neutral(0), 10%);
     border: 0 none;
   }
 }

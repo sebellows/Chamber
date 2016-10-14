@@ -117,37 +117,43 @@ return [
 		'column' => [
 			'class' => 'widget column-widget',
 			'container' => 'section',
-			'title_tag' => 'h3'
+			'title_tag' => 'h3',
+			'index' => true
 		],
 		// footer widgets
 		'footer' => [
 			'class' => 'widget footer-widget',
 			'container' => 'section',
-			'title_tag' => 'h4'
+			'title_tag' => 'h4',
+			'index' => true
 		],
 		// top-level navigation menu container
 		'navigation' => [
 			'class' => 'section-navigation',
 			'container' => 'nav',
-			'title_tag' => 'h2'
+			'title_tag' => 'h2',
+			'index' => false
 		],
 		// front page
 		'primary' => [
 			'class' => 'widget',
 			'container' => 'section',
-			'title_tag' => 'h3'
+			'title_tag' => 'h3',
+			'index' => true
 		],
 		// displays social at bottom of single post
 		'post-footer' => [
 			'class' => 'widget post-footer-widget',
 			'container' => 'section',
-			'title_tag' => 'h3'
+			'title_tag' => 'h3',
+			'index' => false
 		],
-		// for displaying either a tertiary menu or share buttons on default page template
+		// for displaying either a subsidiary menu or share buttons on default page template
 		'page-header' => [
-			'class' => 'widget page-header-widget',
+			'class' => 'subsidiary-navigation',
 			'container' => 'nav',
-			'title_tag' => 'h2'
+			'title_tag' => 'h3',
+			'index' => false
 		],
 	],
 

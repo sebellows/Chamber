@@ -24,7 +24,7 @@ if( get_row_layout('duplo_set') ) :
 
     <section class="stripe duplo-set">
 
-        <div class="duplo-stripe-blocks" m-DuploCount="<?php echo $counter; ?>">
+        <div class="duplo-stripe-blocks" m-DuploCount="<?= $counter; ?>">
 
             <?php 
                 while ( have_rows( 'duplo' ) ) : the_row();
@@ -45,16 +45,17 @@ if( get_row_layout('duplo_set') ) :
                 $summary      = get_sub_field('duplo_summary');
                 $link         = get_sub_field('duplo_link');
                 $color_class  = get_sub_field('duplo_background_color');
+                $text_only    = !$image ? ' display-type' : '';
             ?>
 
-            <div class="duplo" m-Duplo="<?php echo $index; ?>" m-UI="<?php echo Color::set($color_class); ?>">
+            <div class="duplo<?php echo $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">
                 <?php if ($image) : ?>
                     <img 
                         class="duplo-image" 
-                        src="<?php echo esc_url( $image_src ); ?>"
-                        srcset="<?php echo esc_attr( $image_srcset ); ?>"
+                        src="<?= esc_url( $image_src ); ?>"
+                        srcset="<?= esc_attr( $image_srcset ); ?>"
                         sizes="(max-width: 100vw) 480px"
-                        alt="<?php echo $image['alt']; ?>"
+                        alt="<?= $image['alt']; ?>"
                     >
 
                     <div class="duplo-skrim" aria-hidden="true"></div>
@@ -71,7 +72,7 @@ if( get_row_layout('duplo_set') ) :
                 </div>
 
                 <?php if ($link) : ?>
-                    <a href="<?php echo $link; ?>" class="duplo-link"></a>
+                    <a href="<?= $link; ?>" class="duplo-link"></a>
                 <?php endif; ?>
             </div>
 
@@ -93,9 +94,9 @@ if( get_row_layout('duplo_set') ) :
                 $image       = Helper::get_first_image($id, $content, 'duplo-image');
             ?>
 
-            <div class="duplo" m-Duplo="<?php echo $index; ?>">
+            <div class="duplo" m-Duplo="<?= $index; ?>">
                 <?php if ($image) : ?>
-                <?php echo $image; ?>
+                <?= $image; ?>
                 <?php endif; ?>
 
                 <div class="duplo-skrim" aria-hidden="true"></div>
@@ -111,7 +112,7 @@ if( get_row_layout('duplo_set') ) :
                 </div>
 
                 <?php if ($link) : ?>
-                    <a href="<?php echo $link; ?>" class="duplo-link"></a>
+                    <a href="<?= $link; ?>" class="duplo-link"></a>
                 <?php endif; ?>
             </div>
 

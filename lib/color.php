@@ -14,13 +14,13 @@ class Color
 	{
 		$colors = [
 			'paper'          => '#fefefe',
-			'neutral light'  => '#cccecf',
-			'neutral medium' => '#414550',
-			'neutral dark'   => '#282c36',
+			'neutral light'  => '#cfd8dc',
+			'neutral medium' => '#45555c',
+			'neutral dark'   => '#263238',
 			'alert'          => '#ec5840',
 			'success'        => '#3adb76',
 			'warning'        => '#ffae00',
-			'primary'        => '#009dd7',
+			'primary'        => '#005f96',
 			'brand'          => '#0f4466',
 			'brand light'    => '#009dd7',
 			'brand medium'   => '#005f96',

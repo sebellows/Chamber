@@ -4,7 +4,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   max-width: 340px;
-  @include hover-link;
+  @include add-text-link-style;
 
   dt, dd {
     font-size: rem-calc(12);

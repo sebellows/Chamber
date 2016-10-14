@@ -108,14 +108,14 @@
 }
 
 .duplo-feed,
-.site-header + .content .stripe.duplo-set {
+.stripe.duplo-set {
   margin-bottom: em(30);
 
   @include breakpoint(large) {
     margin-bottom: em(60);
   }
 }
-  .home .site-header + .content .stripe.duplo-set {
+  .stripe.duplo-set {
     @include breakpoint(large) {
       margin-bottom: em(30);
     }
@@ -123,21 +123,20 @@
 
 //// NEWS ROOM DUPLOS
 ///
-.duplo.news-header {
-  background: color(brand-light);
+.duplo.news-header,
+.duplo.display-type .duplo-content {
   color: $white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
   padding: rem-calc(16 20);
+  text-align: center;
   text-shadow: 0 1px 1px rgba(0,55,85,0.5);
   position: relative;
   z-index: 1;
 
   h1 {
-    text-align: center;
-
     @include breakpoint(small only) {
       br {
         display: none;
@@ -169,8 +168,8 @@
   }
 
   @include breakpoint(large) {
-    height: 500px;
-    height: 55vh;
+    height: 640px;
+    height: 70vh;
   }
 }
 
@@ -188,6 +187,11 @@
     }
     margin: 0 auto;
     max-width: $global-width;
+  }
+
+  @include breakpoint(large) {
+    height: 500px;
+    height: 55vh;
   }
 }
 

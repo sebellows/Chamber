@@ -1,43 +1,54 @@
+.main-feed {
+  padding: rem-calc(15 0 15 15);
+  position: relative;
+  @include flex-callout(12);
+
+  @include breakpoint(large) {
+    padding: rem-calc(24 0 24 30);
+    @include flex-callout(8);
+
+    &:before {
+      content: '';
+      background-color: $white;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: rem-calc(30);
+    }
+  }
+}
+
+@supports(flex-wrap:wrap) {
+  @include breakpoint(large) {
+    .feed-box {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .has-post-thumbnail {
+      @include flex-callout(12);
+    }
+    .no-post-thumbnail {
+      flex: 1;
+      min-width: 50%;
+    }
+    .no-post-thumbnail:first-child + .no-post-thumbnail {
+      border-top: 0 none;
+    }
+  }
+}
+
 .blog .hentry {
   border-top: 1px solid neutral(3);
   padding: rem-calc(20 0);
 
   &:first-of-type {
     border-top: 0 none;
-    @include clearfix();
   }
 
-  @include breakpoint(medium) {
-    & + .hentry:not(.has-post-thumbnail) {
-      padding-right: rem-calc(15);
-
-      &,
-      & + .hentry:not(.has-post-thumbnail) {
-        float: left;
-        width: 50%;
-      }
-
-      & + .hentry:not(.has-post-thumbnail) {
-        padding-left: rem-calc(15);
-      }
-
-      & + .hentry:not(.has-post-thumbnail) + .hentry:not(.has-post-thumbnail) {
-        padding-left: 0;
-        width: 100%;
-        clear: both;
-        @include clearfix();
-      }
-    }
-    & + .hentry:not(.has-post-thumbnail) ~ .hentry {
-      width: 100%;
-      @include clearfix();
-    }
-    &.has-post-thumbnail + .hentry:not(.has-post-thumbnail) + .hentry:not(.has-post-thumbnail) + .hentry:not(.has-post-thumbnail) {
-      float: left;
-      padding-left: rem-calc(15);
-      width: 50%;
-      clear: right;
-    }
+  @include breakpoint(large) {
+    padding-left: 0;
+    padding-right: rem-calc(30);
   }
 }
 
@@ -53,50 +64,70 @@
 }
 
 .entry-meta {
-  font-size: em(14);
+  @include time-meta-style;
 
   s {
     color: color(cvb);
     font-size: 1.5em;
+    font-weight: normal;
     text-decoration: none;
     vertical-align: middle;
     position: relative;
     top: -2px;
   }
-
-  time {
-    color: neutral(3);
-    letter-spacing: .0625rem;
-    text-transform: uppercase;
-  }
 }
 
+// link styling
 .entry-content {
-  @include hover-link;
-}
+  @include add-text-link-style;
 
-.blog .hentry.has-post-thumbnail {
-  @include breakpoint(medium) {
-    width: 100%;
-    @include clearfix();
+  p:last-child {
+    margin-bottom: 0;
+  }
 
-    .entry-header {
-      @include clearfix();
-    }
+  ul {
+    margin-left: em(18);
 
-    .entry-content,
-    .entry-media {
-      float: left;
-      width: 50%;
-    }
-    .entry-media {
-      padding-right: rem-calc(15);
-    }
-    .entry-media img {
-      margin-top: 3px;
-    }
-    .entry-content {
-      padding-left: rem-calc(15);
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
+
+// image orientation classes added by javascript
+.inline-image-h {
+  clear: both;
+  display: block;
+  float: none;
+  margin: em(10) 0 0 0;
+  width: 100%;
+}
+
+.inline-image-v {
+  max-width: 45%;
+}
+
+// .blog .hentry.has-post-thumbnail {
+//   @include breakpoint(medium) {
+//     width: 100%;
+
+//     .entry-header {
+//       @include clearfix();
+//     }
+
+//     .entry-content,
+//     .entry-media {
+//       float: left;
+//       width: 50%;
+//     }
+//     .entry-media {
+//       padding-right: rem-calc(15);
+//     }
+//     .entry-media img {
+//       margin-top: 3px;
+//     }
+//     .entry-content {
+//       padding-left: rem-calc(15);
+//     }
+//   }
+// }

@@ -1,4 +1,36 @@
-// i.e. <body>
+//// i.e. <body>
 #tinymce {
   background-color: $white;
+  margin: .5em 1em;
+}
+
+//// Custom classes added to Formats select menu
+.column-text-2 {
+  @include breakpoint(large) {
+    columns: 2;
+    column-gap: em(25.6);
+  }
+}
+
+.column-text-2--ruled {
+  @include breakpoint(large) {
+    columns: 2;
+    column-gap: rem(30);
+    column-rule: 1px solid neutral(3);
+  }
+}
+
+.column-text-2--span-all {
+  @include breakpoint(large) {
+    column-span: all;
+    margin-top: $paragraph-margin-bottom;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    p:last-child {
+      margin-bottom: $paragraph-margin-bottom;
+    }
+  }
 }

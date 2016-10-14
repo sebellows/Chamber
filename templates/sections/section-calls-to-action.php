@@ -23,7 +23,7 @@ if( get_row_layout('call_to_action_links') ) :
 
     <section class="stripe calls-to-action">
 
-        <div class="row" m-Grid="<?php echo $counter; ?>">
+        <div class="row" m-Grid="<?= $counter; ?>">
 
             <?php while ( have_rows( 'cta' ) ) : the_row(); ?>
 
@@ -35,16 +35,16 @@ if( get_row_layout('call_to_action_links') ) :
             ?>
 
             <?php if ($link) : ?>
-            <a href="<?php echo $link ?>" class="callout cta-link" m-UI="<?php echo $color_class; ?>">
+            <a href="<?= $link ?>" class="callout cta-link" m-UI="<?= $color_class; ?>">
 
                 <div class="cta-content">
 
                 <?php if ($summary) : ?>
-                    <small class="cta-summary"><?php echo $summary; ?></small>
+                    <small class="cta-summary"><?= $summary; ?></small>
                 <?php endif; ?>
                 
                 <?php if ($title) : ?>
-                    <h3 class="cta-title"><?php echo $title; ?></h3>
+                    <h3 class="cta-title"><?= $title; ?></h3>
                 <?php endif; ?>
 
                 </div>            

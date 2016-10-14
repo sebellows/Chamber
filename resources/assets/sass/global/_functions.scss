@@ -29,6 +29,39 @@
   @return null;
 }
 
+/// Syntactic sugaring of Foundation's rem-calc function ('cause I don't want to type 5 more letters all of the time).
+///
+@function rem($values, $base: null) {
+  $rem-values: ();
+  $count: length($values);
+
+  // If no base is defined, defer to the global font size
+  @if $base == null {
+    $base: $global-font-size;
+  }
+
+  // If the base font size is a %, then multiply it by 16px
+  // This is because 100% font size = 16px in most all browsers
+  @if unit($base) == '%' {
+    $base: ($base / 100%) * 16px;
+  }
+  
+  // Using rem as base allows correct scaling
+  @if unit($base) == 'rem' {
+    $base: strip-unit($base) * 16px;
+  }
+
+  @if $count == 1 {
+    @return -zf-to-rem($values, $base);
+  }
+
+  @for $i from 1 through $count {
+    $rem-values: append($rem-values, -zf-to-rem(nth($values, $i), $base));
+  }
+
+  @return $rem-values;
+}
+
 // Converts a unitless, pixel, or rem value to em, for use in breakpoints.
 @function em($value, $base: 16px) {
   // Pixel and unitless values are converted to rems

@@ -60,9 +60,7 @@
 
   time,
   .rss-date {
-    color: neutral(4);
-    font-size: em(12);
-    text-transform: uppercase;
+    @include time-meta-style;
   }
 
   .rssSummary {
@@ -80,36 +78,38 @@
 }
 
 // Sidebar-specific rules
-.widget-1of1 {
-  @include flex-grid-column(12, rem-calc(30));
-}
-
-.widget-1of2 {
-  @include flex-grid-column(12, rem-calc(30));
-
-  @include breakpoint(medium) {
-    @include flex-grid-column(6, rem-calc(30));
+.sidebar-primary {
+  .widget-1of1 {
+    @include flex-grid-column(12, rem-calc(30));
   }
 
-  @include breakpoint(large) {
-    @include flex-grid-column(6, rem-calc(30));
-  }
-}
+  .widget-1of2 {
+    @include flex-grid-column(12, rem-calc(30));
 
-// Sidebar-specific rules
-.widget-1of3 {
-  &:nth-last-child(2) {
-    background-color: $white;
-  }
+    @include breakpoint(medium) {
+      @include flex-grid-column(6, rem-calc(30));
+    }
 
-  @include flex-grid-column(12, rem-calc(30));
-
-  @include breakpoint(medium) {
-    @include flex-grid-column(4, rem-calc(30));
+    @include breakpoint(large) {
+      @include flex-grid-column(6, rem-calc(30));
+    }
   }
 
-  @include breakpoint(large) {
-    @include flex-grid-column(4, rem-calc(30));
+  // Sidebar-specific rules
+  .widget-1of3 {
+    &:nth-last-child(2) {
+      background-color: $white;
+    }
+
+    @include flex-grid-column(12, rem-calc(30));
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(4, rem-calc(30));
+    }
+
+    @include breakpoint(large) {
+      @include flex-grid-column(4, rem-calc(30));
+    }
   }
 }
 
@@ -133,18 +133,6 @@
   .rss-date + .rssSummary:before {
     content: " – ";
   }
-}
-
-#menu-quicklinks > li > a:before {
-    // content: "\21D2";
-    // color: color(cvb);
-    // font-family: sans-serif;
-    // font-style: normal;
-    // font-weight: normal;
-    // position: absolute;
-    // left: 0;
-    content: "";
-    @include arrow-right-icon(color(cvb));
 }
 
 .widget-post-thumbnail img[width="150"] {

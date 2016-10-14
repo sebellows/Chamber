@@ -116,24 +116,6 @@
                             "mime_types": "jpg,jpeg,png"
                         },
                         {
-                            "key": "field_57fe7b0eadeb1",
-                            "label": "Summary",
-                            "name": "duplo_block_summary",
-                            "type": "wysiwyg",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 0
-                        },
-                        {
                             "key": "field_57fe7b57adeb2",
                             "label": "Link",
                             "name": "duplo_block_link",
@@ -163,6 +145,24 @@
                                 "id": ""
                             },
                             "default_value": "#fefefe"
+                        },
+                        {
+                            "key": "field_57fe7b0eadeb1",
+                            "label": "Summary",
+                            "name": "duplo_block_summary",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0
                         }
                     ]
                 },
@@ -232,5 +232,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1476366292
+    "modified": 1476412259
 }

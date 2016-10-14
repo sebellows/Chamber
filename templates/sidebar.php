@@ -2,7 +2,6 @@
 use Chamber\Theme\Sidebar;
 ?>
 
-	<aside class="sidebar sidebar-primary">
-    <?php #dynamic_sidebar('sidebar-primary'); ?>
+<aside class="sidebar sidebar-primary">
     <?php Sidebar::add('primary'); ?>
-    </aside><!-- /.sidebar -->
+</aside><!-- /.sidebar -->

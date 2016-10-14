@@ -1,6 +1,10 @@
 .page-fold {
   margin-bottom: em(30);
 
+  &:empty {
+    display: none;
+  }
+
   @include breakpoint(large) {
     margin-bottom: em(60);
   }
@@ -21,24 +25,24 @@
 
 .page-header,
 .page-content-body-inner {
-  padding-top: rem-calc(15);
-  padding-bottom: rem-calc(15);
+  padding-top: rem(15);
+  padding-bottom: rem(15);
   @include flex-grid-column(12, 30);
 }
 
 .page-header {
   @include breakpoint(large) {
-    padding-top: rem-calc(30);
-    padding-bottom: rem-calc(30);
+    padding-top: rem(30);
+    padding-bottom: rem(30);
     @include flex-grid-column(4, 60);
   }
 }
 
 .page-content-body {
-  @include hover-link;
+  @include add-text-link-style;
 
   @include breakpoint(large) {
-    padding-bottom: rem-calc(30);
+    padding-bottom: rem(30);
     @include flex-grid-column(8, 0);
   }
 }
@@ -46,7 +50,11 @@
 .page-content-body-inner {
   @include breakpoint(large) {
     @include flex-grid-column(10, null);
-    padding: rem-calc(30) rem-calc(30) rem-calc(30) 0;
+    padding: rem(30 30 0 30);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 

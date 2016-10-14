@@ -5,24 +5,15 @@
 
 /* Read More link */
 .readmore {
-  border-bottom: 0 none !important;
-  box-shadow: none !important;
-  color: color(brand-light);
   display: block;
   font-family: $header-font-family;
-  font-size: $small-font-size;
+  font-size: em(14);
   font-weight: 700;
-  margin-top: $global-margin;
   text-align: right;
   text-transform: uppercase;
+  margin-top: $global-margin;
+  @include text-link-style(none);
 }
-  .readmore:focus,
-  .no-touchevents .readmore:hover {
-    border-bottom: 0 none !important;
-    box-shadow: none !important;
-    color: shade(color(brand-light),10%);
-  }
-
 
 /* Do not show the outline on the skip link target. */
 #content[tabindex="-1"]:focus {

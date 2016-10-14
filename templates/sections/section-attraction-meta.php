@@ -17,38 +17,38 @@ $fax     = get_field('attr_fax');
 
 <div class="attraction-contact">
     <?php if ($map) : ?>
-    <div class="map-thumb" style="width:150px;height:150px"><?php echo the_field('attr_google_map'); ?></div>
+    <div class="map-thumb" style="width:150px;height:150px"><?= the_field('attr_google_map'); ?></div>
     <?php endif; ?>
 
     <dl class="meta-list">
         <?php if ($street) : ?>
         <dt>Address:</dt>
         <dd>
-            <?php echo $street; ?><!-- // remove the white space
-            --><?php echo ', ' . $city; ?><!--
-            --><?php echo ', ' . $state; ?><!--
-            --><?php echo ' ' . $postal; ?>
+            <?= $street; ?><!-- // remove the white space
+            --><?= ', ' . $city; ?><!--
+            --><?= ', ' . $state; ?><!--
+            --><?= ' ' . $postal; ?>
         </dd>
         <?php endif; ?>
 
         <?php if ($website) : ?>
         <dt>Website:</dt>
-        <dd><a href="<?php echo $website; ?>"><?php echo $website; ?></a></dd>
+        <dd><a href="<?= $website; ?>"><?= $website; ?></a></dd>
         <?php endif; ?>
 
         <?php if ($email) : ?>
         <dt>Email:</dt>
-        <dd><a href="mailto='<?php echo $email; ?>'"><?php echo $email; ?></a></dd>
+        <dd><a href="mailto='<?= $email; ?>'"><?= $email; ?></a></dd>
         <?php endif; ?>
 
         <?php if ($phone) : ?>
         <dt>Phone:</dt>
-        <dd><?php echo $phone; ?></dd>
+        <dd><?= $phone; ?></dd>
         <?php endif; ?>
 
         <?php if ($fax) : ?>
         <dt>Fax:</dt>
-        <dd><?php echo $fax; ?></dd>
+        <dd><?= $fax; ?></dd>
         <?php endif; ?>
     </dl>
 </div>
