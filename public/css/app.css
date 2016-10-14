@@ -4196,6 +4196,9 @@ svg.icon,
   .stripe.duplo-set {
     margin-bottom: 1.875em; } }
 
+.duplo.news-header {
+  background-color: #009dd7; }
+
 .duplo.news-header,
 .duplo.display-type .duplo-content {
   color: #fefefe;

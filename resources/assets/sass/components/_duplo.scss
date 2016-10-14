@@ -121,8 +121,11 @@
     }
   }
 
-//// NEWS ROOM DUPLOS
+//// Text-only Duplos
 ///
+.duplo.news-header {
+  background-color: color(brand-light);
+}
 .duplo.news-header,
 .duplo.display-type .duplo-content {
   color: $white;
