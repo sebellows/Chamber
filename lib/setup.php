@@ -15,11 +15,11 @@ use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
 use Chamber\Theme\Menu;
 use Chamber\Theme\Sidebar;
-use Hybrid;
+// use Hybrid;
 
 // Set up the Hybrid Core framework.
-require_once( trailingslashit( get_template_directory() ) . 'lib/hybrid-core/hybrid.php' );
-new Hybrid();
+// require_once( trailingslashit( get_template_directory() ) . 'lib/hybrid-core/hybrid.php' );
+// new Hybrid();
 
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
