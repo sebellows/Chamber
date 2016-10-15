@@ -12,7 +12,7 @@ use Chamber\Theme\Sidebar;
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
 		<header class="post-header">
 			<h1 class="post-title"><?php the_title(); ?></h1>
 

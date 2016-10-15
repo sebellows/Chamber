@@ -15,6 +15,13 @@ use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
 use Chamber\Theme\Menu;
 use Chamber\Theme\Sidebar;
+use Hybrid;
+
+// Set up the Hybrid Core framework.
+require_once( trailingslashit( get_template_directory() ) . 'lib/hybrid-core/hybrid.php' );
+new Hybrid();
+
+add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 /**
  * Theme setup
@@ -42,7 +49,7 @@ function setup() {
 
 	// Enable plugins to manage the document title
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
-	add_theme_support('title-tag');
+	// add_theme_support('title-tag');
 
 	Menu::register_nav_menus();
 
@@ -87,35 +94,15 @@ function setup() {
 
 	// Enable HTML5 markup support
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
-	add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
+	// add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
 
 	// Use main stylesheet for visual editor
 	// To add custom styles edit /assets/styles/layouts/_tinymce.scss
 	add_editor_style( [ Assets\asset_path('css/app.css'), __NAMESPACE__ . '\\fonts_url' ] );
 }
-add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 Sidebar::init();
 
-
-/**
- * Determine which pages should NOT display the sidebar
- */
-function display_sidebar() {
-	static $display;
-
-	isset($display) || $display = !in_array(true, [
-		// The sidebar will NOT be displayed if ANY of the following return true.
-		// @link https://codex.wordpress.org/Conditional_Tags
-		// is_archive(),
-		is_404(),
-		// is_home(),
-		// is_single(),
-		is_page_template('app.php')
-	]);
-
-	return apply_filters( 'chamber/sidebar/display', $display );
-}
 
 /**
  * Register Google fonts.
@@ -155,9 +142,9 @@ function assets() {
 	}
 
 	wp_enqueue_script('chamber/theme/js/modernizr', get_template_directory_uri() . '/public/js/modernizr.js');
-	wp_enqueue_script('chamber/theme/foundation/js', get_template_directory_uri() . '/public/js/foundation.js', ['jquery'], null, true);
-	wp_enqueue_script('chamber/theme/vendor/js', get_template_directory_uri() . '/public/js/vendor.js', ['jquery'], null, true);
-	wp_enqueue_script('chamber/theme/js', get_template_directory_uri() . '/public/js/app.js', ['jquery'], null, true);
+	wp_enqueue_script('chamber/theme/js/foundation', get_template_directory_uri() . '/public/js/foundation.js', ['jquery'], null, true);
+	wp_enqueue_script('chamber/theme/js/vendor', get_template_directory_uri() . '/public/js/vendor.js', ['jquery'], null, true);
+	wp_enqueue_script('chamber/theme/js/app', get_template_directory_uri() . '/public/js/app.js', ['jquery'], null, true);
 	// wp_enqueue_script('googlemaps');
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);

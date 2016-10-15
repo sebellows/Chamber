@@ -19,13 +19,14 @@ foreach ($isotopes as $key => $value) {
 		// $terms = get_terms($taxonomy);
 		$args = [
 		    'taxonomy'      => $taxonomy,
-		    'orderby'		=> 'term_id',
+		    'orderby'		=> 'id',
 		    'parent'        => 0,
+		    'child_of'		=> 0,
 		    'number'        => 6,
-		    'hide_empty'    => true,
-		    'get'			=> 'all'
+		    'hide_empty'    => 0
 		];
 		$terms = get_terms( $args );
+
 	?>
 
 <header class="isotope-header" m-UI="cvb">
@@ -38,22 +39,20 @@ foreach ($isotopes as $key => $value) {
 
 	<menu class="isotope-sortable-menu">
 		<?php foreach($terms as $term) { ?>
-		<a href="javascript:void(0)" data-filter=".<?php echo $term->slug; ?>">
+		<a href="#" data-filter=".<?= $term->taxonomy . '-' . $term->slug; ?>">
 			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
-				<use xlink:href="#icon-<?php echo $term->slug; ?>"></use>
+				<use xlink:href="#icon-<?= $term->slug; ?>"></use>
 			</svg>
-			<?php echo $term->name; ?>
+			<?= $term->name; ?>
 		</a>
 		<?php } ?>
-		<a href="javascript:void(0)" data-filter="*" class="is-selected">
+		<a href="#" data-filter="*" class="is-selected">
 			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
 				<use xlink:href="#icon-all"></use>
 			</svg>
 			All
 		</a>
 	</menu>
-
-	<small><?php #print_r($terms); ?></small>
 
 </header> <!-- end isotope-header -->
 

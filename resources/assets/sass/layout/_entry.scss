@@ -25,15 +25,17 @@
       display: flex;
       flex-wrap: wrap;
     }
-    .has-post-thumbnail {
-      @include flex-callout(12);
-    }
-    .no-post-thumbnail {
-      flex: 1;
-      min-width: 50%;
-    }
-    .no-post-thumbnail:first-child + .no-post-thumbnail {
-      border-top: 0 none;
+    .blog {
+      .has-post-thumbnail {
+        @include flex-callout(12);
+      }
+      .no-post-thumbnail {
+        flex: 1;
+        min-width: 50%;
+      }
+      .no-post-thumbnail:first-child + .no-post-thumbnail {
+        border-top: 0 none;
+      }
     }
   }
 }

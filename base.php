@@ -28,10 +28,10 @@ use Chamber\Theme\Wrapper;
 
 		<?php if ( have_rows('duplo') || have_rows('duplo_block') || is_active_sidebar('sidebar-navigation') ) : ?>
 		<section class="page-fold"><?php 
-				get_template_part('templates/sections/section', 'duplo');
-				if ( is_active_sidebar('sidebar-navigation') ) :
-					Sidebar::add('navigation');
-				endif;
+			get_template_part('templates/sections/section', 'duplo');
+			if ( is_active_sidebar('sidebar-navigation') ) :
+				Sidebar::add('navigation');
+			endif;
 		?></section>
 		<?php endif; ?>
 

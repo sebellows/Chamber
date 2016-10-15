@@ -60,11 +60,11 @@ $global-lineheight: 1.5;
 /// Colors used for buttons, callouts, links, etc. There must always be a color called `primary`.
 /// @type Map
 $foundation-palette: (
-  primary: color(brand-medium),
-  secondary: #959fb0,
-  success: #3adb76,
-  warning: #ffae00,
-  alert: #ec5840,
+  primary:    color(brand-medium),
+  secondary:  #959fb0,
+  success:    #3adb76,
+  warning:    #ffae00,
+  alert:      #ec5840,
 );
 
 // Internal variables used for colors
@@ -96,7 +96,7 @@ $white: #fefefe;
 
 /// Background color of the body.
 /// @type Color
-$body-background: #D4E0E3;
+$body-background: $light-gray; // #D4E0E3
 
 /// Text color of the body.
 /// @type Color

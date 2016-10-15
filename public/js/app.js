@@ -219,7 +219,7 @@
 			}
 		},
 		'archive': {
-			init: function() {
+			init: (function() {
 				// The ID for the list with all the blog posts
 				var $container = $('.card-grid');
 
@@ -232,24 +232,24 @@
 				// Add the class selected to the Card that is clicked, and remove from the others
 				var $optionSets = $('.isotope-sortable-menu'),
 				$optionLinks = $optionSets.find('a');
-			 
-				$optionLinks.click(function(){
-				var $this = $(this);
-				// don't proceed if already selected
-				if ( $this.hasClass('is-selected') ) {
-				  return false;
-				}
-				var $optionSet = $this.parents('.isotope-sortable-menu');
-				$optionSets.find('.is-selected').removeClass('is-selected');
-				$this.addClass('is-selected');
-			 
-				// When a Card is clicked, sort the items.
-				 var selector = $(this).attr('data-filter');
-				$container.isotope({ filter: selector });
-			 
-				return false;
+
+				$optionLinks.click(function() {
+					var $this = $(this);
+					// don't proceed if already selected
+					if ( $this.hasClass('is-selected') ) {
+					  return false;
+					}
+					var $optionSet = $this.parents('.isotope-sortable-menu');
+					$optionSets.find('.is-selected').removeClass('is-selected');
+					$this.addClass('is-selected');
+				 
+					// When a Card is clicked, sort the items.
+					var selector = $(this).attr('data-filter');
+					$container.isotope({ filter: selector });
+
+					return false;
 				});
-			},
+			}),
 			finalize: function() {
 				//
 			}

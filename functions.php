@@ -21,9 +21,6 @@ $chamber_includes = [
 	'lib/config.php',			// Config file
 	'lib/assets.php',			// Scripts and stylesheets
 	'lib/breadcrumb-trail.php',
-	'lib/template-media.php',
-	'lib/template.php',
-	'lib/attr.php',
 	'lib/helper.php',			// Helper functions
 	'lib/extras.php',			// Custom functions
 	'lib/menu.php',				// Theme setup

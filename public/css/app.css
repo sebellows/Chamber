@@ -5267,18 +5267,12 @@ svg.icon,
   line-height: 1.15;
   letter-spacing: -1px; }
 
-.single .hentry {
-  margin-bottom: 1.875em;
-  max-width: 75rem;
-  margin-left: auto;
-  margin-right: auto;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap; }
-
-.single .hentry {
+.single .entry,
+.single .hentry,
+.singular .entry,
+.singular .hentry {
   margin-top: 3.75em;
+  margin-bottom: 1.875em;
   background-color: #fefefe;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   max-width: 75rem;
@@ -5288,7 +5282,10 @@ svg.icon,
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap; }
-  .single .hentry .wp-post-image {
+  .single .entry .wp-post-image,
+  .single .hentry .wp-post-image,
+  .singular .entry .wp-post-image,
+  .singular .hentry .wp-post-image {
     width: 100%; }
 
 .cta-buttons {

@@ -55,9 +55,26 @@ add_filter('comments_open', '__return_false');
 # Custom Gallery Styles
 add_filter('use_default_gallery_style', '__return_false');
 
+# Set up the Isotope.js archive page initial display.
+add_action( 'pre_get_posts', __NAMESPACE__.'\\archive_query' );
+
 # Remove those damn emojis.
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/**
+ * Set up the Isotope.js archive page initial display.
+ *
+ * @param mixed $query WP_Query instance.
+ * @return mixed
+ */
+function archive_query( $query ) {
+	if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+		$query->set( 'posts_per_page', 30 );
+		$query->set( 'offset', 100 );
+        $query->set( 'orderby', 'rand' );
+    }
+}
 
 /**
  * Adds custom classes to the array of body classes.
