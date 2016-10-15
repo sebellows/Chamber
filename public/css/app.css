@@ -5034,15 +5034,15 @@ svg.icon,
       display: flex;
       -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
-    .hentry.has-post-thumbnail {
+    .blog .has-post-thumbnail {
       -ms-flex: 0 0 100%;
       flex: 0 0 100%;
       max-width: 100%; }
-    .hentry.no-post-thumbnail {
+    .blog .no-post-thumbnail {
       -ms-flex: 1;
       flex: 1;
       min-width: 50%; }
-    .hentry.no-post-thumbnail:first-child + .no-post-thumbnail {
+    .blog .no-post-thumbnail:first-child + .no-post-thumbnail {
       border-top: 0 none; } } }
 
 .blog .hentry {
