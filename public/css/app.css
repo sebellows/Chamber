@@ -423,7 +423,7 @@ body {
   font-weight: normal;
   line-height: 1.5;
   color: #131516;
-  background: #D4E0E3;
+  background: #eceff1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -1704,7 +1704,7 @@ legend {
   padding: 1.25rem;
   margin: 1.125rem 0; }
   .fieldset legend {
-    background: #D4E0E3;
+    background: #eceff1;
     padding: 0 0.1875rem;
     margin: 0;
     margin-left: -0.1875rem; }
@@ -4089,8 +4089,8 @@ svg.icon,
   outline-offset: 0.46875rem; }
 
 .duplo-blocks {
-  border-top: 0.15625rem solid #D4E0E3;
-  border-bottom: 0.15625rem solid #D4E0E3;
+  border-top: 0.15625rem solid #eceff1;
+  border-bottom: 0.15625rem solid #eceff1;
   position: relative;
   width: 100vw;
   max-width: 100%; }
@@ -4105,7 +4105,7 @@ svg.icon,
     clear: both; }
 
 .duplo {
-  border: 0.15625rem solid #D4E0E3;
+  border: 0.15625rem solid #eceff1;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -5034,15 +5034,15 @@ svg.icon,
       display: flex;
       -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
-    .has-post-thumbnail {
+    .hentry.has-post-thumbnail {
       -ms-flex: 0 0 100%;
       flex: 0 0 100%;
       max-width: 100%; }
-    .no-post-thumbnail {
+    .hentry.no-post-thumbnail {
       -ms-flex: 1;
       flex: 1;
       min-width: 50%; }
-    .no-post-thumbnail:first-child + .no-post-thumbnail {
+    .hentry.no-post-thumbnail:first-child + .no-post-thumbnail {
       border-top: 0 none; } } }
 
 .blog .hentry {
