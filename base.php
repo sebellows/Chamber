@@ -54,7 +54,7 @@ use Chamber\Theme\Wrapper;
 
 				<?php hybrid_get_menu( 'breadcrumbs' ); // Loads the menu/breadcrumbs.php template. ?>
 
-				<?php if ( !is_page_template('landing-page.php') && !is_archive('attraction') ) : ?>
+				<?php if ( !is_page_template('landing-page.php') ) : ?>
 				<div class="row">
 				<?php endif; ?>
 
