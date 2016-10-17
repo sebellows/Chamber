@@ -12,11 +12,13 @@ use Chamber\Theme\Attr;
 	<h1><?= Titles\title(); ?></h1>
 
 	<?php if (!is_archive() || !is_search() ) : ?>
+		<?php if ( is_active_sidebar('sidebar-page-header') ) : ?>
+	
+		<aside class="sidebar-vertical">
+			<?php dynamic_sidebar( 'sidebar-page-header' ); ?>
+		</aside>
 
-	<aside class="sidebar-vertical">
-		<?php Sidebar::add('page-header'); ?>
-	</aside>
-
+		<?php endif; ?>
 	<?php endif; ?>
 
 </div>
