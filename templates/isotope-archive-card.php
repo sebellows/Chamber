@@ -12,7 +12,9 @@ use Chamber\Theme\Helper;
 <article <?php post_class('Card'); ?>>
 	<div class="card">
 		<?php if ( has_post_thumbnail() ) : ?>
-		<a class="card-media" href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'card-small' ); ?></a>
+		<div class="card-media">
+			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'card-small' ); ?></a>
+		</div>
 		<?php endif; ?>
 
 		<div class="card-content">
