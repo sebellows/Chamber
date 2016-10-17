@@ -3824,10 +3824,10 @@ svg.icon,
       height: 29.375rem; } }
   @media screen and (min-width: 64em) {
     .card {
-      height: 26.25rem; } }
+      height: 27.1875rem; } }
   @media screen and (min-width: 75em) {
     .card {
-      height: 23.75rem; } }
+      height: 25rem; } }
 
 .card-title {
   font-size: 1em;
@@ -4194,6 +4194,7 @@ svg.icon,
 .duplo-blocks {
   border-top: 0.15625rem solid #eceff1;
   border-bottom: 0.15625rem solid #eceff1;
+  color: #fefefe;
   position: relative;
   width: 100vw;
   max-width: 100%; }
@@ -4292,6 +4293,9 @@ svg.icon,
 
 .duplo.news-header {
   background-color: #009dd7; }
+
+.duplo.display-type[m-UI="paper"] {
+  color: #131516; }
 
 .duplo.news-header,
 .duplo.display-type .duplo-content {
@@ -5686,8 +5690,7 @@ svg.icon,
     color: #fefefe; }
 
 [m-UI~="paper"] {
-  background-color: #fefefe !important;
-  color: #131516; }
+  background-color: #fefefe !important; }
 
 [m-UI~="neutral light"] {
   background-color: #b0bec5; }

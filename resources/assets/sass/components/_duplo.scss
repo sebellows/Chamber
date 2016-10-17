@@ -1,11 +1,11 @@
 .duplo-blocks {
   border-top: rem-calc(2.5) solid $body-background;
   border-bottom: rem-calc(2.5) solid $body-background;
+  color: $white;
   position: relative;
   width: 100vw;
   max-width: 100%;
   @include clearfix();
-
 }
 
 .duplo {
@@ -107,6 +107,11 @@
 .duplo.news-header {
   background-color: color(brand-light);
 }
+
+.duplo.display-type[m-UI="paper"] {
+  color: $black;
+}
+
 .duplo.news-header,
 .duplo.display-type .duplo-content {
   display: flex;
