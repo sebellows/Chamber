@@ -73,7 +73,7 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
  */
 function archive_query( $query ) {
 	if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
-		$query->set( 'posts_per_page', 30 );
+		$query->set( 'posts_per_page', 100 );
 		$query->set( 'offset', 100 );
         $query->set( 'orderby', 'rand' );
     }

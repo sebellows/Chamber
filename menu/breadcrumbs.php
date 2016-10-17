@@ -3,7 +3,7 @@
 // Check for breadcrumb support.
 if ( function_exists( 'breadcrumb_trail' ) ) : 
 
-if ( !is_archive( 'attraction' ) ) :
+if ( !is_post_type_archive( 'attraction' ) ) :
 
 breadcrumb_trail(
     [
