@@ -24,9 +24,19 @@
 .card {
   display: flex;
   flex-direction: column;
-  height: rem-calc(380);
+  height: rem-calc(360);
   position: relative;
   @include paper-ui;
+
+  @include breakpoint(medium) {
+    height: rem(470);
+  }
+  @include breakpoint(large) {
+    height: rem(420);
+  }
+  @include breakpoint(xlarge) {
+    height: rem-calc(380);
+  }
 }
 
 .card-title {
@@ -45,10 +55,20 @@
   margin-bottom: .5em;
 }
 
-.card-image {
-  max-width: 100%;
+.card-media > a {
   display: block;
   position: relative;
+  height: 0px;
+  overflow: hidden;
+  padding-bottom: 66.666%;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .card-content {
