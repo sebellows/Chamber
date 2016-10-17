@@ -2958,7 +2958,7 @@ table {
       padding-left: 1.875em;
       padding-right: 1.875em; } }
 
-.site-header .content .breadcrumb-trail:first-child {
+.site-header + .container .content .breadcrumb-trail:first-child {
   margin-top: 1.875rem; }
 
 .breadcrumbs {
