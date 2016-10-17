@@ -1386,11 +1386,11 @@ dl {
 
 blockquote {
   margin: 0 0 0.9375rem;
-  padding: 0.5625rem 1.25rem 0 1.1875rem;
-  border-left: 1px solid #b0bec5; }
+  padding: 0 1.25rem 0 1.1875rem;
+  border-left: 1px solid #eceff1; }
   blockquote, blockquote p {
     line-height: 1.6;
-    color: #607d8b; }
+    color: currentColor; }
 
 cite {
   display: block;
@@ -4016,7 +4016,8 @@ svg.icon,
 .stripe > .row {
   background-color: #fefefe;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  margin-bottom: 1.875rem; }
+  margin-bottom: 1.875rem;
+  width: 100%; }
   .stripe > .row .row {
     margin-left: 0;
     margin-right: 0; }
@@ -4085,7 +4086,8 @@ svg.icon,
   font-size: .875em;
   text-transform: uppercase; }
 
-.media-block h2 {
+.media-block h3 {
+  font-size: 2rem;
   line-height: 1.1;
   text-transform: uppercase; }
 
@@ -4212,7 +4214,7 @@ svg.icon,
   opacity: .8; }
 
 .duplo-content {
-  color: #fefefe;
+  color: currentColor;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -4276,7 +4278,6 @@ svg.icon,
 
 .duplo.news-header,
 .duplo.display-type .duplo-content {
-  color: #fefefe;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -5665,7 +5666,8 @@ svg.icon,
     color: #fefefe; }
 
 [m-UI~="paper"] {
-  background-color: #fefefe !important; }
+  background-color: #fefefe !important;
+  color: #131516; }
 
 [m-UI~="neutral light"] {
   background-color: #b0bec5; }

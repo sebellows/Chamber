@@ -28,7 +28,7 @@
   }
 
 .duplo-content {
-  color: $white;
+  color: currentColor;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -100,10 +100,6 @@
 
 .stripe.duplo-set {
   margin-bottom: em(30);
-
-  // @include breakpoint(large) {
-  //   margin-bottom: em(60);
-  // }
 }
 
 //// Text-only Duplos
@@ -113,7 +109,6 @@
 }
 .duplo.news-header,
 .duplo.display-type .duplo-content {
-  color: $white;
   display: flex;
   flex-direction: column;
   justify-content: center;

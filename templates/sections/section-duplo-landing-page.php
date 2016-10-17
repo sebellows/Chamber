@@ -24,7 +24,7 @@ if( get_row_layout('duplo_set') ) :
 
     <section class="stripe duplo-set">
 
-        <div class="duplo-stripe-blocks" m-DuploCount="<?= $counter; ?>">
+        <div class="duplo-blocks" m-DuploCount="<?= $counter; ?>">
 
             <?php 
                 while ( have_rows( 'duplo' ) ) : the_row();
