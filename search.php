@@ -1,53 +1,47 @@
 <?php
-	/**
-	 * The template for displaying search results pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
-	 *
-	 * @package chamber
-	 */
+/**
+ * The template for displaying search results pages.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ *
+ * @package chamber
+ */
+
+use Chamber\Theme\TemplateTags;
 ?>
 
-<?php
-if ( have_posts() ) : ?>
+<?php if ( have_posts() ) : ?>
 
-	<header class="page-header">
-		<h1 class="page-title">Search Results for: <span class="search-query"><?php get_search_query(); ?></span></h1>
-	</header><!-- .page-header -->
+	<header class="page-header search-header">
 
-	<?php
-	/* Start the Loop */
-	while ( have_posts() ) : the_post();
+		<h1 class="page-title search-title">Search results for <span class="search-query"><?= get_search_query(); ?></span></h1>
 
-		/**
-		 * Run the loop for the search to output the results.
-		 * If you want to overload this in a child theme then include a file
-		 * called content-search.php and that will be used instead.
-		 */
-		get_template_part( 'templates/content', 'search' );
+		<h2>Would you like to try a new search?</h2>
 
-	endwhile;
+		<p>If you didn't find what you were looking for, try again!</p>
 
-	the_posts_navigation();
+		<form role="search" method="get" class="searchform search-form" action="<?= esc_url( home_url( '/' ) ); ?>">
+			<div class="search-field-group">
+				<label class="search-field-label">
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" placeholder="Search…" value="<?= get_search_query(); ?>" name="s" id="s" class="search-field">
+				</label>
+				<div class="search-button" m-UI="brand" type="submit">
+					<input type="submit" class="search-submit" value="">
+				</div>
+			</div>
+		</form>
 
-else :
+	</header><!-- .search-header -->
 
-	get_template_part( 'templates/content', 'none' );
+	<?php while ( have_posts() ) : the_post(); ?>
 
-endif; ?>
+		<?php get_template_part( 'templates/content' ); ?>
 
-<!-- <form role="search" method="get" id="searchform" class="search-form" action="<?php # echo esc_url( home_url( '/' ) ); ?>">
-	<a href="javascript:void(0)" role="button" class="search-toggle" data-toggle="searchForm">
-		<span class="screen-reader-text">Access the search field</span>
-		<span m-Icon="search small"><svg role="presentation"><use xlink:href="#search" viewbox="0 0 32 32"></use></svg></span>
-	</a>
-	<fieldset id="searchForm" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
-		<label class="search-field-label">
-			<span class="screen-reader-text">Search for:</span>
-			<input type="search" placeholder="Search" value="<?php # echo get_search_query(); ?>" name="s" id="s" class="search-field">
-		</label>
-		<button class="search-submit" type="submit">
-			<span m-Icon="arrow-right2 small"><svg role="presentation"><use xlink:href="#arrow-right2" viewbox="0 0 32 32"></use></svg></span>
-		</button>
-	</fieldset>
-</form> -->
+	<?php endwhile; ?>
+
+	<div class="page-footer">
+		<?php TemplateTags\post_pagination(); ?>
+	</div>
+
+<?php endif; ?>

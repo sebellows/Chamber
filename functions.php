@@ -20,20 +20,20 @@ $chamber_includes = [
 	'lib/loader.php',			// Load theme customization modules
 	'lib/config.php',			// Config file
 	'lib/assets.php',			// Scripts and stylesheets
-	'lib/breadcrumb-trail.php',
 	'lib/helper.php',			// Helper functions
 	'lib/extras.php',			// Custom functions
-	'lib/menu.php',				// Theme setup
-	'lib/sidebar.php',			// Theme setup
+	'lib/menu.php',				// Menus
+	'lib/sidebar.php',			// Sidebars
 	'lib/setup.php',		 	// Theme setup
-	'lib/metaboxes.php',		// Theme setup
+	'lib/metaboxes.php',		// Metaboxes
 	'lib/titles.php',			// Page titles
 	'lib/wrapper.php',	 		// Theme wrapper class
 	'lib/custom-header.php', 	// Implement the Custom Header feature
 	'lib/customizer.php', 		// Customizer additions
 	'lib/color.php', 			// Theme color helpers
 	'lib/icon.php', 			// Icon helpers
-	'lib/template-tags.php' 	// Custom template tags
+	'lib/template-tags.php', 	// Custom template tags
+	'lib/functions-icons.php'
 ];
 
 foreach ($chamber_includes as $file) {

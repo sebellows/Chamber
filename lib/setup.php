@@ -11,15 +11,16 @@
  */
 namespace Chamber\Theme\Setup;
 
+use Chamber\Theme\Helper;
 use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
 use Chamber\Theme\Menu;
 use Chamber\Theme\Sidebar;
-// use Hybrid;
+use Hybrid;
 
 // Set up the Hybrid Core framework.
-// require_once( trailingslashit( get_template_directory() ) . 'lib/hybrid-core/hybrid.php' );
-// new Hybrid();
+require_once( trailingslashit( get_template_directory() ) . 'lib/hybrid-core/hybrid.php' );
+new Hybrid();
 
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
@@ -27,18 +28,36 @@ add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
  * Theme setup
  */
 function setup() {
-	// https://roots.io/plugins/soil/
+
+	/**
+	 * Required: include TGM.
+	 */
+	// require_once( trailingslashit( get_template_directory() ) . 'lib/class-tgm-plugin-activation.php' );
+
+	/**
+	 * Originally came with Soil plugin by roots.io, but Composer had to be nixed 
+	 * due to issues w/ no qualified person in organization with required technical skills.
+	 */
 	add_theme_support('chamber-clean-up');
 	add_theme_support('chamber-nav-walker');
 	add_theme_support('chamber-nice-search');
 	add_theme_support('chamber-jquery-cdn');
 	add_theme_support('chamber-relative-urls');
 
-	// Chamber-CMS plugin supports Blade templates
+	add_theme_support( 'hybrid-core-template-hierarchy' );
+	add_theme_support( 'get-the-image' );
+	add_theme_support( 'breadcrumb-trail' );
+	add_theme_support( 'cleaner-gallery' );
+
+	/**
+	 * Chamber-CMS plugin supports Blade templating language
+	 */
 	add_theme_support('blade-templates');
 
 	/**
-	 * Moves all scripts to wp_footer
+	 * Moves all scripts to wp_footer.
+	 *
+	 * Note: also from Soil plugin by roots.io
 	 */
 	function js_to_footer() {
 	  remove_action('wp_head', 'wp_print_scripts');
@@ -49,7 +68,7 @@ function setup() {
 
 	// Enable plugins to manage the document title
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
-	// add_theme_support('title-tag');
+	add_theme_support('title-tag');
 
 	Menu::register_nav_menus();
 
@@ -94,7 +113,7 @@ function setup() {
 
 	// Enable HTML5 markup support
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
-	// add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
+	add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
 
 	// Use main stylesheet for visual editor
 	// To add custom styles edit /assets/styles/layouts/_tinymce.scss
@@ -103,6 +122,17 @@ function setup() {
 
 Sidebar::init();
 
+/**
+ * Handles JavaScript detection.
+ *
+ * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+ *
+ * @since Twenty Seventeen 1.0
+ */
+function javascript_detection() {
+	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
+}
+add_action( 'wp_head', __NAMESPACE__.'\\javascript_detection', 0 );
 
 /**
  * Register Google fonts.
@@ -146,6 +176,22 @@ function assets() {
 	wp_enqueue_script('chamber/theme/js/vendor', get_template_directory_uri() . '/public/js/vendor.js', ['jquery'], null, true);
 	wp_enqueue_script('chamber/theme/js/app', get_template_directory_uri() . '/public/js/app.js', ['jquery'], null, true);
 	// wp_enqueue_script('googlemaps');
+
+	wp_localize_script(
+		'chamber/theme/js/app',
+		'WP_API_Settings',
+		[
+			'root'            => esc_url_raw( rest_url() ),
+			'nonce'           => wp_create_nonce( 'wp_rest' ),
+			'posts_per_page'  => get_option('posts_per_page'),
+			'home_url'        => esc_url( home_url() ),
+			'dates'           => Helper::get_archive(),
+			'post_tax'        => Helper::get_post_tax(),
+			'rest_api_status' => function_exists('register_api_field'),
+			'read_more'       => 'Read More'
+		]
+	);
+
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 

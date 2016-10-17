@@ -1,44 +1,20 @@
 .page-fold {
-  margin-bottom: em(30);
+  // margin-bottom: em(30);
 
   &:empty {
     display: none;
   }
-
-  @include breakpoint(large) {
-    margin-bottom: em(60);
-  }
-}
-  .blog .page-fold,
-  .home .page-fold {
-    @include breakpoint(large) {
-      margin-bottom: em(30);
-    }
-  }
-
-.page-content {
-  margin-top: em(60);
-  margin-bottom: em(30);
-  @include paper-ui;
-  @include flex-grid-row();
 }
 
-.page-header,
 .page-content-body-inner {
   padding-top: rem(15);
   padding-bottom: rem(15);
   @include flex-grid-column(12, 30);
 }
 
-.page-header {
-  @include breakpoint(large) {
-    padding-top: rem(30);
-    padding-bottom: rem(30);
-    @include flex-grid-column(4, 60);
-  }
-}
-
 .page-content-body {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
   @include add-text-link-style;
 
   @include breakpoint(large) {
@@ -62,4 +38,10 @@
   font-size: 2.5em;
   line-height: 1.15;
   letter-spacing: -1px;
+  margin-bottom: rem(60);
+}
+
+.page-footer {
+  @include flex-grid-column(12);
+  justify-content: center;
 }

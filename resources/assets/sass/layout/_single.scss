@@ -1,14 +1,15 @@
 .single,
 .singular {
-  .entry,
   .hentry {
-    margin-top: em(60);
-    margin-bottom: em(30);
-    @include paper-ui;
-    @include flex-grid-row();
+    width: 100%;
+    @include flex-grid-row;
 
-    .wp-post-image {
-      width: 100%;
+    hr {
+      margin: rem(8 0);
     }
+  }
+
+  .featured-media .thumbnail {
+    width: 100%;
   }
 }

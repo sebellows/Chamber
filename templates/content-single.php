@@ -12,13 +12,19 @@ use Chamber\Theme\Sidebar;
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
+	<article <?php hybrid_attr( 'post' ) ?>>
 		<header class="post-header">
-			<h1 class="post-title"><?php the_title(); ?></h1>
+			<?php the_title( '<h1 ' . hybrid_get_attr( 'post-title' ) . '>', '</h1>' ); ?>
 
-			<?php if (! is_singular( 'attraction' ) ) : ?>
+			<?php if (!is_singular( 'attraction' ) ) : ?>
 
-				<?php get_template_part('templates/entry-meta'); ?>
+				<div class="entry-meta">
+					<time <?php hybrid_attr( 'post-published' ); ?>><?= get_the_date(); ?></time>
+					<hr class="dotted">
+					<?php hybrid_post_terms( [ 'taxonomy' => 'category', 'text' => __( 'Categories: %s', __NAMESPACE__ ) ] ); ?>
+					<?php if ( has_category() && has_tag() ) { printf('<br>'); } ?>
+					<?php hybrid_post_terms( [ 'taxonomy' => 'post_tag', 'text' => __( 'Tags: %s', __NAMESPACE__ ) ] ); ?>
+				</div>
 
 			<?php else : ?>
 
@@ -29,24 +35,28 @@ use Chamber\Theme\Sidebar;
 
 		</header><!-- .post-header -->
 
-		<div class="post-content">
+		<div <?php hybrid_attr( 'post-content' ); ?>>
 
-			<?php echo the_post_thumbnail(); ?>
+			<?php get_the_image(
+				[
+					'size'         => 'medium_large',
+					'srcset_sizes' => [ 'medium' => '640w', 'large' => '1200w' ],
+					'order'        => [ 'featured' ],
+					'before'       => '<div class="featured-media">',
+					'after'        => '</div>',
+					'link'         => false
+				]
+			);?>
 
 			<div class="post-content-body">
 				<?php the_content(); ?>
 			</div>
 
 			<footer>
-				<?php #dynamic_sidebar( 'sidebar-post-footer' ); ?>
 				<?php Sidebar::add('post-footer'); ?>
 			</footer>
 
 		</div><!-- .post-content -->
-
-		<div class="row">
-			<?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'chamber'), 'after' => '</p></nav>']); ?>
-		</div>
 
 	</article><!-- #post-## -->
 

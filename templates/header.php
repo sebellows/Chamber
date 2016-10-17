@@ -13,9 +13,9 @@ use Chamber\Theme\Assets;
 
 ?>
 
-<header id="masthead" class="site-header" role="banner">
-	<div class="site-branding">
+<header <?php hybrid_attr( 'header' ); ?>>
 
+	<div class="site-branding">
 		<h1 class="site-title">
 			<?php if ( get_header_image() ) : ?>
 			<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">

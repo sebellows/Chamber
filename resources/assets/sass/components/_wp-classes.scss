@@ -9,7 +9,7 @@
   font-family: $header-font-family;
   font-size: em(14);
   font-weight: 700;
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
   margin-top: $global-margin;
   @include text-link-style(none);

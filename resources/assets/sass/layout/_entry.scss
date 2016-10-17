@@ -1,3 +1,5 @@
+//// List of posts shown on News (home)
+///
 .main-feed {
   padding: rem-calc(15 0 15 15);
   position: relative;
@@ -28,12 +30,30 @@
     .blog {
       .has-post-thumbnail {
         @include flex-callout(12);
+
+        .entry-media {
+          float: left;
+          padding-right: rem(15);
+          width: 50%;
+        }
+
+        .entry-summary {
+          float: left;
+          padding-left: rem(15);
+          width: 50%;
+        }
+
+        .thumbnail {
+          margin-bottom: 0;
+          position: relative;
+          top: 3px;
+        }
       }
-      .no-post-thumbnail {
+      .post:not(.has-post-thumbnail) {
         flex: 1;
         min-width: 50%;
       }
-      .no-post-thumbnail:first-child + .no-post-thumbnail {
+      .post:not(.has-post-thumbnail):first-child + .no-post-thumbnail {
         border-top: 0 none;
       }
     }
@@ -41,7 +61,7 @@
 }
 
 .blog .hentry {
-  border-top: 1px solid neutral(3);
+  border-top: 2px dotted rgba($black, .25);
   padding: rem-calc(20 0);
 
   &:first-of-type {
@@ -56,22 +76,29 @@
 
 .entry-header {
   clear: both;
+  margin-bottom: rem(8);
 }
 
 .entry-title {
   font-size: 1.5em;
   line-height: 1.2;
   letter-spacing: -1px;
-  margin-bottom: .5em;
+  margin-bottom: rem(6);
 }
 
 .entry-meta {
-  @include time-meta-style;
+  color: neutral(4);
+  font-size: rem(12);
+
+  time {
+    @include time-meta-style;
+  }
 
   s {
-    color: color(cvb);
-    font-size: 1.5em;
+    color: neutral(2);
+    font-size: 1.25em;
     font-weight: normal;
+    line-height: 1;
     text-decoration: none;
     vertical-align: middle;
     position: relative;
@@ -79,8 +106,19 @@
   }
 }
 
+.entry-terms {
+  a {
+    color: neutral(6);
+
+    &:focus,
+    &:hover {
+      color: color(brand-medium);
+    }
+  }
+}
+
 // link styling
-.entry-content {
+.entry-summary {
   @include add-text-link-style;
 
   p:last-child {
@@ -108,28 +146,3 @@
 .inline-image-v {
   max-width: 45%;
 }
-
-// .blog .hentry.has-post-thumbnail {
-//   @include breakpoint(medium) {
-//     width: 100%;
-
-//     .entry-header {
-//       @include clearfix();
-//     }
-
-//     .entry-content,
-//     .entry-media {
-//       float: left;
-//       width: 50%;
-//     }
-//     .entry-media {
-//       padding-right: rem-calc(15);
-//     }
-//     .entry-media img {
-//       margin-top: 3px;
-//     }
-//     .entry-content {
-//       padding-left: rem-calc(15);
-//     }
-//   }
-// }

@@ -1,7 +1,7 @@
 //// Global site search
 
 // Wrapper for the whole global search form
-.search-form {
+.site-header .search-form {
   background-color: color(brand-dark);
   padding: rem-calc(11 15 10 15);
 
@@ -75,15 +75,13 @@
     display: block;
   }
 
-.search-field {
-  border-radius: 3px;
-  color: neutral(3);
-  margin: 0 0 0 auto;
-  height: $global-padding * 2;
-  width: 100%;
-}
-  // override Foundation specificity (`.top-bar input`)
   .site-header .search-field {
+    border-radius: 3px;
+    color: neutral(3);
+    height: $global-padding * 2;
+    width: 100%;
+
+    // override Foundation specificity (`.top-bar input`)
     margin: 0;
     max-width: 100%;
 

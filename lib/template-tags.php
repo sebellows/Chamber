@@ -17,22 +17,28 @@ function entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' === get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( esc_html__( ', ', 'chamber' ) );
-		if ( $categories_list && categorized_blog() ) {
-			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'chamber' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-		}
+		$categories_list = get_the_category_list( esc_html__( ', ', __NAMESPACE__ ) );
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'chamber' ) );
+		$tags_list = get_the_tag_list( '', esc_html__( ', ', __NAMESPACE__ ) );
+
+		if ( $categories_list && categorized_blog() ) {
+			printf( '<span class="cat-links">' . esc_html__( 'Categories: %1$s', __NAMESPACE__ ) . '</span>', $categories_list ); // WPCS: XSS OK.
+		}
+
+		if ( $categories_list && categorized_blog() && $tags_list ) {
+			printf( '<s>' . esc_html('|') . '</s>' );
+		}
+
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'chamber' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+			printf( '<span class="tags-links">' . esc_html__( 'Tags: %1$s', __NAMESPACE__ ) . '</span>', $tags_list ); // WPCS: XSS OK.
 		}
 	}
 
 	edit_post_link(
 		sprintf(
 			/* translators: %s: Name of current post */
-			esc_html__( 'Edit %s', 'chamber' ),
+			esc_html__( 'Edit %s', __NAMESPACE__ ),
 			the_title( '<span class="screen-reader-text">"', '"</span>', false )
 		),
 		'<span class="edit-link">',
@@ -120,58 +126,6 @@ function validate_gravatar($id_or_email) {
 }
 
 /**
- * Display navigation to next/previous set of posts when applicable.
- *
- * @global WP_Query	 $wp_query	 WordPress Query object.
- * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
- */
-function paging_nav() {
-	global $wp_query, $wp_rewrite;
-	// Don't print empty markup if there's only one page.
-	if ( $wp_query->max_num_pages < 2 ) {
-		return;
-	}
-
-	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
-	$pagenum_link = html_entity_decode( get_pagenum_link() );
-	$query_args   = array();
-	$url_parts    = explode( '?', $pagenum_link );
-
-	if ( isset( $url_parts[1] ) ) {
-		wp_parse_str( $url_parts[1], $query_args );
-	}
-
-	$pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
-	$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
-
-	$format	= $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-	$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
-
-	// Set up paginated links.
-	$links = paginate_links( array(
-		'base'		 => $pagenum_link,
-		'format'	 => $format,
-		'total'		=> $wp_query->max_num_pages,
-		'current'	=> $paged,
-		'mid_size' => 1,
-		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&larr; Previous', 'chamber' ),
-		'next_text' => __( 'Next &rarr;', 'chamber' ),
-		'type'		=> 'list',
-	) );
-
-	if ( $links ) :
-
-	?>
-	<nav class="navigation paging-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'chamber' ); ?></h2>
-		<?php echo $links; ?>
-	</nav><!-- .navigation -->
-	<?php
-	endif;
-}
-
-/**
  * Customizing `the_posts_pagination`
  *
  * Get rid of the container class `nav-links` and use Foundation's pagination
@@ -184,9 +138,9 @@ function post_pagination($args = [], $class = 'pagination') {
     $args = wp_parse_args( $args, [
         'mid_size'           => 2,
         'prev_next'			 => false,
-        'prev_text'          => __('Previous', 'chamber'),
-        'next_text'          => __('Next', 'chamber'),
-        'screen_reader_text' => __('Posts navigation', 'chamber'),
+        'prev_text'          => __('Previous', __NAMESPACE__),
+        'next_text'          => __('Next', __NAMESPACE__),
+        'screen_reader_text' => __('Posts navigation', __NAMESPACE__),
         'type'				 => 'list',
     ]);
 

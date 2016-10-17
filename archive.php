@@ -22,28 +22,26 @@ if ( in_array( is_post_type_archive(), $posttypes ) ) :
 ?>
 
 <div id="archive-<?php echo $slug; ?>" class="isotope-archive">
-	<?php 
-	get_template_part('templates/isotope', 'archive-menu');
-	?>
+
+	<?php get_template_part('templates/isotope', 'archive-menu'); ?>
+
 	<div class="card-grid">
-	<?php
-	while (have_posts()) : the_post();
-		get_template_part('templates/isotope', 'archive-card');
-	endwhile;
-	?>
+
+		<?php while (have_posts()) : the_post(); ?>
+			<?php get_template_part('templates/isotope', 'archive-card'); ?>
+		<?php endwhile; ?>
+
 	</div>
+
 </div><!-- .isotope-archive -->
 
 <?php else : ?>
 
-<div class="page-content">
-	<?php
-	get_template_part('templates/page', 'header');
+	<?php get_template_part('templates/page', 'header'); ?>
 
-	while (have_posts()) : the_post();
-		get_template_part('templates/content', get_post_format());
-	endwhile;
-	?>
+	<?php while (have_posts()) : the_post(); ?>
+		<?php get_template_part( 'templates/content' ); ?>
+	<?php endwhile; ?>
 
 </div><!-- .page-content -->
 

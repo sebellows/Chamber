@@ -32,3 +32,9 @@ mark, ins {
 big {
 	font-size: 125%;
 }
+
+//// General typographic classes
+///
+.dotted {
+	border-bottom: 1px solid rgba($black,.25);
+}

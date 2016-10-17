@@ -1,14 +1,25 @@
 .page-header {
-  margin-left: auto;
-  margin-right: auto;
+  padding-top: rem(15);
+  padding-bottom: rem(15);
   padding-left: rem-calc(15px);
   padding-right: rem-calc(15px);
-  max-width: $global-width;
+  @include flex-grid-column(12);
 
-  h1 {
-    margin-bottom: rem(60);
+  @include breakpoint(large) {
+    padding-top: rem(30);
+    padding-bottom: rem(30);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }
+  .singular .page-header {
+    @include breakpoint(large) {
+      @include flex-grid-column(4, 60px);
+    }
+  }
+
   .main > .page-header:first-child {
     margin-top: $global-margin;
   }

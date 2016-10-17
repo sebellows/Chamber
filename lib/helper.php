@@ -201,4 +201,44 @@ class Helper
 
 		return $page_tree_query;
 	}
+
+	/**
+	 * Get archive date.
+	 *
+	 * @return str
+	 */
+	public static function get_archive() {
+		$dates = array( 'year' => '', 'monthnum' => '', 'day' => '' );
+		if ( !is_date() ) {
+			return $dates;
+		}
+		$dates['year']     = get_query_var('year');
+		$dates['monthnum'] = get_query_var('monthnum');
+		$dates['day']      = get_query_var('day');
+		return $dates;
+	}
+
+	/**
+	 * Get the taxonomies for a post.
+	 *
+	 * @return str
+	 */
+	public static function get_post_tax() {
+		if ( isset( $GLOBALS['wp_query']->queried_object->term_id ) ) {
+			$term_id = $GLOBALS['wp_query']->queried_object->term_id;
+		} else {
+			$term_id = '';
+		}
+
+		$tax_arrays = array(
+			array(
+				'field'    =>'term_id',
+				'taxonomy' =>'post_format',
+				'terms'    => $term_id
+			)
+		);
+
+		return serialize($tax_arrays);
+	}
+
 }

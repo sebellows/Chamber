@@ -224,9 +224,11 @@
 				var $container = $('.card-grid');
 
 				//Isotope options, 'Card' matches the class in the PHP
-				$container.isotope({
-					itemSelector : '.Card', 
-			  		layoutMode : 'masonry'
+				$container.imagesLoaded( function(){
+					$container.isotope({
+						itemSelector : '.Card', 
+				  		layoutMode : 'masonry'
+					});
 				});
 			 
 				// Add the class selected to the Card that is clicked, and remove from the others

@@ -7,10 +7,12 @@
  */
 
 ( function( $ ) {
+
 	// Site title
 	if(typeof(wp) == "undefined") {
 	  return;
 	}
+
 	if(typeof(wp.customize) == "undefined") {
 	  return;
 	}

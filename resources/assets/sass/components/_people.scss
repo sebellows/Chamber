@@ -1,0 +1,56 @@
+.vcard {
+  padding: rem(15);
+
+  img {
+    display: block;
+  }
+
+  [rel="department"] {
+    font-size: em(15);
+    font-weight: 700;
+    line-height: (1.6 * 16) / 15;
+    text-transform: uppercase;
+  }
+
+  [rel="job-title"] {
+    font-size: em(18);
+    font-weight: 700;
+  }
+}
+
+.vcard-profile {
+  @include breakpoint(medium) {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+}
+
+.vcard-media {
+  display: table-cell;
+  padding: rem(15);
+
+  @include breakpoint(medium) {
+    width: 240px;
+  }
+}
+
+.vcard-content {
+  display: table-cell;
+  padding: rem(15);
+  vertical-align: top;
+}
+
+.vcard-list {
+  dt {
+    font-size: em(14);
+    line-height: (1.6 * 16) / 14;
+    text-transform: uppercase;
+    float: left;
+    margin: 0 0 rem(8);
+    width: rem(60);
+  }
+  dd {
+    margin: 0 0 rem(8);
+  }
+}

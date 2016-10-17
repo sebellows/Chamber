@@ -1,0 +1,25 @@
+.breadcrumb-trail {
+  height: em(40);
+  padding: em(10) em(15);
+  @include grid-row;
+
+  @include breakpoint(large) {
+    padding-left: em(30);
+    padding-right: em(30);
+  }
+}
+  // push down further if there is no Duplo present (like on search)
+  .content .breadcrumb-trail:first-child {
+    margin-top: rem(30);
+  }
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "";
+  margin: rem(0 8 0 8);
+  @include fat-arrow-icon(color(brand-medium), em(14,10));
+  @extend %align-icon;
+}
+  // Extra specificity to override Foundation
+  .breadcrumbs > li:not(:last-child)::after {
+    top: rem(-.5);
+  }
