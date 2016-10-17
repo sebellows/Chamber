@@ -3,6 +3,8 @@
 // Check for breadcrumb support.
 if ( function_exists( 'breadcrumb_trail' ) ) : 
 
+if ( !is_archive( 'attraction' ) ) :
+
 breadcrumb_trail(
     [
 		'container'     => 'nav', 
@@ -12,4 +14,5 @@ breadcrumb_trail(
     ]
 );
 
+endif;
 endif;
