@@ -32,10 +32,10 @@
     height: rem(470);
   }
   @include breakpoint(large) {
-    height: rem(420);
+    height: rem(435);
   }
   @include breakpoint(xlarge) {
-    height: rem-calc(380);
+    height: rem-calc(400);
   }
 }
 

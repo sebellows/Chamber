@@ -1,7 +1,7 @@
 //// List of posts shown on News (home)
 ///
 .main-feed {
-  padding: rem-calc(15 0 15 15);
+  padding: rem-calc(15);
   position: relative;
   @include flex-callout(12);
 
@@ -57,6 +57,14 @@
         border-top: 0 none;
       }
     }
+  }
+}
+
+.entry-media img {
+  width: 100%;
+
+  @include breakpoint(small only) {
+    margin: rem(10) auto;
   }
 }
 

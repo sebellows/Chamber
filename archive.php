@@ -19,29 +19,40 @@ if ( in_array( is_post_type_archive(), $posttypes ) ) :
 	// get the post type name from the config file and make it plural if it's not.
 	// Note: `get_post_type_object( get_post_type() )->rewrite['slug']` caused errors on category archive pages.
 	$slug = substr($posttypes[0], -1) != 's' ? $posttypes[0] . 's' : $posttypes[0];
+
+	$params = [
+	    'posts_per_page' => 100,
+	    'post_type' => $posttypes[0],
+	    'offset' => 100,
+	    'orderby' => 'rand'
+	];
+	$archived = new WP_Query( $params );
+
 ?>
 
-<div id="archive-<?php echo $slug; ?>" class="isotope-archive">
+	<div id="archive-<?php echo $slug; ?>" class="isotope-archive">
 
-	<?php get_template_part('templates/isotope', 'archive-menu'); ?>
+		<?php get_template_part('templates/isotope', 'archive-menu'); ?>
 
-	<div class="card-grid">
+		<div class="card-grid">
 
-		<?php while (have_posts()) : the_post(); ?>
-			<?php get_template_part('templates/isotope', 'archive-card'); ?>
-		<?php endwhile; ?>
+			<?php while ($archived->have_posts()) : $archived->the_post(); ?>
+				<?php get_template_part('templates/isotope', 'archive-card'); ?>
+			<?php endwhile; ?>
 
-	</div>
+		</div>
 
-</div><!-- .isotope-archive -->
+	</div><!-- .isotope-archive -->
 
 <?php else : ?>
 
-	<?php get_template_part('templates/page', 'header'); ?>
+	<div class="row">
+		<?php get_template_part('templates/page', 'header'); ?>
 
-	<?php while (have_posts()) : the_post(); ?>
-		<?php get_template_part( 'templates/content' ); ?>
-	<?php endwhile; ?>
+		<?php while (have_posts()) : the_post(); ?>
+			<?php get_template_part( 'templates/content' ); ?>
+		<?php endwhile; ?>
+	</div><!-- .row -->
 
 </div><!-- .page-content -->
 

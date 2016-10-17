@@ -212,7 +212,7 @@
 }
 
 // 3 Blocks
-[m-DuploCount="3"] .duplo {
+.stripe [m-DuploCount="3"] .duplo {
 
   &[m-Duplo="1"] {
     @include breakpoint(medium) {
@@ -242,13 +242,14 @@
       @include grid-col(5,0);
 
       h2 {
-        font-size: 1.5em;
+        font-size: 1.25em;
       }
     }
 
     @include breakpoint(large) {
 
       h2 {
+        font-size: 1.5em;
         margin-bottom: rem-calc(8);
       }
 
@@ -321,7 +322,7 @@
     @include grid-col(6,0);
 
     h2 {
-      font-size: 1.5em;
+      font-size: 1.25em;
       margin-bottom: 0;
     }
 
@@ -333,6 +334,7 @@
       @include grid-col(3,0);
 
       h2 {
+        font-size: 1.5em;
         margin-bottom: rem-calc(8);
       }
 
@@ -371,13 +373,82 @@
   }
 }
 
-//// NEWS + BANNER DUPLO SIZING
+//// BANNER DUPLO
+///
+.duplo-banner {
+  [m-duploCount="3"] {
+    [m-duplo="1"] {
+      border-left: 0 !important;
+
+      .duplo-content {
+        height: 100%;
+        justify-content: center;
+      }
+
+      .duplo-title {
+        text-align: center;
+
+        @include breakpoint(large) {
+          font-size: em(62);
+        }
+      }
+
+      @include breakpoint(medium) {
+        @include grid-col(6,0);
+        height: 320px;
+        height: 35vh;
+      }
+    }
+
+    [m-Duplo="2"] {
+      @include breakpoint(medium) {
+        @include grid-col(6,0);
+        float: right;
+        height: 640px;
+        height: 70vh;
+      }
+    }
+
+    [m-Duplo="3"] {
+      border-left: 0 !important;
+      @include breakpoint(medium) {
+        @include grid-col(6,0);
+        float: left !important;
+        height: 320px;
+        height: 35vh;
+      }
+    }
+
+    @include breakpoint(small only) {
+      [m-Duplo="2"],
+      [m-Duplo="3"] {
+        float: none !important;
+        min-height: 200px;
+        min-height: 35vh;
+
+        .duplo-content {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+      [m-Duplo="2"] {
+        border-left: 0 !important;
+      }
+
+      [m-Duplo="3"] {
+        border-right: 0 !important;
+      }
+    }
+  }
+}
+
+//// NEWS
 ///
 .duplo-feed {
   color: $white;
 }
 
-.duplo-banner,
 .duplo-feed {
   // Duplo Header
   .duplo[m-Duplo="1"] {
@@ -395,7 +466,10 @@
       @include grid-col(2,0);
     }
   }
+}
 
+.duplo-banner,
+.duplo-feed {
   // 2 Blocks
   [m-DuploCount="2"] .duplo {
 

@@ -11,6 +11,13 @@ use Chamber\Theme\Icon;
 $config = new Config;
 $isotopes = $config->get('isotope');
 
+/**
+ * Set up the Isotope.js archive page initial display.
+ *
+ * @param mixed $query WP_Query instance.
+ * @return mixed
+ */
+
 foreach ($isotopes as $key => $value) {
 	$posttype = $key;
 	$taxonomy = $value;

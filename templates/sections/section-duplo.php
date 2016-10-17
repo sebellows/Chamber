@@ -12,14 +12,15 @@ if ( have_rows('duplo_block') ) :
     // `while` loop on the `duplo` rows. This is different
     // for repeater fields that are not nested in flexible content
     // fields where the counter can run outside of the `while` loop.
-    $counter = count( the_sub_field('duplo_block') );
+    // $counter = count( get_field('duplo_block') );
 
-    // loop through the `duplo` rows
-    while ( have_rows('duplo_block') ) : the_row();
-        $counter++;
+    while ( have_rows( 'duplo_block' ) ) : the_row();
+        $instances = get_row('duplo_block');
     endwhile;
 
-    ?>
+    $counter = count($instances);
+
+?>
 
     <section class="duplo-banner duplo-set">
 
@@ -27,7 +28,6 @@ if ( have_rows('duplo_block') ) :
 
             <?php 
                 while ( have_rows( 'duplo_block' ) ) : the_row();
-
                 $index = get_row_index();
 
                 // Check whether it is a `relationship` (i.e., page, post, or taxonomy) or a `custom tile`
@@ -45,7 +45,7 @@ if ( have_rows('duplo_block') ) :
                     $color_class  = get_sub_field('duplo_block_background_color');
                     ?>
 
-                    <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '" m-Duplo="<?= $index; ?>"' ?> m-UI="<?= Color::set($color_class); ?>">
+                    <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '' ?>"  m-Duplo="<?= $index++; ?>" m-UI="<?= Color::set($color_class); ?>">
                         <?php if ($image) : ?>
 
                             <img 
@@ -79,9 +79,7 @@ if ( have_rows('duplo_block') ) :
 
                 <?php 
 
-                endif;
-
-                if ($type == 'post') :
+                elseif ($type == 'post') :
                     $post        = get_sub_field('duplo_block_post');
                     $post        = collect($post[0]);
                     $id          = $post->get('ID');

@@ -21,20 +21,17 @@
 }
 
 .pager {
-  display: table;
-  table-layout: fixed;
   margin-bottom: rem(30);
-  padding-left: rem(24);
-  padding-right: rem(24);
+  padding-left: rem(12);
+  padding-right: rem(12);
 
   a {
     background-color: neutral(4);
     border: 3px solid $white;
     color: $white;
-    display: table-cell;
+    display: block;
     position: relative;
-    top: 0; left: 0;
-    width: 50%;
+    width: 100%;
 
     &[rel="prev"] {
       padding: rem(20 20 20 55);
@@ -71,5 +68,20 @@
     font-size: rem(12);
     font-weight: 700;
     text-transform: uppercase;
+  }
+
+  @include breakpoint(large) {
+    display: table;
+    table-layout: fixed;
+    margin-bottom: rem(30);
+    padding-left: rem(24);
+    padding-right: rem(24);
+
+    a {
+      display: table-cell;
+      position: relative;
+      top: 0; left: 0;
+      width: 50%;
+    }
   }
 }

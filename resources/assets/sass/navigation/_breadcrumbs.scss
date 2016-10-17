@@ -1,5 +1,5 @@
 .breadcrumb-trail {
-  height: em(40);
+  min-height: em(40);
   padding: em(10) em(15);
   @include grid-row;
 
@@ -9,17 +9,36 @@
   }
 }
   // push down further if there is no Duplo present (like on search)
-  .content .breadcrumb-trail:first-child {
+  .site-header .content .breadcrumb-trail:first-child {
     margin-top: rem(30);
   }
 
-.breadcrumbs li:not(:last-child)::after {
-  content: "";
-  margin: rem(0 8 0 8);
-  @include fat-arrow-icon(color(brand-medium), em(14,10));
-  @extend %align-icon;
-}
+.breadcrumbs {
+  margin-bottom: 0;
+
+  li:not(:last-child)::after {
+    content: "";
+    margin: rem(0 8 0 8);
+    @include fat-arrow-icon(color(brand-medium), em(14,10));
+    @extend %align-icon;
+  }
+
   // Extra specificity to override Foundation
   .breadcrumbs > li:not(:last-child)::after {
     top: rem(-.5);
   }
+}
+
+@include breakpoint(small only) {
+  .breadcrumbs {
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+
+    li {
+      float: none;
+      display: inline-block;
+    }
+  }
+}
