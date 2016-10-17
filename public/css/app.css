@@ -4547,6 +4547,9 @@ svg.icon,
       .duplo-banner .duplo-hallmark .duplo-title {
         font-size: 3.875em; } }
 
+.duplo-banner [m-duploCount="3"] [m-duplo="1"]:only-child {
+  width: 100%; }
+
 .duplo-banner [m-duploCount="3"] [m-duplo="1"] {
   border-left: 0 !important; }
   .duplo-banner [m-duploCount="3"] [m-duplo="1"] .duplo-content {
