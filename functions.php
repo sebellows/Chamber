@@ -32,8 +32,7 @@ $chamber_includes = [
 	'lib/customizer.php', 		// Customizer additions
 	'lib/color.php', 			// Theme color helpers
 	'lib/icon.php', 			// Icon helpers
-	'lib/template-tags.php', 	// Custom template tags
-	'lib/functions-icons.php'
+	'lib/template-tags.php' 	// Custom template tags
 ];
 
 foreach ($chamber_includes as $file) {
