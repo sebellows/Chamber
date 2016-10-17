@@ -4495,6 +4495,9 @@ svg.icon,
       .duplo-banner .duplo-hallmark .duplo-title {
         font-size: 3.875em; } }
 
+.duplo-feed {
+  color: #fefefe; }
+
 .duplo-banner .duplo[m-Duplo="1"],
 .duplo-feed .duplo[m-Duplo="1"] {
   width: 100%;
