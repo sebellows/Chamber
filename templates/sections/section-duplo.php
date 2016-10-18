@@ -6,22 +6,32 @@ use Chamber\Theme\Helper;
 // check if the flexible content field has rows of data
 if ( have_rows('duplo_block') ) :
 
-
+    $customCount = 0;
+    $postCount = 0;
+    $counter = 0;
     // To get a counter for adding a class to the duplo row that
     // gives us the number of blocks, we need to duplicate the 
     // `while` loop on the `duplo` rows. This is different
     // for repeater fields that are not nested in flexible content
     // fields where the counter can run outside of the `while` loop.
     while ( have_rows( 'duplo_block' ) ) : the_row();
-        $counter = count(get_row('duplo_block'));
-    endwhile;
+        $duploRow = get_row('duplo_block');
 
-    $counter++
+        if($duploRow['duplo_block_type'] == 'custom') {
+            $customCount = $customCount + count($duploRow['duplo_block_custom']);
+        }
+
+        if($duploRow['duplo_block_type'] == 'post') {
+            $postCount = $postCount + count($duploRow['duplo_block_post']);
+        }
+
+    endwhile;
+    $counter = $customCount + $postCount;
 ?>
 
     <section class="duplo-banner duplo-set">
 
-        <div class="duplo-blocks" m-DuploCount="<?php #$counter; ?>">
+        <div class="duplo-blocks" m-DuploCount="<?= $counter; ?>">
 
             <?php 
                 while ( have_rows( 'duplo_block' ) ) : the_row();
@@ -77,20 +87,26 @@ if ( have_rows('duplo_block') ) :
                 <?php 
 
                 elseif ($type == 'post') :
-                    $post        = get_sub_field('duplo_block_post');
-                    $post        = collect($post[0]);
-                    $id          = $post->get('ID');
-                    $title       = $post->get('post_title');
-                    $content     = $post->get('post_content');
-                    $summary     = Helper::get_first_paragraph($id, $content, 96);
-                    $link        = get_permalink( $post->get('ID') );
-                    $image       = Helper::get_first_image($id, $content, 'duplo-image');
+                    $post_object = get_sub_field('duplo_block_post');
+                    $post_id     = $post_object[0];
+                    $post        = get_post($post_id);
+                    $title       = $post->post_title;
+                    $content     = $post->post_content;
+                    $summary     = $post->post_excerpt;
+                    $link        = get_permalink($post->ID);
                 ?>
 
                 <div class="duplo" m-Duplo="<?= $index+1; ?>">
-                    <?php if ($image) : ?>
-                    <?= $image; ?>
-                    <?php endif; ?>
+                    <?php
+                        get_the_image([
+                            'post_id'      => $post->ID,
+                            'size'         => 'medium_large',
+                            'srcset_sizes' => ['medium' => '640w', 'large' => '1200w'],
+                            'order'        => [ 'featured', 'attachment' ],
+                            'link'         => false,
+                            'image_class'  => 'duplo-image'
+                        ]);
+                    ?>
 
                     <div class="duplo-skrim" aria-hidden="true"></div>
 

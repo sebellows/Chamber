@@ -339,12 +339,12 @@ $buttongroup-expand-max: 6;
 // 13. Callout
 // -----------
 
-$callout-background: $white;
+$callout-background: transparent;
 $callout-background-fade: 85%;
 $callout-border: null;
 $callout-margin: 0 0 rem(16) 0;
 $callout-padding: rem(16);
-$callout-font-color: $body-font-color;
+$callout-font-color: currentColor;
 $callout-font-color-alt: $body-background;
 $callout-radius: $global-radius;
 $callout-link-tint: 30%;

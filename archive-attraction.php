@@ -9,9 +9,16 @@
 
 // Get the post types that will get the Isotope.js treatment from the config file.
 $isotope = (new \Chamber\Theme\Config)->get('isotope');
+
 // Get the names, not the labels
 $posttypes = array_keys($isotope);
+?>
 
+<div class="isotope-archive">
+
+    <?php get_template_part('templates/isotope', 'archive-menu'); ?>
+
+<?php 
 if ( in_array( is_post_type_archive(), $posttypes ) ) :
     // get the post type name from the config file and make it plural if it's not.
     // Note: `get_post_type_object( get_post_type() )->rewrite['slug']` caused errors on category archive pages.
@@ -26,10 +33,6 @@ if ( in_array( is_post_type_archive(), $posttypes ) ) :
     $archived = new WP_Query( $params );
 
     ?>
-
-    <div id="archive-<?php echo $slug; ?>" class="isotope-archive">
-
-        <?php get_template_part('templates/isotope', 'archive-menu'); ?>
 
         <div class="card-grid">
 

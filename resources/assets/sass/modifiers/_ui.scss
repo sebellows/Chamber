@@ -1,103 +1,103 @@
 [m-UI~="primary"] {
-  background-color: map-get($foundation-palette, primary);
+  background-color: map-get($foundation-palette, primary) !important;
   @include consistent-color($white);
  }
 
 [m-UI~="paper"] {
-  background-color: $white !important;
+  background-color: $white !important !important;
 }
 
 // Neutrals (grays)
 [m-UI~="neutral light"] {
-  background-color: neutral(2);
+  background-color: neutral(2) !important;
   @include consistent-color(neutral(5));
 }
 
 [m-UI~="neutral medium"] {
-  background-color: neutral(4);
+  background-color: neutral(4) !important;
   @include consistent-color($white);
 }
 
 [m-UI~="neutral dark"] {
-  background-color: neutral(6);
+  background-color: neutral(6) !important;
   @include consistent-color($white);
 }
 
 // Notification colors
 [m-UI~="alert"] {
-  background-color: map-get($foundation-palette, alert);
+  background-color: map-get($foundation-palette, alert) !important;
   @include consistent-color($white);
 }
 
 [m-UI~="success"] {
-  background-color: map-get($foundation-palette, success);
+  background-color: map-get($foundation-palette, success) !important;
   @include consistent-color($white);
 }
 
 [m-UI~="warning"] {
-  background-color: map-get($foundation-palette, warning);
+  background-color: map-get($foundation-palette, warning) !important;
   @include consistent-color($white);
  }
 
 // FGCC main brand color
 [m-UI~="brand"] {
-  background-color: color(brand);
+  background-color: color(brand) !important;
   @include consistent-color($white);
  
   &[m-UI~="light"] {
-    background-color: color(brand-light);
+    background-color: color(brand-light) !important;
     @include consistent-color($white);
    }
 
   &[m-UI~="medium"] {
-    background-color: color(brand-medium);
+    background-color: color(brand-medium) !important;
     @include consistent-color($white);
    }
 
   &[m-UI~="dark"] {
-    background-color: color(brand-dark);
+    background-color: color(brand-dark) !important;
     @include consistent-color($white);
    }
 }
 
 // Chamber Dept. Color Scheme
 [m-UI~="cvb"] {
-  background-color: color(cvb);
+  background-color: color(cvb) !important;
   @include consistent-color($white);
  }
 
 [m-UI~="development"] {
-  background-color: color(development);
+  background-color: color(development) !important;
   @include consistent-color($white);
  }
 
 [m-UI~="education"] {
-  background-color: color(education);
+  background-color: color(education) !important;
   @include consistent-color($white);
  }
 
 [m-UI~="members"] {
-  background-color: color(members);
+  background-color: color(members) !important;
   @include consistent-color($white);
  }
 
 [m-UI~="shared"] {
-  background-color: color(shared);
+  background-color: color(shared) !important;
   @include consistent-color($white);
  }
 
 /// Background Overlay
 ///
 [m-UI~="bgOverlay"] {
-  background-color: $black !important;
+  background-color: $black !important !important;
   @include consistent-color($white);
    text-shadow: 0 1px 2px rgba(0,0,0,.5);
   position: relative;
 
   .backdrop {
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50% !important;
+    background-size: cover !important;
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     opacity: .1;
@@ -116,7 +116,7 @@
       $button-fill
     );
     &[m-UI~="dark"] {
-      background-color: color(brand-dark);
+      background-color: color(brand-dark) !important;
     }
   }
 

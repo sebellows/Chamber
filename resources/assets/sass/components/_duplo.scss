@@ -351,8 +351,10 @@
   }
 }
 
-//// BANNER / HALLMARK
+//// BANNER
 .duplo-banner {
+  // `.hallmark` class added when count is one
+  // `:only-child` added as fallback
   .duplo-hallmark,
   [m-duplo="1"]:only-child {
     border-left: 0 !important;
@@ -374,11 +376,29 @@
       }
     }
   }
-}
 
-//// BANNER DUPLO
-///
-.duplo-banner {
+  //// 2 Blocks
+  [m-DuploCount="2"] .duplo {
+
+    &[m-Duplo="2"],
+    [m-Duplo]:last-child {
+      @include grid-col(12,0);
+
+      @include breakpoint(medium) {
+        @include grid-col(9,0);
+      }
+      @include breakpoint(large) {
+        @include grid-col(10,0);
+
+        .duplo-content {
+          max-width: 50em;
+        }
+      }
+    }
+
+  }
+
+  //// 3 Blocks
   [m-duploCount="3"] {
     [m-duplo="1"],
     [m-duplo]:first-child {
@@ -399,8 +419,8 @@
 
       @include breakpoint(medium) {
         @include grid-col(6,0);
-        height: 320px;
-        height: 35vh;
+        height: 640px;
+        height: 70vh;
       }
     }
 
@@ -408,18 +428,15 @@
     [m-Duplo]:first-child + [m-Duplo] {
       @include breakpoint(medium) {
         @include grid-col(6,0);
-        float: right;
-        height: 640px;
-        height: 70vh;
+        height: 320px;
+        height: 35vh;
       }
     }
 
     [m-Duplo="3"],
     [m-Duplo]:last-child {
-      border-left: 0 !important;
       @include breakpoint(medium) {
         @include grid-col(6,0);
-        float: left !important;
         height: 320px;
         height: 35vh;
       }
@@ -451,32 +468,8 @@
       }
     }
   }
-}
 
-
-.duplo-banner {
-  // 2 Blocks
-  [m-DuploCount="2"] .duplo {
-
-    &[m-Duplo="2"],
-    [m-Duplo]:last-child {
-      @include grid-col(12,0);
-
-      @include breakpoint(medium) {
-        @include grid-col(9,0);
-      }
-      @include breakpoint(large) {
-        @include grid-col(10,0);
-
-        .duplo-content {
-          max-width: 50em;
-        }
-      }
-    }
-
-  }
-
-  // 4 Blocks
+  //// 4 Blocks
   [m-DuploCount="4"] .duplo {
 
     &[m-Duplo="2"] {
@@ -526,57 +519,33 @@
       }
     }
   }
+
 }
 
-//// NEWS
+
+//// NEWS FEED
+///  always 4 blocks
 ///
 .duplo-feed {
-  color: $white;
-}
-
-.duplo-feed {
-  // Duplo Header
-  .duplo[m-Duplo="1"] {
-    @include grid-col(12,0);
-
-    @include breakpoint(small only) {
-      border-right: 0 !important;
-    }
-
-    @include breakpoint(medium) {
-      @include grid-col(3,0);
-    }
-
-    @include breakpoint(large) {
-      @include grid-col(2,0);
-    }
-  }
-}
-
-.duplo-feed {
-  // 2 Blocks
-  [m-DuploCount="2"] .duplo {
-
-    &[m-Duplo="2"] {
+  [m-DuploCount="4"] .duplo {
+    // Duplo Header : 1 Block
+    &[m-Duplo="1"] {
       @include grid-col(12,0);
 
-      @include breakpoint(medium) {
-        @include grid-col(9,0);
+      @include breakpoint(small only) {
+        border-right: 0 !important;
       }
-      @include breakpoint(large) {
-        @include grid-col(10,0);
 
-        .duplo-content {
-          max-width: 50em;
-        }
+      @include breakpoint(medium) {
+        @include grid-col(3,0);
+      }
+
+      @include breakpoint(large) {
+        @include grid-col(2,0);
       }
     }
 
-  }
-
-  // 4 Blocks
-  [m-DuploCount="4"] .duplo {
-
+    // 2 Blocks
     &[m-Duplo="2"] {
 
       p {
