@@ -15,7 +15,7 @@ use Chamber\Theme\TemplateTags;
 
 <div id="main-feed" class="main-feed">
 
-	<h2 class="feed-title">Recent Stories</h2>
+	<h2 class="list-title">Recent Stories</h2>
 
 	<div class="feed-box">
 		<?php while (have_posts()) : the_post(); ?>

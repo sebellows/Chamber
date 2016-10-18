@@ -35,6 +35,21 @@ big {
 
 //// General typographic classes
 ///
+
+// List Title
+// used on News home page and in some archive pages
+.list-title {
+	border-bottom: 2px solid $black;
+	clear: both;
+	display: inline-block;
+	font-family: $body-font-family;
+	font-size: rem(14);
+	letter-spacing: rem-calc(1.5);
+	line-height: normal;
+	margin-bottom: $global-margin/2;
+	text-transform: uppercase;
+}
+
 .dotted {
 	border-bottom: 1px solid rgba($black,.25);
 }

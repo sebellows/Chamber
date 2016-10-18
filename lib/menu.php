@@ -39,47 +39,4 @@ class Menu
 
         return isset( $locations[ $location ] ) ? $locations[ $location ] : '';
     }
-
-    /**
-     * Make the top-level navigation bars.
-     * 
-     * @param  integer $post_id because this needs to be called in the loop
-     * @param  string  $class   the class for the container set by \Chamber\Theme\NavWalker
-     * @return mixed            the menu object
-     */
-    public static function make_top_level_navs($post_id, $class = '') {
-        if ( ! is_front_page() && ! is_archive() ) :
-
-            $sections = array_keys((new Config)->get('sections'));
-            
-            $current = Helper::get_current_page_name();
-
-            foreach ($sections as $section) {
-
-                // Check if name of current page OR if the name of the current page's parent matches config section 
-                if ( $current === $section || get_post(wp_get_post_parent_id($post_id))->post_name === $section ) :
-
-                    // if so then display the section navigation bar
-                    
-                    // If user has assigned menu to this location then display it
-                    if ( has_nav_menu( $section . '_menu' ) ) :
-                    ?>
-                        <?php
-                        wp_nav_menu(
-                            [ 
-                                'theme_location' => $section . '_menu', 
-                                'menu_class' => 'menu',
-                                'menu_id' => $section . '-menu',
-                                'container_class' => $class
-                            ] 
-                        );
-                        ?>
-
-                    <?php
-                    endif;
-                endif;
-            }
-
-        endif;
-    }
 }

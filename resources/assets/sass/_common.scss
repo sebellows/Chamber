@@ -48,6 +48,7 @@ $gutterMediumHalf: $gutterMedium / 2; // 15px
   html {
     font-size: $global-font-size;
     box-sizing: border-box;
+    height: 100%;
   }
 
   // Set box-sizing globally to handle padding and border widths
@@ -66,6 +67,7 @@ $gutterMediumHalf: $gutterMedium / 2; // 15px
     line-height: $global-lineheight;
     color: $body-font-color;
     background: $body-background;
+    min-height: 100%;
 
     @if ($body-antialiased) {
       -webkit-font-smoothing: antialiased;

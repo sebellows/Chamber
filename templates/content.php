@@ -30,10 +30,16 @@ $no_post_thumbnail = has_post_thumbnail() === false ? 'no-post-thumbnail' : null
 			<?php endif; ?>
 		</header><!-- .entry-header -->
 
-		<?php if ( has_post_thumbnail() ) : ?>
-		<div class="entry-media">
-			<?php get_the_image( [ 'size' => 'small', 'order' => [ 'featured', 'attachment' ] ] ); ?>
-		</div>
+		<?php if ( !is_archive( 'category' ) && !is_archive( 'post_tag' ) && !is_search() ) : ?>
+			<?php get_the_image(
+				[
+					'size'         => 'small',
+					'order'        => [ 'featured' ],
+					'before'       => '<div class="entry-media">',
+					'after'        => '</div>',
+					'link'         => true
+				]
+			); ?>
 		<?php endif; ?>
 
 		<div <?php hybrid_attr( 'entry-summary' ); ?>>

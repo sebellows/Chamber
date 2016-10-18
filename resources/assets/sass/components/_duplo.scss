@@ -377,6 +377,10 @@
 ///
 .duplo-banner {
   [m-duploCount="3"] {
+    [m-duplo="1"]:only-child {
+      width: 100%;
+    }
+
     [m-duplo="1"] {
       border-left: 0 !important;
 

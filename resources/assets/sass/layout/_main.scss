@@ -1,3 +1,8 @@
+// force footer to be always at bottom
+.container {
+  min-height: 50vh;
+}
+
 // Grid system
 .content {
   max-width: 100%;

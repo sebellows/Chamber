@@ -52,14 +52,9 @@ return [
 	|
 	*/
 	'menus' => [
-		// Global/main navigation [location: header.php]
-		'site_navigation',
-
-		// Widget-area menus [location: sidebar-primary]
-		'quick_links',
-
-		// Global complimentary links [location: sidebar-footer in footer.php]
-		'site_information',
+		'site_navigation', 	// Global/main navigation [location: header.php]
+		'quick_links', 		// Widget-area menus [location: sidebar-primary]
+		'site_information', // Global complimentary links [location: sidebar-footer in footer.php]
 		'social_links'
 	],
 
@@ -170,24 +165,6 @@ return [
 		'attraction-category',
 		'business_type',
 		'department'
-	],
-
-    /*
-	|--------------------------------------------------------------------------
-	| Sections (Top-Level Pages)
-	|--------------------------------------------------------------------------
-	|
-	| The main sections of the site.
-	|
-	*/
-	'sections' => [
-		'about'                => ['About'],
-		'news'                 => ['News'],
-		'cvb'                  => ['CVB'],
-		'economic-development' => ['Economic Development'],
-		'education-training'   => ['Education & Training'],
-		'member-services'      => ['Member Services'],
-		'shared-services'      => ['Shared Services']
 	],
 
     /*

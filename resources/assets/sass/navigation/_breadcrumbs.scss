@@ -9,7 +9,7 @@
   }
 }
   // push down further if there is no Duplo present (like on search)
-  .site-header .content .breadcrumb-trail:first-child {
+  .site-header + .container .content .breadcrumb-trail:first-child {
     margin-top: rem(30);
   }
 
