@@ -85,17 +85,18 @@ if( get_row_layout('duplo_set') ) :
                 elseif ($type == 'post') :
                     $post_object = get_sub_field('duplo_post');
                     $post_id     = $post_object[0];
-                    $post        = get_post($post_id);
-                    $title       = $post->post_title;
-                    $content     = $post->post_content;
-                    $summary     = $post->post_excerpt;
-                    $link        = get_permalink($post->ID);
+                    $post        = get_post($post_id, ARRAY_A);
+                    // dd($post);
+                    $title       = $post['post_title'];
+                    $content     = $post['post_content'];
+                    $summary     = $post['post_excerpt'];
+                    $link        = get_permalink($post['ID']);
                 ?>
 
                 <div class="duplo" m-Duplo="<?= $index; ?>">
                     <?php
                         get_the_image([
-                            'post_id'      => $post->ID,
+                            'post_id'      => $post['ID'],
                             'size'         => 'medium_large',
                             'srcset_sizes' => ['medium' => '640w', 'large' => '1200w'],
                             'order'        => [ 'featured' ],

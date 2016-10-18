@@ -763,7 +763,7 @@
                             "label": "Connection Options",
                             "name": "connection_options",
                             "type": "checkbox",
-                            "instructions": "Add either an invitation to follow on social media, sign-up for newsletter, or both.",
+                            "instructions": "Add either an invitation to follow on social media or sign-up for newsletter via a link.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -773,7 +773,7 @@
                             },
                             "choices": {
                                 "social": "Social media links",
-                                "newsletter": "Newsletter sign-up"
+                                "newsletter": "Newsletter sign-up or other invitation"
                             },
                             "default_value": [
                                 "social",
@@ -797,60 +797,6 @@
                                 "id": ""
                             },
                             "default_value": "#009dd7"
-                        },
-                        {
-                            "key": "field_57cc410fd0a85",
-                            "label": "Newsletter Lead",
-                            "name": "newsletter_lead",
-                            "type": "text",
-                            "instructions": "Invitation to sign-up for newsletter. (Form will be automatically added to page)",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_57cc515d94fe5",
-                                        "operator": "==",
-                                        "value": "newsletter"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_57d798ffbd996",
-                            "label": "Newsletter Lead Small",
-                            "name": "newsletter_lead_small",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_57cc515d94fe5",
-                                        "operator": "==",
-                                        "value": "newsletter"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
                         },
                         {
                             "key": "field_57cc50e094fe4",
@@ -901,7 +847,7 @@
                                 {
                                     "key": "field_57d0235913ec6",
                                     "label": "Icon",
-                                    "name": "icon",
+                                    "name": "connection_icon",
                                     "type": "svgiconpicker",
                                     "instructions": "",
                                     "required": 0,
@@ -915,7 +861,7 @@
                                 {
                                     "key": "field_57d023a513ec7",
                                     "label": "Link",
-                                    "name": "link",
+                                    "name": "connection_link",
                                     "type": "url",
                                     "instructions": "",
                                     "required": 0,
@@ -929,6 +875,32 @@
                                     "placeholder": ""
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_58065b3bb24a6",
+                            "label": "Other Invitation",
+                            "name": "connection_invitation",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_57cc515d94fe5",
+                                        "operator": "==",
+                                        "value": "newsletter"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0
                         }
                     ],
                     "min": "",
@@ -1395,5 +1367,5 @@
     ],
     "active": 1,
     "description": "Flexible content area for Landing Pages",
-    "modified": 1476299754
+    "modified": 1476811682
 }

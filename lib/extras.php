@@ -258,6 +258,10 @@ function mce_before_init_insert_formats( $init_array ) {
 		[  
 			'title' => 'Cite',  
 			'inline' => 'cite'
+		],  
+		[  
+			'title' => 'Small Text',  
+			'inline' => 'small'
 		],
 		[  
 			'title' => 'Button',  

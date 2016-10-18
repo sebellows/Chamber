@@ -28,6 +28,8 @@ if ( have_rows('landing_page_content') ) : ?>
 
         <?php get_template_part('templates/sections/section', 'calls-to-action'); ?>
 
+        <?php get_template_part('templates/sections/section', 'connections'); ?>
+
     <?php endwhile; ?>
 
 <?php endif; ?>

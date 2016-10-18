@@ -1,0 +1,63 @@
+.connections {
+	.callout {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @include breakpoint(large) {
+      padding: rem(24 30);
+      width: 50%;
+
+      &:only-child {
+        width: 100%;
+      }
+    }
+
+    .button {
+      margin-bottom: 0;
+      font-size: rem(16);
+
+      strong {
+        display: block;
+        font-size: em(18);
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .social-link {
+    border-radius: 50%;
+    background-color: color(brand);
+    margin-right: .5em;
+    padding: .5em;
+    width: rem(40);
+    height: rem(40);
+    text-align: center;
+  }
+}
+
+.connection-lead {
+  font-size: rem(16);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-right: em(10);
+  text-transform: uppercase;
+  flex: none;
+
+  small {
+    display: block;
+  }
+}
+
+.connections #signup {
+  @include paper-input;
+
+  @include breakpoint(large) {
+    flex: 1 1;
+    max-width: 320px;
+  }
+}
+
+.newsletter-callout {
+  justify-content: space-between;
+}
