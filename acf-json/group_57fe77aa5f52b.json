@@ -211,6 +211,16 @@
                 "param": "page_template",
                 "operator": "!=",
                 "value": "app.php"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "posts_page"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
             }
         ]
     ],
@@ -232,5 +242,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1476412259
+    "modified": 1476774285
 }

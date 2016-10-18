@@ -30,7 +30,7 @@ use Chamber\Theme\Wrapper;
 			get_template_part('templates/header');
 		?>
 
-		<?php if ( have_rows('duplo_block') ) : ?>
+		<?php if ( have_rows('duplo_block') || is_home() || is_active_sidebar('sidebar-navigation') ) : ?>
 			<section class="page-fold">
 
 				<?php if ( !is_home() ) : ?>

@@ -1,7 +1,5 @@
 <?php
 /**
- * Template Name: Custom Post Type Archive
- * 
  * The template for displaying archive pages of custom post types.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
