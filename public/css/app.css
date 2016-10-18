@@ -4534,9 +4534,10 @@ svg.icon,
         float: right; }
       [m-DuploCount="4"] .duplo[m-Duplo="3"] h2, [m-DuploCount="4"] .duplo[m-Duplo="4"] h2 {
         font-size: 1.5em;
-        margin-bottom: 0.5rem; }
-      [m-DuploCount="4"] .duplo[m-Duplo="3"] p, [m-DuploCount="4"] .duplo[m-Duplo="4"] p {
-        display: block; } }
+        margin-bottom: 0.5rem; } }
+  @media screen and (min-width: 40em) {
+    [m-DuploCount="4"] .duplo[m-Duplo="3"] p, [m-DuploCount="4"] .duplo[m-Duplo="4"] p {
+      display: block; } }
 
 @media screen and (min-width: 40em) {
   [m-DuploCount="4"] .duplo[m-Duplo="4"] {
