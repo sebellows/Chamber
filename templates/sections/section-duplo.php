@@ -13,15 +13,15 @@ if ( have_rows('duplo_block') ) :
     // for repeater fields that are not nested in flexible content
     // fields where the counter can run outside of the `while` loop.
     while ( have_rows( 'duplo_block' ) ) : the_row();
-        $counter1 = array_get(get_row('duplo_block'), 'duplo_block_post');
-        $counter2 = array_get(get_row('duplo_block'), 'duplo_block_custom');
-        $counter = count($counter1) + count($counter2);
+        $counter = count(get_row('duplo_block'));
     endwhile;
+
+    $counter++
 ?>
 
     <section class="duplo-banner duplo-set">
 
-        <div class="duplo-blocks" m-DuploCount="<?= $counter; ?>">
+        <div class="duplo-blocks" m-DuploCount="<?php #$counter; ?>">
 
             <?php 
                 while ( have_rows( 'duplo_block' ) ) : the_row();
