@@ -12,14 +12,11 @@ if ( have_rows('duplo_block') ) :
     // `while` loop on the `duplo` rows. This is different
     // for repeater fields that are not nested in flexible content
     // fields where the counter can run outside of the `while` loop.
-    // $counter = count( get_field('duplo_block') );
-
     while ( have_rows( 'duplo_block' ) ) : the_row();
-        $instances = get_row('duplo_block');
+        $counter1 = array_get(get_row('duplo_block'), 'duplo_block_post');
+        $counter2 = array_get(get_row('duplo_block'), 'duplo_block_custom');
+        $counter = count($counter1) + count($counter2);
     endwhile;
-
-    $counter = count($instances);
-
 ?>
 
     <section class="duplo-banner duplo-set">
@@ -90,7 +87,7 @@ if ( have_rows('duplo_block') ) :
                     $image       = Helper::get_first_image($id, $content, 'duplo-image');
                 ?>
 
-                <div class="duplo" m-Duplo="<?= $index; ?>">
+                <div class="duplo" m-Duplo="<?= $index+1; ?>">
                     <?php if ($image) : ?>
                     <?= $image; ?>
                     <?php endif; ?>
