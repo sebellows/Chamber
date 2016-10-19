@@ -75,6 +75,10 @@ $gutterMediumHalf: $gutterMedium / 2; // 15px
     }
   }
 
+  p {
+    margin-bottom: $global-margin;
+  }
+
   img {
     // Grid defaults to get images and embeds to work properly
     max-width: 100%;

@@ -15,22 +15,6 @@
   }
 }
 
-// @mixin grid-size($size, $bps, $value) {
-//   @for $bp from 1 through length($bps) {
-//     @include breakpoint($bp) {
-//       [m-Grid~="#{$bp} #{$size}"] {
-//         & > a,
-//         & > div {
-//           @include flex-callout($value);
-//         }
-//       }
-//     }
-//   }
-// }
-
-// Callout Grid
-// .callout {
-
 [m-Grid~="2"] > a,
 [m-Grid~="2"] > div {
   @include breakpoint(medium) {

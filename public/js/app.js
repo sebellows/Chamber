@@ -14,17 +14,66 @@
     return;
   }
 
+  /**
+   * Sets or removes .focus class on an element.
+   */
+  const CLOSE_BUTTON = `
+      <button class="menu-toggle-close" aria-controls="dept-menu" aria-expanded="true">
+        <span class="screen-reader-text">Close menu</span>
+        <span class="icon" m-Icon="close large"><svg aria-role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg></span>
+      </button>
+  `;
+
+  /**
+   * Create a Close button for dismissing the menu modal.
+   * 
+   * @return object
+   */
+  function createCloseButton() {
+    let toggle = document.createElement('div');
+
+    toggle.style.cssText +=';'+ 'position:absolute;top:3rem;right:2rem;z-index:1201;';
+    toggle.innerHTML = CLOSE_BUTTON;
+
+    return toggle;
+  }
+
+  /**
+   * Create the menu modal for displaying the section-navigation
+   * on small screens.
+   * 
+   * @return object
+   */
+  function createModalBackground() {
+    let modalBg = document.createElement('div');
+
+    modalBg.classList.add('menu-modal');
+    modalBg.setAttribute('aria-ignore', 'true');
+    modalBg.style.cssText +=';'+ 'position:absolute;top:0;left:0;width:100vw;height:100vh;';
+
+    return modalBg;
+  }
+
+  /**
+   * Menu-related constants.
+   *
+   * @var mixed
+   */
   const BUTTON   = document.querySelector( '.menu-toggle' ),
         MASTHEAD = document.querySelector( '#masthead' ),
         MENU     = NAV.getElementsByTagName( 'ul' )[0],
         LINKS    = MENU.getElementsByTagName( 'a' ),
-        SUBMENUS = MENU.getElementsByTagName( 'ul' );
+        SUBMENUS = MENU.getElementsByTagName( 'ul' ),
+        CLOSE    = createCloseButton(),
+        MODAL    = createModalBackground();
 
+  // Return early if the process if `section-navigation` is not present
+  // or if the `menu-toggle` button is undefined.
   if ( ! NAV || 'undefined' === typeof BUTTON ) {
     return;
   }
 
-  // Hide menu toggle button if menu is empty and return early.
+  // Hide menu toggle button if `section-navigation` is empty and return early.
   if ( 'undefined' === typeof MENU ) {
     BUTTON.style.display = 'none';
     return;
@@ -35,18 +84,31 @@
     MENU.className += ' nav-menu';
   }
 
+  /**
+   * Onclick event handler for toggling OPEN the `section-navigation`.
+   */
   BUTTON.onclick = function() {
+    NAV.className += ' is-active';
+    BODY.appendChild(MODAL);
+    BUTTON.setAttribute( 'aria-expanded', 'true' );
+    MENU.setAttribute( 'aria-expanded', 'true' );
+    BODY.appendChild(CLOSE);
+    BODY.className += ' navigation-is-open';
+    MASTHEAD.style.zIndex = 'initial';
+  };
+
+  /**
+   * Onclick event handler for toggling CLOSED the `section-navigation`.
+   */
+  CLOSE.onclick = function() {
     if ( -1 !== NAV.className.indexOf( 'is-active' ) ) {
       NAV.className = NAV.className.replace( ' is-active', '' );
+      BODY.removeChild(MODAL);
       BUTTON.setAttribute( 'aria-expanded', 'false' );
       MENU.setAttribute( 'aria-expanded', 'false' );
+      BODY.className = BODY.className.replace( ' navigation-is-open', '' );
       MASTHEAD.removeAttribute('style');
-    } else {
-      NAV.className += ' is-active';
-      BUTTON.setAttribute( 'aria-expanded', 'true' );
-      MENU.setAttribute( 'aria-expanded', 'true' );
-      BODY.classList.add('navigation-is-open');
-      MASTHEAD.style.zIndex = 'initial';
+      BODY.removeChild(CLOSE);
     }
   };
 
@@ -183,6 +245,8 @@
 				if ($('#phoneNumber').length > 0 && $('.no-touchevents')) {
 					new Foundation.Toggler($("#phoneNumber"));
 				}
+
+				$(document).scrollScope();
 			},
 			finalize: function() {
 				// JavaScript to be fired on all pages, after page specific JS is fired

@@ -1,6 +1,13 @@
+
+//// Navigation @ Small Screen Default State
+///
 .section-navigation {
   background: transparent;
   color: #fefefe;
+  max-height: 1px;
+  margin-top: -1px;
+  opacity: 0;
+  visibility: hidden;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
 
   h2, h3 {
@@ -11,90 +18,101 @@
     @include element-invisible;
   }
 
-  .menu {
-    // display: none;
+  .menu li {
+    flex: 1 1 auto; // override Foundation setting
+  }
+
+  .menu li > a {
+    display: block;
+    font-size: em(12);
+    font-weight: 700;
+    line-height: normal;
+    padding: rem-calc(0 15);
+    text-align: center;
+    text-transform: uppercase;
+  }
+    // increased specificity to override Foundation
+    .menu > li > a {
+      padding: rem-calc(12 15);
+    }
+}
+
+//// Navigation @ Active-Small Screen State
+///
+.section-navigation.is-active {
+  // unset initial styles
+  margin-top: 0;
+  max-height: none;
+  opacity: 1;
+  visibility: visible;
+
+  padding: 0;
+  position: absolute;
+  top: 10%;
+  top: 10vh;
+  left: 5%;
+  left: 5vw;
+  height: 90%;
+  width: 90vw;
+  height: 80%;
+  height: 80vh;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
+  z-index: 1200;
+  overflow: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  &::-webkit-scrollbar {
+    width: .8em;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparentize(neutral(2), .5);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparentize(neutral(3), .5);
+    box-shadow: inset .05em .05em 0 rgba(0, 0, 0, .1), inset 0 -.05em 0 rgba(0, 0, 0, .07);
+  }
+
+  > .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 99%;
+    padding: 0;
+    width: 100%;
 
     li > a {
       display: block;
-      font-size: em(12);
+      font-size: em(18);
       font-weight: 700;
-      padding: rem-calc(0 15);
-      text-transform: uppercase;
-      white-space: nowrap;
+      letter-spacing: 2px;
+      line-height: 2;
     }
   }
-
-  .menu > li > a {
-    padding: rem-calc(12 15);
+}
+  // Hacky fix for `-webkit-overflow-scrolling:touch` bug starting on iOS8
+  .touchevents .section-navigation.is-active > .nav-menu {
+    -webkit-overflow-scrolling: touch;
+    height: calc(100% + 1px);
   }
 
-  @include breakpoint(medium down) {
-    max-height: 1px;
-    margin-top: -1px;
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  &.is-active {
-    background: color(brand);
-    margin-top: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) .25s;
-    z-index: 1200;
-    overflow: auto;
-    overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      width: .8em;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: transparentize(neutral(2), .5);
-    }
-    &::-webkit-scrollbar-thumb {
-      background: transparentize(neutral(3), .5);
-      box-shadow: inset .05em .05em 0 rgba(0, 0, 0, .1), inset 0 -.05em 0 rgba(0, 0, 0, .07);
-    }
-
-    > .menu {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 99%;
-      padding: rem-calc(30);
-      width: 100%;
-
-      li {
-        text-align: center;
-
-        > a {
-          display: block;
-          font-size: em(18);
-          font-weight: 700;
-          letter-spacing: 2px;
-          line-height: 2;
-        }
-      }
-    }
-  }
-
+//// Navigation @ Large Breakpoint
+///
+.section-navigation {
   @include breakpoint(large) {
-    background: $black;
+    background-color: $black;
+    margin-top: 0;
     min-height: $dept-nav-height;
-    // position: absolute;
-    // top: 550px; // Clear the Duplo
-    // top: 70vh;
-    // margin-top: rem-calc($site-header-height + 4); // Add height of master header for clearance
+    max-height: none;
     width: 100%;
     z-index: 1000;
     opacity: 1;
+    visibility: visible;
+
+    .menu {
+      padding-left: rem(15);
+      padding-right: rem(15);
+    }
 
     .menu,
     .sub-menu {
@@ -120,49 +138,49 @@
       }
     }
   }
-
-  .close-button {
-    display: none;
-  }
 }
 
-  // Hacky fix for `-webkit-overflow-scrolling:touch` bug starting on iOS8
-  .touchevents .section-navigation.is-active > .nav-menu {
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: scrollbar;
-    height: calc(100% + 1px);
-  }
 
-
-/* Small menu. */
+//// Toggles the section navigation OPEN
 .menu-toggle {
   background-color: transparent;
   border-radius: rem-calc(8);
   box-shadow: none;
   color: $white;
   display: inline-block;
-  height: em(44px);
-  min-width: em(44);
+  height: rem(44);
+  min-width: rem(44);
   position: relative;
-  transform: scale(1);
-  transition: border-radius 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &[aria-expanded="true"] {
-    background-color: $white;
-    border-radius: 50%;
-    color: neutral(6);
-    transform: scale(1.15);
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.36));
-    z-index: 1201;
-  }
 
   @include breakpoint(large) {
     display: none;
   }
 }
+
+//// Toggles the section navigation CLOSED
+.menu-toggle-close {
+  background-color: $white;
+  border-radius: 50%;
+  width: rem(50);
+  height: rem(50);
+  transform: translate3d(0,0,0);
+  -webkit-filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.36));
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.36));
+  z-index: 1201;
+  opacity: 0;
+  animation: fade-in .3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .icon {
+    top: 2px;
+
+    svg {
+      fill: color(brand);
+    }
+  }
+}
+  .navigation-is-open .menu-toggle-close {
+    opacity: 1;
+  }
 
   // Hide the Department menu toggle if not on a Department page
   body[class^="home"] {
@@ -198,27 +216,6 @@
   }
 }
 
-.menu-toggle[aria-expanded="true"] {
-
-  .bar.first {
-    margin-top: 6px;
-    transform: rotate(45deg);
-    transition: all 0.2s ease-out .2s;
-  }
-
-  .bar.second {
-    opacity: 0;
-    transition: all 0.2s ease-out .2s;
-  }
-
-  .bar.third {
-    margin-top: 6px;
-    transform: rotate(-45deg);
-    transition: all 0.2s ease-out .2s;
-  }
-
-}
-
 // Modal state for open menu on small viewports
 .navigation-is-open {
   height: 100%;
@@ -226,23 +223,38 @@
   overflow: hidden;
 }
 
-.posts-navigation,
-.post-navigation {
-
-  .site-main & {
-    margin: 0 0 1.5em;
-    overflow: hidden;
-  }
-
-  .nav-previous {
-    float: left;
-    width: 50%;
-  }
-
-  .nav-next {
-    float: right;
-    text-align: right;
-    width: 50%;
-  }
+.menu-modal {
+  background: color(brand);
+  opacity: 0;
+  transition: opacity .3s cubic-bezier(0.4, 0, 0.2, 0);
 }
+  .navigation-is-open .menu-modal {
+    opacity: 1;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1100;
+  }
+
+// .menu-toggle[aria-expanded="true"] {
+
+//   .bar.first {
+//     margin-top: 6px;
+//     transform: rotate(45deg);
+//     transition: all 0.2s ease-out .2s;
+//   }
+
+//   .bar.second {
+//     opacity: 0;
+//     transition: all 0.2s ease-out .2s;
+//   }
+
+//   .bar.third {
+//     margin-top: 6px;
+//     transform: rotate(-45deg);
+//     transition: all 0.2s ease-out .2s;
+//   }
+
+// }
 

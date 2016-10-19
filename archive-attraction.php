@@ -16,7 +16,7 @@ $posttypes = array_keys($isotope);
 
 <div class="isotope-archive">
 
-    <?php get_template_part('templates/isotope', 'archive-menu'); ?>
+    <?php get_template_part('templates/archive/isotope', 'menu'); ?>
 
 <?php 
 if ( in_array( is_post_type_archive(), $posttypes ) ) :
@@ -37,7 +37,7 @@ if ( in_array( is_post_type_archive(), $posttypes ) ) :
         <div class="card-grid">
 
             <?php while ($archived->have_posts()) : $archived->the_post(); ?>
-                <?php get_template_part('templates/isotope', 'archive-card'); ?>
+                <?php get_template_part('templates/archive/isotope', 'card'); ?>
             <?php endwhile; ?>
 
         </div><!-- .card-grid -->

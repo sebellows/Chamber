@@ -1,3 +1,10 @@
-/* Used on global header search bar on smaller viewports */
+//// Used on global header search bar on smaller viewports
 .hinge-in  { @include mui-hinge(in,  top, edge, 2000px, from-back, false, 0.25s, cubic-bezier(0.4, 0, 0.2, 1)); }
 .hinge-out { @include mui-hinge(out, top, edge, 2000px, from-back, false, 0.3s, cubic-bezier(0.4, 0, 0.2, 1)); }
+
+//// Used on `.menu-toggle-close` button for `.section-navigation`
+///
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}

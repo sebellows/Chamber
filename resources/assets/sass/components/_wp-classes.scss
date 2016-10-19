@@ -46,25 +46,25 @@
 
 .aligncenter {
   display: block;
-  margin: rem-calc((($global-lineheight * $base-font-size) / 2)) auto;
+  margin: rem((($global-lineheight * $base-font-size) / 2)) auto;
   height: auto;
 }
 
 .alignleft,
 .alignright {
-  margin-bottom: rem-calc((($global-lineheight * $base-font-size) / 2));
+  margin-bottom: rem((($global-lineheight * $base-font-size) / 2));
   height: auto;
 }
 	@include breakpoint(small) {
 	  // Only float if not on an extra small device
 	  .alignleft {
 	    float: left;
-	    margin-right: rem-calc((($global-lineheight * $base-font-size) / 2));
+	    margin-right: rem((($global-lineheight * $base-font-size) / 2));
 	  }
 
 	  .alignright {
 	    float: right;
-	    margin-left: rem-calc((($global-lineheight * $base-font-size) / 2));
+	    margin-left: rem((($global-lineheight * $base-font-size) / 2));
 	  }
 	}
 

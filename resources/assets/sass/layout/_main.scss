@@ -8,8 +8,12 @@
   max-width: 100%;
 
   > .row {
-    // margin-top: rem(30);
-    margin-bottom: rem(30);
+    margin: rem(0 15 30 15);
     @include paper-ui;
+
+    @include breakpoint(xlarge) {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }

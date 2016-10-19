@@ -44,13 +44,14 @@ use Chamber\Theme\Assets;
 		</div><!-- .top-bar-left -->
 		<div class="top-bar-right">
 
+			<?php if (has_nav_menu('site_navigation')) : ?>
+
 			<nav id="site-navigation" class="site-navigation" role="navigation">
-				<?php
-				if (has_nav_menu('site_navigation')) :
-				  wp_nav_menu(['theme_location' => 'site_navigation', 'menu_class' => 'menu']);
-				endif;
-				?>
+				<?php wp_nav_menu(['theme_location' => 'site_navigation', 'menu_class' => 'menu']); ?>
 			</nav><!-- #site-navigation -->
+
+			<?php endif; ?>
+
 		</div><!-- .top-bar-right -->
 	</div><!-- .top-bar-top -->
 

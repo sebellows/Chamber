@@ -1,20 +1,23 @@
 .site-navigation {
-	.menu > li {
-		margin-left: rem-calc(5px);
+	.menu {
+		> li {
+			margin-left: rem-calc(5px);
 
-		&:first-child {
-			margin-left: 0;
-		}
-	}
-	.menu > li > a {
-		border-radius: 2px;
-		font-size: em(12);
-		font-weight: 700;
-		text-transform: uppercase;
-		padding: rem-calc(8 12);
+			&:first-child {
+				margin-left: 0;
+			}
 
-		@include breakpoint(large) {
-			font-size: em(14);
+			> a {
+				border-radius: 2px;
+				font-size: em(12);
+				font-weight: 700;
+				text-transform: uppercase;
+				padding: rem-calc(8 12);
+
+				@include breakpoint(large) {
+					font-size: em(14);
+				}
+			}
 		}
 	}
 
@@ -39,6 +42,25 @@
 		}
 	}
 }
+
+	@include breakpoint(small only) {
+		.site-navigation .menu > li > a {
+			padding: rem(5 8);
+			font-family: "Roboto Condensed", HelveticaNeue-CondensedBold, "Arial Narrow", sans-serif;
+		}
+	}
+
+	@include breakpoint(medium only) {
+		.site-navigation .menu {
+			flex-wrap: wrap;
+			justify-content: flex-end;
+
+			> li:not(.button-link) {
+				margin-bottom: rem(4);
+			}
+		}
+	}
+
 	// Non-mobile hover state
 	[data-whatinput="mouse"] .site-navigation li.button-link > a:hover {
 		background-color: $primary-color;

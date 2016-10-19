@@ -22,38 +22,42 @@
 }
 
 @supports(flex-wrap:wrap) {
-  @include breakpoint(large) {
+  @include breakpoint(medium) {
     .feed-box {
       display: flex;
       flex-wrap: wrap;
     }
-    .blog {
-      .has-post-thumbnail {
-        @include flex-callout(12);
 
-        .entry-media {
-          float: left;
-          padding-right: rem(15);
-          width: 50%;
-        }
+    .blog .has-post-thumbnail {
+      @include flex-callout(12);
 
-        .entry-summary {
-          float: left;
-          padding-left: rem(15);
-          width: 50%;
-        }
-
-        .thumbnail {
-          margin-bottom: 0;
-          position: relative;
-          top: 3px;
-        }
+      .entry-media {
+        float: left;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-right: rem(15);
+        width: 50%;
       }
-      .post:not(.has-post-thumbnail) {
-        flex: 1;
-        min-width: 50%;
+
+      .entry-summary {
+        float: left;
+        padding-left: rem(15);
+        width: 50%;
       }
-      .post:not(.has-post-thumbnail):first-child + .no-post-thumbnail {
+
+      .thumbnail {
+        margin-bottom: 0;
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+  @include breakpoint(large) {
+    .blog .post:not(.has-post-thumbnail) {
+      flex: 1;
+      min-width: 50%;
+
+      &:first-child + .no-post-thumbnail {
         border-top: 0 none;
       }
     }
@@ -61,15 +65,10 @@
 }
 
 .entry-media img {
+  margin-top: rem(5);
+  margin-bottom: rem(10);
   width: 100%;
-
-  @include breakpoint(small only) {
-    margin: rem(10) auto;
-  }
 }
-  .archive .entry-media img {
-    margin: rem(10) auto;
-  }
 
 .blog .hentry {
   border-top: 2px dotted rgba($black, .25);

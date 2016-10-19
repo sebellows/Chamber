@@ -1,0 +1,63 @@
+.stripe.gallery {
+  .callout {
+    @include flex-callout(12);
+
+    @include breakpoint(large) {
+      @include flex-callout(6);
+    }
+    @include breakpoint(xlarge) {
+      @include flex-callout(4);
+    }
+  }
+
+  .thumbnail {
+    float: left;
+    width: 50%;
+    height: 0;
+    padding-bottom: 50%;
+    position: relative;
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+      width: 33.333%;
+      padding-bottom: 33.333%;
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      min-height: 100%;
+      object-fit: cover;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.gallery-caption {
+  background-color: $black;
+  color: $white;
+  font-size: rem(12);
+  font-weight: 700;
+  text-align: center;
+  padding: rem(5 8);
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+}
+
+  .thumbnail:nth-of-type(even) .gallery-caption {
+    background-color: neutral(6);
+  }
+
+.multi-thumb {
+  @include clearfix;
+  @include flex-callout(12);
+
+  @include breakpoint(large) {
+    @include flex-callout(6);
+  }
+  @include breakpoint(xlarge) {
+    @include flex-callout(8);
+  }
+}

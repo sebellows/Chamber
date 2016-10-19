@@ -138,7 +138,7 @@ function hybrid_attr_body( $attr ) {
  */
 function hybrid_attr_header( $attr ) {
 
-	$attr['id']        = 'header';
+	$attr['id']        = 'masthead';
 	$attr['class']     = 'site-header';
 	$attr['role']      = 'banner';
 	$attr['itemscope'] = 'itemscope';

@@ -14,7 +14,7 @@ use Chamber\Theme\Attr;
 	<?php if (!is_archive() || !is_search() ) : ?>
 		<?php if ( is_active_sidebar('sidebar-page-header') ) : ?>
 	
-		<aside class="sidebar-vertical">
+		<aside class="list-box">
 			<?php dynamic_sidebar( 'sidebar-page-header' ); ?>
 		</aside>
 

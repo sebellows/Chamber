@@ -7,29 +7,31 @@
  * @package chamber
  */
 
-?>
+# check if the flexible content field has rows of data
+if ( have_rows('landing_page_content') ) : 
 
-<?php
+    while ( have_rows('landing_page_content') ) : the_row();
 
-// check if the flexible content field has rows of data
-if ( have_rows('landing_page_content') ) : ?>
+        get_template_part('templates/sections/section', 'duplo-landing-page');
 
-    <?php while ( have_rows('landing_page_content') ) : the_row(); ?>
+        get_template_part('templates/sections/section', 'highlights');
 
-        <?php get_template_part('templates/sections/section', 'duplo-landing-page'); ?>
+        get_template_part('templates/sections/section', 'mediablock');
 
-        <?php get_template_part('templates/sections/section', 'highlights'); ?>
+        get_template_part('templates/sections/section', 'whitesheet');
 
-        <?php get_template_part('templates/sections/section', 'mediablock'); ?>
+        get_template_part('templates/sections/section', 'keyresults');
 
-        <?php get_template_part('templates/sections/section', 'whitesheet'); ?>
+        get_template_part('templates/sections/section', 'calls-to-action');
 
-        <?php get_template_part('templates/sections/section', 'keyresults'); ?>
+        get_template_part('templates/sections/section', 'connections');
 
-        <?php get_template_part('templates/sections/section', 'calls-to-action'); ?>
+        get_template_part('templates/sections/section', 'dynamic-whitesheet');
 
-        <?php get_template_part('templates/sections/section', 'connections'); ?>
+        // get_template_part('templates/sections/section', 'testimonials');
 
-    <?php endwhile; ?>
+        get_template_part('templates/sections/section', 'gallery');
 
-<?php endif; ?>
+    endwhile;
+
+endif;

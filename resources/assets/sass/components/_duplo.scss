@@ -1,6 +1,6 @@
 .duplo-blocks {
-  border-top: rem-calc(2.5) solid $body-background;
-  border-bottom: rem-calc(2.5) solid $body-background;
+  border-top: rem(2.5) solid $body-background;
+  border-bottom: rem(2.5) solid $body-background;
   color: $white;
   position: relative;
   width: 100vw;
@@ -9,7 +9,7 @@
 }
 
 .duplo {
-  border: rem-calc(2.5) solid $body-background;
+  border: rem(2.5) solid $body-background;
   position: relative;
   overflow: hidden;
   @include grid-col(12,0);
@@ -33,7 +33,7 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
-  padding: rem-calc(16 20);
+  padding: rem(16 20);
   text-shadow: 0 1px 1px rgba(0,55,85,0.5);
   position: relative;
   z-index: 1;
@@ -47,26 +47,27 @@
   }
 
   p {
-    // color: neutral(1);
-    font-size: 1.125em;
     font-style: italic;
     margin-bottom: 0;
-
     &:empty {
       display: none !important;
+    }
+
+    @include breakpoint(xlarge) {
+      font-size: em(18);
     }
   }
 
   time {
     font-size: em(12);
     font-weight: 700;
-    letter-spacing: rem-calc(1.5);
+    letter-spacing: rem(1.5);
     text-transform: uppercase;
     margin-bottom: em(10,12);
   }
 
-  @include breakpoint(large) {
-    padding: rem-calc(24 30);
+  @include breakpoint(xxlarge) {
+    padding: rem(24 30);
   }
 }
 
@@ -118,7 +119,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  padding: rem-calc(16 20);
+  padding: rem(16 20);
   text-align: center;
   text-shadow: 0 1px 1px rgba(0,55,85,0.5);
   position: relative;
@@ -133,7 +134,7 @@
   }
 
   @include breakpoint(large) {
-    padding: rem-calc(24 30);
+    padding: rem(24 30);
   }
 }
 
@@ -250,7 +251,7 @@
 
       h2 {
         font-size: 1.5em;
-        margin-bottom: rem-calc(8);
+        margin-bottom: rem(8);
       }
 
       p {
@@ -335,12 +336,15 @@
 
       h2 {
         font-size: 1.5em;
-        margin-bottom: rem-calc(8);
+        margin-bottom: rem(8);
       }
     }
 
-    @include breakpoint(medium) {
-      p { display: block; }
+    @include breakpoint(xlarge) {
+      p {
+        display: block;
+        font-size: em(16,18);
+      }
     }
   }
 

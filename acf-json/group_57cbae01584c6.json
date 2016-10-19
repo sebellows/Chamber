@@ -980,8 +980,8 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "tabs": "text",
-                            "toolbar": "basic",
+                            "tabs": "all",
+                            "toolbar": "full",
                             "media_upload": 0
                         },
                         {
@@ -1210,7 +1210,7 @@
                             "label": "Gallery",
                             "name": "ch_gallery",
                             "type": "gallery",
-                            "instructions": "Please make sure that images are in groups of four in order to make the layouts work.",
+                            "instructions": "Please make sure that images are in groups of 6, 9, or 12 in order to make the layouts work.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -1218,7 +1218,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "min": 4,
+                            "min": 6,
                             "max": 12,
                             "insert": "append",
                             "library": "all",
@@ -1367,5 +1367,5 @@
     ],
     "active": 1,
     "description": "Flexible content area for Landing Pages",
-    "modified": 1476811682
+    "modified": 1476896952
 }

@@ -246,7 +246,7 @@ function mce_before_init_insert_formats( $init_array ) {
 		[  
 			'title' => '2-Column Ruled',  
 			'block' => 'div',
-			'classes' => 'column-text-2--ruled',
+			'classes' => 'column-text-2 column-text-2--ruled',
 			'wrapper' => true
 		],  
 		[  

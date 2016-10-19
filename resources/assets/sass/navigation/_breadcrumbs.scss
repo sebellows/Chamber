@@ -21,6 +21,7 @@
     margin: rem(0 8 0 8);
     @include fat-arrow-icon(color(brand-medium), em(14,10));
     @extend %align-icon;
+    top: -1px;
   }
 
   // Extra specificity to override Foundation

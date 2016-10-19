@@ -1,15 +1,22 @@
 .post-header,
 .post-content-body {
-  padding-top: rem-calc(15);
-  padding-bottom: rem-calc(15);
+  padding-top: rem(15);
+  padding-bottom: rem(15);
   @include flex-grid-column(12);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .post-header {
   @include breakpoint(large) {
-    padding-top: rem-calc(30);
-    padding-bottom: rem-calc(30);
-    @include flex-grid-column(4, 60px);
+    flex: 0 0 em(400);
+    max-width: em(400);
+    padding-top: rem(30);
+    padding-bottom: rem(30);
+    padding-left: rem(30);
+    padding-right: rem(30);
   }
 }
 
@@ -17,15 +24,17 @@
   @include add-text-link-style;
 
   @include breakpoint(large) {
-    padding-bottom: rem-calc(30);
-    @include flex-grid-column(8, 0);
+    @include flex-grid-column(null, 0);
+    padding-left: rem(30);
+    padding-bottom: rem(30);
   }
 }
 
 .post-content-body {
   @include breakpoint(large) {
-    @include flex-grid-column(10, 0);
-    padding: rem-calc(30 0);
+    flex: 0 0 em(600);
+    max-width: em(600);
+    padding: rem(30 15 30 0);
   }
 }
 

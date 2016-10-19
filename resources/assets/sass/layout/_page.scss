@@ -1,33 +1,57 @@
-.page-fold {
-  // margin-bottom: em(30);
-
-  &:empty {
-    display: none;
-  }
+.page-fold:empty {
+  display: none;
 }
 
-.page-content-body-inner {
+.page-header {
+  padding-top: rem(15);
+  padding-bottom: rem(15);
+  @include flex-grid-column(12);
+
+  @include breakpoint(large) {
+    padding-top: rem(30);
+    padding-bottom: rem(30);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+  .singular .page-header {
+    position: relative;
+
+    @media (min-width: em(900)) and (max-width: em(1024)) {
+      flex: 0 0 em(600);
+      max-width: em(600);
+    }
+
+    @include breakpoint(large) {
+      flex: 0 0 em(400);
+      max-width: em(400);
+      padding-left: rem(30);
+      padding-right: rem(30);
+    }
+  }
+
+  .main > .page-header:first-child {
+    margin-top: $global-margin;
+  }
+
+.page-content-body {
   padding-top: rem(15);
   padding-bottom: rem(15);
   @include flex-grid-column(12, 30);
-}
-
-.page-content-body {
-  padding-top: rem-calc(15);
-  padding-bottom: rem-calc(15);
   @include add-text-link-style;
 
   @include breakpoint(large) {
+    padding-top: rem(30);
     padding-bottom: rem(30);
-    @include flex-grid-column(8, 0);
+    @include flex-grid-column(null, 60);
   }
 }
 
 .page-content-body-inner {
-  @include breakpoint(large) {
-    @include flex-grid-column(10, null);
-    padding: rem(30 30 0 30);
-  }
+  flex: 0 0 em(600);
+  max-width: em(600);
 
   p:last-child {
     margin-bottom: 0;

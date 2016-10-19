@@ -6,22 +6,20 @@
 
 //// Custom classes added to Formats select menu
 .column-text-2 {
-  @include breakpoint(large) {
+  @include breakpoint(medium) {
     columns: 2;
     column-gap: em(25.6);
   }
 }
 
 .column-text-2--ruled {
-  @include breakpoint(large) {
-    columns: 2;
-    column-gap: rem(30);
-    column-rule: 1px solid neutral(3);
+  @include breakpoint(medium) {
+    column-rule: 1px dotted rgba($black, .25);
   }
 }
 
 .column-text-2--span-all {
-  @include breakpoint(large) {
+  @include breakpoint(medium) {
     column-span: all;
     margin-top: $paragraph-margin-bottom;
 

@@ -29,6 +29,8 @@
 				if ($('#phoneNumber').length > 0 && $('.no-touchevents')) {
 					new Foundation.Toggler($("#phoneNumber"));
 				}
+
+				$(document).scrollScope();
 			},
 			finalize: function() {
 				// JavaScript to be fired on all pages, after page specific JS is fired

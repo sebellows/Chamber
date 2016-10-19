@@ -57,8 +57,29 @@
       max-width: 100%;
     }
   }
+
+  h3 {
+    @extend .list-title;
+  }
 }
 
-.sidebar-column h3 {
-  @extend .list-title;
+/// List Box
+/// menu holder on default pages in `page-header`
+/// 
+.singular .list-box {
+  @media (min-width: em(900)) and (max-width: em(1024)) {
+    position: absolute;
+    top: rem(24);
+    right: -46.5%;
+    max-width: em(300);
+  }
+}
+
+h1 + .list-box,
+h2 + .list-box {
+  margin-top: rem(45);
+
+  @media (min-width: em(900)) and (max-width: em(1024)) {
+    margin-top: 0;
+  }
 }

@@ -1,12 +1,16 @@
 .stripe {
   @include breakpoint(small only) {
-    margin-left: rem-calc(15);
-    margin-right: rem-calc(15);
+    margin-left: rem(15);
+    margin-right: rem(15);
   }
   > .row {
-    margin-bottom: rem-calc(30px);
-    width: 100%;
+    margin: rem(0 15 30 15);
     @include paper-ui;
+
+    @include breakpoint(xlarge) {
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .row {
       margin-left: 0;
