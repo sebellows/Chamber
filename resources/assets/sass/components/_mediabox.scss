@@ -11,6 +11,14 @@
     margin-bottom: 0;
   }
 
+  .video-poster {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 50%; left: 0;
+    transform: translateY(-50%);
+  }
+
   .callout {
     margin-bottom: 0;
     @include flex-callout(12);

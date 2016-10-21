@@ -25,15 +25,40 @@
 				  new Foundation.Toggler($("#searchForm"));
 				}
 
-				// toggle the phone number in the header on mobile
-				if ($('#phoneNumber').length > 0 && $('.no-touchevents')) {
-					new Foundation.Toggler($("#phoneNumber"));
-				}
-
+				// Add scroll-scope.js to flickity captions
 				$(document).scrollScope();
 			},
 			finalize: function() {
 				// JavaScript to be fired on all pages, after page specific JS is fired
+				if ($(".playButton")) {
+					if ( !$( '.reveal' ).length ) {
+						var mediaAttrs = $(".playButton").attr("data-media");
+						var $player    = $(".playButton").attr("data-url");
+						var $reveal    = $('body').append( '<div class="reveal-modal"></div>' );
+
+						$(".playButton").on('click', function() {
+							$.get($player, function( data ) {
+								$('.reveal-modal').html( data ).addClass( 'is-active' );
+								$('.reveal').css('display','block').attr({
+									'aria-hidden': false,
+									'tabindex': -1
+								});
+								$('#videoBox').append('<iframe ' + mediaAttrs + '></iframe>');
+								$('body').addClass('is-reveal-open');
+							});
+						});
+					}
+				}
+
+				$('.reveal-modal').on('click', 'button', function(e) {
+					e.preventDefault();
+
+					if ( e.target.nodeName === 'BUTTON' ) {
+						$('.reveal-modal').removeClass('is-active');
+						$('.reveal').remove();
+						$('body').removeClass( 'is-reveal-open' );
+					}
+				});
 			}
 		},
 		// Home page

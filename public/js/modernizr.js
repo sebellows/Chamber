@@ -1,6 +1,6 @@
 /*!
  * modernizr v3.3.1
- * Build https://modernizr.com/download?-backgroundblendmode-bgsizecover-cssmask-cssvhunit-cssvwunit-flexbox-flexboxtweener-inlinesvg-matchmedia-objectfit-shapes-svgfilters-touchevents-mq-prefixes-setclasses-dontmin
+ * Build https://modernizr.com/download?-backgroundblendmode-backgroundcliptext-bgsizecover-cssfilters-cssmask-cssvhunit-cssvwunit-details-flexbox-flexboxtweener-inlinesvg-matchmedia-objectfit-svgfilters-webp-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -113,47 +113,6 @@
     return result;
   });
 
-
-  /**
-   * List of property values to set for css tests. See ticket #21
-   * http://git.io/vUGl4
-   *
-   * @memberof Modernizr
-   * @name Modernizr._prefixes
-   * @optionName Modernizr._prefixes
-   * @optionProp prefixes
-   * @access public
-   * @example
-   *
-   * Modernizr._prefixes is the internal list of prefixes that we test against
-   * inside of things like [prefixed](#modernizr-prefixed) and [prefixedCSS](#-code-modernizr-prefixedcss). It is simply
-   * an array of kebab-case vendor prefixes you can use within your code.
-   *
-   * Some common use cases include
-   *
-   * Generating all possible prefixed version of a CSS property
-   * ```js
-   * var rule = Modernizr._prefixes.join('transform: rotate(20deg); ');
-   *
-   * rule === 'transform: rotate(20deg); webkit-transform: rotate(20deg); moz-transform: rotate(20deg); o-transform: rotate(20deg); ms-transform: rotate(20deg);'
-   * ```
-   *
-   * Generating all possible prefixed version of a CSS value
-   * ```js
-   * rule = 'display:' +  Modernizr._prefixes.join('flex; display:') + 'flex';
-   *
-   * rule === 'display:flex; display:-webkit-flex; display:-moz-flex; display:-o-flex; display:-ms-flex; display:flex'
-   * ```
-   */
-
-  // we use ['',''] rather than an empty array in order to allow a pattern of .`join()`ing prefixes to test
-  // values in feature detects to continue to work
-  var prefixes = (ModernizrProto._config.usePrefixes ? ' -webkit- -moz- -o- -ms- '.split(' ') : ['','']);
-
-  // expose these for the plugin API. Look in the source for how to join() them against your input
-  ModernizrProto._prefixes = prefixes;
-
-  
 
   /**
    * is returns a boolean if the typeof an obj is exactly type.
@@ -349,6 +308,426 @@ Detects support for inline SVG in HTML (not within XHTML).
 
 
   /**
+   * List of property values to set for css tests. See ticket #21
+   * http://git.io/vUGl4
+   *
+   * @memberof Modernizr
+   * @name Modernizr._prefixes
+   * @optionName Modernizr._prefixes
+   * @optionProp prefixes
+   * @access public
+   * @example
+   *
+   * Modernizr._prefixes is the internal list of prefixes that we test against
+   * inside of things like [prefixed](#modernizr-prefixed) and [prefixedCSS](#-code-modernizr-prefixedcss). It is simply
+   * an array of kebab-case vendor prefixes you can use within your code.
+   *
+   * Some common use cases include
+   *
+   * Generating all possible prefixed version of a CSS property
+   * ```js
+   * var rule = Modernizr._prefixes.join('transform: rotate(20deg); ');
+   *
+   * rule === 'transform: rotate(20deg); webkit-transform: rotate(20deg); moz-transform: rotate(20deg); o-transform: rotate(20deg); ms-transform: rotate(20deg);'
+   * ```
+   *
+   * Generating all possible prefixed version of a CSS value
+   * ```js
+   * rule = 'display:' +  Modernizr._prefixes.join('flex; display:') + 'flex';
+   *
+   * rule === 'display:flex; display:-webkit-flex; display:-moz-flex; display:-o-flex; display:-ms-flex; display:flex'
+   * ```
+   */
+
+  // we use ['',''] rather than an empty array in order to allow a pattern of .`join()`ing prefixes to test
+  // values in feature detects to continue to work
+  var prefixes = (ModernizrProto._config.usePrefixes ? ' -webkit- -moz- -o- -ms- '.split(' ') : ['','']);
+
+  // expose these for the plugin API. Look in the source for how to join() them against your input
+  ModernizrProto._prefixes = prefixes;
+
+  
+/*!
+{
+  "name": "CSS Supports",
+  "property": "supports",
+  "caniuse": "css-featurequeries",
+  "tags": ["css"],
+  "builderAliases": ["css_supports"],
+  "notes": [{
+    "name": "W3 Spec",
+    "href": "http://dev.w3.org/csswg/css3-conditional/#at-supports"
+  },{
+    "name": "Related Github Issue",
+    "href": "github.com/Modernizr/Modernizr/issues/648"
+  },{
+    "name": "W3 Info",
+    "href": "http://dev.w3.org/csswg/css3-conditional/#the-csssupportsrule-interface"
+  }]
+}
+!*/
+
+  var newSyntax = 'CSS' in window && 'supports' in window.CSS;
+  var oldSyntax = 'supportsCSS' in window;
+  Modernizr.addTest('supports', newSyntax || oldSyntax);
+
+
+  /**
+   * cssToDOM takes a kebab-case string and converts it to camelCase
+   * e.g. box-sizing -> boxSizing
+   *
+   * @access private
+   * @function cssToDOM
+   * @param {string} name - String name of kebab-case prop we want to convert
+   * @returns {string} The camelCase version of the supplied name
+   */
+
+  function cssToDOM(name) {
+    return name.replace(/([a-z])-([a-z])/g, function(str, m1, m2) {
+      return m1 + m2.toUpperCase();
+    }).replace(/^-/, '');
+  }
+  ;
+
+  /**
+   * hasOwnProp is a shim for hasOwnProperty that is needed for Safari 2.0 support
+   *
+   * @author kangax
+   * @access private
+   * @function hasOwnProp
+   * @param {object} object - The object to check for a property
+   * @param {string} property - The property to check for
+   * @returns {boolean}
+   */
+
+  // hasOwnProperty shim by kangax needed for Safari 2.0 support
+  var hasOwnProp;
+
+  (function() {
+    var _hasOwnProperty = ({}).hasOwnProperty;
+    /* istanbul ignore else */
+    /* we have no way of testing IE 5.5 or safari 2,
+     * so just assume the else gets hit */
+    if (!is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined')) {
+      hasOwnProp = function(object, property) {
+        return _hasOwnProperty.call(object, property);
+      };
+    }
+    else {
+      hasOwnProp = function(object, property) { /* yes, this can give false positives/negatives, but most of the time we don't care about those */
+        return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
+      };
+    }
+  })();
+
+  
+
+
+   // _l tracks listeners for async tests, as well as tests that execute after the initial run
+  ModernizrProto._l = {};
+
+  /**
+   * Modernizr.on is a way to listen for the completion of async tests. Being
+   * asynchronous, they may not finish before your scripts run. As a result you
+   * will get a possibly false negative `undefined` value.
+   *
+   * @memberof Modernizr
+   * @name Modernizr.on
+   * @access public
+   * @function on
+   * @param {string} feature - String name of the feature detect
+   * @param {function} cb - Callback function returning a Boolean - true if feature is supported, false if not
+   * @example
+   *
+   * ```js
+   * Modernizr.on('flash', function( result ) {
+   *   if (result) {
+   *    // the browser has flash
+   *   } else {
+   *     // the browser does not have flash
+   *   }
+   * });
+   * ```
+   */
+
+  ModernizrProto.on = function(feature, cb) {
+    // Create the list of listeners if it doesn't exist
+    if (!this._l[feature]) {
+      this._l[feature] = [];
+    }
+
+    // Push this test on to the listener list
+    this._l[feature].push(cb);
+
+    // If it's already been resolved, trigger it on next tick
+    if (Modernizr.hasOwnProperty(feature)) {
+      // Next Tick
+      setTimeout(function() {
+        Modernizr._trigger(feature, Modernizr[feature]);
+      }, 0);
+    }
+  };
+
+  /**
+   * _trigger is the private function used to signal test completion and run any
+   * callbacks registered through [Modernizr.on](#modernizr-on)
+   *
+   * @memberof Modernizr
+   * @name Modernizr._trigger
+   * @access private
+   * @function _trigger
+   * @param {string} feature - string name of the feature detect
+   * @param {function|boolean} [res] - A feature detection function, or the boolean =
+   * result of a feature detection function
+   */
+
+  ModernizrProto._trigger = function(feature, res) {
+    if (!this._l[feature]) {
+      return;
+    }
+
+    var cbs = this._l[feature];
+
+    // Force async
+    setTimeout(function() {
+      var i, cb;
+      for (i = 0; i < cbs.length; i++) {
+        cb = cbs[i];
+        cb(res);
+      }
+    }, 0);
+
+    // Don't trigger these again
+    delete this._l[feature];
+  };
+
+  /**
+   * addTest allows you to define your own feature detects that are not currently
+   * included in Modernizr (under the covers it's the exact same code Modernizr
+   * uses for its own [feature detections](https://github.com/Modernizr/Modernizr/tree/master/feature-detects)). Just like the offical detects, the result
+   * will be added onto the Modernizr object, as well as an appropriate className set on
+   * the html element when configured to do so
+   *
+   * @memberof Modernizr
+   * @name Modernizr.addTest
+   * @optionName Modernizr.addTest()
+   * @optionProp addTest
+   * @access public
+   * @function addTest
+   * @param {string|object} feature - The string name of the feature detect, or an
+   * object of feature detect names and test
+   * @param {function|boolean} test - Function returning true if feature is supported,
+   * false if not. Otherwise a boolean representing the results of a feature detection
+   * @example
+   *
+   * The most common way of creating your own feature detects is by calling
+   * `Modernizr.addTest` with a string (preferably just lowercase, without any
+   * punctuation), and a function you want executed that will return a boolean result
+   *
+   * ```js
+   * Modernizr.addTest('itsTuesday', function() {
+   *  var d = new Date();
+   *  return d.getDay() === 2;
+   * });
+   * ```
+   *
+   * When the above is run, it will set Modernizr.itstuesday to `true` when it is tuesday,
+   * and to `false` every other day of the week. One thing to notice is that the names of
+   * feature detect functions are always lowercased when added to the Modernizr object. That
+   * means that `Modernizr.itsTuesday` will not exist, but `Modernizr.itstuesday` will.
+   *
+   *
+   *  Since we only look at the returned value from any feature detection function,
+   *  you do not need to actually use a function. For simple detections, just passing
+   *  in a statement that will return a boolean value works just fine.
+   *
+   * ```js
+   * Modernizr.addTest('hasJquery', 'jQuery' in window);
+   * ```
+   *
+   * Just like before, when the above runs `Modernizr.hasjquery` will be true if
+   * jQuery has been included on the page. Not using a function saves a small amount
+   * of overhead for the browser, as well as making your code much more readable.
+   *
+   * Finally, you also have the ability to pass in an object of feature names and
+   * their tests. This is handy if you want to add multiple detections in one go.
+   * The keys should always be a string, and the value can be either a boolean or
+   * function that returns a boolean.
+   *
+   * ```js
+   * var detects = {
+   *  'hasjquery': 'jQuery' in window,
+   *  'itstuesday': function() {
+   *    var d = new Date();
+   *    return d.getDay() === 2;
+   *  }
+   * }
+   *
+   * Modernizr.addTest(detects);
+   * ```
+   *
+   * There is really no difference between the first methods and this one, it is
+   * just a convenience to let you write more readable code.
+   */
+
+  function addTest(feature, test) {
+
+    if (typeof feature == 'object') {
+      for (var key in feature) {
+        if (hasOwnProp(feature, key)) {
+          addTest(key, feature[ key ]);
+        }
+      }
+    } else {
+
+      feature = feature.toLowerCase();
+      var featureNameSplit = feature.split('.');
+      var last = Modernizr[featureNameSplit[0]];
+
+      // Again, we don't check for parent test existence. Get that right, though.
+      if (featureNameSplit.length == 2) {
+        last = last[featureNameSplit[1]];
+      }
+
+      if (typeof last != 'undefined') {
+        // we're going to quit if you're trying to overwrite an existing test
+        // if we were to allow it, we'd do this:
+        //   var re = new RegExp("\\b(no-)?" + feature + "\\b");
+        //   docElement.className = docElement.className.replace( re, '' );
+        // but, no rly, stuff 'em.
+        return Modernizr;
+      }
+
+      test = typeof test == 'function' ? test() : test;
+
+      // Set the value (this is the magic, right here).
+      if (featureNameSplit.length == 1) {
+        Modernizr[featureNameSplit[0]] = test;
+      } else {
+        // cast to a Boolean, if not one already
+        /* jshint -W053 */
+        if (Modernizr[featureNameSplit[0]] && !(Modernizr[featureNameSplit[0]] instanceof Boolean)) {
+          Modernizr[featureNameSplit[0]] = new Boolean(Modernizr[featureNameSplit[0]]);
+        }
+
+        Modernizr[featureNameSplit[0]][featureNameSplit[1]] = test;
+      }
+
+      // Set a single class (either `feature` or `no-feature`)
+      /* jshint -W041 */
+      setClasses([(!!test && test != false ? '' : 'no-') + featureNameSplit.join('-')]);
+      /* jshint +W041 */
+
+      // Trigger the event
+      Modernizr._trigger(feature, test);
+    }
+
+    return Modernizr; // allow chaining.
+  }
+
+  // After all the tests are run, add self to the Modernizr prototype
+  Modernizr._q.push(function() {
+    ModernizrProto.addTest = addTest;
+  });
+
+  
+
+/*!
+{
+  "name": "Webp",
+  "async": true,
+  "property": "webp",
+  "tags": ["image"],
+  "builderAliases": ["img_webp"],
+  "authors": ["Krister Kari", "@amandeep", "Rich Bradshaw", "Ryan Seddon", "Paul Irish"],
+  "notes": [{
+    "name": "Webp Info",
+    "href": "https://developers.google.com/speed/webp/"
+  }, {
+    "name": "Chormium blog - Chrome 32 Beta: Animated WebP images and faster Chrome for Android touch input",
+    "href": "https://blog.chromium.org/2013/11/chrome-32-beta-animated-webp-images-and.html"
+  }, {
+    "name": "Webp Lossless Spec",
+    "href": "https://developers.google.com/speed/webp/docs/webp_lossless_bitstream_specification"
+  }, {
+    "name": "Article about WebP support on Android browsers",
+    "href": "http://www.wope-framework.com/en/2013/06/24/webp-support-on-android-browsers/"
+  }, {
+    "name": "Chormium WebP announcement",
+    "href": "https://blog.chromium.org/2011/11/lossless-and-transparency-encoding-in.html?m=1"
+  }]
+}
+!*/
+/* DOC
+Tests for lossy, non-alpha webp support.
+
+Tests for all forms of webp support (lossless, lossy, alpha, and animated)..
+
+  Modernizr.webp              // Basic support (lossy)
+  Modernizr.webp.lossless     // Lossless
+  Modernizr.webp.alpha        // Alpha (both lossy and lossless)
+  Modernizr.webp.animation    // Animated WebP
+
+*/
+
+
+  Modernizr.addAsyncTest(function() {
+
+    var webpTests = [{
+      'uri': 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=',
+      'name': 'webp'
+    }, {
+      'uri': 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAABBxAR/Q9ERP8DAABWUDggGAAAADABAJ0BKgEAAQADADQlpAADcAD++/1QAA==',
+      'name': 'webp.alpha'
+    }, {
+      'uri': 'data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA',
+      'name': 'webp.animation'
+    }, {
+      'uri': 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=',
+      'name': 'webp.lossless'
+    }];
+
+    var webp = webpTests.shift();
+    function test(name, uri, cb) {
+
+      var image = new Image();
+
+      function addResult(event) {
+        // if the event is from 'onload', check the see if the image's width is
+        // 1 pixel (which indiciates support). otherwise, it fails
+
+        var result = event && event.type === 'load' ? image.width == 1 : false;
+        var baseTest = name === 'webp';
+
+        /* jshint -W053 */
+        addTest(name, baseTest ? new Boolean(result) : result);
+
+        if (cb) {
+          cb(event);
+        }
+      }
+
+      image.onerror = addResult;
+      image.onload = addResult;
+
+      image.src = uri;
+    }
+
+    // test for webp support in general
+    test(webp.name, webp.uri, function(e) {
+      // if the webp test loaded, test everything else.
+      if (e && e.type === 'load') {
+        for (var i = 0; i < webpTests.length; i++) {
+          test(webpTests[i].name, webpTests[i].uri);
+        }
+      }
+    });
+
+  });
+
+
+
+  /**
    * getBody returns the body of a document, or an element that can stand in for
    * the body if a real body does not exist
    *
@@ -448,80 +827,6 @@ Detects support for inline SVG in HTML (not within XHTML).
   ;
 
   /**
-   * Modernizr.mq tests a given media query, live against the current state of the window
-   * adapted from matchMedia polyfill by Scott Jehl and Paul Irish
-   * gist.github.com/786768
-   *
-   * @memberof Modernizr
-   * @name Modernizr.mq
-   * @optionName Modernizr.mq()
-   * @optionProp mq
-   * @access public
-   * @function mq
-   * @param {string} mq - String of the media query we want to test
-   * @returns {boolean}
-   * @example
-   * Modernizr.mq allows for you to programmatically check if the current browser
-   * window state matches a media query.
-   *
-   * ```js
-   *  var query = Modernizr.mq('(min-width: 900px)');
-   *
-   *  if (query) {
-   *    // the browser window is larger than 900px
-   *  }
-   * ```
-   *
-   * Only valid media queries are supported, therefore you must always include values
-   * with your media query
-   *
-   * ```js
-   * // good
-   *  Modernizr.mq('(min-width: 900px)');
-   *
-   * // bad
-   *  Modernizr.mq('min-width');
-   * ```
-   *
-   * If you would just like to test that media queries are supported in general, use
-   *
-   * ```js
-   *  Modernizr.mq('only all'); // true if MQ are supported, false if not
-   * ```
-   *
-   *
-   * Note that if the browser does not support media queries (e.g. old IE) mq will
-   * always return false.
-   */
-
-  var mq = (function() {
-    var matchMedia = window.matchMedia || window.msMatchMedia;
-    if (matchMedia) {
-      return function(mq) {
-        var mql = matchMedia(mq);
-        return mql && mql.matches || false;
-      };
-    }
-
-    return function(mq) {
-      var bool = false;
-
-      injectElementWithStyles('@media ' + mq + ' { #modernizr { position: absolute; } }', function(node) {
-        bool = (window.getComputedStyle ?
-                window.getComputedStyle(node, null) :
-                node.currentStyle).position == 'absolute';
-      });
-
-      return bool;
-    };
-  })();
-
-
-  ModernizrProto.mq = mq;
-
-  
-
-  /**
    * testStyles injects an element with style element and some CSS rules
    *
    * @memberof Modernizr
@@ -582,58 +887,6 @@ Detects support for inline SVG in HTML (not within XHTML).
   
 /*!
 {
-  "name": "Touch Events",
-  "property": "touchevents",
-  "caniuse" : "touch",
-  "tags": ["media", "attribute"],
-  "notes": [{
-    "name": "Touch Events spec",
-    "href": "https://www.w3.org/TR/2013/WD-touch-events-20130124/"
-  }],
-  "warnings": [
-    "Indicates if the browser supports the Touch Events spec, and does not necessarily reflect a touchscreen device"
-  ],
-  "knownBugs": [
-    "False-positive on some configurations of Nokia N900",
-    "False-positive on some BlackBerry 6.0 builds – https://github.com/Modernizr/Modernizr/issues/372#issuecomment-3112695"
-  ]
-}
-!*/
-/* DOC
-Indicates if the browser supports the W3C Touch Events API.
-
-This *does not* necessarily reflect a touchscreen device:
-
-* Older touchscreen devices only emulate mouse events
-* Modern IE touch devices implement the Pointer Events API instead: use `Modernizr.pointerevents` to detect support for that
-* Some browsers & OS setups may enable touch APIs when no touchscreen is connected
-* Future browsers may implement other event models for touch interactions
-
-See this article: [You Can't Detect A Touchscreen](http://www.stucox.com/blog/you-cant-detect-a-touchscreen/).
-
-It's recommended to bind both mouse and touch/pointer events simultaneously – see [this HTML5 Rocks tutorial](http://www.html5rocks.com/en/mobile/touchandmouse/).
-
-This test will also return `true` for Firefox 4 Multitouch support.
-*/
-
-  // Chrome (desktop) used to lie about its support on this, but that has since been rectified: http://crbug.com/36415
-  Modernizr.addTest('touchevents', function() {
-    var bool;
-    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-      bool = true;
-    } else {
-      // include the 'heartz' as a way to have a non matching MQ to help terminate the join
-      // https://git.io/vznFH
-      var query = ['@media (', prefixes.join('touch-enabled),('), 'heartz', ')', '{#modernizr{top:9px;position:absolute}}'].join('');
-      testStyles(query, function(node) {
-        bool = node.offsetTop === 9;
-      });
-    }
-    return bool;
-  });
-
-/*!
-{
   "name": "CSS vh unit",
   "property": "cssvhunit",
   "caniuse": "viewport-units",
@@ -683,22 +936,58 @@ This test will also return `true` for Firefox 4 Multitouch support.
     Modernizr.addTest('cssvwunit', compStyle == width);
   });
 
+/*!
+{
+  "name": "details Element",
+  "caniuse": "details",
+  "property": "details",
+  "tags": ["elem"],
+  "builderAliases": ["elem_details"],
+  "authors": ["@mathias"],
+  "notes": [{
+    "name": "Mathias' Original",
+    "href": "https://mathiasbynens.be/notes/html5-details-jquery#comment-35"
+  }]
+}
+!*/
+
+  Modernizr.addTest('details', function() {
+    var el = createElement('details');
+    var diff;
+
+    // return early if possible; thanks @aFarkas!
+    if (!('open' in el)) {
+      return false;
+    }
+
+    testStyles('#modernizr details{display:block}', function(node) {
+      node.appendChild(el);
+      el.innerHTML = '<summary>a</summary>b';
+      diff = el.offsetHeight;
+      el.open = true;
+      diff = diff != el.offsetHeight;
+    });
+
+
+    return diff;
+  });
+
+
 
   /**
-   * cssToDOM takes a kebab-case string and converts it to camelCase
-   * e.g. box-sizing -> boxSizing
+   * contains checks to see if a string contains another string
    *
    * @access private
-   * @function cssToDOM
-   * @param {string} name - String name of kebab-case prop we want to convert
-   * @returns {string} The camelCase version of the supplied name
+   * @function contains
+   * @param {string} str - The string we want to check for substrings
+   * @param {string} substr - The substring we want to search the first string for
+   * @returns {boolean}
    */
 
-  function cssToDOM(name) {
-    return name.replace(/([a-z])-([a-z])/g, function(str, m1, m2) {
-      return m1 + m2.toUpperCase();
-    }).replace(/^-/, '');
+  function contains(str, substr) {
+    return !!~('' + str).indexOf(substr);
   }
+
   ;
 
   /**
@@ -812,23 +1101,6 @@ This test will also return `true` for Firefox 4 Multitouch support.
   var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
   ModernizrProto._domPrefixes = domPrefixes;
   
-
-
-  /**
-   * contains checks to see if a string contains another string
-   *
-   * @access private
-   * @function contains
-   * @param {string} str - The string we want to check for substrings
-   * @param {string} substr - The substring we want to search the first string for
-   * @returns {boolean}
-   */
-
-  function contains(str, substr) {
-    return !!~('' + str).indexOf(substr);
-  }
-
-  ;
 
   /**
    * fnBind is a super small [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) polyfill.
@@ -1107,152 +1379,6 @@ This test will also return `true` for Firefox 4 Multitouch support.
   
 
   /**
-   * testAllProps determines whether a given CSS property is supported in the browser
-   *
-   * @memberof Modernizr
-   * @name Modernizr.testAllProps
-   * @optionName Modernizr.testAllProps()
-   * @optionProp testAllProps
-   * @access public
-   * @function testAllProps
-   * @param {string} prop - String naming the property to test (either camelCase or kebab-case)
-   * @param {string} [value] - String of the value to test
-   * @param {boolean} [skipValueTest=false] - Whether to skip testing that the value is supported when using non-native detection
-   * @example
-   *
-   * testAllProps determines whether a given CSS property, in some prefixed form,
-   * is supported by the browser.
-   *
-   * ```js
-   * testAllProps('boxSizing')  // true
-   * ```
-   *
-   * It can optionally be given a CSS value in string form to test if a property
-   * value is valid
-   *
-   * ```js
-   * testAllProps('display', 'block') // true
-   * testAllProps('display', 'penguin') // false
-   * ```
-   *
-   * A boolean can be passed as a third parameter to skip the value check when
-   * native detection (@supports) isn't available.
-   *
-   * ```js
-   * testAllProps('shapeOutside', 'content-box', true);
-   * ```
-   */
-
-  function testAllProps(prop, value, skipValueTest) {
-    return testPropsAll(prop, undefined, undefined, value, skipValueTest);
-  }
-  ModernizrProto.testAllProps = testAllProps;
-  
-/*!
-{
-  "name": "Background Size Cover",
-  "property": "bgsizecover",
-  "tags": ["css"],
-  "builderAliases": ["css_backgroundsizecover"],
-  "notes": [{
-    "name" : "MDN Docs",
-    "href": "https://developer.mozilla.org/en/CSS/background-size"
-  }]
-}
-!*/
-
-  // Must test value, as this specifically tests the `cover` value
-  Modernizr.addTest('bgsizecover', testAllProps('backgroundSize', 'cover'));
-
-/*!
-{
-  "name": "Flexbox",
-  "property": "flexbox",
-  "caniuse": "flexbox",
-  "tags": ["css"],
-  "notes": [{
-    "name": "The _new_ flexbox",
-    "href": "http://dev.w3.org/csswg/css3-flexbox"
-  }],
-  "warnings": [
-    "A `true` result for this detect does not imply that the `flex-wrap` property is supported; see the `flexwrap` detect."
-  ]
-}
-!*/
-/* DOC
-Detects support for the Flexible Box Layout model, a.k.a. Flexbox, which allows easy manipulation of layout order and sizing within a container.
-*/
-
-  Modernizr.addTest('flexbox', testAllProps('flexBasis', '1px', true));
-
-/*!
-{
-  "name": "Flexbox (tweener)",
-  "property": "flexboxtweener",
-  "tags": ["css"],
-  "polyfills": ["flexie"],
-  "notes": [{
-    "name": "The _inbetween_ flexbox",
-    "href": "https://www.w3.org/TR/2011/WD-css3-flexbox-20111129/"
-  }],
-  "warnings": ["This represents an old syntax, not the latest standard syntax."]
-}
-!*/
-
-  Modernizr.addTest('flexboxtweener', testAllProps('flexAlign', 'end', true));
-
-/*!
-{
-  "name": "CSS Mask",
-  "caniuse": "css-masks",
-  "property": "cssmask",
-  "tags": ["css"],
-  "builderAliases": ["css_mask"],
-  "notes": [
-    {
-      "name": "Webkit blog on CSS Masks",
-      "href": "https://webkit.org/blog/181/css-masks/"
-    },
-    {
-      "name": "Safari Docs",
-      "href": "https://developer.apple.com/library/safari/#documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Masks/Masks.html"
-    },
-    {
-      "name": "CSS SVG mask",
-      "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/mask"
-    },
-    {
-      "name": "Combine with clippaths for awesomeness",
-      "href": "https://generic.cx/for/webkit/test.html"
-    }
-  ]
-}
-!*/
-
-  Modernizr.addTest('cssmask', testAllProps('maskRepeat', 'repeat-x', true));
-
-/*!
-{
-  "name": "CSS Shapes",
-  "property": "shapes",
-  "tags": ["css"],
-  "notes": [{
-    "name": "CSS Shapes W3C specification",
-    "href": "https://www.w3.org/TR/css-shapes"
-  },{
-    "name": "Examples from Adobe",
-    "href": "http://webplatform.adobe.com/shapes/"
-  }, {
-    "name": "Samples showcasing uses of Shapes",
-    "href": "http://codepen.io/collection/qFesk"
-  }]
-}
-!*/
-
-  Modernizr.addTest('shapes', testAllProps('shapeOutside', 'content-box', true));
-
-
-  /**
    * prefixed returns the prefixed or nonprefixed property name variant of your input
    *
    * @memberof Modernizr
@@ -1337,6 +1463,29 @@ Detects support for the Flexible Box Layout model, a.k.a. Flexbox, which allows 
   
 /*!
 {
+  "name": "CSS Background Blend Mode",
+  "property": "backgroundblendmode",
+  "caniuse": "css-backgroundblendmode",
+  "tags": ["css"],
+  "notes": [
+    {
+      "name": "CSS Blend Modes could be the next big thing in Web Design",
+      "href": " https://medium.com/@bennettfeely/css-blend-modes-could-be-the-next-big-thing-in-web-design-6b51bf53743a"
+    }, {
+      "name": "Demo",
+      "href": "http://bennettfeely.com/gradients/"
+    }
+  ]
+}
+!*/
+/* DOC
+Detects the ability for the browser to composite backgrounds using blending modes similar to ones found in Photoshop or Illustrator.
+*/
+
+  Modernizr.addTest('backgroundblendmode', prefixed('backgroundBlendMode', 'text'));
+
+/*!
+{
   "name": "CSS Object Fit",
   "caniuse": "object-fit",
   "property": "objectfit",
@@ -1376,28 +1525,190 @@ Detects support for matchMedia.
 
   Modernizr.addTest('matchmedia', !!prefixed('matchMedia', window));
 
+
+  /**
+   * testAllProps determines whether a given CSS property is supported in the browser
+   *
+   * @memberof Modernizr
+   * @name Modernizr.testAllProps
+   * @optionName Modernizr.testAllProps()
+   * @optionProp testAllProps
+   * @access public
+   * @function testAllProps
+   * @param {string} prop - String naming the property to test (either camelCase or kebab-case)
+   * @param {string} [value] - String of the value to test
+   * @param {boolean} [skipValueTest=false] - Whether to skip testing that the value is supported when using non-native detection
+   * @example
+   *
+   * testAllProps determines whether a given CSS property, in some prefixed form,
+   * is supported by the browser.
+   *
+   * ```js
+   * testAllProps('boxSizing')  // true
+   * ```
+   *
+   * It can optionally be given a CSS value in string form to test if a property
+   * value is valid
+   *
+   * ```js
+   * testAllProps('display', 'block') // true
+   * testAllProps('display', 'penguin') // false
+   * ```
+   *
+   * A boolean can be passed as a third parameter to skip the value check when
+   * native detection (@supports) isn't available.
+   *
+   * ```js
+   * testAllProps('shapeOutside', 'content-box', true);
+   * ```
+   */
+
+  function testAllProps(prop, value, skipValueTest) {
+    return testPropsAll(prop, undefined, undefined, value, skipValueTest);
+  }
+  ModernizrProto.testAllProps = testAllProps;
+  
 /*!
 {
-  "name": "CSS Background Blend Mode",
-  "property": "backgroundblendmode",
-  "caniuse": "css-backgroundblendmode",
+  "name": "CSS Background Clip Text",
+  "property": "backgroundcliptext",
+  "authors": ["ausi"],
   "tags": ["css"],
   "notes": [
     {
-      "name": "CSS Blend Modes could be the next big thing in Web Design",
-      "href": " https://medium.com/@bennettfeely/css-blend-modes-could-be-the-next-big-thing-in-web-design-6b51bf53743a"
-    }, {
-      "name": "Demo",
-      "href": "http://bennettfeely.com/gradients/"
+      "name": "CSS Tricks Article",
+      "href": "https://css-tricks.com/image-under-text/"
+    },
+    {
+      "name": "MDN Docs",
+      "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip"
+    },
+    {
+      "name": "Related Github Issue",
+      "href": "https://github.com/Modernizr/Modernizr/issues/199"
     }
   ]
 }
 !*/
 /* DOC
-Detects the ability for the browser to composite backgrounds using blending modes similar to ones found in Photoshop or Illustrator.
+Detects the ability to control specifies whether or not an element's background
+extends beyond its border in CSS
 */
 
-  Modernizr.addTest('backgroundblendmode', prefixed('backgroundBlendMode', 'text'));
+  Modernizr.addTest('backgroundcliptext', function() {
+    return testAllProps('backgroundClip', 'text');
+  });
+
+/*!
+{
+  "name": "Background Size Cover",
+  "property": "bgsizecover",
+  "tags": ["css"],
+  "builderAliases": ["css_backgroundsizecover"],
+  "notes": [{
+    "name" : "MDN Docs",
+    "href": "https://developer.mozilla.org/en/CSS/background-size"
+  }]
+}
+!*/
+
+  // Must test value, as this specifically tests the `cover` value
+  Modernizr.addTest('bgsizecover', testAllProps('backgroundSize', 'cover'));
+
+/*!
+{
+  "name": "CSS Filters",
+  "property": "cssfilters",
+  "caniuse": "css-filters",
+  "polyfills": ["polyfilter"],
+  "tags": ["css"],
+  "builderAliases": ["css_filters"],
+  "notes": [{
+    "name": "MDN article on CSS filters",
+    "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/filter"
+  }]
+}
+!*/
+
+  Modernizr.addTest('cssfilters', function() {
+    if (Modernizr.supports) {
+      return testAllProps('filter', 'blur(2px)');
+    } else {
+      var el = createElement('a');
+      el.style.cssText = prefixes.join('filter:blur(2px); ');
+      // https://github.com/Modernizr/Modernizr/issues/615
+      // documentMode is needed for false positives in oldIE, please see issue above
+      return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
+    }
+  });
+
+
+/*!
+{
+  "name": "Flexbox",
+  "property": "flexbox",
+  "caniuse": "flexbox",
+  "tags": ["css"],
+  "notes": [{
+    "name": "The _new_ flexbox",
+    "href": "http://dev.w3.org/csswg/css3-flexbox"
+  }],
+  "warnings": [
+    "A `true` result for this detect does not imply that the `flex-wrap` property is supported; see the `flexwrap` detect."
+  ]
+}
+!*/
+/* DOC
+Detects support for the Flexible Box Layout model, a.k.a. Flexbox, which allows easy manipulation of layout order and sizing within a container.
+*/
+
+  Modernizr.addTest('flexbox', testAllProps('flexBasis', '1px', true));
+
+/*!
+{
+  "name": "Flexbox (tweener)",
+  "property": "flexboxtweener",
+  "tags": ["css"],
+  "polyfills": ["flexie"],
+  "notes": [{
+    "name": "The _inbetween_ flexbox",
+    "href": "https://www.w3.org/TR/2011/WD-css3-flexbox-20111129/"
+  }],
+  "warnings": ["This represents an old syntax, not the latest standard syntax."]
+}
+!*/
+
+  Modernizr.addTest('flexboxtweener', testAllProps('flexAlign', 'end', true));
+
+/*!
+{
+  "name": "CSS Mask",
+  "caniuse": "css-masks",
+  "property": "cssmask",
+  "tags": ["css"],
+  "builderAliases": ["css_mask"],
+  "notes": [
+    {
+      "name": "Webkit blog on CSS Masks",
+      "href": "https://webkit.org/blog/181/css-masks/"
+    },
+    {
+      "name": "Safari Docs",
+      "href": "https://developer.apple.com/library/safari/#documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Masks/Masks.html"
+    },
+    {
+      "name": "CSS SVG mask",
+      "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/mask"
+    },
+    {
+      "name": "Combine with clippaths for awesomeness",
+      "href": "https://generic.cx/for/webkit/test.html"
+    }
+  ]
+}
+!*/
+
+  Modernizr.addTest('cssmask', testAllProps('maskRepeat', 'repeat-x', true));
 
 
   // Run each test

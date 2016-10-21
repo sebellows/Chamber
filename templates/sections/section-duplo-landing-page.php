@@ -41,8 +41,12 @@ if( get_row_layout('duplo_set') ) :
                     while ( have_rows( 'duplo_custom' ) ) : the_row();
 
                     $image        = get_sub_field('duplo_image');
-                    $image_src    = wp_get_attachment_image_url( $image['id'], 'post-thumbnail' );
-                    $image_srcset = wp_get_attachment_image_srcset( $image['id'], 'post-thumbnail' );
+                    $image_src    = wp_get_attachment_image_url( $image['id'], 'medium_large' );
+                    // $image_srcset = wp_get_attachment_image_srcset( $image['id'], 'medium_large' );
+                    $image_srcset = $image['sizes']['medium_large'] . ' ' . $image['sizes']['medium_large-width'] . 'w, ' .
+                                    $image['sizes']['medium'] . ' ' . $image['sizes']['medium-width'] . 'w, ' . 
+                                    $image['sizes']['large'] . ' ' . $image['sizes']['large-width'] . 'w, ' .
+                                    $image['sizes']['fullwidth'] . ' ' . $image['sizes']['fullwidth-width'] . 'w';
                     $title        = get_sub_field('duplo_title');
                     $summary      = get_sub_field('duplo_summary');
                     $link         = get_sub_field('duplo_link');
@@ -55,9 +59,11 @@ if( get_row_layout('duplo_set') ) :
                         <img 
                             class="duplo-image" 
                             src="<?= esc_url( $image_src ); ?>"
-                            srcset="<?= esc_attr( $image_srcset ); ?>"
+                            srcset="<?= esc_attr($image_srcset); ?>"
                             sizes="(max-width: 100vw) 480px"
                             alt="<?= $image['alt']; ?>"
+                            width="<?= $image['sizes']['medium_large-width']; ?>"
+                            height="<?= $image['sizes']['medium_large-height']; ?>"
                         >
 
                         <div class="duplo-skrim" aria-hidden="true"></div>

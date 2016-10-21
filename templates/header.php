@@ -18,12 +18,12 @@ use Chamber\Theme\Assets;
 	<div class="site-branding">
 		<h1 class="site-title">
 			<?php if ( get_header_image() ) : ?>
-			<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+			<a class="site-logo" href="<?= esc_url( home_url( '/' ) ); ?>" rel="home">
 				<span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span>
-				<img src="<?php header_image(); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="<?php bloginfo( 'name' ); ?>">
+				<img src="<?php header_image(); ?>" width="<?= esc_attr( get_custom_header()->width ); ?>" height="<?= esc_attr( get_custom_header()->height ); ?>" alt="<?php bloginfo( 'name' ); ?>">
 			</a>
 			<?php else : ?>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+				<a href="<?= esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 			<?php endif; // End header image check. ?>
 		</h1>
 	</div><!-- .site-branding -->
@@ -34,9 +34,9 @@ use Chamber\Theme\Assets;
 			<?php $description = get_bloginfo( 'description', 'display' ); ?>
 			<?php if ( $description || is_customize_preview() ) : ?>
 				<div class="site-description">
-					<span class="screen-reader-text"><?php echo $description; ?></span>
+					<span class="screen-reader-text"><?= $description; ?></span>
 					<?php if (strcmp(strtolower($description), 'see what\s possible')) : ?>
-					<?php echo '<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . Assets\asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
+					<?= '<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . Assets\asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
@@ -60,7 +60,7 @@ use Chamber\Theme\Assets;
 		<!-- Phone number and general email address for Flint &amp; Genesee -->
 		<dl class="site-contact" m-InlineList>
 			<dt class="screen-reader-text">Contact Flint &amp; Genesee by phone or email</dt>
-			<dd class="site-contact-info" rel="phone"><span class="contact-toggle" data-toggle="phoneNumber"></span><span class="icon" m-Icon="phone small"><svg aria-role="presentation" viewBox="0 1 24 24" style="fill:#fefefe;"><use xlink:href="#icon-phone"></use></svg></span><span id="phoneNumber" data-toggler=".is-toggled">(810)-600-1404</span></dd>
+			<dd class="site-contact-info" rel="phone"><a href="tel:1-810-600-1404"></span><span class="icon" m-Icon="phone small"><svg aria-role="presentation" viewBox="0 1 24 24" style="fill:#fefefe;"><use xlink:href="#icon-phone"></use></svg></span><span id="phoneNumber">(810)-600-1404</span></dd>
 			<dd class="site-contact-info"><a href="mailto:info@flintandgenesee.org"><span class="icon" m-Icon="email small"><svg aria-role="presentation" viewBox="0 0 24 24" style="fill:#fefefe;"><use xlink:href="#icon-email"></use></svg></span><span id="emailAddress">info@flintandgenesee.org</span></a></dd>
 		</dl>
 

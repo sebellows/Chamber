@@ -17,11 +17,6 @@ use Chamber\Theme\Sidebar;
 # Adds custom classes to the array of body classes.
 // add_filter('body_class', __NAMESPACE__ . '\\body_class');
 
-# Modify the read more link text for the_excerpt()
-add_filter('excerpt_more', __NAMESPACE__ . '\\custom_excerpt_more');
-# Modify the read more link text for the_content()
-add_filter('the_content_more_link', __NAMESPACE__ . '\\custom_content_more');
-
 # Add SVG capabilities
 add_filter( 'upload_mimes', __NAMESPACE__ . '\\svg_mime_type' );
 
@@ -103,22 +98,6 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 // 	// return $classes;
 // }
-
-/**
- * Modify the read more link text for the_excerpt()
- */
-function custom_excerpt_more($more) {
-	global $post;
-
-	return '<a class="readmore" href="' . get_permalink($post->ID) . '">Read More ' . '<svg class="icon" m-Icon="xsmall" role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></a>';
-}
-
-/**
- * Modify the read more link text for the_content()
- */
-function custom_content_more() {
-	return '<a class="readmore" href="' . get_permalink() . '">Read More ' . '<svg class="icon" m-Icon="xsmall" role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></a>';
-}
 
 /**
  * Add SVG capabilities

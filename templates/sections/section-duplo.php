@@ -1,4 +1,4 @@
-<?php
+                                    <?php
 
 use Chamber\Theme\Color;
 use Chamber\Theme\Helper;

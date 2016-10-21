@@ -2,26 +2,37 @@
 	.callout {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    text-align: center;
 
-    @include breakpoint(large) {
-      padding: rem(24 30);
-      width: 50%;
+    @include breakpoint(medium) {
+      &:first-child:not(:last-child) {
+        justify-content: flex-start;
+        text-align: left;
+        width: 50%;
+      }
 
-      &:only-child {
-        width: 100%;
+      &:last-child:not(:first-child) {
+        justify-content: flex-end;
+        text-align: right;
+        width: 50%;
       }
     }
 
-    .button {
-      margin-bottom: 0;
-      font-size: rem(16);
+    @include breakpoint(large) {
+      padding: rem(24 30);
+    }
+  }
 
-      strong {
-        display: block;
-        font-size: em(18);
-        text-transform: uppercase;
-      }
+  .button {
+    margin-bottom: 0;
+    font-size: rem(16);
+
+    strong {
+      display: block;
+      font-size: em(18);
+      text-transform: uppercase;
     }
   }
 

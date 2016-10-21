@@ -18,9 +18,11 @@
 .duplo-image {
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  height: 100%;
-  min-width: 100%;
+  min-height: 100%;
+  // min-width: 100%;
+  // max-width: none;
   object-fit: cover;
+  object-position: 50% 25%;
   mix-blend-mode: multiply;
 }
   .no-backgrounblendmode .duplo-image {
@@ -33,10 +35,18 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
-  padding: rem(16 20);
+  padding: rem(15);
   text-shadow: 0 1px 1px rgba(0,55,85,0.5);
   position: relative;
   z-index: 1;
+
+  @include breakpoint(medium) {
+    padding: rem(15 20);
+  }
+
+  @include breakpoint(xxlarge) {
+    padding: rem(24 30);
+  }
 
   h2 {
     line-height: 1.2;
@@ -47,10 +57,15 @@
   }
 
   p {
+    font-size: em(14);
     font-style: italic;
     margin-bottom: 0;
     &:empty {
       display: none !important;
+    }
+
+    @include breakpoint(medium) {
+      font-size: em(16);
     }
 
     @include breakpoint(xlarge) {
@@ -64,10 +79,6 @@
     letter-spacing: rem(1.5);
     text-transform: uppercase;
     margin-bottom: em(10,12);
-  }
-
-  @include breakpoint(xxlarge) {
-    padding: rem(24 30);
   }
 }
 
@@ -142,17 +153,23 @@
 
 // 1 Block
 .duplo[m-Duplo="1"] {
-  border-left: 0 !important;
+  border-left-width: 0 !important;
   height: auto;
   @include grid-col(12,0);
 
-  h2 { font-size: em(40); }
+  h2 {
+    font-size: em(40);
+    font-size: 6vw;
+  }
 
   @include breakpoint(medium) {
     height: 400px;
     height: 50vh;
 
-    h2 { font-size: em(48); }
+    h2 {
+      font-size: em(48);
+      font-size: 3vw;
+    }
 
   }
 
@@ -163,7 +180,7 @@
 }
 
 [m-DuploCount="1"] .duplo {
-  border-left: 0 !important;
+  border-left-width: 0 !important;
   @include grid-col(12,0);
 
   h2 {
@@ -194,7 +211,7 @@
   }
 
   &[m-Duplo="2"] {
-    border-right: 0 !important;
+    border-right-width: 0 !important;
     height: 320px;
     height: 35vh;
     @include grid-col(12,0);
@@ -213,17 +230,17 @@
 }
 
 // 3 Blocks
-.stripe [m-DuploCount="3"] .duplo {
+.stripe [m-DuploCount="3"] {
 
-  &[m-Duplo="1"] {
+  [m-Duplo="1"] {
     @include breakpoint(medium) {
       @include grid-col(7,0);
       clear: left;
     }
   }
 
-  &[m-Duplo="2"],
-  &[m-Duplo="3"] {
+  [m-Duplo="2"],
+  [m-Duplo="3"] {
     height: 320px;
     height: 35vh;
     @include grid-col(6,0);
@@ -239,7 +256,7 @@
     p { display: none; }
 
     @include breakpoint(medium) {
-      border-right: 0 !important;
+      border-right-width: 0 !important;
       @include grid-col(5,0);
 
       h2 {
@@ -267,75 +284,93 @@
   }
 
   @include breakpoint(small only) {
-    &[m-Duplo="2"] {
-      border-left: 0 !important;
+    [m-Duplo="2"] {
+      border-left-width: 0 !important;
     }
 
-    &[m-Duplo="3"] {
-      border-right: 0 !important;
+    [m-Duplo="3"] {
+      border-right-width: 0 !important;
     }
   }
 }
 
 // 4 Blocks
-[m-DuploCount="4"] .duplo {
+.stripe [m-DuploCount="4"] {
 
-  &[m-Duplo="1"] {
-    border-left: 0 !important;
+  [m-Duplo="1"] {
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    height: 300px;
+    height: 35vh;
     @include grid-col(12,0);
 
     h2 {
-      font-size: 2.625em;
+      font-size: em(36);
+      font-size: 6vw;
+    }
 
-      &:not(:last-child) {
-        margin-bottom: 0;
+    @include breakpoint(large) {
+      border-right-width: rem(2.5) !important;
+      height: 600px;
+      height: 70vh;
+      @include grid-col(6,0);
+
+      h2 {
+        font-size: em(36);
+        font-size: 3.5vw;
       }
     }
-
-    @include breakpoint(medium) {
-      @include grid-col(6,0);
-      height: 640px;
-      height: 70vh;
-    }
   }
 
-  &[m-Duplo="2"] {
-    border-right: 0 !important;
-    height: 320px;
-    height: 35vh;
-    @include grid-col(12,0);
+  [m-Duplo="2"],
+  [m-Duplo="3"],
+  [m-Duplo="4"] {
+    height: 300px;
+    height: 30vh;
+    @include grid-col(4,0);
 
     h2 {
-      font-size: 2em;
-    }
-
-    @include breakpoint(medium) {
-      @include grid-col(6,0);
-      height: 320px;
-      height: 35vh;
-    }
-  }
-
-  &[m-Duplo="3"],
-  &[m-Duplo="4"] {
-    height: 320px;
-    height: 35vh;
-    @include grid-col(6,0);
-
-    h2 {
-      font-size: 1.25em;
+      font-size: em(22);
+      font-size: 3vw;
       margin-bottom: 0;
     }
 
-    p { display: none; }
+    p {
+      display: none;
+    }
+  }
 
-    @include breakpoint(medium) {
-      height: 320px;
+  [m-Duplo="2"] {
+    border-left-width: 0 !important;
+
+    @include breakpoint(large) {
+      border-left-width: rem(2.5) !important;
+      border-right-width: 0 !important;
+      height: 300px;
+      height: 35vh;
+      @include grid-col(6,0);
+
+      h2 {
+        font-size: em(28);
+        font-size: 2.5vw;
+      }
+
+      p {
+        display: block;
+      }
+    }
+  }
+
+  [m-Duplo="3"],
+  [m-Duplo="4"] {
+    @include breakpoint(large) {
+      height: 300px;
       height: 35vh;
       @include grid-col(3,0);
 
       h2 {
-        font-size: 1.5em;
+        font-size: em(24);
+        font-size: 2vw;
         margin-bottom: rem(8);
       }
     }
@@ -348,9 +383,9 @@
     }
   }
 
-  &[m-Duplo="4"] {
-    @include breakpoint(medium) {
-      border-right: 0 !important;
+  [m-Duplo="4"] {
+    @include breakpoint(large) {
+      border-right-width: 0 !important;
     }
   }
 }
@@ -361,7 +396,7 @@
   // `:only-child` added as fallback
   .duplo-hallmark,
   [m-duplo="1"]:only-child {
-    border-left: 0 !important;
+    border-left-width: 0 !important;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -406,7 +441,7 @@
   [m-duploCount="3"] {
     [m-duplo="1"],
     [m-duplo]:first-child {
-      border-left: 0 !important;
+      border-left-width: 0 !important;
 
       .duplo-content {
         height: 100%;
@@ -463,12 +498,12 @@
       }
       [m-Duplo="2"],
       [m-Duplo]:first-child + [m-Duplo] {
-        border-left: 0 !important;
+        border-left-width: 0 !important;
       }
 
       [m-Duplo="3"],
       [m-Duplo]:last-child {
-        border-right: 0 !important;
+        border-right-width: 0 !important;
       }
     }
   }
@@ -483,7 +518,7 @@
       }
 
       @include breakpoint(small only) {
-        border-left: 0 !important;
+        border-left-width: 0 !important;
       }
 
       @include breakpoint(medium) {
@@ -531,13 +566,13 @@
 ///  always 4 blocks
 ///
 .duplo-feed {
-  [m-DuploCount="4"] .duplo {
+  [m-DuploCount="4"] {
     // Duplo Header : 1 Block
-    &[m-Duplo="1"] {
+    [m-Duplo="1"] {
       @include grid-col(12,0);
 
       @include breakpoint(small only) {
-        border-right: 0 !important;
+        border-right-width: 0 !important;
       }
 
       @include breakpoint(medium) {
@@ -550,25 +585,39 @@
     }
 
     // 2 Blocks
-    &[m-Duplo="2"] {
+    [m-Duplo="2"],
+    [m-Duplo="3"],
+    [m-Duplo="4"] {
+      height: 300px;
+      height: 35vh;
+
+      h2 {
+        font-size: em(36);
+        font-size: 6vw;
+      }
 
       p {
         display: none;
       }
 
       @include breakpoint(small only) {
-        border-left: 0 !important;
+        border-left-width: 0 !important;
+        border-right-width: 0 !important;
       }
+    }
 
+    [m-Duplo="2"] {
       @include breakpoint(medium) {
         @include grid-col(9,0);
-        height: 320px;
-        height: 35vh;
+
+        h2 {
+          font-size: em(36);
+        }
       }
 
       @include breakpoint(large) {
         @include grid-col(6,0);
-        height: 640px;
+        height: 600px;
         height: 70vh;
 
         p {
@@ -577,23 +626,24 @@
       }
     }
 
-    &[m-Duplo="3"],
-    &[m-Duplo="4"] {
+    [m-Duplo="3"],
+    [m-Duplo="4"] {
       @include breakpoint(medium) {
-        height: 320px;
-        height: 35vh;
         @include grid-col(4.5,0);
+
+        h2 {
+          font-size: em(24);
+        }
       }
+
       @include breakpoint(large) {
-        height: 320px;
-        height: 35vh;
         @include grid-col(4,0);
       }
     }
 
     &[m-Duplo="3"] {
       @include breakpoint(small only) {
-        border-left: 0 none !important;
+        border-left-width: 0 !important;
       }
     }
   }

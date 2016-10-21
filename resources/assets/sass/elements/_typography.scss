@@ -3,7 +3,21 @@ dfn, cite {
 }
 
 blockquote {
-	margin: 0 1.5em;
+	margin: 1.5em 0;
+	&:first-child {
+		margin-top: 0;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	p {
+		font-style: italic;
+
+		i, em {
+			font-style: normal;
+		}
+	}
 }
 
 address {

@@ -14,14 +14,14 @@ $admission = get_field('attr_admission');
         <?php if ($hours) : ?>
         <div class="callout">
             <h5>Hours:</h5>
-            <?php echo $hours; ?>
+            <?= $hours; ?>
         </div>
         <?php endif; ?>
 
         <?php if ($admission) : ?>
         <div class="callout">
             <h5>Admission:</h5>
-            <?php echo $admission; ?>
+            <?= $admission; ?>
         </div>
         <?php endif; ?>
     </div>

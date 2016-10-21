@@ -20,7 +20,7 @@
     font-style: normal;
   }
 
-  h3 {
+  h3, h4 {
     font-size: 1em;
     line-height: 1.375;
     margin-bottom: .625em;
@@ -38,21 +38,30 @@
   // Classes
   .row .widget {
     margin-bottom: $global-margin;
-    padding: rem-calc(10 15);
+    padding-top: rem(10);
+    padding-bottom: rem(10);
+    @include flex-grid-column(12);
+
+    &:first-child {
+      // Hide the title on the Address text-widget (first widget in footer)
+      h3, h4 {
+        display: none;
+      }
+    }
 
     @include breakpoint(medium) {
-      @include flex-grid-column(2.666);
+      @include flex-callout(6);
+    }
+
+    @include breakpoint(large) {
+      @include flex-callout(2.666);
 
       &:first-child {
-        @include flex-grid-column(4);
-
-        // Hide the title on the Address text-widget (first widget in footer)
-        h3 {
-          display: none;
-        }
+        @include flex-callout(4);
       }
     }
   }
+
   .row:not(.column) {
     @media (min-width: 50em) {
       max-width: $global-width + 1.875;
@@ -78,7 +87,7 @@
       clear: left;
       float: left;
       font-size: .9em;
-      line-height: 1.94444444444444;
+      line-height: 1.9444;
       margin-bottom: 0;
       margin-right: .5em;
     }

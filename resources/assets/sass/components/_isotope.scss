@@ -5,12 +5,16 @@
 
 .isotope-header {
   margin-bottom: em(30);
-  padding: em(30);
+  padding: rem(15);
   justify-content: center;
 
+  @include breakpoint(medium) {
+    padding: rem(30);
+  }
+
   @include breakpoint(large) {
-    margin-bottom: em(60);
-    padding: em(60);
+    margin-bottom: rem(60);
+    padding: rem(60);
 
     h1 {
       font-size: em(62);
@@ -42,6 +46,12 @@
     text-transform: uppercase;
     padding: 1em;
     opacity: .8;
+
+    @include breakpoint(medium down) {
+      max-width: rem(80);
+      font-family: "Roboto Condensed", HelveticaNeue-CondensedBold, "Arial Narrow", sans-serif;
+      font-size: rem(10);
+    }
 
     &.is-selected {
       opacity: 1;

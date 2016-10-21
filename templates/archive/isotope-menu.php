@@ -47,16 +47,20 @@ foreach ($isotopes as $key => $value) {
 	<menu class="isotope-sortable-menu">
 		<?php foreach($terms as $term) { ?>
 		<a href="#" data-filter=".<?= $term->taxonomy . '-' . $term->slug; ?>">
-			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
-				<use xlink:href="#icon-<?= $term->slug; ?>"></use>
-			</svg>
+			<span class="icon" m-Icon="large">
+				<svg role="presentation" viewbox="0 0 32 32">
+					<use xlink:href="#icon-<?= $term->slug; ?>"></use>
+				</svg>
+			</span>
 			<?= $term->name; ?>
 		</a>
 		<?php } ?>
 		<a href="#" data-filter="*" class="is-selected">
-			<svg class="icon" m-Icon="large" role="presentation" viewbox="0 0 32 32">
-				<use xlink:href="#icon-all"></use>
-			</svg>
+			<span class="icon" m-Icon="large">
+				<svg role="presentation" viewbox="0 0 32 32">
+					<use xlink:href="#icon-all"></use>
+				</svg>
+			</span>
 			All
 		</a>
 	</menu>

@@ -11,7 +11,7 @@
 
 <div class="page-content-body">
 
-	<?php echo the_post_thumbnail(); ?>
+	<?= the_post_thumbnail(); ?>
 
 	<div class="page-content-body-inner">
 

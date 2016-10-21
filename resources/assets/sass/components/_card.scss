@@ -5,11 +5,15 @@
 }
 
 .Card {
-  margin-bottom: rem-calc(60);
+  margin-bottom: rem-calc(30);
   @include grid-column(6);
 
   @include breakpoint(medium) {
     @include grid-column(4);
+  }
+
+  @include breakpoint(medium) {
+    margin-bottom: rem-calc(60);
   }
 
   @include breakpoint(xlarge) {
@@ -69,14 +73,14 @@
 
 .card-content {
   flex: 1;
-  padding: em(12) em(15);
+  padding: rem(12 15);
 }
 
 .card-footer {
   align-self: flex-end;
   border-top: 1px solid neutral(1);
   height: rem-calc(36);
-  padding: em(4) em(15) em(7);
+  padding: rem(4 15 7);
   width: 100%;
 
   > a {
@@ -90,7 +94,14 @@
 }
 
 .card-excerpt {
-  font-size: em(15);
+  display: block;
+  font-size: em(13);
+  line-height: 1.4;
+
+  @include breakpoint(medium) {
+    font-size: em(15);
+    line-height: 1.5;
+  }
 }
 
 .continuedmark {

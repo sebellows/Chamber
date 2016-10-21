@@ -1,6 +1,5 @@
 .cta-link {
   box-shadow: none;
-  // color: currentColor;
   display: block;
   line-height: normal;
   position: relative;
@@ -8,9 +7,21 @@
   transition: box-shadow .3s ease-out, transform .3s ease-out;
   will-change: box-shadow, transform;
   @include flex-callout(12);
+}
+  // For iOS so that `.cta-content` doesn't float to top
+  @supports(display: inline-flex) {
+    .cta-link {
+      display: inline-flex;
+    }
+  }
 
+.cta-link {
   h3 {
     margin: 0;
+
+    @include breakpoint(medium only) {
+      font-size: em(22);
+    }
   }
 
   small {
@@ -29,7 +40,8 @@
   }
 
 .cta-content {
-  height: 100%;
+  min-height: 100%; // iOS requires `min-`
   outline: 1px solid rgba(0, 0, 0, 0.375);
   outline-offset: 0.46875rem;
+  width: 100%; // required for inline-flex
 }

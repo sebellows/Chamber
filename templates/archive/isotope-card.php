@@ -13,15 +13,15 @@ use Chamber\Theme\Helper;
 	<div class="card">
 		<?php if ( has_post_thumbnail() ) : ?>
 		<div class="card-media">
-			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'card-small' ); ?></a>
+			<a href="<?php esc_url(the_permalink()); ?>"><?php the_post_thumbnail( 'card-small' ); ?></a>
 		</div>
 		<?php endif; ?>
 
 		<div class="card-content">
-			<h3 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+			<h3 class="card-title"><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h3>
 
 			<?php if ( get_field('attr_city') ) : ?>
-			<h4 class="card-meta"><?php echo the_field('attr_city'); ?></h4>
+			<h4 class="card-meta"><?= the_field('attr_city'); ?></h4>
 			<?php endif; ?>
 
 			<?php
@@ -29,14 +29,14 @@ use Chamber\Theme\Helper;
 			$content = Helper::limit_content($content, 96, '<a class="continuedmark" href="' . esc_url( get_permalink() ) . '">&nbsp;&hellip;MORE</a>');
 			?>
 			
-			<span class="card-excerpt"><?php echo $content; ?></span>
+			<span class="card-excerpt"><?= $content; ?></span>
 		</div>
 
 		<footer class="card-footer">
 			<?php 
 			$categories = collect(get_the_category())->take(3)->keyBy('name', 'term_id')->each(function($key) {
 				?>
-				<a class="tag" href="<?php echo get_category_link( $key->term_id ); ?>"><?php echo $key->name ?></a>
+				<a class="tag" href="<?= esc_url(get_category_link( $key->term_id )); ?>"><?= $key->name ?></a>
 				<?php
 			});
 			?>

@@ -20,7 +20,7 @@
   const CLOSE_BUTTON = `
       <button class="menu-toggle-close" aria-controls="dept-menu" aria-expanded="true">
         <span class="screen-reader-text">Close menu</span>
-        <span class="icon" m-Icon="close large"><svg aria-role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg></span>
+        <span class="icon" m-Icon="close large" aria-hidden="true"><svg role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg></span>
       </button>
   `;
 
@@ -30,12 +30,12 @@
    * @return object
    */
   function createCloseButton() {
-    let toggle = document.createElement('div');
+    var toggleClose = document.createElement('div');
 
-    toggle.style.cssText +=';'+ 'position:absolute;top:3rem;right:2rem;z-index:1201;';
-    toggle.innerHTML = CLOSE_BUTTON;
+    toggleClose.style.cssText +=';'+ 'position:absolute;top:3rem;right:2rem;z-index:1201;';
+    toggleClose.innerHTML = CLOSE_BUTTON;
 
-    return toggle;
+    return toggleClose;
   }
 
   /**
@@ -45,7 +45,7 @@
    * @return object
    */
   function createModalBackground() {
-    let modalBg = document.createElement('div');
+    var modalBg = document.createElement('div');
 
     modalBg.classList.add('menu-modal');
     modalBg.setAttribute('aria-ignore', 'true');
