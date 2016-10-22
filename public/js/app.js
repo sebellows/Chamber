@@ -228,163 +228,179 @@
 
 (function($) {
 
-	// Use this variable to set up the common and page specific functions. If you
-	// rename this variable, you will also need to rename the namespace below.
-	var Chamber = {
-		// All pages
-		'common': {
-			init: function() {
-				// JavaScript to be fired on all pages
-				
-				// toggle the searchform in the global header
-				if ($("#searchForm").length > 0) {
-				  new Foundation.Toggler($("#searchForm"));
-				}
+    // Use this variable to set up the common and page specific functions. If you
+    // rename this variable, you will also need to rename the namespace below.
+    var Chamber = {
+        // All pages
+        'common': {
+            init: function() {
+                // JavaScript to be fired on all pages
+                
+                // toggle the searchform in the global header
+                if ($("#searchForm").length > 0) {
+                    new Foundation.Toggler($("#searchForm"));
+                }
 
-				// Add scroll-scope.js to flickity captions
-				$(document).scrollScope();
-			},
-			finalize: function() {
-				// JavaScript to be fired on all pages, after page specific JS is fired
-				if ($(".playButton")) {
-					if ( !$( '.reveal' ).length ) {
-						var mediaAttrs = $(".playButton").attr("data-media");
-						var $player    = $(".playButton").attr("data-url");
-						var $reveal    = $('body').append( '<div class="reveal-modal"></div>' );
+                // Add scroll-scope.js to flickity captions
+                $(document).scrollScope();
 
-						$(".playButton").on('click', function() {
-							$.get($player, function( data ) {
-								$('.reveal-modal').html( data ).addClass( 'is-active' );
-								$('.reveal').css('display','block').attr({
-									'aria-hidden': false,
-									'tabindex': -1
-								});
-								$('#videoBox').append('<iframe ' + mediaAttrs + '></iframe>');
-								$('body').addClass('is-reveal-open');
-							});
-						});
-					}
-				}
+                // Add YouTube video to modal to prevent it from slowing down page rendering
+                if ($(".mediabox .media").length > 0) {
+                    createReveal();
+                }
 
-				$('.reveal-modal').on('click', 'button', function(e) {
-					e.preventDefault();
+                if ($(".reveal").length > 0) {
+                    new Foundation.Reveal( $(".reveal") );
+                }
 
-					if ( e.target.nodeName === 'BUTTON' ) {
-						$('.reveal-modal').removeClass('is-active');
-						$('.reveal').remove();
-						$('body').removeClass( 'is-reveal-open' );
-					}
-				});
-			}
-		},
-		// Home page
-		'home': {
-			init: function() {
-				// JavaScript to be fired on the home page
-			},
-			finalize: function() {
-				// JavaScript to be fired on the home page, after the init JS
-			}
-		},
-		'blog': {
-			init: function() {
-				// Make click on social sharing buttons open up small pop-up window instead of another tab.
-				$('body').on('click', 'a[m-button~="share"]', function(event) {
-					console.log('It was clicked!');
-				  event.preventDefault();
-				  var url = $(this).attr('href');
-				  window.open(url, 'social_share_window', 'height=320, width=560, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');
-				});
+                function createReveal() {
+                    var $reveal     =   '<div class="reveal" id="videoPlayerReveal" data-reveal>'+
+                                        '<div id="videoBox" class="flex-video widescreen media"></div>'+
+                                        '</div>';
+                    var closeButton =   '<button class="close-button" data-close aria-label="Close modal">'+
+                                        '<span class="screen-reader-text">Close modal</span>'+
+                                        '<span class="icon" m-Icon="close large" aria-hidden="true">'+
+                                        '<svg role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg>'+
+                                        '</span>'+
+                                        '</button>';
 
-				// Set images in `.entry-content` to non-floating blocks if they're horizontal
-				$('.entry-content img').each( function ( $w, $h ) {
-					$w = $(this).width();
-					$h = $(this).height();
-					($w > $h) ? $(this).addClass('inline-image-h') : $(this).addClass('inline-image-v');
-				});
-			},
-			finalize: function() {
-				//
-			}
-		},
-		'archive': {
-			init: (function() {
-				// The ID for the list with all the blog posts
-				var $container = $('.card-grid');
+                    $('body').append($reveal);
 
-				//Isotope options, 'Card' matches the class in the PHP
-				$container.imagesLoaded( function(){
-					$container.isotope({
-						itemSelector : '.Card', 
-				  		layoutMode : 'masonry'
-					});
-				});
-			 
-				// Add the class selected to the Card that is clicked, and remove from the others
-				var $optionSets = $('.isotope-sortable-menu'),
-				$optionLinks = $optionSets.find('a');
+                    // Use `setTimeout` due to delay in `.reveal` getting wrapped by overlay
+                    // Close button was moved to prevent it overlapping the video.
+                    setTimeout(function() {
+                        $('.reveal-overlay').prepend(closeButton);                        
+                    }, 500);
+                }
 
-				$optionLinks.click(function() {
-					var $this = $(this);
-					// don't proceed if already selected
-					if ( $this.hasClass('is-selected') ) {
-					  return false;
-					}
-					var $optionSet = $this.parents('.isotope-sortable-menu');
-					$optionSets.find('.is-selected').removeClass('is-selected');
-					$this.addClass('is-selected');
-				 
-					// When a Card is clicked, sort the items.
-					var selector = $(this).attr('data-filter');
-					$container.isotope({ filter: selector });
+                $(document).on('click', "[data-open]", function(e) {
+                    var target = $(this).attr("data-open");
+                    var mediaAttrs  = atob($(this).attr("data-media"));
 
-					return false;
-				});
-			}),
-			finalize: function() {
-				//
-			}
-		},
-		// About us page, note the change from about-us to about_us.
-		'about_us': {
-			init: function() {
-				// JavaScript to be fired on the about us page
-			}
-		}
-	};
+                    // Append the iframe attributes to an iframe in the `#videoBox`
+                    $("#videoBox").append('<iframe ' + mediaAttrs + '></iframe>');
+                    $("#" + target).css('opacity', '1');
+                    
+                });
 
-	// The routing fires all common scripts, followed by the page specific scripts.
-	// Add additional events for more control over timing e.g. a finalize event
-	var UTIL = {
-		fire: function(func, funcname, args) {
-			var fire;
-			var namespace = Chamber;
-			funcname = (funcname === undefined) ? 'init' : funcname;
-			fire = func !== '';
-			fire = fire && namespace[func];
-			fire = fire && typeof namespace[func][funcname] === 'function';
+                $(document).on(
+                    'closed.zf.reveal', function() {
+                        $("#videoBox iframe").remove();
+                    }
+                );
+            },
+            finalize: function() {
+                // JavaScript to be fired on all pages, after page specific JS is fired
+            }
+        },
+        // Home page
+        'home': {
+            init: function() {
+                // JavaScript to be fired on the home page
+            },
+            finalize: function() {
+                // JavaScript to be fired on the home page, after the init JS
+            }
+        },
+        'blog': {
+            init: function() {
+                // Make click on social sharing buttons open up small pop-up window instead of another tab.
+                $('body').on('click', 'a[m-button~="share"]', function(event) {
+                    console.log('It was clicked!');
+                    event.preventDefault();
+                    var url = $(this).attr('href');
+                    window.open(url, 'social_share_window', 'height=320, width=560, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');
+                });
 
-			if (fire) {
-				namespace[func][funcname](args);
-			}
-		},
-		loadEvents: function() {
-			// Fire common init JS
-			UTIL.fire('common');
+                // Set images in `.entry-content` to non-floating blocks if they're horizontal
+                $('.entry-content img').each( function ( $w, $h ) {
+                    $w = $(this).width();
+                    $h = $(this).height();
+                    ($w > $h) ? $(this).addClass('inline-image-h') : $(this).addClass('inline-image-v');
+                });
+            },
+            finalize: function() {
+                //
+            }
+        },
+        'archive': {
+            init: (function() {
+                // The ID for the list with all the blog posts
+                var $container = $('.card-grid');
 
-			// Fire page-specific init JS, and then finalize JS
-			$.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
-				UTIL.fire(classnm);
-				UTIL.fire(classnm, 'finalize');
-			});
+                //Isotope options, 'Card' matches the class in the PHP
+                $container.imagesLoaded( function(){
+                    $container.isotope({
+                        itemSelector : '.Card', 
+                            layoutMode : 'masonry'
+                    });
+                });
+             
+                // Add the class selected to the Card that is clicked, and remove from the others
+                var $optionSets = $('.isotope-sortable-menu'),
+                $optionLinks = $optionSets.find('a');
 
-			// Fire common finalize JS
-			UTIL.fire('common', 'finalize');
-		}
-	};
+                $optionLinks.click(function() {
+                    var $this = $(this);
+                    // don't proceed if already selected
+                    if ( $this.hasClass('is-selected') ) {
+                        return false;
+                    }
+                    var $optionSet = $this.parents('.isotope-sortable-menu');
+                    $optionSets.find('.is-selected').removeClass('is-selected');
+                    $this.addClass('is-selected');
+                 
+                    // When a Card is clicked, sort the items.
+                    var selector = $(this).attr('data-filter');
+                    $container.isotope({ filter: selector });
 
-	// Load Events
-	$(document).ready(UTIL.loadEvents);
+                    return false;
+                });
+            }),
+            finalize: function() {
+                //
+            }
+        },
+        // About us page, note the change from about-us to about_us.
+        'about_us': {
+            init: function() {
+                // JavaScript to be fired on the about us page
+            }
+        }
+    };
+
+    // The routing fires all common scripts, followed by the page specific scripts.
+    // Add additional events for more control over timing e.g. a finalize event
+    var UTIL = {
+        fire: function(func, funcname, args) {
+            var fire;
+            var namespace = Chamber;
+            funcname = (funcname === undefined) ? 'init' : funcname;
+            fire = func !== '';
+            fire = fire && namespace[func];
+            fire = fire && typeof namespace[func][funcname] === 'function';
+
+            if (fire) {
+                namespace[func][funcname](args);
+            }
+        },
+        loadEvents: function() {
+            // Fire common init JS
+            UTIL.fire('common');
+
+            // Fire page-specific init JS, and then finalize JS
+            $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
+                UTIL.fire(classnm);
+                UTIL.fire(classnm, 'finalize');
+            });
+
+            // Fire common finalize JS
+            UTIL.fire('common', 'finalize');
+        }
+    };
+
+    // Load Events
+    $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
 

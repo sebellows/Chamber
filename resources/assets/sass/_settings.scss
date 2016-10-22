@@ -88,7 +88,7 @@ $dark-gray: neutral(4);
 
 /// Color used for black ui items.
 /// @type Color
-$black: #131516;
+$black: neutral(7);
 
 /// Color used for white ui items.
 /// @type Color
@@ -530,11 +530,11 @@ $progress-radius: $global-radius;
 // ----------
 
 $reveal-background: $white;
-$reveal-width: 600px;
+$reveal-width: 640px;
 $reveal-max-width: $global-width;
 $reveal-padding: $global-padding;
-$reveal-border: 1px solid $medium-gray;
-$reveal-radius: $global-radius;
+$reveal-border: 0 none;
+$reveal-radius: 2px;
 $reveal-zindex: 1005;
 $reveal-overlay-background: rgba($black, 0.45);
 

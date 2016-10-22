@@ -51,7 +51,7 @@ add_filter('comments_open', '__return_false');
 add_filter('use_default_gallery_style', '__return_false');
 
 # Register additional fields to use with Rest API
-add_action( 'rest_api_init', __NAMESPACE__.'\\register_api_addon_filters' );
+add_action( 'rest_api_init', __NAMESPACE__.'\\register_api_addon_fields' );
 
 # Remove those damn emojis.
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -292,19 +292,20 @@ function rss_post_thumbnail($content) {
 
 
 /**
- * Register the Rest API.
+ * Registers the rest api.
  *
  * @return str
  */
-function register_api_addon_filters() {
+
+function register_api_addon_fields() {
 	if ( function_exists('register_api_field') ) {
 		register_api_field( 'post',
-	        'chamber/api/addon/fields',
-	        array(
+	        'chamber_extra',
+	        [
 	            'get_callback'    => __NAMESPACE__.'\\get_api_addon_fields',
 	            'update_callback' => null,
 	            'schema'          => null,
-	        )
+	        ]
 	    );
 	}
 }
@@ -323,15 +324,14 @@ function get_api_addon_fields( $object, $field_name, $request ) {
 		$image_src = null;
 	}
 
-	$addons = array();
-	$addons['image_src'] = $image_src;
-	$addons['tag_list'] = tag_list( $object['id'], true );
-	$addons['category_list'] = category_list( $object['id'], true );
-	$addons['date_ago'] = human_time_diff(get_the_time('U', $object['id']), current_time('timestamp')) .  ' '.__('ago', 'boron');
-	$addons['comments'] = comment_count( $object['id'] );
-	$addons['post_template'] = get_single_post( $object['id'] );
-	$addons['post_side_template'] = get_single_post_side( $object['id'] );
-	$addons['post_classes'] = implode( ' ', get_post_class('', $object['id'] ) );
+	$addons                       = array();
+	$addons['image_src']          = $image_src;
+	$addons['tag_list']           = get_tag_list( $object['id'], true );
+	$addons['category_list']      = get_category_list( $object['id'], true );
+	$addons['date_ago']           = human_time_diff(get_the_time('U', $object['id']), current_time('timestamp')) .  ' '.__('ago', 'chamber');
+	$addons['post_template']      = get_single_post( $object['id'] );
+	// $addons['post_side_template'] = get_single_post_side( $object['id'] );
+	$addons['post_classes']       = implode( ' ', get_post_class('', $object['id'] ) );
 
     return $addons;
 }
@@ -384,7 +384,7 @@ function get_single_post_pagination( $post_id = '' ) {
 		if (!empty( $prev_post )) {
 			$output .= '
 			<div class="nav_button left">
-				<h3 class="prev-post-text">'. __('Previous post', 'boron').'</h3>
+				<h3 class="prev-post-text">'. __('Previous post', 'chamber').'</h3>
 				<div class="prev-post-link">
 					<a href="'. get_permalink( $prev_post->ID ).'" class="prev_blog_post icon-left">'.get_the_title( $prev_post->ID ).'</a>
 				</div>
@@ -393,7 +393,7 @@ function get_single_post_pagination( $post_id = '' ) {
 		if (!empty( $next_post )) {
 			$output .= '
 			<div class="nav_button right">
-				<h3 class="next-post-text">'.__('Next post', 'boron').'</h3>
+				<h3 class="next-post-text">'.__('Next post', 'chamber').'</h3>
 				<div class="next-post-link">
 					<a href="'. get_permalink( $next_post->ID ).'" class="next_blog_post icon-right">'. get_the_title( $next_post->ID ).'</a>
 				</div>
@@ -405,19 +405,18 @@ function get_single_post_pagination( $post_id = '' ) {
 	return $output;
 }
 
-
 /**
- * Returns list of categories for Boron 1.0.
+ * Returns list of categories with links.
  *
  * @return string
  */
-function category_list( $post_id, $return = false ) {
+function category_link_list( $post_id, $return = false ) {
 	$category_list = get_the_category_list( ', ', '', $post_id );
 	$entry_utility = '';
 	if ( $category_list ) {
 		$entry_utility .= '
 		<div class="category-link">
-			<svg class="icon" role="presentation" viewbox="0 0 24 24"><use xlink:href="#icon-folder"></use></svg>' . $category_list . '
+			<span class="category-text">' . __('Categories', 'chamber') . '</span>' . $category_list . '
 		</div>';
 	}
 	if ( $return ) {
@@ -428,17 +427,83 @@ function category_list( $post_id, $return = false ) {
 }
 
 /**
- * Returns list of categories with links for Boron 1.0.
+ * Get archive date.
  *
- * @return string
+ * @return str
  */
-function category_link_list( $post_id, $return = false ) {
+function get_archive() {
+	$dates =[ 'year' => '', 'monthnum' => '', 'day' => '' ];
+	if ( !is_date() ) {
+		return $dates;
+	}
+	$dates['year']     = get_query_var('year');
+	$dates['monthnum'] = get_query_var('monthnum');
+	$dates['day']      = get_query_var('day');
+
+	return $dates;
+}
+
+/**
+ * Get the taxonomies for a post.
+ *
+ * @return str
+ */
+function get_post_tax() {
+	if ( isset( $GLOBALS['wp_query']->queried_object->term_id ) ) {
+		$term_id = $GLOBALS['wp_query']->queried_object->term_id;
+	} else {
+		$term_id = '';
+	}
+
+	$tax_arrays = [
+		[
+			'field'    =>'term_id',
+			'taxonomy' =>'post_format',
+			'terms'    => $term_id
+		]
+	];
+
+	return serialize($tax_arrays);
+}
+
+/**
+ * Returns list of categories.
+ *
+ * @return str
+ */
+function get_category_list( $post_id, $return = false ) {
 	$category_list = get_the_category_list( ', ', '', $post_id );
 	$entry_utility = '';
 	if ( $category_list ) {
 		$entry_utility .= '
 		<div class="category-link">
-			<span class="category-text">' . __('Categories', 'boron') . '</span>' . $category_list . '
+			<span class="icon" m-Icon="folder small"><svg role="presentation" viewbox="0 0 32 32"><use xlink:href="#icon-folder"></use></svg></span>' . $category_list . '
+		</div>';
+	}
+	if ( $return ) {
+		return $entry_utility;
+	} else {
+		echo $entry_utility;
+	}
+}
+
+/**
+ * Returns list of tags.
+ *
+ * @return str
+ */
+function get_tag_list( $post_id, $return = false ) {
+	$entry_utility = '';
+	$posttags = get_the_tags( $post_id );
+
+	if ( $posttags ) {
+		$entry_utility .= '
+		<div class="tag-link">
+			<span class="icon-tags"></span>';
+				foreach( $posttags as $tag ) {
+					$entry_utility .= $tag->name . ' '; 
+				}
+			$entry_utility .= '
 		</div>';
 	}
 	if ( $return ) {

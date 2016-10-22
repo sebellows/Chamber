@@ -14,6 +14,7 @@ namespace Chamber\Theme\Setup;
 use Chamber\Theme\Helper;
 use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
+use Chamber\Theme\Extras;
 use Chamber\Theme\Menu;
 use Chamber\Theme\Sidebar;
 use Hybrid;
@@ -197,10 +198,10 @@ function assets() {
 			'nonce'           => wp_create_nonce( 'wp_rest' ),
 			'posts_per_page'  => get_option('posts_per_page'),
 			'home_url'        => esc_url( home_url() ),
-			'dates'           => Helper::get_archive(),
-			'post_tax'        => Helper::get_post_tax(),
+			'dates'           => Extras\get_archive(),
+			'post_tax'        => Extras\get_post_tax(),
 			'rest_api_status' => function_exists('register_api_field'),
-			'read_more'       => 'Read More'
+			'read_more'       => __('Read More', 'chamber')
 		]
 	);
 
@@ -217,3 +218,4 @@ function enqueue_admin_script() {
     wp_enqueue_style( 'chamber/theme/admin/css' );
 }
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_admin_script' );
+

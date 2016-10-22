@@ -1,23 +1,17 @@
-.reveal-modal {
+.reveal-overlay {
   display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
+  z-index: 999;
   top: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   right: 0;
-  z-index: 1005;
-  background-color: rgba($black, 0.45);
-  overflow-y: scroll;
-
-  .reveal {
-    top: auto;
-  }
-
-  .media {
-    margin-bottom: 0;
-  }
+  height: 100vh;
+  width: 100%;
+  background: rgba($black,.45);
+  will-change: opacity;
 
   &.is-active {
     display: flex !important;
@@ -28,10 +22,11 @@
     height: rem(60);
     background-color: $white;
     border-radius: 50%;
-    filter: drop-shadow(0 2px 6px $black);
     transform: translate3d(0,0,0);
     transition: all .25s cubic-bezier(0.4,0,0.2,0);
-    z-index: 2000;
+    z-index: ($reveal-zindex + 1);
+    top: 5%; right: 5%;
+    @include z-depth(4);
 
     .icon {
       top: 2px;
@@ -40,5 +35,41 @@
     .icon, svg {
       pointer-events: none;
     }
+  }
+}
+
+.reveal {
+  @include z-depth(4);
+  padding: 0;
+  max-height: 70%;
+  margin: auto;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity .3s cubic-bezier(0.4,0,0.2,0);
+  will-change: opacity;
+
+  @include breakpoint(medium down) {
+   width: 80%;
+  }
+
+  .reveal-content {
+    padding: 24px;
+  }
+
+  .reveal-footer {
+    border-radius: 0 0 2px 2px;
+    background-color: #fafafa;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+
+    .button {
+      float: right;
+      margin: rem(6 0);
+    }
+  }
+
+  .media {
+    margin-bottom: 0;
   }
 }

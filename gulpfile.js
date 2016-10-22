@@ -55,6 +55,7 @@ elixir(function(mix) {
 		'node_modules/foundation-sites/dist/plugins/foundation.util.timerAndImageLoader.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.util.touch.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.util.triggers.js',
+		'node_modules/foundation-sites/dist/plugins/foundation.abide.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.orbit.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.responsiveMenu.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
