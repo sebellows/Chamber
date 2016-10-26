@@ -3,7 +3,7 @@
  * Adds a meta box with contact and location information.
  */
 
-$map     = get_field('attr_add_google_map');
+$map     = get_field('attr_google_map');
 $street  = get_field('attr_street_address');
 $suite   = get_field('attr_apt_suite');
 $city    = get_field('attr_city') ? get_field('attr_city') : null;
@@ -17,7 +17,9 @@ $fax     = get_field('attr_fax');
 
 <div class="attraction-contact">
     <?php if ($map) : ?>
-    <div class="map-thumb" style="width:150px;height:150px"><?= the_field('attr_google_map'); ?></div>
+    <div class="map-thumb" style="width:150px;height:150px">
+        <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
+    </div>
     <?php endif; ?>
 
     <dl class="meta-list">
