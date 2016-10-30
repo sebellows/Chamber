@@ -365,6 +365,59 @@
         'about_us': {
             init: function() {
                 // JavaScript to be fired on the about us page
+            },
+            finalize: function() {
+                //
+            }
+        },
+        'data_grid_attractions': {
+            init: function() {
+                var $table = $('#dataGrid'),
+                    $alertBtn = $('#alertButton'),
+                    full_screen = false;
+                    
+                $().ready(function(){
+                    $table.chamberDataGrid({
+                        toolbar: ".toolbar",
+                
+                        showRefresh: true,
+                        search: true,
+                        showToggle: true,
+                        showColumns: true,
+                        pagination: true,
+                        striped: true,
+                        pageSize: 10,
+                        pageList: [10,25,50,100],
+                        
+                        formatShowingRows: function(pageFrom, pageTo, totalRows){
+                            //do nothing here, we don't want to show the text "showing x of y from..." 
+                        },
+                        formatRecordsPerPage: function(pageNumber){
+                            return pageNumber + " rows visible";
+                        },
+                        icons: {
+                            refresh: 'refresh',
+                            toggle: 'list',
+                            columns: 'columns',
+                            detailOpen: 'plus-circle',
+                            detailClose: 'minus-circle'
+                        }
+                    });
+                    
+                                
+                    
+                    $(window).resize(function () {
+                        $table.chamberDataGrid('resetView');
+                    });
+
+                    $alertButton.click(function () {
+                        alert("You pressed on Alert");
+                    });
+                    
+                });
+            },
+            finalize: function() {
+                //
             }
         }
     };

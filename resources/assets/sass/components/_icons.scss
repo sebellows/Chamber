@@ -14,3 +14,20 @@ svg.icon,
   pointer-events: none;
 }
 
+.bg-icon {
+  display: inline-block;
+  width: 1.5rem; height: 1.5rem;
+
+  &.refresh {
+    @include refresh-icon(currentColor, 1.5rem);
+  }
+
+  &.list {
+    @include list-icon(currentColor, 1.5rem);
+  }
+
+  &.columns {
+    @include columns-icon(currentColor, 1.5rem);
+  }
+
+}

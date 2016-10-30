@@ -68,3 +68,8 @@
   height: 48px;
   transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
 }
+
+.button.raised {
+  @include z-depth(1, true, 2);
+  transition: all .25s cubic-bezier(0.0,0.0,0.2,1);
+}

@@ -6,4 +6,4 @@
  */
 ?>
 
-<?php get_template_part('templates/app', 'attractions'); ?>
+<?php get_template_part('templates/app/attractions'); ?>

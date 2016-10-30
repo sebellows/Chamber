@@ -53,7 +53,8 @@ elixir(function(mix) {
 		'node_modules/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.reveal.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.toggler.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.tooltip.js'
+		'node_modules/foundation-sites/dist/plugins/foundation.tooltip.js',
+		'node_modules/foundation-sites/dist/plugins/foundation.dropdown.js'
 	], 'resources/assets/js/foundation');
 
 	mix.copy('resources/assets/images', 'public/images');
@@ -73,6 +74,8 @@ elixir(function(mix) {
 	mix.scripts('customizer.js');
 
 	mix.scripts('isotope.pkgd.js');
+
+	mix.scripts('data-grid.js');
 
 	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 

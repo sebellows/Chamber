@@ -1,0 +1,180 @@
+.data-grid table {
+  @include paper-ui;
+
+  tbody,
+  thead,
+  tfoot {
+    border: 0 none;
+  }
+
+  thead,
+  tfoot {
+    background-color: color(brand-light);
+    color: $white;
+  }
+
+  tr:nth-of-type(even) td {
+    background-color: transparentize(color(brand-light),.8);
+  }
+
+  &.is-block-view tbody {
+    @include flex-grid-row;
+
+    tr {
+      @include flex-callout(12);
+    }
+
+    td {
+      display: block;
+      height: 100%;
+
+      img {
+        float: none;
+        margin-right: 0;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: rem(10);
+      }
+    }
+
+    @include breakpoint(medium) {
+      tr {
+        @include flex-callout(6);
+      }
+    }
+
+    @include breakpoint(large) {
+      tr {
+        @include flex-callout(4);
+      }
+    }
+  }
+
+  .block-view {
+    &:first-of-type .title {
+      display: none;
+    }
+
+    .title {
+      font-weight: 700;
+
+      &:after {
+        content: ": ";
+      }
+    }
+  }
+}
+
+.fixed-table-toolbar {
+  @include flex-grid-row();
+  align-items: center;
+  flex-wrap: nowrap;
+
+  .align-left {
+    align-self: flex-start;
+  }
+
+  .align-right {
+    align-self: flex-end;
+  }
+
+
+  .button-group {
+    order: 2;
+
+    .button {
+      border-radius: 4px;
+      padding: .5em 1em;
+    }
+  }
+
+  .search-wrapper {
+    order: 1;
+    max-width: rem(300);
+    position: relative;
+    @include paper-input;
+  }
+
+  .search {
+    display: block;
+    margin: 0;
+    padding: 0 em(45) 0 0;
+    width: 100%;
+  }
+}
+
+.data-grid {
+
+  img {
+    display: block;
+    float: left;
+    margin-right: em(12);
+    max-width: 120px;
+    height: auto;
+  }
+
+  .h2, h3, h4, h5, h6 {
+    clear: none;
+  }
+
+  h3 {
+    font-size: em(18);
+  }
+
+  .readmore {
+    color: color(cvb);
+    display: inline;
+  }
+
+  .sortable {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    padding: 0 8px;
+  }
+
+  .both {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG2YAABzjgAA+swAAIT6AAB5gQAA/RMAADBtAAASKQ0eJk4AAACgSURBVHjarNI7CoQwEIDhCIrewMIDCB7Bxs7KM6T0DBbewcZOEFZhjvnvFoZFlmSyCzvTpPgYMg/zNN+k+ZldQY4lvd4aGzjpI4yKFWGhVBgJI4IgWJIwa9gc26kDjILZIUGYyPys4+DxzoNW6fQe/mrtR7XOzzKm299milCnNbtDG402N+vYqMzNGEoWhJUqttOekyG++hRLrrA/nOVrAL+bXF6R95QBAAAAAElFTkSuQmCC");
+    background-position: right center;
+  }
+}
+
+.fixed-table-footer {
+  @include flex-grid-row();
+  flex-wrap: nowrap;
+
+  .button {
+    margin-bottom: 0;
+  }
+
+  .align-left {
+    align-self: flex-start;
+  }
+
+  .align-right {
+    align-self: flex-end;
+  }
+
+  .dropup-group {
+    white-space: nowrap;
+  }
+
+  .pagination {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    .pagination {
+      margin-left: auto;
+      margin-right: 0;
+      width: auto;
+    }
+
+    .disabled {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .page-size {
+    color: $black;
+  }
+}
