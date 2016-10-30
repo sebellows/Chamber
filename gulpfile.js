@@ -1,6 +1,6 @@
 var elixir = require('laravel-elixir');
 
-require('laravel-elixir-vue');
+// require('laravel-elixir-vue');
 require('laravel-elixir-svgstore');
 
 // Vue.config.devtools = true
@@ -30,9 +30,9 @@ elixir(function(mix) {
 
 	mix.copy([
 		'node_modules/motion-ui/dist/motion-ui.js',
-		'node_modules/what-input/dist/what-input.js',
-		'node_modules/vue-resource/dist/vue-resource.js',
-		'node_modules/vue-router/dist/vue-router.js'
+		'node_modules/what-input/dist/what-input.js'
+		// 'node_modules/vue-resource/dist/vue-resource.js',
+		// 'node_modules/vue-router/dist/vue-router.js'
 	], 'resources/assets/js/vendor');
 
 	mix.copy('node_modules/isotope-layout/dist/isotope.pkgd.js', 'resources/assets/js');
@@ -78,7 +78,7 @@ elixir(function(mix) {
 
 	mix.rollup('./resources/assets/js/foundation.js');
 
-	mix.webpack('filter.js');
+	// mix.webpack('filter.js');
 
 	mix.browserSync({
 		files: ['{lib,templates}/**/*.php', '*.php', 'public'],
