@@ -37,7 +37,7 @@ foreach($departments as $department) {
         <div class="grid">
 
             <?php while($loop->have_posts()) : $loop->the_post(); ?>
-                <?php get_template_part( 'templates/posttype/person' ); ?>
+                <?php get_template_part( 'templates/content/person' ); ?>
             <?php endwhile; ?>
 
         </div>

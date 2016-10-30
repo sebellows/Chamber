@@ -54,17 +54,9 @@ use Chamber\Theme\Wrapper;
 
 				<?php hybrid_get_menu( 'breadcrumbs' ); // Loads the menu/breadcrumbs.php template. ?>
 
-				<?php if ( !is_page_template('landing-page.php') && !is_post_type_archive() && !is_singular('person') ) : ?>
-				<div class="row">
-				<?php endif; ?>
-
 				<?php include Wrapper\template_path(); ?>
 
 				<?php locate_template( [ 'menu/loop-nav.php' ], true ); // Loads the misc/loop-nav.php template. ?>
-
-				<?php if ( !is_page_template('landing-page.php') && !is_post_type_archive() && !is_singular('person') ) : ?>
-				</div><!-- .row -->
-				<?php endif; ?>
 
 			</main><!-- /#content -->
 

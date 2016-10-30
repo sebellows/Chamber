@@ -2,6 +2,11 @@
   border: 1px solid color(cvb);
   margin-bottom: 1rem;
 
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .callout {
     border: 0 none;
     font-size: rem-calc(12);

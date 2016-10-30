@@ -13,20 +13,24 @@ use Chamber\Theme\TemplateTags;
 
 ?>
 
-<div id="main-feed" class="main-feed">
+<div class="row">
 
-	<h2 class="list-title">Recent Stories</h2>
+	<div id="main-feed" class="main-feed">
 
-	<div class="feed-box">
-		<?php while (have_posts()) : the_post(); ?>
-			<?php get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format()); ?>
-		<?php endwhile; ?>		
-	</div>
+		<h2 class="list-title">Recent Stories</h2>
 
-</div><!-- .news-feed -->
+		<div class="feed-box">
+			<?php while (have_posts()) : the_post(); ?>
+				<?php get_template_part('templates/content/content', get_post_type() != 'post' ? get_post_type() : get_post_format()); ?>
+			<?php endwhile; ?>		
+		</div>
 
-<aside class="sidebar sidebar-column">
-	<?php if ( is_active_sidebar('sidebar-column') ) : ?>
-		<?php Sidebar::add('column'); ?>
-	<?php endif; ?>
-</aside><!-- .sidebar-column -->
+	</div><!-- .news-feed -->
+
+	<aside class="sidebar sidebar-column">
+		<?php if ( is_active_sidebar('sidebar-column') ) : ?>
+			<?php Sidebar::add('column'); ?>
+		<?php endif; ?>
+	</aside><!-- .sidebar-column -->
+
+</div>

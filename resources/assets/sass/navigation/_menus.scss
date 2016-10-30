@@ -70,12 +70,10 @@
     text-transform: uppercase;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(medium) {
     display: table;
     table-layout: fixed;
     margin-bottom: rem(30);
-    padding-left: rem(24);
-    padding-right: rem(24);
 
     a {
       display: table-cell;
@@ -84,4 +82,15 @@
       width: 50%;
     }
   }
+
+  @include breakpoint(large) {
+    padding-left: rem(24);
+    padding-right: rem(24);
+  }
 }
+  @supports(display:flex) {
+    .pager {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }

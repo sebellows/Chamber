@@ -57,7 +57,7 @@ function hybrid_post_style_meta_box( $post, $box ) {
 			<option value=""></option>
 
 			<?php foreach ( $styles as $label => $file ) : ?>
-				<option value="<?php echo esc_attr( $file ); ?>" <?php selected( $post_style, $file ); ?>><?php echo esc_html( $label ); ?></option>
+				<option value="<?= esc_attr( $file ); ?>" <?php selected( $post_style, $file ); ?>><?= esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 
 		</select>

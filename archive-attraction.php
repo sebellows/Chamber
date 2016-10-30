@@ -7,41 +7,34 @@
  * @package Chamber
  */
 
-// Get the post types that will get the Isotope.js treatment from the config file.
-$isotope = (new \Chamber\Theme\Config)->get('isotope');
-
-// Get the names, not the labels
-$posttypes = array_keys($isotope);
 ?>
 
-<div class="isotope-archive">
+<div id="app" class="isotope-archive">
 
-    <?php get_template_part('templates/archive/isotope', 'menu'); ?>
+    <?php get_template_part('menu/isotope'); ?>  
 
-<?php 
-if ( in_array( is_post_type_archive(), $posttypes ) ) :
-    // get the post type name from the config file and make it plural if it's not.
-    // Note: `get_post_type_object( get_post_type() )->rewrite['slug']` caused errors on category archive pages.
-    $slug = substr($posttypes[0], -1) != 's' ? $posttypes[0] . 's' : $posttypes[0];
-
-    $params = [
-        'posts_per_page' => 100,
-        'post_type' => $posttypes[0],
-        'offset' => 100,
-        'orderby' => 'rand'
-    ];
-    $archived = new WP_Query( $params );
-
+    <?php
+        $params = [
+            'posts_per_page' => 100,
+            'post_type' => 'attraction',
+            'offset' => 100,
+            'orderby' => 'rand'
+        ];
+        $attractions_query = new WP_Query( $params );
     ?>
+
+    <?php if ($attractions_query->have_posts()) : ?>
 
         <div class="card-grid">
 
-            <?php while ($archived->have_posts()) : $archived->the_post(); ?>
-                <?php get_template_part('templates/archive/isotope', 'card'); ?>
+            <?php while ($attractions_query->have_posts()) : $attractions_query->the_post(); ?>
+                <?php get_template_part('templates/content/archive', 'attraction'); ?>
             <?php endwhile; ?>
 
         </div><!-- .card-grid -->
 
-    </div><!-- .isotope-archive -->
+        <?php wp_reset_postdata(); ?>
 
-<?php endif; ?>
+    <?php endif; ?>
+
+</div><!-- .isotope-archive -->

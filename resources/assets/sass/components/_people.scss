@@ -12,7 +12,7 @@
   padding: rem(0 15);
 
   @include breakpoint(medium) {
-    @include flex-callout(6);    
+    @include flex-callout(6);
   }
 
   @include breakpoint(large) {

@@ -3,6 +3,9 @@
   font-weight: normal;
   margin-bottom: em(16,18);
 }
+  .search .page-title:not(.search-title) {
+    margin-bottom: 1em;
+  }
 
 .search-header {
   padding-bottom: rem(30);

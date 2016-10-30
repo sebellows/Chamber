@@ -23,20 +23,53 @@ if( get_row_layout() == 'media_block' ) :
             <figure class="mediabox">
             <?php if ( $media_type['value'] == 'video' ) : ?>
                 <?php
-                    // @source https://support.advancedcustomfields.com/forums/topic/getting-just-the-url-that-was-entered-into-an-oembed-field-inside-a-variable/#post-17888/ 
-                    $media    = get_sub_field('mb_video', false, false);
-                    $mediaURL = get_sub_field('mb_video');
+                    /**
+                     * Get the url for the oembed field if video is the media-type.
+                     *
+                     * @source https://support.advancedcustomfields.com/forums/topic/getting-just-the-url-that-was-entered-into-an-oembed-field-inside-a-variable/#post-17888/ 
+                     * 
+                     * @var string  The URL
+                     */
+                    $mediaURL = get_sub_field('mb_video', false, false);
 
-                    // Get the ID of the embedded video.
-                    // @source http://jeromejaglale.com/doc/php/youtube_generate_embed_from_url
-                    $mediaID = preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $media, $matches);
+                    /**
+                     * Get the entire field object.
+                     * 
+                     * @var mixed
+                     */
+                    $media = get_sub_field('mb_video');
 
-                    // Get the iframe attributes to pass to JavaScript
-                    $mediaAttrs = str_replace(['<iframe ', '></iframe>'], '', $mediaURL);
+                    /**
+                     * Get the ID of the embedded video.
+                     *
+                     * @source http://jeromejaglale.com/doc/php/youtube_generate_embed_from_url
+                     */
+                    $mediaID = preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $mediaURL, $matches);
+
+                    /**
+                     * Get the iframe attributes to pass to JavaScript.
+                     * 
+                     * @var string
+                     */
+                    $mediaAttrs = str_replace(['<iframe ', '></iframe>'], '', $media);
+
+                    /**
+                     * Get the video's ID.
+                     * 
+                     * @var int
+                     */
                     $id = $matches[1];
-                    // create the video poster thumbnail from the ID.
-                    // $poster_webp = 'https://i.ytimg.com/vi_webp/' . $id . '/sddefault.webp';
+
+                    /**
+                     * The video poster thumbnail URL via the ID.
+                     *
+                     * @var string
+                     */
                     $poster = 'https://i.ytimg.com/vi/' . $id . '/';
+
+                    /* Could attempt to get the `webp` version of the image. */
+                    // $poster_webp = 'https://i.ytimg.com/vi_webp/' . $id . '/sddefault.webp';
+
                     // $mediaSize = getimagesize($poster);
                     $rootDir = get_stylesheet_directory();
                 ?>

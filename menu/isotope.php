@@ -6,7 +6,6 @@
  */
 
 use Chamber\Theme\Config;
-use Chamber\Theme\Icon;
 
 $config = new Config;
 $isotopes = $config->get('isotope');

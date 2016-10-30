@@ -73,11 +73,11 @@ function hybrid_post_layout_meta_box( $post, $box ) {
 		<?php if ( true === $layout->is_post_layout && $layout->image && ( ! $layout->post_types || in_array( $post->post_type, $layout->post_types ) ) ) : ?>
 
 			<label class="has-img">
-				<input type="radio" value="<?php echo esc_attr( $layout->name ); ?>" name="hybrid-post-layout" <?php checked( $post_layout, $layout->name ); ?> />
+				<input type="radio" value="<?= esc_attr( $layout->name ); ?>" name="hybrid-post-layout" <?php checked( $post_layout, $layout->name ); ?> />
 
-				<span class="screen-reader-text"><?php echo esc_html( $layout->label ); ?></span>
+				<span class="screen-reader-text"><?= esc_html( $layout->label ); ?></span>
 
-				<img src="<?php echo esc_url( hybrid_sprintf_theme_uri( $layout->image ) ); ?>" alt="<?php echo esc_attr( $layout->label ); ?>" />
+				<img src="<?= esc_url( hybrid_sprintf_theme_uri( $layout->image ) ); ?>" alt="<?= esc_attr( $layout->label ); ?>" />
 			</label>
 
 		<?php endif; ?>

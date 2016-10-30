@@ -3341,19 +3341,27 @@ body[class^="home"] .menu-toggle {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase; }
-  @media screen and (min-width: 64em) {
+  @media screen and (min-width: 40em) {
     .pager {
       display: table;
       table-layout: fixed;
-      margin-bottom: 1.875rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem; }
+      margin-bottom: 1.875rem; }
       .pager a {
         display: table-cell;
         position: relative;
         top: 0;
         left: 0;
         width: 50%; } }
+  @media screen and (min-width: 64em) {
+    .pager {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem; } }
+
+@supports (display: flex) {
+  .pager {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%; } }
 
 /*--------------------------------------------------------------
 # Media
@@ -3441,43 +3449,6 @@ svg.icon,
   max-width: 100%;
   max-height: 100%;
   pointer-events: none; }
-
-.attraction-details {
-  border: 1px solid #eb6b23;
-  margin-bottom: 1rem; }
-  .attraction-details .callout {
-    border: 0 none;
-    font-size: 0.75rem;
-    margin-bottom: 0; }
-    @media screen and (min-width: 40em) {
-      .attraction-details .callout {
-        width: 50%; }
-        .attraction-details .callout:first-child {
-          border-right: 1px solid #eb6b23;
-          padding-right: 0.9375rem; } }
-  .attraction-details h3, .attraction-details h4, .attraction-details h5 {
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    margin: 0; }
-  .attraction-details h3 {
-    background-color: #eb6b23;
-    color: #fefefe;
-    font-size: .875em;
-    line-height: 2;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 0 10px; }
-  .attraction-details h4, .attraction-details h5 {
-    font-size: 1em; }
-
-.map-thumb {
-  width: 200px;
-  height: 200px;
-  border: #ccc solid 1px;
-  margin: 1em 0; }
-
-/* fixes potential theme css conflict */
-.map-thumb img {
-  max-width: inherit !important; }
 
 /* Text meant only for screen readers. */
 .screen-reader-text {
@@ -4130,6 +4101,46 @@ svg.icon,
 .pagination-next a.disabled::after {
   content: '\00bb';
   margin-left: 0.5rem; }
+
+.attraction-details {
+  border: 1px solid #eb6b23;
+  margin-bottom: 1rem; }
+  .attraction-details .row {
+    margin-left: 0;
+    margin-right: 0; }
+  .attraction-details .callout {
+    border: 0 none;
+    font-size: 0.75rem;
+    margin-bottom: 0; }
+    @media screen and (min-width: 40em) {
+      .attraction-details .callout {
+        width: 50%; }
+        .attraction-details .callout:first-child {
+          border-right: 1px solid #eb6b23;
+          padding-right: 0.9375rem; } }
+  .attraction-details h3, .attraction-details h4, .attraction-details h5 {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 0; }
+  .attraction-details h3 {
+    background-color: #eb6b23;
+    color: #fefefe;
+    font-size: .875em;
+    line-height: 2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0 10px; }
+  .attraction-details h4, .attraction-details h5 {
+    font-size: 1em; }
+
+.map-thumb {
+  width: 200px;
+  height: 200px;
+  border: #ccc solid 1px;
+  margin: 1em 0; }
+
+/* fixes potential theme css conflict */
+.map-thumb img {
+  max-width: inherit !important; }
 
 .section-header {
   margin-top: 1.25rem;
@@ -5997,21 +6008,6 @@ h2 + .list-box {
   .page-header p:last-child {
     margin-bottom: 0; }
 
-.singular .page-header {
-  position: relative; }
-  @media (min-width: 56.25em) and (max-width: 64em) {
-    .singular .page-header {
-      -ms-flex: 0 0 37.5em;
-      flex: 0 0 37.5em;
-      max-width: 37.5em; } }
-  @media screen and (min-width: 64em) {
-    .singular .page-header {
-      -ms-flex: 0 0 25em;
-      flex: 0 0 25em;
-      max-width: 25em;
-      padding-left: 1.875rem;
-      padding-right: 1.875rem; } }
-
 .main > .page-header:first-child {
   margin-top: 1rem; }
 
@@ -6041,13 +6037,6 @@ h2 + .list-box {
       padding-left: 1.875rem;
       padding-right: 1.875rem;
       min-width: initial; } }
-
-.page-content-body-inner {
-  -ms-flex: 0 0 37.5em;
-  flex: 0 0 37.5em;
-  max-width: 37.5em; }
-  .page-content-body-inner p:last-child {
-    margin-bottom: 0; }
 
 .page-title {
   font-size: 2.5em;
@@ -6082,9 +6071,117 @@ h2 + .list-box {
   .singular .hentry hr {
     margin: 0.5rem 0; }
 
-.single .featured-media .thumbnail,
-.singular .featured-media .thumbnail {
+.single .entry-media .thumbnail,
+.singular .entry-media .thumbnail {
+  margin-top: 0;
+  margin-bottom: 0;
   width: 100%; }
+
+.single .entry-header,
+.single .entry-content-body,
+.singular .entry-header,
+.singular .entry-content-body {
+  padding-top: 0.9375rem;
+  padding-bottom: 0.9375rem;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  max-width: 100%; }
+  @media screen and (min-width: 40em) {
+    .single .entry-header,
+    .single .entry-content-body,
+    .singular .entry-header,
+    .singular .entry-content-body {
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem; } }
+  .single .entry-header p:last-child,
+  .single .entry-content-body p:last-child,
+  .singular .entry-header p:last-child,
+  .singular .entry-content-body p:last-child {
+    margin-bottom: 0; }
+
+.single .entry-header,
+.singular .entry-header {
+  margin-bottom: 0;
+  position: relative; }
+  @media (min-width: 56.25em) and (max-width: 64em) {
+    .single .entry-header,
+    .singular .entry-header {
+      -ms-flex: 0 0 37.5em;
+      flex: 0 0 37.5em;
+      max-width: 37.5em; } }
+  @media screen and (min-width: 64em) {
+    .single .entry-header,
+    .singular .entry-header {
+      -ms-flex: 0 0 25em;
+      flex: 0 0 25em;
+      max-width: 25em;
+      padding-top: 1.875rem;
+      padding-bottom: 1.875rem;
+      padding-left: 1.875rem;
+      padding-right: 1.875rem; } }
+
+.single .entry-content a:not([class]),
+.singular .entry-content a:not([class]) {
+  color: #005f96;
+  text-decoration: underline;
+  transition: color 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+
+:root .single .entry-content a:not([class]):active,
+:root .single .entry-content a:not([class]):focus, :root
+.singular .entry-content a:not([class]):active,
+:root
+.singular .entry-content a:not([class]):focus {
+  color: currentColor; }
+
+:root.no-touchevents .single .entry-content a:not([class]):hover, :root.no-touchevents
+.singular .entry-content a:not([class]):hover {
+  color: currentColor; }
+
+@media screen and (min-width: 64em) {
+  .single .entry-content,
+  .singular .entry-content {
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0px;
+    min-width: initial;
+    padding-left: 1.875rem;
+    padding-bottom: 1.875rem; } }
+
+@media screen and (min-width: 64em) {
+  .single .entry-content-body,
+  .singular .entry-content-body {
+    -ms-flex: 0 0 37.5em;
+    flex: 0 0 37.5em;
+    max-width: 37.5em;
+    padding: 1.875rem 0.9375rem 1.875rem 0; } }
+
+.single .entry-meta time,
+.singular .entry-meta time {
+  color: currentColor;
+  font-size: 0.75rem;
+  font-weight: normal;
+  text-transform: uppercase; }
+
+.single .entry-title,
+.singular .entry-title {
+  font-size: 2.5em;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1rem; }
+
+.single .byline,
+.singular .byline {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .single .byline::before,
+  .singular .byline::before {
+    content: "By ";
+    font-weight: normal;
+    text-transform: none; }
+
+.main > .entry-header:first-child {
+  margin-top: 1rem; }
 
 .cta-buttons {
   color: #fefefe;
@@ -6226,13 +6323,15 @@ h2 + .list-box {
 
 .archive.tag .row,
 .archive.category .row,
-.search-results .row {
+.search-results .row,
+.search-no-results .row {
   padding-left: 0.9375rem;
   padding-right: 0.9375rem; }
 
 .archive.tag .entry-header,
 .archive.category .entry-header,
-.search-results .entry-header {
+.search-results .entry-header,
+.search-no-results .entry-header {
   clear: both;
   margin-bottom: 0.5rem;
   border-bottom: 2px dotted rgba(19, 21, 22, 0.25);
@@ -6240,7 +6339,8 @@ h2 + .list-box {
 
 .archive.tag .hentry,
 .archive.category .hentry,
-.search-results .hentry {
+.search-results .hentry,
+.search-no-results .hentry {
   margin-bottom: 1.875rem;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
@@ -6250,17 +6350,20 @@ h2 + .list-box {
   @media screen and (min-width: 40em) {
     .archive.tag .hentry,
     .archive.category .hentry,
-    .search-results .hentry {
+    .search-results .hentry,
+    .search-no-results .hentry {
       padding-left: 0.9375rem;
       padding-right: 0.9375rem; } }
   .archive.tag .hentry .readmore,
   .archive.category .hentry .readmore,
-  .search-results .hentry .readmore {
+  .search-results .hentry .readmore,
+  .search-no-results .hentry .readmore {
     text-align: left; }
   @media screen and (min-width: 64em) {
     .archive.tag .hentry,
     .archive.category .hentry,
-    .search-results .hentry {
+    .search-results .hentry,
+    .search-no-results .hentry {
       -ms-flex: 0 0 50%;
       flex: 0 0 50%;
       padding-left: 0.625rem;
@@ -6269,13 +6372,15 @@ h2 + .list-box {
   @media screen and (min-width: 64em) and (min-width: 40em) {
     .archive.tag .hentry,
     .archive.category .hentry,
-    .search-results .hentry {
+    .search-results .hentry,
+    .search-no-results .hentry {
       padding-left: 0.9375rem;
       padding-right: 0.9375rem; } }
 
 .archive.tag .callout,
 .archive.category .callout,
-.search-results .callout {
+.search-results .callout,
+.search-no-results .callout {
   height: 100%;
   margin-bottom: 0; }
 
@@ -6283,6 +6388,9 @@ h2 + .list-box {
   font-size: 1.125em;
   font-weight: normal;
   margin-bottom: 0.8888888889em; }
+
+.search .page-title:not(.search-title) {
+  margin-bottom: 1em; }
 
 .search-header {
   padding-bottom: 1.875rem; }

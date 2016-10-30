@@ -10,6 +10,7 @@
  */
 
 use Chamber\Theme\Assets;
+use Chamber\Theme\Helper;
 
 ?>
 
@@ -73,9 +74,9 @@ use Chamber\Theme\Assets;
 		<!-- Search form -->
 		<?php get_search_form(true); ?>
 
-		<!-- Department menu toggle button -->
+		<!-- Section menu toggle button -->
 		<button class="menu-toggle" aria-controls="dept-menu" aria-expanded="false">
-			<span class="screen-reader-text">Department Menu</span>
+			<span class="screen-reader-text">Section Menu</span>
 		    <div class="bubblewrap">
 		    	<span class="bar first"></span>
 		        <span class="bar second"></span>

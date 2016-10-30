@@ -16,21 +16,6 @@
     margin-bottom: 0;
   }
 }
-  .singular .page-header {
-    position: relative;
-
-    @media (min-width: em(900)) and (max-width: em(1024)) {
-      flex: 0 0 em(600);
-      max-width: em(600);
-    }
-
-    @include breakpoint(large) {
-      flex: 0 0 em(400);
-      max-width: em(400);
-      padding-left: rem(30);
-      padding-right: rem(30);
-    }
-  }
 
   .main > .page-header:first-child {
     margin-top: $global-margin;
@@ -46,15 +31,6 @@
     padding-top: rem(30);
     padding-bottom: rem(30);
     @include flex-grid-column(null, 60);
-  }
-}
-
-.page-content-body-inner {
-  flex: 0 0 em(600);
-  max-width: em(600);
-
-  p:last-child {
-    margin-bottom: 0;
   }
 }
 

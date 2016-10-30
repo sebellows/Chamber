@@ -63,7 +63,7 @@ function hybrid_meta_box_post_display_template( $post, $box ) {
 			<option value=""></option>
 
 			<?php foreach ( $templates as $label => $template ) : ?>
-				<option value="<?php echo esc_attr( $template ); ?>" <?php selected( $post_template, $template ); ?>><?php echo esc_html( $label ); ?></option>
+				<option value="<?= esc_attr( $template ); ?>" <?php selected( $post_template, $template ); ?>><?= esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 
 		</select>

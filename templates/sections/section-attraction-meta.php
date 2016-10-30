@@ -18,7 +18,7 @@ $fax     = get_field('attr_fax');
 <div class="attraction-contact">
     <?php if ($map) : ?>
     <div class="map-thumb" style="width:150px;height:150px">
-        <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
+        <div class="marker" data-lat="<?= $map['lat']; ?>" data-lng="<?= $map['lng']; ?>"></div>
     </div>
     <?php endif; ?>
 

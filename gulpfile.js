@@ -1,14 +1,10 @@
-var elixir = require('laravel-elixir-svgstore');
 var elixir = require('laravel-elixir');
-var del = require('del');
- 
-// elixir.extend("remove", function(path) {
-//   gulp.task("remove", function() {
-//     del(path);
-//   });
-//   return gulp.start("remove");
-// });
- 
+
+require('laravel-elixir-vue');
+require('laravel-elixir-svgstore');
+
+// Vue.config.devtools = true
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -34,13 +30,9 @@ elixir(function(mix) {
 
 	mix.copy([
 		'node_modules/motion-ui/dist/motion-ui.js',
-		'node_modules/what-input/dist/what-input.js'
-		// 'node_modules/flickity/dist/flickity.pkgd.js',
-
-		// Fitie.js has a concatenation order problem
-		// (see https://github.com/jonathantneal/fitie/issues/2#issue-156840198)
-		// 'node_modules/fitie/lib/fitie.init.js',
-		// 'node_modules/fitie/lib/fitie.js'
+		'node_modules/what-input/dist/what-input.js',
+		'node_modules/vue-resource/dist/vue-resource.js',
+		'node_modules/vue-router/dist/vue-router.js'
 	], 'resources/assets/js/vendor');
 
 	mix.copy('node_modules/isotope-layout/dist/isotope.pkgd.js', 'resources/assets/js');
@@ -55,14 +47,14 @@ elixir(function(mix) {
 		'node_modules/foundation-sites/dist/plugins/foundation.util.timerAndImageLoader.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.util.touch.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.util.triggers.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.abide.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.orbit.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.responsiveMenu.js',
+		// 'node_modules/foundation-sites/dist/plugins/foundation.abide.js',
+		// 'node_modules/foundation-sites/dist/plugins/foundation.orbit.js',
+		// 'node_modules/foundation-sites/dist/plugins/foundation.responsiveMenu.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.reveal.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.toggler.js',
 		'node_modules/foundation-sites/dist/plugins/foundation.tooltip.js'
-	], 'resources/assets/js/vendor');
+	], 'resources/assets/js/foundation');
 
 	mix.copy('resources/assets/images', 'public/images');
 
@@ -82,14 +74,11 @@ elixir(function(mix) {
 
 	mix.scripts('isotope.pkgd.js');
 
-	// mix.copy([
-	// 	'node_modules/flickity/dist/flickity.min.css'
-	// ], 'resources/assets/css/vendor')
-	// .stylesIn('resources/assets/css/vendor', './public/css/vendor.css');
-
 	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 
 	mix.rollup('./resources/assets/js/foundation.js');
+
+	mix.webpack('filter.js');
 
 	mix.browserSync({
 		files: ['{lib,templates}/**/*.php', '*.php', 'public'],
