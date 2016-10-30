@@ -6042,8 +6042,8 @@ svg.icon,
       max-width: 100%; } }
   @media screen and (min-width: 64em) {
     .sidebar-column .widget {
-      -ms-flex: 1;
-      flex: 1;
+      -ms-flex: none;
+      flex: none;
       max-width: 100%; } }
 
 @media (min-width: 56.25em) and (max-width: 64em) {
