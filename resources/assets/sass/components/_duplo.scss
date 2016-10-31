@@ -394,13 +394,16 @@
 .duplo-banner {
   // `.hallmark` class added when count is one
   // `:only-child` added as fallback
+  .duplo-hallmark {
+    height: auto;
+  }
+
   .duplo-hallmark,
   [m-duplo="1"]:only-child {
     border-left-width: 0 !important;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: auto;
     min-height: em(180);
 
     .duplo-content {

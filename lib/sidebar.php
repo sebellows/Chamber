@@ -72,10 +72,7 @@ class Sidebar
 		isset($display) || $display = !in_array(true, [
 			// The sidebar will NOT be displayed if ANY of the following return true.
 			// @link https://codex.wordpress.org/Conditional_Tags
-			// is_archive(),
 			is_404(),
-			// is_home(),
-			// is_single(),
 			is_page_template('app.php')
 		]);
 

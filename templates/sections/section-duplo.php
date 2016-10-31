@@ -50,21 +50,87 @@ if ( have_rows('duplo_block') ) :
                     $summary      = get_sub_field('duplo_block_summary');
                     $link         = get_sub_field('duplo_block_link');
                     $color_class  = get_sub_field('duplo_block_background_color');
+
+                    function get_srcset()
+                    {
+
+                    }
+
+                    function set_thumbnail_srcset_to_background( $attachment_id, $selector, $sizes = [] )
+                    {
+                        $defaults = [
+                            'small'  => 'medium-width',
+                            'medium' => 'post-thumbnail-width',
+                            'large'  => 'large-width',
+                            'xlarge' => 'fullwidth-width'                            
+                        ];
+
+                        if ( empty($sizes) ) {
+                            $sizes = $defaults;
+                        }
+
+                        $breakpoint_sizes = [ 'small', 'medium', 'large', 'xlarge' ];
+
+                        $breakpoints = [
+                            'small'  => [ 0, 639 ],
+                            'medium' => [ 640, 1023 ],
+                            'large'  => [ 1024, 1199 ],
+                            'xlarge' => [ 1200, 9999 ]
+                        ];
+
+                        $srcset = [
+                            'small'  => wp_get_attachment_image_src( $attachment_id, $sizes['small'] ),
+                            'medium' => wp_get_attachment_image_src( $attachment_id, $sizes['medium'] ),
+                            'large'  => wp_get_attachment_image_src( $attachment_id, $sizes['large'] ),
+                            'xlarge' => wp_get_attachment_image_src( $attachment_id, $sizes['xlarge'] )
+                        ];
+
+                        if ( $attachment_id ) {
+                            echo '<style>';
+
+                            $smallest_image_url = '';
+                            $smallest_width = 9999;
+                            $min_width = 0;
+
+                            foreach ( $srcset as $set ) {
+                                foreach ( $breakpoint_sizes as $size ) {
+                                    ?>
+                                    @media (min-width: <?= $breakpoints[$size][0]; ?>px) and (max-width: <?= $breakpoints[$size][1]; ?>px) {
+                                        <?= $selector; ?> {
+                                            background-image: url("<?= $srcset[$size][0]; ?>");background-size:cover;background-position:50% 50%;background-repeat:no-repeat;
+                                        }
+                                    }
+                                    <?php
+                                }
+                            }
+
+                            echo '</style>';
+                        }
+                    }
+
+                    function set_thumbnail_alt( $attachment_id )
+                    {
+                        return sprintf('<p class="screen-reader-text">' . get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) . '</p>');
+                    }
+
+                    function get_duplo_media( $attachment_id )
+                    {
+                        ?>
+                        <div class="duplo-media">
+                            <?php set_thumbnail_srcset_to_background( $attachment_id, '.duplo-image' ); ?>
+                            <div class="duplo-image">
+                                <?php set_thumbnail_alt( $attachment_id ); ?>
+                            </div>
+                            <div class="duplo-skrim" aria-hidden="true"></div>
+                        </div>
+
+                        <?php
+                    }
                     ?>
 
                     <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '' ?>"  m-Duplo="<?= $index++; ?>" m-UI="<?= Color::set($color_class); ?>">
                         <?php if ($image) : ?>
-
-                            <img 
-                                class="duplo-image" 
-                                src="<?= esc_url( $image_src ); ?>"
-                                srcset="<?= esc_attr( $image_srcset ); ?>"
-                                sizes="(max-width: 100vw) 480px"
-                                alt="<?= $image['alt']; ?>"
-                            >
-
-                            <div class="duplo-skrim" aria-hidden="true"></div>
-    
+                            <?php get_duplo_media( $image['id'] ); ?>    
                         <?php endif; ?>
 
                         <div class="duplo-content">
@@ -97,18 +163,10 @@ if ( have_rows('duplo_block') ) :
                 ?>
 
                 <div class="duplo" m-Duplo="<?= $index+1; ?>">
-                    <?php
-                        get_the_image([
-                            'post_id'      => $post->ID,
-                            'size'         => 'medium_large',
-                            'srcset_sizes' => ['medium' => '640w', 'large' => '1200w'],
-                            'order'        => [ 'featured', 'attachment' ],
-                            'link'         => false,
-                            'image_class'  => 'duplo-image'
-                        ]);
-                    ?>
 
-                    <div class="duplo-skrim" aria-hidden="true"></div>
+                    <?php if ($image) : ?>
+                        <?php get_duplo_media( $post->ID ); ?>    
+                    <?php endif; ?>
 
                     <div class="duplo-content">
                         <?php

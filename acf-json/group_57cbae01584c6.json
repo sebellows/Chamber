@@ -1159,7 +1159,7 @@
                             "key": "field_57cc44069fe90",
                             "label": "Summary",
                             "name": "ch_gallery_summary",
-                            "type": "textarea",
+                            "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -1169,10 +1169,9 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": "",
-                            "new_lines": "wpautop"
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0
                         },
                         {
                             "key": "field_57ce61942232b",
@@ -1367,5 +1366,5 @@
     ],
     "active": 1,
     "description": "Flexible content area for Landing Pages",
-    "modified": 1476896952
+    "modified": 1477925054
 }

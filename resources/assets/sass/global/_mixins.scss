@@ -109,10 +109,14 @@ $total-columns: 12;
 ///
 @mixin consistent-color($color: currentColor) {
   &,
-  &:active,
-  &:focus,
-  &:hover {
+  a:not([class]):active,
+  a:not([class]):focus,
+  a:not([class]):hover {
     color: $color;
+  }
+
+  a:not([class]) {
+    text-decoration: underline;
   }
 }
 

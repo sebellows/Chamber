@@ -52,6 +52,7 @@ if( get_row_layout('duplo_set') ) :
                     $link         = get_sub_field('duplo_link');
                     $color_class  = get_sub_field('duplo_background_color');
                     $text_only    = !$image ? ' display-type' : '';
+
                 ?>
 
                 <div class="duplo<?= $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">

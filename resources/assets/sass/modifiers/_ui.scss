@@ -8,19 +8,21 @@
 }
 
 // Neutrals (grays)
-[m-UI~="neutral light"] {
-  background-color: neutral(2) !important;
-  @include consistent-color(neutral(5));
-}
+[m-UI~="neutral"] {
+  &[m-UI~="light"] {
+    background-color: neutral(2) !important;
+    @include consistent-color(neutral(5));
+  }
 
-[m-UI~="neutral medium"] {
-  background-color: neutral(4) !important;
-  @include consistent-color($white);
-}
+  &[m-UI~="medium"] {
+    background-color: neutral(4) !important;
+    @include consistent-color($white);
+  }
 
-[m-UI~="neutral dark"] {
-  background-color: neutral(6) !important;
-  @include consistent-color($white);
+  &[m-UI~="dark"] {
+    background-color: neutral(6) !important;
+    @include consistent-color($white);
+  }
 }
 
 // Notification colors
@@ -37,7 +39,7 @@
 [m-UI~="warning"] {
   background-color: map-get($foundation-palette, warning) !important;
   @include consistent-color($white);
- }
+}
 
 // FGCC main brand color
 [m-UI~="brand"] {
@@ -47,44 +49,44 @@
   &[m-UI~="light"] {
     background-color: color(brand-light) !important;
     @include consistent-color($white);
-   }
+  }
 
   &[m-UI~="medium"] {
     background-color: color(brand-medium) !important;
     @include consistent-color($white);
-   }
+  }
 
   &[m-UI~="dark"] {
     background-color: color(brand-dark) !important;
     @include consistent-color($white);
-   }
+  }
 }
 
 // Chamber Dept. Color Scheme
 [m-UI~="cvb"] {
   background-color: color(cvb) !important;
   @include consistent-color($white);
- }
+}
 
 [m-UI~="development"] {
   background-color: color(development) !important;
   @include consistent-color($white);
- }
+}
 
 [m-UI~="education"] {
   background-color: color(education) !important;
   @include consistent-color($white);
- }
+}
 
 [m-UI~="members"] {
   background-color: color(members) !important;
   @include consistent-color($white);
- }
+}
 
 [m-UI~="shared"] {
   background-color: color(shared) !important;
   @include consistent-color($white);
- }
+}
 
 /// Background Overlay
 ///

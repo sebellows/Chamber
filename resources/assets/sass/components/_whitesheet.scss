@@ -18,6 +18,10 @@
     @include flex-callout(8);  
   }
 
+  p {
+    @include add-text-link-style;
+  }
+
   .lead {
     font-size: em(22);
     font-style: italic;
