@@ -291,16 +291,26 @@
 
                 // DataTables listener
                 $(document).ready(function() {
+                    // set listener for scroll to top
+                    var oldStart = 0;
+
                     $('#attractionsDataTable').DataTable( {
                         "order": [[ 0, "asc" ]],
                         "pagingType": "full_numbers",
-                        "lengthMenu": [[25, 50, 100, 150, -1], [25, 50, 100, 150, "All"]],
+                        "lengthMenu": [[10, 25, 50, 100, 150, -1], [10, 25, 50, 100, 150, "All"]],
                         "language": {
                             "lengthMenu": "Display _MENU_ attractions per page",
                             "zeroRecords": "No attractions found - sorry!",
                             "info": "Showing page _PAGE_ of _PAGES_",
                             "infoEmpty": "No attractions available",
                             "infoFiltered": "(filtered from _MAX_ total attractions)"
+                        },
+                        "fnDrawCallback": function(o) {
+                            if(o._iDisplayStart != oldStart) {
+                                var targetOffset = $('#attractionsDataTable').offset().top;
+                                $('html,body').animate({scrollTop: targetOffset}, 500);
+                                oldStart = o._iDisplayStart;
+                            }
                         }
                     });
                 } );

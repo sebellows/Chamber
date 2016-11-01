@@ -19,14 +19,14 @@
         'common': {
             init: function() {
                 // JavaScript to be fired on all pages
-                
+
                 // toggle the searchform in the global header
                 if ($("#searchForm").length > 0) {
                     new Foundation.Toggler($("#searchForm"));
                 }
 
                 // Add scroll-scope.js to flickity captions
-                $(document).scrollScope();
+                //$(document).scrollScope();
 
                 // Add YouTube video to modal to prevent it from slowing down page rendering
                 if ($(".mediabox .media").length > 0) {
@@ -53,7 +53,7 @@
                     // Use `setTimeout` due to delay in `.reveal` getting wrapped by overlay
                     // Close button was moved to prevent it overlapping the video.
                     setTimeout(function() {
-                        $('.reveal-overlay').prepend(closeButton);                        
+                        $('.reveal-overlay').prepend(closeButton);
                     }, 500);
                 }
 
@@ -64,7 +64,7 @@
                     // Append the iframe attributes to an iframe in the `#videoBox`
                     $("#videoBox").append('<iframe ' + mediaAttrs + '></iframe>');
                     $("#" + target).css('opacity', '1');
-                    
+
                 });
 
                 $(document).on(
@@ -72,6 +72,33 @@
                         $("#videoBox iframe").remove();
                     }
                 );
+
+                // DataTables listener
+                $(document).ready(function() {
+                    // set listener for scroll to top
+                    var oldStart = 0;
+
+                    $('#attractionsDataTable').DataTable( {
+                        "order": [[ 0, "asc" ]],
+                        "pagingType": "full_numbers",
+                        "lengthMenu": [[10, 25, 50, 100, 150, -1], [10, 25, 50, 100, 150, "All"]],
+                        "language": {
+                            "lengthMenu": "Display _MENU_ attractions per page",
+                            "zeroRecords": "No attractions found - sorry!",
+                            "info": "Showing page _PAGE_ of _PAGES_",
+                            "infoEmpty": "No attractions available",
+                            "infoFiltered": "(filtered from _MAX_ total attractions)"
+                        },
+                        "fnDrawCallback": function(o) {
+                            if(o._iDisplayStart != oldStart) {
+                                var targetOffset = $('#attractionsDataTable').offset().top;
+                                $('html,body').animate({scrollTop: targetOffset}, 500);
+                                oldStart = o._iDisplayStart;
+                            }
+                        }
+                    });
+                } );
+
             },
             finalize: function() {
                 // JavaScript to be fired on all pages, after page specific JS is fired
@@ -115,11 +142,11 @@
                 //Isotope options, 'Card' matches the class in the PHP
                 $container.imagesLoaded( function(){
                     $container.isotope({
-                        itemSelector : '.Card', 
+                        itemSelector : '.Card',
                             layoutMode : 'masonry'
                     });
                 });
-             
+
                 // Add the class selected to the Card that is clicked, and remove from the others
                 var $optionSets = $('.isotope-sortable-menu'),
                 $optionLinks = $optionSets.find('a');
@@ -133,7 +160,7 @@
                     var $optionSet = $this.parents('.isotope-sortable-menu');
                     $optionSets.find('.is-selected').removeClass('is-selected');
                     $this.addClass('is-selected');
-                 
+
                     // When a Card is clicked, sort the items.
                     var selector = $(this).attr('data-filter');
                     $container.isotope({ filter: selector });
@@ -159,11 +186,11 @@
                 var $table = $('#dataGrid'),
                     $alertBtn = $('#alertButton'),
                     full_screen = false;
-                    
+
                 $().ready(function(){
                     $table.chamberDataGrid({
                         toolbar: ".toolbar",
-                
+
                         showRefresh: true,
                         search: true,
                         showToggle: true,
@@ -172,9 +199,9 @@
                         striped: true,
                         pageSize: 10,
                         pageList: [10,25,50,100],
-                        
+
                         formatShowingRows: function(pageFrom, pageTo, totalRows){
-                            //do nothing here, we don't want to show the text "showing x of y from..." 
+                            //do nothing here, we don't want to show the text "showing x of y from..."
                         },
                         formatRecordsPerPage: function(pageNumber){
                             return pageNumber + " rows visible";
@@ -187,9 +214,9 @@
                             detailClose: 'minus-circle'
                         }
                     });
-                    
-                                
-                    
+
+
+
                     $(window).resize(function () {
                         $table.chamberDataGrid('resetView');
                     });
@@ -197,7 +224,7 @@
                     $alertButton.click(function () {
                         alert("You pressed on Alert");
                     });
-                    
+
                 });
             },
             finalize: function() {
