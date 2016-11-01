@@ -82,6 +82,7 @@
                         "order": [[ 0, "asc" ]],
                         "pagingType": "full_numbers",
                         "lengthMenu": [[10, 25, 50, 100, 150, -1], [10, 25, 50, 100, 150, "All"]],
+                        "responsive": true,
                         "language": {
                             "lengthMenu": "Display _MENU_ attractions per page",
                             "zeroRecords": "No attractions found - sorry!",
