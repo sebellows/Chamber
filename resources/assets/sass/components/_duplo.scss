@@ -19,11 +19,11 @@
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   min-height: 100%;
-  // min-width: 100%;
-  // max-width: none;
-  object-fit: cover;
-  object-position: 50% 25%;
-  mix-blend-mode: multiply;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  // mix-blend-mode: multiply;
 }
   .no-backgrounblendmode .duplo-image {
     opacity: .8;
@@ -89,17 +89,15 @@
   left: 0;
   bottom: 0;
   right: 0;
-  opacity: 1;
+  opacity: .8;
   transition: opacity .3s ease-out;
 
   .duplo:active &,
-  .duplo:focus & {
+  .duplo:focus &,
+  .duplo:hover & {
     opacity: 1;
   }
 }
-  .no-touchevents .duplo:hover .duplo-skrim {
-    opacity: 1;
-  }
 
 .duplo-link {
   position: absolute;
@@ -188,11 +186,12 @@
   }
 
   .duplo-content {
+    margin: 0 auto;
+    max-width: $global-width;
+
     @include breakpoint(medium down) {
       justify-content: center;      
     }
-    margin: 0 auto;
-    max-width: $global-width;
   }
 
   @include breakpoint(large) {
@@ -398,6 +397,11 @@
     height: auto;
   }
 
+  // [m-duplo="1"]:only-child .duplo-content {
+  //   width: 100%;
+  //   align-items: flex-start;
+  // }
+
   .duplo-hallmark,
   [m-duplo="1"]:only-child {
     border-left-width: 0 !important;
@@ -408,6 +412,7 @@
 
     .duplo-content {
       height: 100%;
+      justify-content: space-around;
     }
 
     .duplo-title {

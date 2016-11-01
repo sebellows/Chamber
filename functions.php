@@ -31,6 +31,7 @@ $chamber_includes = [
 	'lib/custom-header.php', 	// Implement the Custom Header feature
 	'lib/customizer.php', 		// Customizer additions
 	'lib/color.php', 			// Theme color helpers
+	'lib/media.php', 			// Media helpers
 	'lib/icons.php', 			// Icon helpers
 	'lib/template-tags.php' 	// Custom template tags
 ];

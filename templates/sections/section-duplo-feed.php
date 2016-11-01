@@ -1,6 +1,7 @@
 <?php
 
 use Chamber\Theme\Titles;
+use Chamber\Theme\Media;
 
 $args = array(
     'posts_per_page' => 3,
@@ -37,11 +38,17 @@ if ($featured->have_posts()) :
         ?>
 
         <div class="duplo" m-Duplo="<?= $index; ?>">
-            <?php if ( has_post_thumbnail())  : ?>
-                <?php the_post_thumbnail( 'full', [ 'class' => 'duplo-image' ] ); ?>
-            <?php endif; ?>
 
-            <div class="duplo-skrim" aria-hidden="true"></div>
+            <?php if ( has_post_thumbnail() ) : ?>
+                <div class="duplo-media">
+                    <div class="duplo-image" style="background-image:url(<?= get_the_post_thumbnail_url( $post->ID, 'medium_large' ); ?>);">
+                        <?php if ( !empty($alt_text) ) : ?>
+                            <p class="screen-reader-text"><?= $alt_text; ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="duplo-skrim" aria-hidden="true"></div>
+                </div>
+            <?php endif; ?>
 
             <div class="duplo-content">
                 <time><?= get_the_date('F j, Y'); ?></time>

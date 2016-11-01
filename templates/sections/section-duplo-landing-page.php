@@ -2,6 +2,7 @@
 
 use Chamber\Theme\Color;
 use Chamber\Theme\Helper;
+use Chamber\Theme\Media;
 
 if( get_row_layout('duplo_set') ) :
 
@@ -41,33 +42,23 @@ if( get_row_layout('duplo_set') ) :
                     while ( have_rows( 'duplo_custom' ) ) : the_row();
 
                     $image        = get_sub_field('duplo_image');
-                    $image_src    = wp_get_attachment_image_url( $image['id'], 'medium_large' );
-                    // $image_srcset = wp_get_attachment_image_srcset( $image['id'], 'medium_large' );
-                    $image_srcset = $image['sizes']['medium_large'] . ' ' . $image['sizes']['medium_large-width'] . 'w, ' .
-                                    $image['sizes']['medium'] . ' ' . $image['sizes']['medium-width'] . 'w, ' . 
-                                    $image['sizes']['large'] . ' ' . $image['sizes']['large-width'] . 'w, ' .
-                                    $image['sizes']['fullwidth'] . ' ' . $image['sizes']['fullwidth-width'] . 'w';
                     $title        = get_sub_field('duplo_title');
                     $summary      = get_sub_field('duplo_summary');
                     $link         = get_sub_field('duplo_link');
                     $color_class  = get_sub_field('duplo_background_color');
                     $text_only    = !$image ? ' display-type' : '';
-
                 ?>
 
                 <div class="duplo<?= $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">
                     <?php if ($image) : ?>
-                        <img 
-                            class="duplo-image" 
-                            src="<?= esc_url( $image_src ); ?>"
-                            srcset="<?= esc_attr($image_srcset); ?>"
-                            sizes="(max-width: 100vw) 480px"
-                            alt="<?= $image['alt']; ?>"
-                            width="<?= $image['sizes']['medium_large-width']; ?>"
-                            height="<?= $image['sizes']['medium_large-height']; ?>"
-                        >
-
-                        <div class="duplo-skrim" aria-hidden="true"></div>
+                        <div class="duplo-media">
+                            <div class="duplo-image" style="background-image:url(<?= Media\get_custom_duplo_image($image['id'], $counter); ?>);">
+                                <?php if ( !empty($image['alt']) ) : ?>
+                                    <p class="screen-reader-text"><?= $image['alt']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                            <div class="duplo-skrim" aria-hidden="true"></div>
+                        </div>
                     <?php endif; ?>
 
                     <div class="duplo-content">
@@ -91,26 +82,27 @@ if( get_row_layout('duplo_set') ) :
                 <?php 
                 elseif ($type == 'post') :
                     $post_object = get_sub_field('duplo_post');
-                    $post_id     = $post_object[0];
-                    $post        = get_post($post_id, ARRAY_A);
-                    // dd($post);
+                    $post_array  = $post_object[0];
+                    $post        = get_post($post_array, ARRAY_A);
+                    $post_id     = $post['ID'];
                     $title       = $post['post_title'];
                     $content     = $post['post_content'];
                     $summary     = $post['post_excerpt'];
                     $link        = get_permalink($post['ID']);
+                    $alt_text    = get_post_meta($post_id, '_wp_attachment_image_alt', true);
                 ?>
 
                 <div class="duplo" m-Duplo="<?= $index; ?>">
-                    <?php
-                        get_the_image([
-                            'post_id'      => $post['ID'],
-                            'size'         => 'medium_large',
-                            'srcset_sizes' => ['medium' => '640w', 'large' => '1200w'],
-                            'order'        => [ 'featured' ],
-                            'link'         => false,
-                            'image_class'  => 'duplo-image'
-                        ]);
-                    ?>
+                    <?php if ( has_post_thumbnail($post['ID']) ) : ?>
+                        <div class="duplo-media">
+                            <div class="duplo-image" style="background-image:url(<?= get_the_post_thumbnail_url($post['ID'], 'medium_large'); ?>);">
+                                <?php if ( !empty($alt_text) ) : ?>
+                                    <p class="screen-reader-text"><?= $alt_text; ?></p>
+                                <?php endif; ?>
+                            </div>
+                            <div class="duplo-skrim" aria-hidden="true"></div>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="duplo-skrim" aria-hidden="true"></div>
 
