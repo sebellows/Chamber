@@ -19,6 +19,15 @@ use Chamber\Theme\Helper;
 <div class="data-grid full-screen-grid">
 
     <div class="row column">
+        <?php
+            if ( have_posts() ) :
+                while ( have_posts() ) :
+                    the_post();
+                    the_content();
+                endwhile;
+            ?>
+            <hr />
+        <?php endif; ?>
         <?php if($attractions->have_posts()): ?>
             <table id="attractionsDataTable" class="table">
                 <thead>
