@@ -50,16 +50,8 @@ if( get_row_layout('duplo_set') ) :
                 ?>
 
                 <div class="duplo<?= $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">
-                    <?php if ($image) : ?>
-                        <div class="duplo-media">
-                            <div class="duplo-image" style="background-image:url(<?= Media\get_custom_duplo_image($image['id'], $counter); ?>);">
-                                <?php if ( !empty($image['alt']) ) : ?>
-                                    <p class="screen-reader-text"><?= $image['alt']; ?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="duplo-skrim" aria-hidden="true"></div>
-                        </div>
-                    <?php endif; ?>
+
+                    <?= Media\get_duplo_media( $image['id'], $counter, $index ); ?>
 
                     <div class="duplo-content">
                         <?php
@@ -93,16 +85,7 @@ if( get_row_layout('duplo_set') ) :
                 ?>
 
                 <div class="duplo" m-Duplo="<?= $index; ?>">
-                    <?php if ( has_post_thumbnail($post['ID']) ) : ?>
-                        <div class="duplo-media">
-                            <div class="duplo-image" style="background-image:url(<?= get_the_post_thumbnail_url($post['ID'], 'medium_large'); ?>);">
-                                <?php if ( !empty($alt_text) ) : ?>
-                                    <p class="screen-reader-text"><?= $alt_text; ?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="duplo-skrim" aria-hidden="true"></div>
-                        </div>
-                    <?php endif; ?>
+                    <?= Media\get_duplo_media( $post['ID'], $counter, $index ); ?>
 
                     <div class="duplo-skrim" aria-hidden="true"></div>
 

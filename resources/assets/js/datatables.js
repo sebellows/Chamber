@@ -11660,7 +11660,7 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.searchPlaceholder
 			 */
-			"sSearchPlaceholder": "",
+			"sSearchPlaceholder": "Search…",
 	
 	
 			/**
@@ -22421,6 +22421,6 @@ Api.register( 'scroller.page()', function() {
 } );
 
 return Scroller;
+
+
 }));
-
-

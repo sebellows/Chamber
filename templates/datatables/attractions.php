@@ -42,15 +42,26 @@ use Chamber\Theme\Helper;
                         <tr>
                             <td>
                                 <?php if ( has_post_thumbnail() ) : ?>
-                                    <a href="<?php esc_url(the_permalink()); ?>"><?php the_post_thumbnail(); ?></a>
+
+                                    <?php get_the_image(
+                                        [
+                                            'size'         => 'thumbnail',
+                                            'order'        => [ 'featured' ],
+                                            'link'         => true
+                                        ]
+                                    ); ?>
+
                                 <?php endif; ?>
-                                <h3><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h3>
+
+                                <h3 itemprop="headline"><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h3>
+
                                 <?php
                         			$excerpt = has_excerpt() ? get_the_excerpt() : get_the_content();
                         			$excerpt = Helper::limit_content($excerpt, 150, '<a class="continuedmark" href="' . esc_url( get_permalink() ) . '">&nbsp;&hellip;MORE</a>');
                     			?>
-                                <p>
-                                    <?php echo $excerpt; ?>
+
+                                <p <?php hybrid_attr( 'entry-summary' ); ?>>
+                                    <?= $excerpt; ?>
                                 </p>
                             </td>
                             <td>
@@ -67,7 +78,7 @@ use Chamber\Theme\Helper;
                                  ?>
                              </td>
                             <td>
-                                <?php echo get_field('attr_city'); ?>
+                                <?= get_field('attr_city'); ?>
                             </td>
                         </tr>
 

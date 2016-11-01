@@ -398,6 +398,20 @@
                 //
             }
         },
+        'data-tables-demo': {
+            init: function() {
+                if ($.fn.dataTable) {
+                    $('#attractionsDataTable_wrapper').dataTable( {
+                        language: {
+                            searchPlaceholder: "Search"
+                        }
+                    } );
+                }
+            },
+            finalize: function() {
+                //
+            }
+        },
         'data_grid_attractions': {
             init: function() {
                 var $table = $('#dataGrid'),
@@ -12147,7 +12161,7 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.searchPlaceholder
 			 */
-			"sSearchPlaceholder": "",
+			"sSearchPlaceholder": "Search…",
 	
 	
 			/**
@@ -22908,8 +22922,8 @@ Api.register( 'scroller.page()', function() {
 } );
 
 return Scroller;
+
+
 }));
-
-
 
 //# sourceMappingURL=app.js.map

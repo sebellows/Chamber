@@ -182,6 +182,20 @@
                 //
             }
         },
+        'data-tables-demo': {
+            init: function() {
+                if ($.fn.dataTable) {
+                    $('#attractionsDataTable_wrapper').dataTable( {
+                        language: {
+                            searchPlaceholder: "Search"
+                        }
+                    } );
+                }
+            },
+            finalize: function() {
+                //
+            }
+        },
         'data_grid_attractions': {
             init: function() {
                 var $table = $('#dataGrid'),
