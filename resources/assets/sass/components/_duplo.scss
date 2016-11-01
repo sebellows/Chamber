@@ -143,7 +143,7 @@
   }
 
   @include breakpoint(large) {
-    padding: rem(24 30);
+    padding: rem(24 15);
   }
 }
 
@@ -157,7 +157,6 @@
 
   h2 {
     font-size: em(40);
-    font-size: 6vw;
   }
 
   @include breakpoint(medium) {
@@ -166,7 +165,6 @@
 
     h2 {
       font-size: em(48);
-      font-size: 3vw;
     }
 
   }
@@ -305,7 +303,6 @@
 
     h2 {
       font-size: em(36);
-      font-size: 6vw;
     }
 
     @include breakpoint(large) {
@@ -316,7 +313,6 @@
 
       h2 {
         font-size: em(36);
-        font-size: 3.5vw;
       }
     }
   }
@@ -330,7 +326,6 @@
 
     h2 {
       font-size: em(22);
-      font-size: 3vw;
       margin-bottom: 0;
     }
 
@@ -351,7 +346,6 @@
 
       h2 {
         font-size: em(28);
-        font-size: 2.5vw;
       }
 
       p {
@@ -369,7 +363,6 @@
 
       h2 {
         font-size: em(24);
-        font-size: 2vw;
         margin-bottom: rem(8);
       }
     }
@@ -578,17 +571,20 @@
     // Duplo Header : 1 Block
     [m-Duplo="1"] {
       @include grid-col(12,0);
+      height: auto;
 
-      @include breakpoint(small only) {
+      @include breakpoint(medium down) {
         border-right-width: 0 !important;
       }
 
-      @include breakpoint(medium) {
+      @include breakpoint(large) {
+        height: 640px;
+        height: 70vh;
         @include grid-col(3,0);
       }
 
-      @include breakpoint(large) {
-        @include grid-col(2,0);
+      @include breakpoint(xlarge) {
+        @include grid-col(2.5,0);
       }
     }
 
@@ -599,23 +595,22 @@
       height: 300px;
       height: 35vh;
 
-      h2 {
-        font-size: em(36);
-        font-size: 6vw;
-      }
-
       p {
         display: none;
-      }
-
-      @include breakpoint(small only) {
-        border-left-width: 0 !important;
-        border-right-width: 0 !important;
       }
     }
 
     [m-Duplo="2"] {
-      @include breakpoint(medium) {
+      @include breakpoint(large only) {
+        border-right: 0 none !important;
+      }
+
+      @include breakpoint(medium down) {
+        border-left-width: 0 !important;
+        border-right-width: 0 !important;
+      }
+
+      @include breakpoint(large) {
         @include grid-col(9,0);
 
         h2 {
@@ -623,8 +618,8 @@
         }
       }
 
-      @include breakpoint(large) {
-        @include grid-col(6,0);
+      @include breakpoint(xlarge) {
+        @include grid-col(5.5,0);
         height: 600px;
         height: 70vh;
 
@@ -637,7 +632,7 @@
     [m-Duplo="3"],
     [m-Duplo="4"] {
       @include breakpoint(medium) {
-        @include grid-col(4.5,0);
+        @include grid-col(6,0);
 
         h2 {
           font-size: em(24);
@@ -645,14 +640,33 @@
       }
 
       @include breakpoint(large) {
+        @include grid-col(4.5,0);
+      }
+
+      @include breakpoint(xlarge) {
         @include grid-col(4,0);
       }
     }
 
-    &[m-Duplo="3"] {
+    [m-Duplo="3"] {
       @include breakpoint(small only) {
+        border-right-width: 0 !important;
+      }
+
+      @include breakpoint(medium down) {
         border-left-width: 0 !important;
       }
     }
+
+    [m-Duplo="4"] {
+      @include breakpoint(small only) {
+        border-left-width: 0 !important;
+      }
+
+      @include breakpoint(medium down) {
+        border-right-width: 0 !important;
+      }
+    }
+
   }
 }

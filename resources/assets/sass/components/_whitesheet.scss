@@ -18,7 +18,8 @@
     @include flex-callout(8);  
   }
 
-  p {
+  p,
+  li {
     @include add-text-link-style;
   }
 
