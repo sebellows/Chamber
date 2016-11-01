@@ -11,6 +11,12 @@
     margin-bottom: 0;
   }
 
+  .flex-video.widescreen.media {
+    @include breakpoint(large only) {
+      padding-bottom: 67.5%;
+    }
+  }
+
   .video-poster {
     display: block;
     width: 100%;

@@ -4359,6 +4359,10 @@ svg.icon,
 .media-block .media {
   margin-bottom: 0; }
 
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+  .media-block .flex-video.widescreen.media {
+    padding-bottom: 67.5%; } }
+
 .media-block .video-poster {
   display: block;
   width: 100%;
