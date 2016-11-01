@@ -66,7 +66,8 @@ elixir(function(mix) {
 	mix.scripts([
 		'navigation.js',
 		'skip-link-focus-fix.js',
-		'app.js'
+		'app.js',
+		'datatables.js'
 	], 'public/js/app.js');
 
 	mix.scripts('modernizr.js');
