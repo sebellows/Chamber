@@ -29,11 +29,24 @@
           right: rem(10);
           @include fat-arrow-icon(color(cvb));
         }
+      }
 
-        &:focus,
-        &:hover {
-          background-color: rgba($black,.05);
-        }
+      &.active > a,
+      > a:active,
+      > a:focus,
+      > a:hover {
+        color: currentColor;
+      }
+
+      > a:active,
+      > a:focus,
+      > a:hover {
+        background-color: rgba($black,.05);
+      }
+
+      &.active,
+      > a:active {
+        opacity: .6;
       }
     }
   }

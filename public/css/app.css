@@ -3402,8 +3402,18 @@ body[class^="home"] .menu-toggle {
           background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22#eb6b23%22%20d%3D%22M30.79%2C15.5%2C22.33%2C7a.7.7%2C0%2C0%2C0-1%2C1l3%2C3H1.7a.7.7%2C0%2C1%2C0%2C0%2C1.41h24L29.3%2C16l-3.59%2C3.59H1.7A.7.7%2C0%2C0%2C0%2C1.7%2C21H24.3l-3%2C3a.7.7%2C0%2C1%2C0%2C1%2C1l8.46-8.46A.7.7%2C0%2C0%2C0%2C30.79%2C15.5Z%22/%3E%0A%3C/svg%3E");
           width: 1em;
           height: 1em; }
-        .subsidiary-navigation .menu > li a:focus, .subsidiary-navigation .menu > li a:hover {
-          background-color: rgba(19, 21, 22, 0.05); }
+      .subsidiary-navigation .menu > li.active > a,
+      .subsidiary-navigation .menu > li > a:active,
+      .subsidiary-navigation .menu > li > a:focus,
+      .subsidiary-navigation .menu > li > a:hover {
+        color: currentColor; }
+      .subsidiary-navigation .menu > li > a:active,
+      .subsidiary-navigation .menu > li > a:focus,
+      .subsidiary-navigation .menu > li > a:hover {
+        background-color: rgba(19, 21, 22, 0.05); }
+      .subsidiary-navigation .menu > li.active,
+      .subsidiary-navigation .menu > li > a:active {
+        opacity: .6; }
 
 .sidebar-vertical [class^="widget"] {
   padding-left: 0;
