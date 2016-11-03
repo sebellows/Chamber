@@ -6,6 +6,7 @@
 *
 */
 use Chamber\Theme\Helper;
+global $wpdb;
 
     // get our attractions
     $attractions = new WP_Query(array(
@@ -14,6 +15,11 @@ use Chamber\Theme\Helper;
         'suppress_filters' => true
     ));
 
+    // get all our types for filters
+    $attractionTypes = get_terms('attraction_category');
+
+    // get all of our cities... this should be good!
+    $attractionCities = $wpdb->get_results("SELECT DISTINCT meta_value FROM wp_postmeta WHERE meta_key='attr_city' ORDER BY meta_value ASC;");
 ?>
 
 <div class="data-grid full-screen-grid">
@@ -28,6 +34,21 @@ use Chamber\Theme\Helper;
             ?>
             <hr />
         <?php endif; ?>
+        <div class='filter-buttons'>
+            <h3>Cities</h3>
+            <?php foreach($attractionCities as $attractionCity): ?>
+                <button type="button" class="button danger small" data-filter='city' data-value="<?php echo $attractionCity->meta_value; ?>"><?php echo $attractionCity->meta_value; ?></button>
+            <?php endforeach; ?>
+            <button type="button" class="button danger small" data-clear='city'>Clear City Filter</button>
+
+            <h3>Types</h3>
+            <?php foreach($attractionTypes as $attractionType): ?>
+                <button type="button" class="button danger small" data-filter='type' data-value="<?php echo $attractionType->name; ?>"><?php echo $attractionType->name; ?></button>
+            <?php endforeach; ?>
+            <button type="button" class="button danger small" data-clear='type'>Clear Type Filter</button>
+            <hr />
+
+        </div>
         <?php if($attractions->have_posts()): ?>
             <table id="attractionsDataTable" class="table">
                 <thead>
