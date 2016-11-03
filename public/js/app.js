@@ -215,16 +215,16 @@
 })();
 
 /* ========================================================================
- * DOM-based Routing
- * Based on http://goo.gl/EUTi53 by Paul Irish
- *
- * Only fires on body classes that match. If a body class contains a dash,
- * replace the dash with an underscore when adding it to the object below.
- *
- * .noConflict()
- * The routing is enclosed within an anonymous function so that you can
- * always reference jQuery with $, even when in .noConflict() mode.
- * ======================================================================== */
+* DOM-based Routing
+* Based on http://goo.gl/EUTi53 by Paul Irish
+*
+* Only fires on body classes that match. If a body class contains a dash,
+* replace the dash with an underscore when adding it to the object below.
+*
+* .noConflict()
+* The routing is enclosed within an anonymous function so that you can
+* always reference jQuery with $, even when in .noConflict() mode.
+* ======================================================================== */
 
 (function($) {
 
@@ -255,14 +255,14 @@
 
                 function createReveal() {
                     var $reveal     =   '<div class="reveal" id="videoPlayerReveal" data-reveal>'+
-                                        '<div id="videoBox" class="flex-video widescreen media"></div>'+
-                                        '</div>';
+                    '<div id="videoBox" class="flex-video widescreen media"></div>'+
+                    '</div>';
                     var closeButton =   '<button class="close-button" data-close aria-label="Close modal">'+
-                                        '<span class="screen-reader-text">Close modal</span>'+
-                                        '<span class="icon" m-Icon="close large" aria-hidden="true">'+
-                                        '<svg role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg>'+
-                                        '</span>'+
-                                        '</button>';
+                    '<span class="screen-reader-text">Close modal</span>'+
+                    '<span class="icon" m-Icon="close large" aria-hidden="true">'+
+                    '<svg role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg>'+
+                    '</span>'+
+                    '</button>';
 
                     $('body').append($reveal);
 
@@ -294,11 +294,11 @@
                     // set listener for scroll to top
                     var oldStart = 0;
 
-                    $('#attractionsDataTable').DataTable( {
+                    var attractionsTable = $('#attractionsDataTable').DataTable( {
                         "order": [[ 0, "asc" ]],
                         "pagingType": "full_numbers",
                         "lengthMenu": [[10, 25, 50, 100, 150, -1], [10, 25, 50, 100, 150, "All"]],
-                        "responsive": true,
+                        "responsive": false,
                         "language": {
                             "lengthMenu": "Display _MENU_ attractions per page",
                             "zeroRecords": "No attractions found - sorry!",
@@ -307,13 +307,57 @@
                             "infoFiltered": "(filtered from _MAX_ total attractions)"
                         },
                         "fnDrawCallback": function(o) {
+                            // auto scroll to top of table on page change
                             if(o._iDisplayStart != oldStart) {
                                 var targetOffset = $('#attractionsDataTable').offset().top;
                                 $('html,body').animate({scrollTop: targetOffset}, 500);
                                 oldStart = o._iDisplayStart;
                             }
-                        }
+                        },
                     });
+
+                    // our filter terms
+                    var filterCity = null;
+                    var filterType = null;
+
+                    $('div.filter-buttons button').click(function() {
+                        var searchTerm;
+
+                        // build our search terms
+                        if($(this).data('filter') == 'city') {
+                            filterCity = $(this).data('value');
+                        }
+                        else if($(this).data('filter') == 'type'){
+                            filterType = $(this).data('value');
+                        }
+                        else {
+                            if($(this).data('clear') == 'city') {
+                                filterCity = null;
+                            }
+                            else {
+                                filterType = null;
+                            }
+                        }
+
+                        // setup our search phrase
+                        if(filterCity || filterType) {
+                            if(filterCity && filterType) {
+                                searchTerm = filterCity + ' ' + filterType;
+                            }
+                            else if(filterCity) {
+                                searchTerm = filterCity;
+                            }
+                            else if(filterType) {
+                                searchTerm = filterType;
+                            }
+                        }
+                        else {
+                            searchTerm = '';
+                        }
+
+                        attractionsTable.search(searchTerm).draw();
+                    });
+
                 } );
 
             },
@@ -360,7 +404,7 @@
                 $container.imagesLoaded( function(){
                     $container.isotope({
                         itemSelector : '.Card',
-                            layoutMode : 'masonry'
+                        layoutMode : 'masonry'
                     });
                 });
 
@@ -415,8 +459,8 @@
         'data_grid_attractions': {
             init: function() {
                 var $table = $('#dataGrid'),
-                    $alertBtn = $('#alertButton'),
-                    full_screen = false;
+                $alertBtn = $('#alertButton'),
+                full_screen = false;
 
                 $().ready(function(){
                     $table.chamberDataGrid({
