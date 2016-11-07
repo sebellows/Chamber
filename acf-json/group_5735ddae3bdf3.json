@@ -114,6 +114,27 @@
             "placeholder": "yourname@flintandgenesee.org",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_581fcf73026db",
+            "label": "Sort Weight",
+            "name": "people_weight",
+            "type": "number",
+            "instructions": "Used to change default sort order.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": -50,
+            "max": 50,
+            "step": 1
         }
     ],
     "location": [
@@ -145,5 +166,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1476342743
+    "modified": 1478344056
 }

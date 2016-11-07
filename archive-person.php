@@ -18,6 +18,9 @@ foreach($departments as $department) {
     wp_reset_query();
     $args = [
         'post_type' => 'person',
+        'meta_key' => 'people_weight',
+        'orderby' => 'meta_value_num',
+        'order' => 'ASC',
         'tax_query' => [
             [
                 'taxonomy' => 'department',
@@ -45,4 +48,3 @@ foreach($departments as $department) {
     <?php endif; ?>
 
 <?php } ?>
-
