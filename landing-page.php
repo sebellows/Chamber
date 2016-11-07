@@ -3,14 +3,10 @@
  * Template Name: Landing Page
  */
 
-?>
+function empty_content($str) {
+    return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
+}
 
-<?php if ( have_rows('duplo_block') ) : ?>
-	<div class="row">
-		<?php while (have_posts()) : the_post(); ?>
-			<?php get_template_part('templates/content/page'); ?>
-		<?php endwhile; ?>
-	</div>
-<?php endif; ?>
+?>
 
 <?php get_template_part('templates/sections/section', 'landing-page'); ?>
