@@ -24,6 +24,7 @@
     "flickity": "~2.0.2",
     "foundation-sites": "^6.2.3",
     "isotope-layout": "^3.0.1",
+    "lazy-vue": "^1.0.2",
     "motion-ui": "^1.2.2",
     "vue-resource": "^1.0.3",
     "vue-router": "^0.7.13"
@@ -35,6 +36,7 @@
     "laravel-elixir-rollup-official": "^1.1.0",
     "laravel-elixir-svgstore": "^1.0.2",
     "laravel-elixir-vue": "^0.1.8",
-    "laravel-elixir-webpack-official": "^1.0.8"
+    "laravel-elixir-webpack-official": "^1.0.8",
+    "vue-hot-reload-api": "^1.3.3"
   }
 }

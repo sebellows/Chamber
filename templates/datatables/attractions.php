@@ -37,13 +37,13 @@ global $wpdb;
         <div class='filter-buttons'>
             <h3>Cities</h3>
             <?php foreach($attractionCities as $attractionCity): ?>
-                <button type="button" class="button danger small" data-filter='city' data-value="<?php echo $attractionCity->meta_value; ?>"><?php echo $attractionCity->meta_value; ?></button>
+                <button type="button" class="button danger small" data-filter='city' data-value="<?= $attractionCity->meta_value; ?>"><?= $attractionCity->meta_value; ?></button>
             <?php endforeach; ?>
             <button type="button" class="button danger small" data-clear='city'>Clear City Filter</button>
 
             <h3>Types</h3>
             <?php foreach($attractionTypes as $attractionType): ?>
-                <button type="button" class="button danger small" data-filter='type' data-value="<?php echo $attractionType->name; ?>"><?php echo $attractionType->name; ?></button>
+                <button type="button" class="button danger small" data-filter='type' data-value="<?= $attractionType->name; ?>"><?= $attractionType->name; ?></button>
             <?php endforeach; ?>
             <button type="button" class="button danger small" data-clear='type'>Clear Type Filter</button>
             <hr />

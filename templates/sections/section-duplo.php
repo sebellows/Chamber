@@ -76,19 +76,19 @@ if ( have_rows('duplo_block') ) :
                 <?php 
 
                 elseif ($type == 'post') :
-                    $post_object = get_sub_field('duplo_block_post');
-                    $post_id     = $post_object[0];
-                    $post        = get_post($post_id);
+                    $post_id     = get_sub_field('duplo_block_post');
+                    $post        = get_post($post_id[0]);
                     $title       = $post->post_title;
                     $content     = $post->post_content;
                     $summary     = $post->post_excerpt;
                     $link        = get_permalink($post->ID);
                     $alt_text    = get_post_meta($post_id, '_wp_attachment_image_alt', true);
+                    $duploIndex  = $index+1;
                 ?>
 
-                <div class="duplo" m-Duplo="<?= $index+1; ?>">
+                <div class="duplo" m-Duplo="<?= $duploIndex; ?>">
 
-                    <?= Media\get_duplo_media( $post['ID'], $counter, $index ); ?>
+                    <?= Media\get_duplo_media( $post, $counter, $duploIndex ); ?>
 
                     <div class="duplo-content">
                         <?php

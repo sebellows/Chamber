@@ -10,7 +10,7 @@
   right: 0;
   height: 100vh;
   width: 100%;
-  background: rgba($black,.45);
+  background: rgba($white,.8);
   will-change: opacity;
 
   &.is-active {
@@ -47,6 +47,10 @@
   opacity: 0;
   transition: opacity .3s cubic-bezier(0.4,0,0.2,0);
   will-change: opacity;
+
+  &:focus {
+    outline: 0 none;
+  }
 
   @include breakpoint(medium down) {
    width: 80%;

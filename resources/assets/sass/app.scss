@@ -53,14 +53,14 @@ Tags:
 @import '../../../node_modules/foundation-sites/scss/forms/forms';
 @import '../../../node_modules/foundation-sites/scss/components/visibility';
 @import '../../../node_modules/foundation-sites/scss/components/float';
-@import '../../../node_modules/foundation-sites/scss/components/button';
-@import '../../../node_modules/foundation-sites/scss/components/button-group';
+// @import '../../../node_modules/foundation-sites/scss/components/button';
+// @import '../../../node_modules/foundation-sites/scss/components/button-group';
 @import '../../../node_modules/foundation-sites/scss/components/accordion-menu';
 @import '../../../node_modules/foundation-sites/scss/components/accordion';
 @import '../../../node_modules/foundation-sites/scss/components/badge';
 @import '../../../node_modules/foundation-sites/scss/components/breadcrumbs';
 @import '../../../node_modules/foundation-sites/scss/components/callout';
-@import '../../../node_modules/foundation-sites/scss/components/close-button';
+// @import '../../../node_modules/foundation-sites/scss/components/close-button';
 @import '../../../node_modules/foundation-sites/scss/components/drilldown';
 @import '../../../node_modules/foundation-sites/scss/components/dropdown-menu';
 @import '../../../node_modules/foundation-sites/scss/components/dropdown';
@@ -98,14 +98,14 @@ Tags:
   }
   @include foundation-typography;
   @include foundation-forms;
-  @include foundation-button;
+  // @include foundation-button;
   // @include foundation-accordion;
   // @include foundation-accordion-menu;
   // @include foundation-badge;
   @include foundation-breadcrumbs;
-  @include foundation-button-group;
+  // @include foundation-button-group;
   @include foundation-callout;
-  @include foundation-close-button;
+  // @include foundation-close-button;
   @include foundation-menu;
   // @include foundation-menu-icon;
   // @include foundation-drilldown-menu;
@@ -190,6 +190,12 @@ Tags:
 # Components
 --------------------------------------------------------------*/
 @import "components/components";
+@import '../../../node_modules/foundation-sites/scss/components/button-group';
+@import '../../../node_modules/foundation-sites/scss/components/close-button';
+
+@include foundation-button;
+@include foundation-button-group;
+@include foundation-close-button;
 
 /*--------------------------------------------------------------
 # Layout

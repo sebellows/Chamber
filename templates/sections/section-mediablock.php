@@ -39,12 +39,28 @@ if( get_row_layout() == 'media_block' ) :
                      */
                     $media = get_sub_field('mb_video');
 
+                    function getYoutubeEmbedUrl($url)
+                    {
+                        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
+                        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+
+                        if (preg_match($longUrlRegex, $url, $matches)) {
+                        $id = $matches[count($matches) - 1];
+                        }
+
+                        if (preg_match($shortUrlRegex, $url, $matches)) {
+                        $id = $matches[count($matches) - 1];
+                        }
+
+                        return isset($id) ? $id : 'error';
+                    }
+
                     /**
                      * Get the ID of the embedded video.
                      *
                      * @source http://jeromejaglale.com/doc/php/youtube_generate_embed_from_url
                      */
-                    $mediaID = preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $mediaURL, $matches);
+                    $mediaID = getYoutubeEmbedUrl($mediaURL);
 
                     /**
                      * Get the iframe attributes to pass to JavaScript.
@@ -52,20 +68,14 @@ if( get_row_layout() == 'media_block' ) :
                      * @var string
                      */
                     $mediaAttrs = str_replace(['<iframe ', '></iframe>'], '', $media);
-
-                    /**
-                     * Get the video's ID.
-                     * 
-                     * @var int
-                     */
-                    $id = $matches[1];
+                    $mediaAttrs = strpos($mediaAttrs, '640') !== false ? str_replace(['width="640"', 'height="'.'/\d+/'.'"'], ['width="853"', 'height="480"'], $media) : $mediaAttrs;
 
                     /**
                      * The video poster thumbnail URL via the ID.
                      *
                      * @var string
                      */
-                    $poster = 'https://i.ytimg.com/vi/' . $id . '/';
+                    $poster = 'https://i.ytimg.com/vi/' . $mediaID . '/';
 
                     /* Could attempt to get the `webp` version of the image. */
                     // $poster_webp = 'https://i.ytimg.com/vi_webp/' . $id . '/sddefault.webp';
@@ -106,7 +116,7 @@ if( get_row_layout() == 'media_block' ) :
                
                 <?php if ($more_link) : ?>
                     <a class="readmore" href="<?= $more_link; ?>">
-                        <?= $more_text; ?>&ensp;<span class="icon" m-Icon="small square-plus"><svg role="presentation"><use xlink:href="#icon-square-plus"></use></svg></span>
+                        <?= $more_text; ?>&ensp;<span class="icon" m-Icon="small fat-arrow"><svg role="presentation"><use xlink:href="#icon-fat-arrow"></use></svg></span>
                     </a>
                 <?php endif; ?>
          
