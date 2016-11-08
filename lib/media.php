@@ -152,6 +152,7 @@ function set_thumbnail_images_to_background( $attachment_id, $duploSize = 'banne
 				@media (min-width: <?= $breakpoints[$index][0]; ?>px) and (max-width: <?= $breakpoints[$index][1]; ?>px) {
 					<?= $selector; ?> {
 						background-image: url("<?= wp_get_attachment_image_src( $attachment_id, $duploSize )[0]; ?>");
+						content: '<?= $duploSize; ?>';
 					}
 				}
 
@@ -161,6 +162,7 @@ function set_thumbnail_images_to_background( $attachment_id, $duploSize = 'banne
 				@media (min-width: <?= $breakpoints[$index][0]; ?>px) and (max-width: <?= $breakpoints[$index][1]; ?>px) {
 					<?= $selector; ?> {
 						background-image: url("<?= get_the_post_thumbnail_url( $attachment_id, $duploSize ); ?>");
+						content: '<?= $duploSize; ?>';
 					}
 				}
 
@@ -230,6 +232,15 @@ function get_duplo_sizes( $duploSize = 'banner' )
   }
 }
 
+/**
+ * Get the index of the Duplo block in order to determine 
+ * the required image size.
+ * 
+ * @param  integer  $attachment_id the post ID
+ * @param  integer $counter        the total number of blocks
+ * @param  integer $index          the index number of a block
+ * @return mixed                   the sized image
+ */
 function get_duplo_size_from_counter( $attachment_id, $counter = 0, $index = 0 )
 {
 	$bgImgs = [];
