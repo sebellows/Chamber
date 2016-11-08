@@ -129,6 +129,13 @@ function get_srcset( $attachment_id )
 	return set_srcset( $attachment_id );
 }
 
+function get_thumbnail_src( $attachment_id, $imgSize )
+{
+	$thumbnail_src = wp_get_attachment_image( $attachment_id ) ? wp_get_attachment_image_src( $attachment_id, $imgSize )[0] : get_the_post_thumbnail_url( $attachment_id, $imgSize );
+
+	return $thumbnail_src;
+}
+
 /**
  * Generate a `style` tag that sets media-queries with an image size to use as a background.
  * 
@@ -142,35 +149,41 @@ function set_thumbnail_images_to_background( $attachment_id, $duploSize = 'banne
 	$duploSizes  = get_duplo_sizes( $duploSize );
 	$breakpoints = get_breakpoints();
 
-	if ( !empty(wp_get_attachment_image( $attachment_id )) || !empty(get_the_post_thumbnail_url( $attachment_id )) || has_post_thumbnail() ) :
+	// Get the thumbnail from either a custom Duplo or a post object.
+	$thumbnail = wp_get_attachment_image( $attachment_id ) ? wp_get_attachment_image( $attachment_id ) : get_the_post_thumbnail( $attachment_id );
+
+	// Get the post_thumbnail width to make sure we have an image that
+	// is large enough for using media-queries in the first place.
+	$thumbnail_width = wp_get_attachment_metadata( $attachment_id ) ? wp_get_attachment_metadata( $attachment_id )['width'] : wp_get_attachment_image_src( get_post_thumbnail_id( $attachment_id ), 'post_thumbnail' )[1];
+
+	if ( $thumbnail ) :
 		echo '<style>';
 
-		foreach ( $duploSizes as $index => $duploSize ) {
-			if ( !empty( wp_get_attachment_image( $attachment_id ) ) ) :
+		if ( $thumbnail_width > 800 ) :
+				
+			foreach ( $duploSizes as $index => $duploSize ) {
 			?>
 
 				@media (min-width: <?= $breakpoints[$index][0]; ?>px) and (max-width: <?= $breakpoints[$index][1]; ?>px) {
 					<?= $selector; ?> {
-						background-image: url("<?= wp_get_attachment_image_src( $attachment_id, $duploSize )[0]; ?>");
-						content: '<?= $duploSize; ?>';
+						background-image: url("<?= get_thumbnail_src( $attachment_id, $duploSize ); ?>");
 					}
 				}
 
-			<?php else :
-			?>
+			<?php } ?>
 
-				@media (min-width: <?= $breakpoints[$index][0]; ?>px) and (max-width: <?= $breakpoints[$index][1]; ?>px) {
-					<?= $selector; ?> {
-						background-image: url("<?= get_the_post_thumbnail_url( $attachment_id, $duploSize ); ?>");
-						content: '<?= $duploSize; ?>';
-					}
-				}
+		<?php else : ?>
 
-			<?php endif;
-		}
+			<?= $selector; ?> {
+				background-image: url("<?= get_thumbnail_src( $attachment_id, $duploSize ); ?>");
+			}
+
+		<?php endif;
 
 		echo '</style>';
+
 	endif;
+
 }
 
 /**

@@ -14,6 +14,6 @@
 		<input type="search" placeholder="Search" value="<?= get_search_query(); ?>" name="s" id="s" class="search-field">
 	</label>
 	<button id="search-submit" class="button icon-button" type="submit">
-		<span class="icon" m-Icon="arrow-right small"><svg role="presentation"><use xlink:href="#icon-arrow-right" viewbox="0 0 24 24"></use></svg></span>
+		<span class="icon" m-Icon="arrow-wide-right small"><svg role="presentation"><use xlink:href="#icon-arrow-wide-right" viewbox="0 0 32 32"></use></svg></span>
 	</button>
 </form>

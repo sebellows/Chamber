@@ -19,6 +19,7 @@
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   min-height: 100%;
+  background-color: neutral(3);
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -84,18 +85,19 @@
 
 .duplo-skrim {
   background: linear-gradient(35deg, $black 0%, transparent 100%);
+  // background: linear-gradient(35deg, color(education) 0%, transparentize(color(members),.3) 30%, transparentize(color(development),.5) 55%, transparentize(color(cvb),.75) 75%, transparent 100%);
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  opacity: .8;
+  opacity: .5;
   transition: opacity .3s ease-out;
 
-  .duplo:active &,
-  .duplo:focus &,
-  .duplo:hover & {
-    opacity: 1;
+  .has-duplo-link:active &,
+  .has-duplo-link:focus &,
+  .has-duplo-link:hover & {
+    opacity: 8;
   }
 }
 

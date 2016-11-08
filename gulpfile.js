@@ -30,7 +30,8 @@ elixir(function(mix) {
 
 	mix.copy([
 		'node_modules/motion-ui/dist/motion-ui.js',
-		'node_modules/what-input/dist/what-input.js'
+		'node_modules/what-input/dist/what-input.js',
+		'node_modules/flickity/dist/flickity.pkgd.js'
 		// 'node_modules/vue-resource/dist/vue-resource.js',
 		// 'node_modules/vue-router/dist/vue-router.js'
 	], 'resources/assets/js/vendor');
@@ -66,6 +67,7 @@ elixir(function(mix) {
 	mix.scripts([
 		'navigation.js',
 		'skip-link-focus-fix.js',
+		'media-block.js',
 		'app.js',
 		'datatables.js'
 	], 'public/js/app.js');

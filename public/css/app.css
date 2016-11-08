@@ -4309,6 +4309,7 @@ svg.icon,
   bottom: 0;
   right: 0;
   min-height: 100%;
+  background-color: #90a4ae;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -4366,12 +4367,12 @@ svg.icon,
   left: 0;
   bottom: 0;
   right: 0;
-  opacity: .8;
+  opacity: .5;
   transition: opacity .3s ease-out; }
-  .duplo:active .duplo-skrim,
-  .duplo:focus .duplo-skrim,
-  .duplo:hover .duplo-skrim {
-    opacity: 1; }
+  .has-duplo-link:active .duplo-skrim,
+  .has-duplo-link:focus .duplo-skrim,
+  .has-duplo-link:hover .duplo-skrim {
+    opacity: 8; }
 
 .duplo-link {
   position: absolute;

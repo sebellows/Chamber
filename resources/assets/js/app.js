@@ -25,8 +25,15 @@
                     new Foundation.Toggler($("#searchForm"));
                 }
 
+                // Add class to duplo block if it is hoverable
+                if ( $(".duplo").children(".duplo-link") ) {
+                    $(".duplo").addClass("has-duplo-link");
+                }
+
                 // Add scroll-scope.js to flickity captions
-                //$(document).scrollScope();
+                if ($(".dynamic-whitesheet").length > 0) {
+                    $(document).scrollScope();
+                }
 
                 // Add YouTube video to modal to prevent it from slowing down page rendering
                 if ($(".mediabox .media").length > 0) {
@@ -143,7 +150,6 @@
                     });
 
                 } );
-
             },
             finalize: function() {
                 // JavaScript to be fired on all pages, after page specific JS is fired
