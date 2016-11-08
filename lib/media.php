@@ -329,6 +329,30 @@ function get_duplo_media( $attachment_id, $counter = 1, $index = 1, $selector = 
 	endif;
 }
 
+/**
+ * Get the ID from a URL in an embedded YouTube video.
+ *
+ * @source  http://jeromejaglale.com/doc/php/youtube_generate_embed_from_url
+ * 
+ * @param  string $url
+ * @return string the video's unique ID
+ */
+function get_youtube_embed_url( $url )
+{
+    $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9-_]+)\??/i';
+    $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9-_]+)/i';
+
+    if (preg_match($longUrlRegex, $url, $matches)) {
+    $id = $matches[count($matches) - 1];
+    }
+
+    if (preg_match($shortUrlRegex, $url, $matches)) {
+    $id = $matches[count($matches) - 1];
+    }
+
+    return isset($id) ? $id : 'error';
+}
+
 
 function get_custom_duplo_image( $attachment_id, $counter ) {
 	$image_url = $counter === 1 ? wp_get_attachment_image_url( $attachment_id, 'fullwidth' ) : wp_get_attachment_image_url( $attachment_id, 'medium_large' );

@@ -230,11 +230,14 @@
         return;
     }
 
-    if ( ! mediaID || ! mediaAttrs ) {
-        return;
-    }
-
     const MEDIABLOCK = document.querySelector('.stripe.media-block');
+    const VIDEOBLOCK = MEDIABLOCK.querySelector('.flex-video');
+
+    mediaID = typeof mediaID === "undefined" ? '' : mediaID;
+
+    mediaAttrs = typeof mediaAttrs === "undefined" ? '' : mediaAttrs;
+
+    hasWebP = typeof hasWebP === "undefined" ? '' : hasWebP;
 
     /**
      * Set multiple attributes on an element.
@@ -367,7 +370,7 @@
         return videoSlot;
     }
 
-    if ( MEDIABLOCK ) {
+    if ( VIDEOBLOCK ) {
         videoPoster( mediaAttrs, hasWebP );
     }
 

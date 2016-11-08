@@ -1,6 +1,7 @@
 <?php
 
 use Chamber\Theme\Color;
+use Chamber\Theme\Media;
 
 if( get_row_layout() == 'media_block' ) :
 
@@ -39,28 +40,12 @@ if( get_row_layout() == 'media_block' ) :
                      */
                     $media = get_sub_field('mb_video');
 
-                    function getYoutubeEmbedUrl($url)
-                    {
-                        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9-_]+)\??/i';
-                        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9-_]+)/i';
-
-                        if (preg_match($longUrlRegex, $url, $matches)) {
-                        $id = $matches[count($matches) - 1];
-                        }
-
-                        if (preg_match($shortUrlRegex, $url, $matches)) {
-                        $id = $matches[count($matches) - 1];
-                        }
-
-                        return isset($id) ? $id : 'error';
-                    }
-
                     /**
                      * Get the ID of the embedded video.
                      *
                      * @source http://jeromejaglale.com/doc/php/youtube_generate_embed_from_url
                      */
-                    $mediaID = getYoutubeEmbedUrl($mediaURL);
+                    $mediaID = Media\get_youtube_embed_url($mediaURL);
 
                     /**
                      * Get the iframe attributes to pass to JavaScript.
@@ -73,7 +58,7 @@ if( get_row_layout() == 'media_block' ) :
                 ?>
 
                 <script type="text/javascript">
-                    var mediaID    = "<?= $mediaID; ?>";
+                    var mediaID = "<?= $mediaID; ?>";
                 </script>
                 <script type="text/javascript">
                     var mediaAttrs = "<?= base64_encode($mediaAttrs); ?>";

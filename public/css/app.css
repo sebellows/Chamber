@@ -4128,6 +4128,14 @@ svg.icon,
       flex: 0 0 66.6666666667%;
       max-width: 66.6666666667%; } }
 
+@supports (object-fit: cover) {
+  @media screen and (min-width: 64em) {
+    .mediabox > img {
+      object-fit: cover;
+      height: 100%;
+      width: auto;
+      max-width: none; } } }
+
 .media-block .media {
   margin-bottom: 0; }
 
