@@ -8,7 +8,7 @@
 
 /// Padding inside buttons.
 /// @type List
-$button-padding: 0.85em 1em !default;
+$button-padding: em(12) em(16) !default;
 
 /// Margin around buttons.
 /// @type List
@@ -43,7 +43,7 @@ $button-radius: $global-radius !default;
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
-  default: 0.9rem,
+  default: 0.875rem,
   large: 1.25rem,
 ) !default;
 
@@ -124,25 +124,19 @@ $button-hollow-hover-lightness: -50% !default;
   }
 }
 
-/// Removes background fill on hover and focus for hollow buttons.
-// @mixin button-hollow {
-//   &,
-//   &:hover, &:focus {
-//     background-color: transparent;
-//   }
-// }
-
-@mixin button-hollow-style(
+@mixin button-hollow(
   $color: $primary-color
 ) {
   $color-hover: foreground($color);
 
+  background-color: transparent;
   border: 1px solid $color;
   color: $color;
+  text-transform: uppercase;
 
   &:hover, &:focus {
     background-color: $color;
-    border-color: $color-hover;
+    border-color: $color;
     color: $color-hover;
   }
 }
@@ -197,7 +191,7 @@ $button-hollow-hover-lightness: -50% !default;
   }
   @else if $style == hollow {
     // @include button-hollow;
-    @include button-hollow-style($background);
+    @include button-hollow($background);
   }
 
   @if $expand {
@@ -227,7 +221,7 @@ $button-hollow-hover-lightness: -50% !default;
       }
       @else {
         &.#{$name} {
-          @include button-hollow-style($color);
+          @include button-hollow($color);
         }
 
         &.#{$name}.dropdown::after {
@@ -240,11 +234,11 @@ $button-hollow-hover-lightness: -50% !default;
     @if $button-fill != hollow {
       &.hollow {
         // @include button-hollow;
-        @include button-hollow-style;
+        @include button-hollow;
 
         @each $name, $color in $foundation-palette {
           &.#{$name} {
-            @include button-hollow-style($color);
+            @include button-hollow($color);
           }
         }
       }
@@ -353,10 +347,16 @@ $button-hollow-hover-lightness: -50% !default;
   top: 50%;
   width: 68px;
   height: 48px;
+  z-index: 1;
   transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
 }
 
 .button.raised {
   @include z-depth(1, true, 2);
   transition: all .25s cubic-bezier(0.0,0.0,0.2,1);
+}
+
+.rsvp.button {
+  padding: rem(6 8);
+  margin: 0;
 }
