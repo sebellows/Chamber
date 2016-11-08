@@ -325,16 +325,30 @@
 
                         // build our search terms
                         if($(this).data('filter') == 'city') {
-                            filterCity = $(this).data('value');
+                            if(filterCity)
+                            {
+                                filterCity.addClass('hollow');
+                            }
+
+                            filterCity = $(this);
+                            $(this).removeClass('hollow');
                         }
                         else if($(this).data('filter') == 'type'){
-                            filterType = $(this).data('value');
+                            if(filterType)
+                            {
+                                filterType.addClass('hollow');
+                            }
+
+                            filterType = $(this);
+                            $(this).removeClass('hollow');
                         }
                         else {
                             if($(this).data('clear') == 'city') {
+                                filterCity.addClass('hollow');
                                 filterCity = null;
                             }
                             else {
+                                filterType.addClass('hollow');
                                 filterType = null;
                             }
                         }
@@ -342,13 +356,13 @@
                         // setup our search phrase
                         if(filterCity || filterType) {
                             if(filterCity && filterType) {
-                                searchTerm = filterCity + ' ' + filterType;
+                                searchTerm = filterCity.data('value') + ' ' + filterType.data('value');
                             }
                             else if(filterCity) {
-                                searchTerm = filterCity;
+                                searchTerm = filterCity.data('value');
                             }
                             else if(filterType) {
-                                searchTerm = filterType;
+                                searchTerm = filterType.data('value');
                             }
                         }
                         else {
