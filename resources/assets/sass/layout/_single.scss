@@ -58,6 +58,7 @@
 
   .entry-content-body {
     @include breakpoint(large) {
+      font-size: em(18);
       flex: 0 0 em(600);
       max-width: em(600);
       padding: rem(30 15 30 0);
