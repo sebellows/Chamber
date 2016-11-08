@@ -22,6 +22,10 @@
 
     /**
      * Set multiple attributes on an element.
+     *
+     * @source http://stackoverflowu
+     * 
+     * .com/questions/12274748/setting-multiple-attributes-for-an-element-at-once-with-javascript
      * 
      * @param {[object]} el
      * @param {[array]} attrs
