@@ -33,7 +33,8 @@ $chamber_includes = [
 	'lib/color.php', 			// Theme color helpers
 	'lib/media.php', 			// Media helpers
 	'lib/icons.php', 			// Icon helpers
-	'lib/template-tags.php' 	// Custom template tags
+	'lib/template-tags.php', 	// Custom template tags
+	'lib/shortcodes.php',		// Shortcodes
 ];
 
 foreach ($chamber_includes as $file) {
