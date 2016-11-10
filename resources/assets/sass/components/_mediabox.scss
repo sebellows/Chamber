@@ -6,6 +6,17 @@
   }
 }
 
+@supports(object-fit:cover) {
+  .mediabox > img {
+    @include breakpoint(large) {
+      object-fit: cover;
+      height: 100%;
+      width: auto;
+      max-width: none;
+    }
+  }
+}
+
 .media-block {
   .media {
     margin-bottom: 0;

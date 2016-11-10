@@ -116,3 +116,5 @@ if ( have_rows('duplo_block') ) :
     </section>
 
 <?php endif; ?>
+
+<?php wp_reset_postdata(); ?>
