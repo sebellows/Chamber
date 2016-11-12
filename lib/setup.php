@@ -15,6 +15,7 @@ use Chamber\Theme\Helper;
 use Chamber\Theme\Config;
 use Chamber\Theme\Assets;
 use Chamber\Theme\Extras;
+use Chamber\Theme\Menu;
 use Chamber\Theme\API;
 use Chamber\Theme\Sidebar;
 use Hybrid;
@@ -71,19 +72,7 @@ function setup() {
 	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
 	add_theme_support('title-tag');
 
-	register_nav_menus([
-	    'site_navigation'           => __('Site Navigation Menu', 'chamber'),
-	    'quick_links'               => __('Quick Links Menu', 'chamber'),
-	    'social_links'              => __('Social Links Menu', 'chamber'),
-	    'site_information'          => __('Site Information Menu', 'chamber'),
-	    'about_menu'                => __('About Menu', 'chamber'),
-	    'news_menu'                 => __('News Menu', 'chamber'),
-	    'cvb_menu'                  => __('CVB Menu', 'chamber'),
-	    'member_services_menu'      => __('Member Services Menu', 'chamber'),
-	    'economic_development_menu' => __('Economic Development Menu', 'chamber'),
-	    'education_training_menu'   => __('Education Training Menu', 'chamber'),
-	    'shared_services_menu'      => __('Shared Services Menu', 'chamber')
-	]);
+	(new Menu)->register();
 
 	// Enable post thumbnails
 	// http://codex.wordpress.org/Post_Thumbnails

@@ -7,47 +7,34 @@
  * @package chamber
  */
 
+use Chamber\Theme\Helper;
+
 $no_post_thumbnail = has_post_thumbnail() === false ? 'no-post-thumbnail' : null;
+$abbreviated_content = Helper::limit_content_length( get_the_content(), 300 );
 ?>
 
 
 <article <?php hybrid_attr( 'post' ); ?>>
 
-	<?php if ( is_search() || is_archive() ) : ?>
-	<div class="callout">
-	<?php endif; ?>
+	<?php get_template_part( 'templates/partials/entry-header' ); ?>
 
-		<header class="entry-header">
-			<?php the_title( '<h2 ' . hybrid_get_attr( 'entry-title' ) . '><a href="' . get_permalink() . '" rel="bookmark" itemprop="url">', '</a></h2>' ); ?>
-			<?php if (get_post_type() === 'post') : ?>
-			<div class="entry-meta">
-				<time <?php hybrid_attr( 'entry-published' ); ?>><?= get_the_date(); ?></time>
-				<?php if ( has_category() ) { printf('<s> | </s>'); } ?>
-				<?php hybrid_post_terms( [ 'taxonomy' => 'category', 'text' => __( 'Categories: %s', __NAMESPACE__ ) ] ); ?>
-				<?php if ( has_tag() ) { printf('<s> | </s>'); } ?>
-				<?php hybrid_post_terms( [ 'taxonomy' => 'post_tag', 'text' => __( 'Tags: %s', __NAMESPACE__ ) ] ); ?>
-			</div>
-			<?php endif; ?>
-		</header><!-- .entry-header -->
+	<?php get_the_image(
+		[
+			'size'         => 'small',
+			'order'        => [ 'featured' ],
+			'before'       => '<div class="entry-media">',
+			'after'        => '</div>',
+			'link'         => true
+		]
+	); ?>
 
-		<?php if ( !is_archive( 'category' ) && !is_archive( 'post_tag' ) && !is_search() ) : ?>
-			<?php get_the_image(
-				[
-					'size'         => 'small',
-					'order'        => [ 'featured' ],
-					'before'       => '<div class="entry-media">',
-					'after'        => '</div>',
-					'link'         => true
-				]
-			); ?>
-		<?php endif; ?>
-
-		<div <?php hybrid_attr( 'entry-summary' ); ?>>
+	<div <?php hybrid_attr( 'entry-summary' ); ?>>
+		<?php if ( has_excerpt() ) : ?>
 			<?php the_excerpt(); ?>
-		</div><!-- .entry-summary -->
-
-	<?php if ( is_search() || is_archive() ) : ?>
-	</div><!-- .callout -->
-	<?php endif; ?>
+		<?php else : ?>
+			<?= wp_trim_words( get_the_content(), 60, '&hellip;' ); ?>
+		<?php endif; ?>
+		<?php get_template_part( 'templates/partials/more-link' ); ?>
+	</div><!-- .entry-summary -->
 
 </article>

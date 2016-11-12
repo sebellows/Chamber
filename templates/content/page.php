@@ -23,13 +23,7 @@ use Chamber\Theme\Sidebar;
 		<?php endif; ?>
 
 		<?php if ( is_single() && ! is_singular( 'attraction' ) ) : ?>
-		    <div class="entry-meta">
-		        <time <?php hybrid_attr( 'post-published' ); ?>><?= get_the_date(); ?></time>
-		        <hr class="dotted">
-		        <?php hybrid_post_terms( [ 'taxonomy' => 'category', 'text' => __( 'Categories: %s', __NAMESPACE__ ) ] ); ?>
-		        <?php if ( has_category() && has_tag() ) { printf('<br>'); } ?>
-		        <?php hybrid_post_terms( [ 'taxonomy' => 'post_tag', 'text' => __( 'Tags: %s', __NAMESPACE__ ) ] ); ?>
-		    </div>
+		    <?php get_template_part( 'templates/partials/entry-meta' ); ?>
 		<?php endif; ?>
 
 		<?php if ( is_singular( 'attraction' ) ) : ?>
@@ -50,7 +44,7 @@ use Chamber\Theme\Sidebar;
 	        'after'        => '</div>',
 	        'link'         => false
 	      ]
-	    );?>
+	    ); ?>
 
 	    <div class="entry-content-body">
 	    	<?php the_content(); ?>

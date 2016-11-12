@@ -4,9 +4,16 @@
   line-height: normal;
   position: relative;
   text-align: center;
-  transition: box-shadow .3s ease-out, transform .3s ease-out;
+  transition: box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1), transform .3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: box-shadow, transform;
   @include flex-callout(12);
+
+  &:focus,
+  &:hover {
+    @include z-depth(3);
+    transform: scale(1.05);
+    z-index: 1;
+  }
 }
   // For iOS so that `.cta-content` doesn't float to top
   @supports(display: inline-flex) {
@@ -29,15 +36,6 @@
     font-weight: 700;
   }
 }
-  .no-touchevents .cta-link {
-    &:active,
-    &:focus,
-    &:hover {
-      box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
-      transform: scale(1.05);
-      z-index: 1;
-    }
-  }
 
 .cta-content {
   min-height: 100%; // iOS requires `min-`

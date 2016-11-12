@@ -19,12 +19,11 @@
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   min-height: 100%;
-  background-color: neutral(3);
+  background-color: neutral(1);
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: multiply;
-  // mix-blend-mode: multiply;
 }
   .no-backgrounblendmode .duplo-image {
     opacity: .8;

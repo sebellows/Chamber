@@ -43,56 +43,6 @@ class Helper
 	}
 
 	/**
-	 * Get the first image from a post if it has one.
-	 *
-	 * If there is no feature-image for the post, try to 
-	 * use the first image from it if possible.
-	 * 
-	 * @param  int    $post_id      the post ID
-	 * @param  mixed  $post_content the post content
-	 * @param  string $classname    class name to append to the wrapper tag
-	 * @return mixed               the first image in the post content
-	 */
-	public static function get_first_image($post_id, $post_content, $classname) {
-	  $first_img = '';
-
-	  if (get_the_post_thumbnail( $post_id ) === '') {
-	    ob_start();
-	    ob_end_clean();
-	    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches);
-	    $matches = array_filter($matches);
-    	$first_img = !empty($matches) ? $matches[1][0] : '';
-    	$first_img = !empty($matches) ? '<img class="duplo-image" src="' . $first_img . '">' : '';	    	
-	  }
-	  else {
-	    $first_img = get_the_post_thumbnail( $post_id, 'large', ['class' => $classname]);
-	  }
-
-	  return $first_img;
-	}
-
-	/**
-	 * Get all image sizes.
-	 *
-	 * @source https://gist.github.com/eduardozulian/6467854
-	 */
-	public static function _get_all_image_sizes() {
-		global $_wp_additional_image_sizes;
-		$default_image_sizes = [ 'thumbnail', 'medium', 'medium_large', 'large' ];
-		 
-		foreach ( $default_image_sizes as $size ) {
-			$image_sizes[$size]['width']	= intval( get_option( "{$size}_size_w") );
-			$image_sizes[$size]['height'] = intval( get_option( "{$size}_size_h") );
-			$image_sizes[$size]['crop']	= get_option( "{$size}_crop" ) ? get_option( "{$size}_crop" ) : false;
-		}
-		
-		if ( isset( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) )
-			$image_sizes = array_merge( $image_sizes, $_wp_additional_image_sizes );
-			
-		return $image_sizes;
-	}
-
-	/**
 	 * Get the content of the post if there is no excerpt.
 	 *
 	 * @param int $limit the character count limit
@@ -107,6 +57,33 @@ class Helper
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Limit the content length in the home feed.
+	 * 
+	 * @param  mixed   $content `the_content()`
+	 * @param  integer $limit   the character limit
+	 * 
+	 * @return mixed            the abbreviated content
+	 */
+	public static function limit_content_length( $content = '', $limit = 300 ) {
+		// Do not cut if too short
+		if ( strlen( $content ) < $limit+10 ) {
+			return $content;
+		}
+
+		// Remove inline images if there are any
+		$content = preg_replace("/<img[^>]+\>/i", " ", $content);
+
+		// Find the next space after `$limit` to prevent sudden word break
+		$break = strpos( $content, ' ', $limit );
+
+	    // Take the existing content and return a subset of it
+	    $chunk = substr( $content, 0, $break );
+
+	    // Make sure any tags don't get left off in the cut
+	    return balanceTags( $chunk );
 	}
 
 	/**

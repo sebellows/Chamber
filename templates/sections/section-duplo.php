@@ -44,8 +44,6 @@ if ( have_rows('duplo_block') ) :
                     while ( have_rows( 'duplo_block_custom' ) ) : the_row();
 
                     $image        = get_sub_field('duplo_block_image');
-                    $image_src    = wp_get_attachment_image_url( $image['id'], 'post-thumbnail' );
-                    $image_srcset = wp_get_attachment_image_srcset( $image['id'], 'post-thumbnail' );
                     $title        = get_sub_field('duplo_block_title');
                     $summary      = get_sub_field('duplo_block_summary');
                     $link         = get_sub_field('duplo_block_link');
@@ -76,8 +74,8 @@ if ( have_rows('duplo_block') ) :
                 <?php 
 
                 elseif ($type == 'post') :
-                    $post_id     = get_sub_field('duplo_block_post');
-                    $post        = get_post($post_id[0]);
+                    $post_id     = get_sub_field('duplo_block_post')[0];
+                    $post        = get_post($post_id);
                     $title       = $post->post_title;
                     $content     = $post->post_content;
                     $summary     = $post->post_excerpt;
@@ -88,7 +86,7 @@ if ( have_rows('duplo_block') ) :
 
                 <div class="duplo" m-Duplo="<?= $duploIndex; ?>">
 
-                    <?= Media\get_duplo_media( $post, $counter, $duploIndex ); ?>
+                    <?= Media\get_duplo_media( $post->ID, $counter, $duploIndex ); ?>
 
                     <div class="duplo-content">
                         <?php

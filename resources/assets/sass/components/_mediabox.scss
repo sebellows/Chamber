@@ -4,6 +4,10 @@
   @include breakpoint(large) {
     @include flex-callout(8);
   }
+
+  > img {
+    width: 100%;
+  }
 }
 
 @supports(object-fit:cover) {

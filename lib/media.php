@@ -3,6 +3,56 @@
 namespace Chamber\Theme\Media;
 
 /**
+ * Get the first image from a post if it has one.
+ *
+ * If there is no feature-image for the post, try to 
+ * use the first image from it if possible.
+ * 
+ * @param  int    $post_id      the post ID
+ * @param  mixed  $post_content the post content
+ * @param  string $classname    class name to append to the wrapper tag
+ * @return mixed               the first image in the post content
+ */
+function get_first_image($post_id, $post_content, $classname) {
+  $first_img = '';
+
+  if (get_the_post_thumbnail( $post_id ) === '') {
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches);
+    $matches = array_filter($matches);
+	$first_img = !empty($matches) ? $matches[1][0] : '';
+	$first_img = !empty($matches) ? '<img class="duplo-image" src="' . $first_img . '">' : '';	    	
+  }
+  else {
+    $first_img = get_the_post_thumbnail( $post_id, 'large', ['class' => $classname]);
+  }
+
+  return $first_img;
+}
+
+/**
+ * Get all image sizes.
+ *
+ * @source https://gist.github.com/eduardozulian/6467854
+ */
+function _get_all_image_sizes() {
+	global $_wp_additional_image_sizes;
+	$default_image_sizes = [ 'thumbnail', 'medium', 'medium_large', 'large' ];
+	 
+	foreach ( $default_image_sizes as $size ) {
+		$image_sizes[$size]['width']	= intval( get_option( "{$size}_size_w") );
+		$image_sizes[$size]['height'] = intval( get_option( "{$size}_size_h") );
+		$image_sizes[$size]['crop']	= get_option( "{$size}_crop" ) ? get_option( "{$size}_crop" ) : false;
+	}
+	
+	if ( isset( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) )
+		$image_sizes = array_merge( $image_sizes, $_wp_additional_image_sizes );
+		
+	return $image_sizes;
+}
+
+/**
  * Set the predefined image sizes to use at each breakpoint.
  * 
  * @param array $sizes Associative array of size aliases and predefined image sizes
@@ -136,6 +186,45 @@ function get_thumbnail_src( $attachment_id, $imgSize )
 	return $thumbnail_src;
 }
 
+function has_thumbnail_image( $attachment_id )
+{
+	$check = false;
+
+	if ( wp_attachment_is_image( $attachment_id ) || has_post_thumbnail( $attachment_id ) ) {
+		$check = true;
+	}
+
+	return $check;
+}
+
+/**
+ * Get the post_thumbnail width.
+ * 
+ * @param  [type] $attachment_id [description]
+ * @return [type]                [description]
+ */
+function get_post_thumbnail_width( $attachment_id )
+{
+	// Check if there is an image
+	if ( has_thumbnail_image( $attachment_id ) === false ) {
+		throw new \Exception( print_r( '<p class="warning alert">Post (id = $post->ID) does not have an image attachment or featured thumbnail!</p>' ) );
+	}
+
+	// Get the ID's post type
+	$type = get_post_type( $attachment_id );
+
+	$thumbnail_width = null;
+
+	// Get the post thumbnail ID if the post type is not 'attachment' 
+	if ( $type !== 'attachment' ) {
+		$thumbnail_width = wp_get_attachment_image_src( get_post_thumbnail_id( $attachment_id ), 'post_thumbnail' )[1];
+	} else {
+		$thumbnail_width = wp_get_attachment_metadata( $attachment_id )['width'];
+	}
+
+	return $thumbnail_width;
+}
+
 /**
  * Generate a `style` tag that sets media-queries with an image size to use as a background.
  * 
@@ -146,17 +235,18 @@ function get_thumbnail_src( $attachment_id, $imgSize )
  */
 function set_thumbnail_images_to_background( $attachment_id, $duploSize = 'banner', $selector )
 {
+	if ( ! is_int( $attachment_id ) ) {
+		throw new \Exception( print_r( '<p class="warning alert">$attachment_id is not an integer! A post ID is required!</p>' ) );
+	}
+
 	$duploSizes  = get_duplo_sizes( $duploSize );
 	$breakpoints = get_breakpoints();
 
-	// Get the thumbnail from either a custom Duplo or a post object.
-	$thumbnail = wp_get_attachment_image( $attachment_id ) ? wp_get_attachment_image( $attachment_id ) : get_the_post_thumbnail( $attachment_id );
+	// Check that image is large enough for using media-queries.
+	$thumbnail_width = get_post_thumbnail_width( $attachment_id );
 
-	// Get the post_thumbnail width to make sure we have an image that
-	// is large enough for using media-queries in the first place.
-	$thumbnail_width = wp_get_attachment_metadata( $attachment_id ) ? wp_get_attachment_metadata( $attachment_id )['width'] : wp_get_attachment_image_src( get_post_thumbnail_id( $attachment_id ), 'post_thumbnail' )[1];
+	if ( wp_attachment_is_image( $attachment_id ) || has_post_thumbnail( $attachment_id ) ) :
 
-	if ( $thumbnail ) :
 		echo '<style>';
 
 		if ( $thumbnail_width > 800 ) :
@@ -351,17 +441,4 @@ function get_youtube_embed_url( $url )
     }
 
     return isset($id) ? $id : 'error';
-}
-
-
-function get_custom_duplo_image( $attachment_id, $counter ) {
-	$image_url = $counter === 1 ? wp_get_attachment_image_url( $attachment_id, 'fullwidth' ) : wp_get_attachment_image_url( $attachment_id, 'medium_large' );
-
-	return $image_url;
-}
-
-function get_post_duplo_image( $attachment_id, $counter ) {
-	$image_url = $counter === 1 ? get_the_post_thumbnail_url( $attachment_id, 'fullwidth' ) : get_the_post_thumbnail_url( $attachment_id, 'medium_large' );
-
-	return $image_url;
 }

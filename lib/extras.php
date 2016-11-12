@@ -55,48 +55,6 @@ remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 /**
- * Adds custom classes to the array of body classes.
- *
- * @param array $classes Classes for the body element.
- * @return array
- */
-// function body_class($classes) {
-// 	// Add page slug if it doesn't exist
-// 	if (is_single() || is_page() && !is_front_page()) {
-// 		if (!in_array(basename(get_permalink()), $classes)) {
-// 			$classes[] = basename(get_permalink());
-// 		}
-// 	}
-
-// 	// Add class of hfeed to non-singular pages.
-// 	if ( ! is_singular() )
-// 		$classes[] = 'hfeed';
-
-// 	// Add class if sidebar is active
-// 	if (Sidebar::display())
-// 		$classes[] = 'has-sidebar-primary';
-
-// 	// Add class if we're viewing the Customizer for easier styling of theme options.
-// 	if ( is_customize_preview() )
-// 		$classes[] = 'customizer-is-active';
-
-// 	// Add class on front page.
-// 	if ( is_front_page() && 'posts' !== get_option( 'show_on_front' ) )
-// 		$classes[] = 'front-page';
-
-// 	// Add class for one or two column page layouts.
-// 	if ( is_page() && ! is_front_page() && ! is_home() )
-// 		$classes[] = 'one-column' === get_theme_mod( 'page_options' ) ? 'page-one-column' : 'page-two-column';
-
-// 	// Merge base contextual classes with $classes.
-// 	$classes = array_merge( $classes, hybrid_get_context() );
-
-// 	return array_map( 'esc_attr', $classes );
-
-// 	// return $classes;
-// }
-
-/**
  * Add SVG capabilities
  */
 function svg_mime_type( $mimes = [] ) {
@@ -131,16 +89,6 @@ function the_post_thumbnail_caption() {
 		return $thumbnail_image[0]->post_excerpt;
 	}
 }
-
-/**
- * Google API Key for adding Google Maps in ACF Pro
- */
-// if (class_exists('acf')) {
-// 	function acf_init() {
-// 	   acf_update_setting('google_api_key', 'AIzaSyAS0yll51lLq5yVbqysc6gtKExyIKdURzE');
-// 	}
-// 	add_action('acf/init', __NAMESPACE__ . '\\acf_init');
-// }
 
 /**
  * Add custom image sizes attribute to enhance responsive image functionality

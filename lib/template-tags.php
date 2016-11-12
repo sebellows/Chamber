@@ -10,11 +10,6 @@ namespace Chamber\Theme\TemplateTags;
  * @package chamber
  */
 
-# Modify the read more link text for the_excerpt()
-add_filter('excerpt_more', __NAMESPACE__ . '\\custom_excerpt_more');
-# Modify the read more link text for the_content()
-add_filter('the_content_more_link', __NAMESPACE__ . '\\custom_content_more');
-
 # Flush out the transients used in categorized_blog.
 add_action( 'edit_category', __NAMESPACE__ . '\\category_transient_flusher' );
 add_action( 'save_post',     __NAMESPACE__ . '\\category_transient_flusher' );
@@ -54,22 +49,6 @@ function entry_footer() {
 		'<span class="edit-link">',
 		'</span>'
 	);
-}
-
-/**
- * Modify the read more link text for the_excerpt()
- */
-function custom_excerpt_more($more) {
-	global $post;
-
-	return '<a class="readmore" href="' . get_permalink($post->ID) . '">Read More ' . '<span class="icon" m-Icon="xsmall"><svg role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></span></a>';
-}
-
-/**
- * Modify the read more link text for the_content()
- */
-function custom_content_more() {
-	return '<a class="readmore" href="' . get_permalink() . '">Read More ' . '<span class="icon" m-Icon="xsmall"><svg role="presentation" viewBox="0 0 32 32"><use xlink:href="#icon-fat-arrow"></use></svg></span></a>';
 }
 
 /**
