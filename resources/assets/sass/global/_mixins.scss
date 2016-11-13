@@ -213,7 +213,7 @@ $total-columns: 12;
       }
     }
     @include no-touchevent($force) {
-      &:hover {
+      &:not([class]):hover {
         color: currentColor;
       }
     }

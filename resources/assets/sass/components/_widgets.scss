@@ -11,6 +11,23 @@
     font-weight: 700;
     line-height: 1.375;
     margin-bottom: em(4,18);
+    transition: color .3s cubic-bezier(0.4,0,0.2,1);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    > a:focus,
+    > a:hover {
+      color: color(brand-medium);
+    }
+  }
+
+  // re-declare line-height to counter line-height of parent `li`
+  p,
+  div {
+    font-size: em(15);
+    line-height: 1.5;
 
     &:last-child {
       margin-bottom: 0;
@@ -23,6 +40,7 @@
 
     > li {
       border-bottom: 2px dotted rgba(0,0,0,.25);
+      line-height: 1; // get text/img to top-align
       padding: em(8) 0;
       overflow: hidden; // hack to clear a thumbnail. clearfix does not work.
 
@@ -38,7 +56,7 @@
         font-size: em(18);
         font-weight: 700;
         line-height: 1.2;
-        padding: em(16,18) 0;
+        padding: em(8,18) 0;
         position: relative;
       }
     }
@@ -66,11 +84,22 @@
   .rssSummary {
     color: transparentize($black,.25);
   }
+
+  .readmore {
+    display: inline-block;
+    margin-top: 0;
+  }
 }
+  .no-touchevents ul > li > a:only-child {
+    &:focus,
+    &:hover {
+      color: color(brand-medium);
+    }
+  }
 
 .widget-post-thumbnail img {
   position: relative;
-  top: .5em;
+  top: .25em;
 }
 
 .attachment-widget_card {

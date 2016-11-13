@@ -17,6 +17,7 @@
     @include arrow-right-icon(color(cvb));
     @extend %align-icon;
     margin-right: em(10);
+    transition: color .3s cubic-bezier(0.4,0,0.2,1);
   }
 }
 
