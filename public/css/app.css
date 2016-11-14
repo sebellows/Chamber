@@ -3481,7 +3481,7 @@ svg.icon,
     display: inline-block;
     margin-top: 0; }
 
-.no-touchevents ul > li > a:only-child:focus, .no-touchevents ul > li > a:only-child:hover {
+.no-touchevents .sidebar ul > li > a:only-child:focus, .no-touchevents .sidebar ul > li > a:only-child:hover {
   color: #005f96; }
 
 .widget-post-thumbnail img {

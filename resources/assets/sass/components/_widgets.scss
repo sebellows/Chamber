@@ -90,7 +90,7 @@
     margin-top: 0;
   }
 }
-  .no-touchevents ul > li > a:only-child {
+  .no-touchevents .sidebar ul > li > a:only-child {
     &:focus,
     &:hover {
       color: color(brand-medium);
