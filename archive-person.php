@@ -18,6 +18,7 @@ foreach($departments as $department) {
     wp_reset_query();
     $args = [
         'post_type' => 'person',
+        'posts_per_page' => -1,
         'meta_key' => 'people_weight',
         'orderby' => 'meta_value_num',
         'order' => 'ASC',
