@@ -5169,6 +5169,10 @@ svg.icon,
   padding: 0 0.9375rem; }
 
 .vcard {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
   padding: 0 0.9375rem; }
   @media screen and (min-width: 40em) {
     .vcard {
@@ -5187,6 +5191,8 @@ svg.icon,
       max-width: 25%; } }
 
 .vcard-profile {
+  -ms-flex: 1;
+  flex: 1;
   margin-bottom: 1.875rem;
   background-color: #fefefe;
   box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
@@ -5207,7 +5213,6 @@ svg.icon,
     font-weight: 700; }
 
 .vcard-media {
-  border-bottom: 5px solid #0f4466;
   height: 0;
   padding-bottom: 62.5%;
   position: relative;
@@ -5238,8 +5243,24 @@ svg.icon,
 .single [rel="department"] {
   display: block; }
 
+.vcard.department-convention-and-visitors-bureau .vcard-content {
+  border-top-color: #eb6b23; }
+
+.vcard.department-economic_development .vcard-content {
+  border-top-color: #84c256; }
+
+.vcard.department-educationtraining .vcard-content {
+  border-top-color: #4a54aa; }
+
+.vcard.department-memberservices .vcard-content {
+  border-top-color: #009dd7; }
+
+.vcard.department-sharedservices .vcard-content {
+  border-top-color: #a71930; }
+
 .vcard-content {
-  padding: 0.9375rem; }
+  border-top: 5px solid #0f4466;
+  padding: 0.625rem 0.9375rem 0.9375rem 0.9375rem; }
 
 .vcard-list {
   font-size: 0.75em;

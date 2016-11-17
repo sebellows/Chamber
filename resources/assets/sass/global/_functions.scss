@@ -1,6 +1,60 @@
 /// Functions
 /// 
 
+/// Map deep get
+/// 
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+/// 
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/// Deep search in map
+/// 
+/// @author Chris Upjohn
+/// @source http://www.sassmeister.com/gist/566686c51749d4e833ef
+/// @param  {Map} $map - Map
+/// @param  {Arg} $key - Key
+/// @return {*}   $result - Desired value
+/// 
+@function map-search($map, $key) {
+  $result: false;
+  
+  // Check if the target is a valid map and that the given key is a string
+  @if (type-of($map) != map or type-of($key) != string) {
+    $warn: if(type-of($map) != map,
+      'The given value "#{$map}" isn\'t a valid map',
+      'The given key "#{$key}" isn\'t a valid string');
+
+    @warn $warn;
+    @return '';
+  }
+
+  // Traverse through the given map, if an map is found run a deep search on that key
+  @each $k, $v in $map {
+    @if $result == false and type-of($v) == map {
+      $searchResult: map-search($v, $key);
+      
+      @if $searchResult != false {
+        $result: $searchResult;
+      }
+    }
+    @else if $k == $key {
+      $result: $v;
+    }
+  }
+
+  // Return the result otherwise nothing
+  @return if($result != false, $result, '');
+}
+
 /// Add a color via its variable key
 /// 
 /// @param {Color} $color - the name of the color to use

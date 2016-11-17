@@ -1332,6 +1332,104 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                {
+                    "key": "58294b426badd",
+                    "name": "contact_us",
+                    "label": "Contact Us",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_58294b5c6bade",
+                            "label": "Title",
+                            "name": "contact_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_58294b896badf",
+                            "label": "Summary",
+                            "name": "contact_summary",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_58294bb46bae0",
+                            "label": "Contact Email",
+                            "name": "contact_email",
+                            "type": "email",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "support@flintandgenesee.org",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_58294c366bae1",
+                            "label": "Confirmation Message",
+                            "name": "contact_confirmation_message",
+                            "type": "wysiwyg",
+                            "instructions": "Write a confirmation message that will appear in an email to the sender upon their contact message being submitted. A copy of their message will also be appended.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Thank You! We've received your feedback and we will get back to you as soon as we can.",
+                            "tabs": "text",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_5829533d20967",
+                            "label": "Background Color",
+                            "name": "contact_background_color",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#fefefe"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             ]
         }
@@ -1366,5 +1464,5 @@
     ],
     "active": 1,
     "description": "Flexible content area for Landing Pages",
-    "modified": 1477925054
+    "modified": 1479104721
 }

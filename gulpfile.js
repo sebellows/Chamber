@@ -36,33 +36,32 @@ elixir(function(mix) {
 		// 'node_modules/vue-router/dist/vue-router.js'
 	], 'resources/assets/js/vendor');
 
-	mix.copy('node_modules/isotope-layout/dist/isotope.pkgd.js', 'resources/assets/js');
-
 	mix.copy([
-		'node_modules/foundation-sites/dist/plugins/foundation.core.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.mediaQuery.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.box.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.keyboard.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.motion.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.nest.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.timerAndImageLoader.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.touch.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.util.triggers.js',
-		// 'node_modules/foundation-sites/dist/plugins/foundation.abide.js',
-		// 'node_modules/foundation-sites/dist/plugins/foundation.orbit.js',
-		// 'node_modules/foundation-sites/dist/plugins/foundation.responsiveMenu.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.reveal.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.toggler.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.tooltip.js',
-		'node_modules/foundation-sites/dist/plugins/foundation.dropdown.js'
-	], 'resources/assets/js/foundation');
+		'node_modules/isotope-layout/dist/isotope.pkgd.js',
+		'node_modules/foundation-sites/dist/plugins'
+	], 'resources/assets/js');
 
 	mix.copy('resources/assets/images', 'public/images');
 
 	mix.scriptsIn('resources/assets/js/vendor', 'public/js/vendor.js');
 
-	mix.scriptsIn('resources/assets/js/foundation', 'resources/assets/js/foundation.js');
+	mix.scripts([
+		'foundation.core.js',
+		'foundation.util.mediaQuery.js',
+		'foundation.util.box.js',
+		'foundation.util.keyboard.js',
+		'foundation.util.motion.js',
+		'foundation.util.nest.js',
+		'foundation.util.timerAndImageLoader.js',
+		'foundation.util.touch.js',
+		'foundation.util.triggers.js',
+		'foundation.abide.js',
+		'foundation.responsiveToggle.js',
+		'foundation.reveal.js',
+		'foundation.toggler.js',
+		'foundation.tooltip.js',
+		'foundation.dropdown.js'
+	], 'resources/assets/js/foundation.js');
 
 	mix.scripts([
 		'navigation.js',
@@ -79,6 +78,8 @@ elixir(function(mix) {
 	mix.scripts('isotope.pkgd.js');
 
 	mix.scripts('data-grid.js');
+
+	mix.scripts('contact-form.js');
 
 	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 

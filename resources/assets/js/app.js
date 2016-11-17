@@ -31,17 +31,21 @@
                 }
 
                 // Add scroll-scope.js to flickity captions
-                if ($(".dynamic-whitesheet").length > 0) {
+                if ( $(".dynamic-whitesheet" ).length > 0) {
                     $(document).scrollScope();
                 }
 
                 // Add YouTube video to modal to prevent it from slowing down page rendering
-                if ($(".mediabox .media").length > 0) {
+                if ( $(".mediabox .media" ).length > 0) {
                     createReveal();
                 }
 
-                if ($(".reveal").length > 0) {
+                if ( $(".reveal").length > 0 ) {
                     new Foundation.Reveal( $(".reveal") );
+                }
+
+                if ( $("#contactForm").length > 0 ) {
+                    new Foundation.Abide( $("#contactForm") );
                 }
 
                 function createReveal() {

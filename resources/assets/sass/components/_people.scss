@@ -9,6 +9,8 @@
 }
 
 .vcard {
+ display: flex;
+ flex-direction: column;
   padding: rem(0 15);
 
   @include breakpoint(medium) {
@@ -25,6 +27,7 @@
 }
 
 .vcard-profile {
+  flex: 1;
   margin-bottom: rem(30);
   @include paper-ui;
 
@@ -53,7 +56,6 @@
 }
 
 .vcard-media {
-  border-bottom: 5px solid color(brand);
   height: 0;
   padding-bottom: 62.5%;
   position: relative;
@@ -95,8 +97,43 @@
   }
 }
 
+$departments: (
+  'convention-and-visitors-bureau': (
+    dept: 'convention-and-visitors-bureau',
+    color: color(cvb)
+  ),
+  'economic_development': (
+    dept: 'economic_development',
+    color: color(development)
+  ),
+  'educationtraining': (
+    dept: 'educationtraining',
+    color: color(education)
+  ),
+  'memberservices': (
+    dept: 'memberservices',
+    color: color(members)
+  ),
+  'sharedservices': (
+    dept: 'sharedservices',
+    color: color(shared)
+  )
+);
+
+.vcard {
+  @each $dept, $department in $departments {
+    $dept: map-get(map-get($departments, $dept), dept);
+    $color: map-get(map-get($departments, $dept), color);
+
+    &.department-#{$dept} .vcard-content {
+      border-top-color: $color;
+    }
+  }
+}
+
 .vcard-content {
-  padding: rem(15);
+  border-top: 5px solid color(brand);
+  padding: rem(10 15 15 15);
 }
 
 .vcard-list {

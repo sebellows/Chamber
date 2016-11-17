@@ -28,9 +28,9 @@ if ( have_rows('landing_page_content') ) :
 
         get_template_part('templates/sections/section', 'dynamic-whitesheet');
 
-        // get_template_part('templates/sections/section', 'testimonials');
-
         get_template_part('templates/sections/section', 'gallery');
+
+        get_template_part('templates/sections/section', 'contact');
 
     endwhile;
 
