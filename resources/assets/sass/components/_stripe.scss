@@ -27,3 +27,15 @@
   margin-top: 0;
   @include clearfix;
 }
+
+.stripe {
+  input[type="text"],
+  input[type="url"],
+  input[type="email"],
+  input[type="search"],
+  input[type="password"],
+  textarea {
+    @include paper-input;
+  }
+
+}

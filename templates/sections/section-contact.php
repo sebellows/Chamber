@@ -30,7 +30,7 @@ $mailto = json_encode($split_mailto);
     <div class="row" m-UI="<?= Color::set($bg_color); ?>"">
 
         <?php if ( $title || $summary ) : ?>
-            <div class="callout">
+            <div class="callout" m-Pad="medium large">
         <?php endif; ?>
 
                 <?php if ( $title ) : ?>
@@ -45,9 +45,9 @@ $mailto = json_encode($split_mailto);
             </div>
         <?php endif; ?>
 
-        <div class="callout">
+        <div class="callout" m-Pad="medium large">
 
-            <form role="form" id="contactForm" action="/submit-contact-form/" method="POST" data-abide="ajax" style="color:black;">
+            <form role="form" id="contactForm" action="/submit-contact-form/" method="POST" data-abide="ajax">
 
                 <div class="callout" id="msgSubmit" data-abide-error style="display: none;">
                     <p>
@@ -81,7 +81,7 @@ $mailto = json_encode($split_mailto);
 
                 <input type="hidden" name="submitted" value="1" data-abide-ignore>
 
-                <p><input type="submit" class="default hollow button" id="contactFormSubmit" value="Submit" name="buttonSubmit"></p>
+                <p><input type="submit" class="secondary hollow button" id="contactFormSubmit" value="Submit" name="buttonSubmit"></p>
 
                 <?php wp_nonce_field( 'contact_nonce' ); ?>
 

@@ -1643,7 +1643,7 @@ label {
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.8;
-  color: #131516; }
+  color: currentColor; }
   label.middle {
     margin: 0 0 1rem;
     padding: 0.5625rem 0; }
@@ -4110,6 +4110,18 @@ svg.icon,
   .stripe.duplo-set:first-child::after {
     clear: both; }
 
+.stripe input[type="text"],
+.stripe input[type="url"],
+.stripe input[type="email"],
+.stripe input[type="search"],
+.stripe input[type="password"],
+.stripe textarea {
+  border: 0 none;
+  border-radius: 4px;
+  background-color: #fefefe;
+  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+
 .highlight {
   text-align: center; }
   .highlight h3 {
@@ -5074,6 +5086,36 @@ svg.icon,
 .touchevents .carousel-caption-body {
   -webkit-overflow-scrolling: touch;
   height: calc(100% + 1px); }
+
+.stripe.contact-us .row > .callout {
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%; }
+  @media screen and (min-width: 64em) {
+    .stripe.contact-us .row > .callout {
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%; } }
+
+.stripe.contact-us .row .callout:first-child {
+  text-align: center; }
+
+.stripe.contact-us form .callout label {
+  text-transform: uppercase; }
+
+.stripe.contact-us form .callout [type='text'], .stripe.contact-us form .callout [type='password'], .stripe.contact-us form .callout [type='date'], .stripe.contact-us form .callout [type='datetime'], .stripe.contact-us form .callout [type='datetime-local'], .stripe.contact-us form .callout [type='month'], .stripe.contact-us form .callout [type='week'], .stripe.contact-us form .callout [type='email'], .stripe.contact-us form .callout [type='number'], .stripe.contact-us form .callout [type='search'], .stripe.contact-us form .callout [type='tel'], .stripe.contact-us form .callout [type='time'], .stripe.contact-us form .callout [type='url'], .stripe.contact-us form .callout [type='color'],
+.stripe.contact-us form .callout textarea {
+  text-transform: none; }
+
+.stripe.contact-us form .callout.alert {
+  color: #ec5840; }
+  .stripe.contact-us form .callout.alert svg {
+    fill: #ec5840; }
+
+.stripe.contact-us form .callout.success {
+  color: #3adb76; }
+  .stripe.contact-us form .callout.success svg {
+    fill: #3adb76; }
 
 .stripe.gallery .callout {
   -ms-flex: 0 0 100%;

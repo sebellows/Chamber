@@ -1,0 +1,41 @@
+.stripe.contact-us {
+  .row > .callout {
+    @include flex-callout(12);
+
+    @include breakpoint(large) {
+      @include flex-callout(6);
+    }
+  }
+
+  .row .callout:first-child {
+    text-align: center;
+  }
+
+  form {
+    .callout {
+      label {
+        text-transform: uppercase;
+      }
+
+      #{text-inputs()},
+      textarea {
+        text-transform: none;
+      }
+
+      &.alert {
+        color: map-get($foundation-palette, alert);
+
+        svg {
+          fill: map-get($foundation-palette, alert);
+        }
+      }
+      &.success {
+        color: map-get($foundation-palette, success);
+
+        svg {
+          fill: map-get($foundation-palette, success);
+        }
+      }
+    }
+  }
+}
