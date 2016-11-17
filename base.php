@@ -32,6 +32,9 @@ use Chamber\Theme\Wrapper;
 
 		<?php if ( have_rows('duplo_block') || is_home() || is_active_sidebar('sidebar-navigation') ) : ?>
 			<section class="page-fold">
+				<?php if ( is_home() ) : ?>
+					<h1 class="screen-reader-text">This is just a test</h1>
+				<?php endif; ?>
 
 				<?php if ( !is_home() ) : ?>
 					<?php get_template_part('templates/sections/section', 'duplo'); ?>
