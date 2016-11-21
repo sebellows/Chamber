@@ -1,24 +1,34 @@
 <?php
 /**
- * The template for displaying archive pages.
- *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package chamber
- */
+* The template for displaying archive pages.
+*
+* @link https://codex.wordpress.org/Template_Hierarchy
+*
+* @package chamber
+*/
 ?>
 
 <div class="grid"><?php get_template_part('templates/page', 'header'); ?></div>
 
 <?php
 
-$departments = get_terms('department');
+$departments = get_terms('department', array('no_paging' => 1));
+
+// cheat to move executive to top of listing
+foreach($departments as $key => $val){
+    if($val->slug == 'executive'){
+        unset($departments[$key]);
+        array_unshift($departments, $val);
+        break;
+    }
+}
 
 foreach($departments as $department) {
     wp_reset_query();
     $args = [
         'post_type' => 'person',
         'posts_per_page' => -1,
+        'no_paging' => 1,
         'meta_key' => 'people_weight',
         'orderby' => 'meta_value_num',
         'order' => 'ASC',
@@ -34,7 +44,7 @@ foreach($departments as $department) {
     $loop = new WP_Query($args);
 
     if ( $loop->have_posts() ) :
-    ?>
+        ?>
 
         <div class="grid-section-header"><h3 class="list-title"><?= $department->name ?></h3></div>
 
@@ -48,4 +58,4 @@ foreach($departments as $department) {
 
     <?php endif; ?>
 
-<?php } ?>
+    <?php } ?>
