@@ -1,7 +1,5 @@
 <?php
 
-use Chamber\Theme\Color;
-
 if( get_row_layout('highlights') ) :
 
     if (have_rows('highlight')) :
@@ -26,7 +24,7 @@ if( get_row_layout('highlights') ) :
             $color_class = get_sub_field('hl_background_color');
             $title = get_sub_field('hl_section_title');
         ?>
-        <div class="row" m-Grid="<?= $counter; ?>" m-UI="<?= Color::set($color_class); ?>">
+        <div class="row" m-Grid="<?= $counter; ?>" m-UI="<?= chamber_color($color_class); ?>">
 
             <h2 class="section-header"><?= $title; ?></h2>
 

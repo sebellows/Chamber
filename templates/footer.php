@@ -9,13 +9,11 @@
  * @package chamber
  */
 
-use Chamber\Theme\Sidebar;
-
 ?>
 
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="row">
-		<?php Sidebar::add('footer'); ?>
+		<?php chamber('sidebar')->add('footer'); ?>
 	</div>
 	<!-- .site-info -->
 

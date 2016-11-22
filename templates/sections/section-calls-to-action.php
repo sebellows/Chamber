@@ -1,7 +1,5 @@
 <?php
 
-use Chamber\Theme\Color;
-
 if( get_row_layout('call_to_action_links') ) :
 
     if (have_rows('cta')) :
@@ -28,14 +26,14 @@ if( get_row_layout('call_to_action_links') ) :
             <?php while ( have_rows( 'cta' ) ) : the_row(); ?>
 
             <?php
-                $title       = get_sub_field('cta_title');
-                $summary     = get_sub_field('cta_summary');
-                $link        = get_sub_field('cta_link');
-                $color_class = Color::set(get_sub_field('cta_background_color'));
+                $title   = get_sub_field('cta_title');
+                $summary = get_sub_field('cta_summary');
+                $link    = get_sub_field('cta_link');
+                $color   = get_sub_field('cta_background_color');
             ?>
 
             <?php if ($link) : ?>
-            <a href="<?= $link ?>" class="callout cta-link" m-UI="<?= $color_class; ?>">
+            <a href="<?= $link ?>" class="callout cta-link" m-UI="<?= chamber_color($color); ?>">
 
                 <div class="cta-content">
 

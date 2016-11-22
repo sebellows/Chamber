@@ -7,8 +7,6 @@
  * @package chamber
  */
 
-use Chamber\Theme\Sidebar;
-
 ?>
 
 <article <?php hybrid_attr( 'post' ); ?>>
@@ -18,7 +16,7 @@ use Chamber\Theme\Sidebar;
 
 		<?php if ( ! is_single() && is_active_sidebar('sidebar-page-header') ) : ?>
 			<aside class="list-box">
-				<?php dynamic_sidebar( 'sidebar-page-header' ); ?>
+				<?php chamber('sidebar')->add( 'page-header' ); ?>
 			</aside>
 		<?php endif; ?>
 
@@ -51,7 +49,7 @@ use Chamber\Theme\Sidebar;
 	    </div>
 
 	    <footer>
-	        <?php Sidebar::add('post-footer'); ?>
+	        <?php chamber('sidebar')->add( 'post-footer' ); ?>
 	    </footer>
 
 	</div><!-- .entry-content -->

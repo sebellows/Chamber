@@ -1,7 +1,5 @@
 <?php
 
-use Chamber\Theme\Color;
-
 if( get_row_layout() == 'gallery_stripe' ) :
 
     $title    = get_sub_field( 'ch_gallery_title' );
@@ -13,7 +11,7 @@ if( get_row_layout() == 'gallery_stripe' ) :
 
     <section class="stripe gallery">
 
-        <div class="row" m-UI="<?= Color::set($bg_color); ?>"">
+        <div class="row" m-UI="<?= chamber_color($bg_color); ?>"">
 
             <div class="callout gallery-body" m-Pad="medium large">
 

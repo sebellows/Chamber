@@ -2,11 +2,22 @@
 
 namespace Chamber\Theme;
 
-use Chamber\Theme\Config;
-use Chamber\Theme\Helper;
-
+/**
+ * Register and output menus.
+ *
+ * @package    Chamber Theme
+ * @author     Sean Bellows <sean@seanbellows.com>
+ * @copyright  Copyright (c) 2016, Sean Bellows
+ * @link       https://github.com/sebellows/chamber
+ * @license    http://www.gnu.org/licenses/gpl-3.0.html
+ */
 class Menu
 {
+    /**
+     * @var \Chamber\Theme\Config $config
+     */
+    protected $config;
+
     /**
      * The custom menus to register.
      * 
@@ -28,8 +39,10 @@ class Menu
      */
     public function __construct()
     {
-        $this->menus = (new Config)->get('menus');
-        $this->names = $this->set_names( $this->menus );
+        $this->config = new Config;
+
+        $this->menus = $this->config->get('menus');
+        $this->names = $this->setNames();
     }
 
     /**
@@ -38,9 +51,9 @@ class Menu
      * @see http://codex.wordpress.org/Function_Reference/register_nav_menus
      */
     public function register() {
-        $theme_menus = array_combine( $this->menus, $this->names );
+        $themeMenus = array_combine( $this->menus, $this->names );
 
-        register_nav_menus( $theme_menus );
+        register_nav_menus( $themeMenus );
     }
 
     /**
@@ -48,11 +61,11 @@ class Menu
      * 
      * @param array $menus
      */
-    public function set_names( $menus )
+    public function setNames()
     {
         $names = [];
 
-        foreach ( $menus as $menu ) {
+        foreach ( $this->menus as $menu ) {
             $names[] = __( title_case( str_replace( '_', ' ', $menu) ), 'chamber' );
         }
 
@@ -65,7 +78,7 @@ class Menu
      * @param  string  $location
      * @return string
      */
-    public function get_location( $location ) {
+    public function getLocation( $location ) {
 
         $locations = get_registered_nav_menus();
 

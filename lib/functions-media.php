@@ -3,56 +3,6 @@
 namespace Chamber\Theme\Media;
 
 /**
- * Get the first image from a post if it has one.
- *
- * If there is no feature-image for the post, try to 
- * use the first image from it if possible.
- * 
- * @param  int    $post_id      the post ID
- * @param  mixed  $post_content the post content
- * @param  string $classname    class name to append to the wrapper tag
- * @return mixed               the first image in the post content
- */
-function get_first_image($post_id, $post_content, $classname) {
-  $first_img = '';
-
-  if (get_the_post_thumbnail( $post_id ) === '') {
-    ob_start();
-    ob_end_clean();
-    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches);
-    $matches = array_filter($matches);
-	$first_img = !empty($matches) ? $matches[1][0] : '';
-	$first_img = !empty($matches) ? '<img class="duplo-image" src="' . $first_img . '">' : '';	    	
-  }
-  else {
-    $first_img = get_the_post_thumbnail( $post_id, 'large', ['class' => $classname]);
-  }
-
-  return $first_img;
-}
-
-/**
- * Get all image sizes.
- *
- * @source https://gist.github.com/eduardozulian/6467854
- */
-function _get_all_image_sizes() {
-	global $_wp_additional_image_sizes;
-	$default_image_sizes = [ 'thumbnail', 'medium', 'medium_large', 'large' ];
-	 
-	foreach ( $default_image_sizes as $size ) {
-		$image_sizes[$size]['width']	= intval( get_option( "{$size}_size_w") );
-		$image_sizes[$size]['height'] = intval( get_option( "{$size}_size_h") );
-		$image_sizes[$size]['crop']	= get_option( "{$size}_crop" ) ? get_option( "{$size}_crop" ) : false;
-	}
-	
-	if ( isset( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) )
-		$image_sizes = array_merge( $image_sizes, $_wp_additional_image_sizes );
-		
-	return $image_sizes;
-}
-
-/**
  * Set the predefined image sizes to use at each breakpoint.
  * 
  * @param array $sizes Associative array of size aliases and predefined image sizes
@@ -144,39 +94,6 @@ function set_breakpoint_sizes( $breakpoint_sizes = [] )
 function get_breakpoint_sizes()
 {
 	return set_breakpoint_sizes();
-}
-
-/**
- * Set a `srcset` to use for responsive images.
- * 
- * @param mixed $srcset
- */
-function set_srcset( $attachment_id )
-{
-	$sizes = get_image_sizes();
-	$srcset = [];
-
-	$srcsetSizes = get_image_sizes();
-
-	foreach ( $srcsetSizes as $src ) {
-	// dd(wp_get_attachment_image_src( $attachment_id, 'fullwidth' )[0]);
-	// dd($sizes[$src]);
-	$url = wp_get_attachment_image_src( $attachment_id, 'fullwidth' )[0];
-
-	$srcset[] = $url;
-  }
-
-	return $srcset;
-}
-
-/**
- * Get the `srcset`.
- * 
- * @return mixed
- */
-function get_srcset( $attachment_id )
-{
-	return set_srcset( $attachment_id );
 }
 
 function get_thumbnail_src( $attachment_id, $imgSize )
@@ -433,11 +350,11 @@ function get_youtube_embed_url( $url )
     $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9-_]+)/i';
 
     if (preg_match($longUrlRegex, $url, $matches)) {
-    $id = $matches[count($matches) - 1];
+	    $id = $matches[count($matches) - 1];
     }
 
     if (preg_match($shortUrlRegex, $url, $matches)) {
-    $id = $matches[count($matches) - 1];
+	    $id = $matches[count($matches) - 1];
     }
 
     return isset($id) ? $id : 'error';

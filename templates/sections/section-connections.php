@@ -1,14 +1,12 @@
 <?php
 
-use Chamber\Theme\Color;
-
 ?>
 
 <?php if( get_row_layout() == 'connections' ) : ?>
 
     <section class="stripe connections">
 
-        <div class="row" m-UI="<?= Color::set(get_sub_field('connection_background_color')); ?>">
+        <div class="row" m-UI="<?= chamber_color(get_sub_field('connection_background_color')); ?>">
 
             <?php $types = get_sub_field( 'connection_options' );  // Check whether it is a `relationship` (i.e., page, post, or taxonomy) or a `custom tile` ?>
 

@@ -1,9 +1,5 @@
 <?php
 
-use Chamber\Theme\Setup;
-use Chamber\Theme\Sidebar;
-use Chamber\Theme\Wrapper;
-
 ?>
 
 <!doctype html>
@@ -45,7 +41,7 @@ use Chamber\Theme\Wrapper;
 				<?php endif; ?>
 
 				<?php if ( is_active_sidebar('sidebar-navigation') ) : ?>
-					<?php Sidebar::add('navigation'); ?>
+					<?php chamber('sidebar')->add('navigation'); ?>
 				<?php endif; ?>
 
 			</section>
@@ -57,14 +53,14 @@ use Chamber\Theme\Wrapper;
 
 				<?php hybrid_get_menu( 'breadcrumbs' ); // Loads the menu/breadcrumbs.php template. ?>
 
-				<?php include Wrapper\template_path(); ?>
+				<?php include chamber_template(); ?>
 
 				<?php locate_template( [ 'menu/loop-nav.php' ], true ); // Loads the misc/loop-nav.php template. ?>
 
 			</main><!-- /#content -->
 
 			<?php if ( !is_archive() && !is_search() && !is_404() && !is_singular('person') ) : ?>
-				<?php include Wrapper\sidebar_path(); ?>
+				<?php include chamber_template_part('templates/sidebar.php'); ?>
 			<?php endif; ?>
 
 		</div>

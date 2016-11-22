@@ -52,8 +52,10 @@
       }
     }
   }
+
+  // Remove the border from the second entry if both it and the first entry do not have a thumbnail
   @include breakpoint(large) {
-    .blog .post:not(.has-post-thumbnail) {
+    .blog .no-post-thumbnail {
       flex: 1;
       min-width: 50%;
 

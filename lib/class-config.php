@@ -18,8 +18,18 @@ class Config implements \ArrayAccess
      *
      * @var array
      */
-    protected $config = [];
+    protected $config = null;
 
+
+    /**
+     * Create a new configuration repository.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->getConfig();
+    }
 
     /**
      * Create a new configuration repository.
@@ -27,14 +37,21 @@ class Config implements \ArrayAccess
      * @param  array  $config
      * @return void
      */
-    public function __construct(array $config = [])
+    public function getConfig()
     {
-        if (empty($config)) {
-            $config = require get_template_directory() . '/chamber.config.php';
+        if (is_null($this->config))
+        {
+            $this->config = file_exists("{$this->getRootPath()}/chamber.config.php")
+                ? require "{$this->getRootPath()}/chamber.config.php"
+                : [];
         }
 
-        $this->config = $config;
+        return $this->config;
+    }
 
+    protected function getRootPath()
+    {
+        return get_template_directory();
     }
 
     /**

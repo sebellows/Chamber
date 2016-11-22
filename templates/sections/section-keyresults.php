@@ -1,7 +1,5 @@
 <?php
 
-use Chamber\Theme\Color;
-
 if( get_row_layout('key_results') ) :
 
     if (have_rows('result')) :
@@ -23,7 +21,7 @@ if( get_row_layout('key_results') ) :
 
     <section class="stripe key-results">
 
-        <div class="row" m-UI="<?= Color::set(the_sub_field('background_color')); ?>">
+        <div class="row" m-UI="<?= chamber_color(the_sub_field('background_color')); ?>">
 
             <header class="callout section-header" m-Pad="medium large">
                 <h2><?= the_sub_field('results_title'); ?></h2>
