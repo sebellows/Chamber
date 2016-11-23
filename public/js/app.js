@@ -591,7 +591,7 @@
         },
         'archive': {
             init: function() {
-                if ( $(".archive-attractions") && $.noConflict(false) ) {
+                if ( $(".archive-attractions") ) {
                     // The ID for the list with all the blog posts
                     var $container = $('.card-grid');
 

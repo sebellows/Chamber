@@ -216,31 +216,6 @@ class Theme extends Container {
         }
     }
 
-    // public function bootTemplates()
-    // {
-    //     $this['template'] = function () {
-    //         add_filter('template_include', function ( $main ) {
-    //             if (!is_string( $main ) && !( is_object($main) && method_exists( $main, '__toString') ) ) {
-    //                 return $main;
-    //             }
-    //             return ( ( new Template( new Wrapper($main) ) )->layout() ) ;
-    //         });
-    //     };
-    // }
-
-    /**
-     # Launch the Hybrid Core framework
-     * 
-     * @return object  new Hybrid instance
-     */
-    // public function bootHybrid()
-    // {
-    //     if ( !isset( $this['hybrid'] ) ) {
-    //         $this['hybrid'] = function() {
-    //         };
-    //     }
-    // }
-
     /**
      * Load the bootstrap class and then the modules.
      *

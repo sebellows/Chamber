@@ -248,7 +248,6 @@ class Extras
 		return $content;
 	}
 
-
 	/**
 	 * Ready for conditionals, before template choice.
 	 */
