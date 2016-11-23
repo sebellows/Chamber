@@ -1,12 +1,7 @@
 <?php
 
-use Chamber\Theme\Color;
 use Chamber\Theme\Helper;
 use Chamber\Theme\Contact;
-
-// Response generation function
-// $response = '';
-
 
 if ( get_row_layout() == 'contact_us' ) :
 
@@ -27,7 +22,7 @@ $mailto = json_encode($split_mailto);
     <script>
         var mailto = <?= $mailto; ?>;
     </script>
-    <div class="row" m-UI="<?= Color::set($bg_color); ?>"">
+    <div class="row" m-UI="<?= chamber_color($bg_color); ?>"">
 
         <?php if ( $title || $summary ) : ?>
             <div class="callout" m-Pad="medium large">

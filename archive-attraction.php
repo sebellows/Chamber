@@ -28,7 +28,7 @@
         <div class="card-grid">
 
             <?php while ($attractions_query->have_posts()) : $attractions_query->the_post(); ?>
-                <?php get_template_part('templates/content/archive', 'attraction'); ?>
+                <?php get_template_part('templates/archive/attraction'); ?>
             <?php endwhile; ?>
 
         </div><!-- .card-grid -->

@@ -18,7 +18,7 @@ if( get_row_layout() == 'dynamic_white_sheet' ) :
 
             <?php if( $images ): ?>
 
-            <figure id="carousel" class="carousel" data-flickity='{ "wrapAround": true, "lazyLoad": true, "pageDots": false, "accessibility": true, "setGallerySize": false }'>
+            <figure id="carousel" class="carousel" data-flickity='{ "wrapAround": true, "imagesLoaded": true, "lazyLoad": true, "pageDots": false, "accessibility": true, "setGallerySize": false }'>
                 <?php foreach( $images as $image ): ?>
                     <div class="carousel-cell">
                         <img class="carousel-cell-image" data-flickity-lazyload="<?= esc_url($image['url']); ?>" alt="<?= $image['alt']; ?>" width="<?= $image['width']; ?>" height="<?= $image['height']; ?>" />

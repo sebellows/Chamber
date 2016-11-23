@@ -1,0 +1,70 @@
+<?php
+
+namespace Chamber\Theme;
+
+/**
+ * Load jQuery from jQuery CDN.
+ *
+ * @package    Soil
+ * @author     roots.io
+ * @copyright  Copyright (c) Roots
+ * @link       https://github.com/roots/soil
+ */
+class JqueryCDN
+{
+
+    /**
+     * Boot jQuery CDN.
+     * 
+     * @return void
+     */
+    public function boot()
+    {
+        add_action('wp_enqueue_scripts', [ $this, 'register_jquery' ], 100);
+        add_action('wp_head', [ $this, 'jquery_local_fallback' ]);
+    }
+
+    /**
+     * Load jQuery from jQuery's CDN with a local fallback
+     *
+     * You can enable/disable this feature in functions.php (or lib/setup.php if you're using Sage):
+     * add_theme_support('chamber-jquery-cdn');
+     */
+    public function register_jquery() {
+        $jquery_version = wp_scripts()->registered['jquery']->ver;
+
+        wp_deregister_script('jquery');
+
+        wp_register_script(
+            'jquery',
+            'https://code.jquery.com/jquery-' . $jquery_version . '.min.js',
+            [],
+            null,
+            true
+        );
+
+        add_filter('script_loader_src', [ $this, 'jquery_local_fallback' ], 10, 2);
+    }
+
+    /**
+     * Output the local fallback immediately after jQuery's <script>
+     *
+     * @link http://wordpress.stackexchange.com/a/12450
+     */
+    public function jquery_local_fallback($src, $handle = null) {
+        static $add_jquery_fallback = false;
+
+        if ($add_jquery_fallback) {
+            echo '<script>(window.jQuery && jQuery.noConflict()) || document.write(\'<script src="' . $add_jquery_fallback .'"><\/script>\')</script>' . "\n";
+            $add_jquery_fallback = false;
+        }
+
+        if ($handle === 'jquery') {
+            $add_jquery_fallback = apply_filters('script_loader_src', \includes_url('/js/jquery/jquery.js'), 'jquery-fallback');
+        }
+
+        return $src;
+    }
+}
+
+// (new JqueryCDN)->boot();

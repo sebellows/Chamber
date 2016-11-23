@@ -172,18 +172,6 @@ return [
         'attraction-category',
         'business_type',
         'department'
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Isotope Archive Post Types
-    |--------------------------------------------------------------------------
-    |
-    | Post types and terms that will be filterable using Isotope.js.
-    |
-    */
-    'isotope' => [
-        'attraction' => 'attraction_category'
     ]
 
 ];

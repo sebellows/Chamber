@@ -8,7 +8,6 @@
  * @package chamber
  */
 
-use Chamber\Theme\Sidebar;
 use Chamber\Theme\TemplateTags;
 
 ?>
@@ -29,7 +28,7 @@ use Chamber\Theme\TemplateTags;
 
 	<aside class="sidebar sidebar-column">
 		<?php if ( is_active_sidebar('sidebar-column') ) : ?>
-			<?php Sidebar::add('column'); ?>
+			<?php chamber('sidebar')->add('column'); ?>
 		<?php endif; ?>
 	</aside><!-- .sidebar-column -->
 

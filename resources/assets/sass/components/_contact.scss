@@ -38,4 +38,26 @@
       }
     }
   }
+
+  .is-invalid-label {
+    color: currentColor;
+
+    input {
+      animation-name: pulse;
+      @include animation-timing(.5s, both, 2);
+    }
+  }
+  
+  .form-error {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: .5s;
+    background: $black;
+    border-radius: 5px;
+    padding: rem(8 16);
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
 }

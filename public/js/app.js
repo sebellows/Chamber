@@ -404,14 +404,22 @@
                 }
 
                 // Add class to duplo block if it is hoverable
-                if ( $(".duplo").children(".duplo-link") ) {
-                    $(".duplo").addClass("has-duplo-link");
+                if ( $(".duplo-link") ) {
+                    $(".duplo-link").parent().addClass("has-duplo-link");
                 }
 
                 // Add scroll-scope.js to flickity captions
                 if ( $(".dynamic-whitesheet" ).length > 0) {
                     $(document).scrollScope();
                 }
+
+                $("#carousel").imagesLoaded().progress( function(instance, image) {
+                    var result = image.isLoaded ? 'loaded' : 'broken';
+                    if (result === 'loaded') {
+                        $(".carousel-caption").addClass("fadeIn");
+                        // $("figcaption").addClass("fadeIn").removeClass("hide");
+                    }
+                });
 
                 // Add YouTube video to modal to prevent it from slowing down page rendering
                 if ( $(".mediabox .media" ).length > 0) {
@@ -582,39 +590,41 @@
             }
         },
         'archive': {
-            init: (function() {
-                // The ID for the list with all the blog posts
-                var $container = $('.card-grid');
+            init: function() {
+                if ( $(".archive-attractions") ) {
+                    // The ID for the list with all the blog posts
+                    var $container = $('.card-grid');
 
-                //Isotope options, 'Card' matches the class in the PHP
-                $container.imagesLoaded( function(){
-                    $container.isotope({
-                        itemSelector : '.Card',
-                        layoutMode : 'masonry'
+                    //Isotope options, 'Card' matches the class in the PHP
+                    $container.imagesLoaded( function() {
+                        $container.isotope({
+                            itemSelector : '.Card',
+                            layoutMode : 'masonry'
+                        });
                     });
-                });
 
-                // Add the class selected to the Card that is clicked, and remove from the others
-                var $optionSets = $('.isotope-sortable-menu'),
-                $optionLinks = $optionSets.find('a');
+                    // Add the class selected to the Card that is clicked, and remove from the others
+                    var $optionSets = $('.isotope-sortable-menu'),
+                    $optionLinks = $optionSets.find('a');
 
-                $optionLinks.click(function() {
-                    var $this = $(this);
-                    // don't proceed if already selected
-                    if ( $this.hasClass('is-selected') ) {
+                    $optionLinks.click(function() {
+                        var $this = $(this);
+                        // don't proceed if already selected
+                        if ( $this.hasClass('is-selected') ) {
+                            return false;
+                        }
+                        var $optionSet = $this.parents('.isotope-sortable-menu');
+                        $optionSets.find('.is-selected').removeClass('is-selected');
+                        $this.addClass('is-selected');
+
+                        // When a Card is clicked, sort the items.
+                        var selector = $(this).attr('data-filter');
+                        $container.isotope({ filter: selector });
+
                         return false;
-                    }
-                    var $optionSet = $this.parents('.isotope-sortable-menu');
-                    $optionSets.find('.is-selected').removeClass('is-selected');
-                    $this.addClass('is-selected');
-
-                    // When a Card is clicked, sort the items.
-                    var selector = $(this).attr('data-filter');
-                    $container.isotope({ filter: selector });
-
-                    return false;
-                });
-            }),
+                    });
+                }
+            },
             finalize: function() {
                 //
             }

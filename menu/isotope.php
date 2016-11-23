@@ -5,35 +5,43 @@
  * @package chamber
  */
 
-use Chamber\Theme\Config;
+function chamber_term_icon( $term ) {
+	switch ( $term ) {
+		case 'arts-and-culture':
+			echo 'arts-and-culture';
+			break;
+		case 'indoor-recreation':
+			echo 'buildings';
+			break;
+		case 'outdoor-recreation':
+			echo 'golf';
+			break;
+		case 'lodging':
+			echo 'lodging';
+			break;
+		case 'shopping':
+			echo 'shopping';
+			break;
+		case 'dining':
+			echo 'dining';
+			break;
+	}
+}
 
-$config = new Config;
-$isotopes = $config->get('isotope');
+if ( taxonomy_exists('attraction_category') ) :
 
-/**
- * Set up the Isotope.js archive page initial display.
- *
- * @param mixed $query WP_Query instance.
- * @return mixed
- */
+	$args = [
+	    'taxonomy'      => 'attraction_category',
+	    'orderby'		=> 'id',
+	    'parent'        => 0,
+	    'child_of'		=> 0,
+	    'number'        => 6,
+	    'hide_empty'    => 0
+	];
 
-foreach ($isotopes as $key => $value) {
-	$posttype = $key;
-	$taxonomy = $value;
+	$terms = get_terms( $args );
 
-	if ( taxonomy_exists($taxonomy) ) :
-		// $terms = get_terms($taxonomy);
-		$args = [
-		    'taxonomy'      => $taxonomy,
-		    'orderby'		=> 'id',
-		    'parent'        => 0,
-		    'child_of'		=> 0,
-		    'number'        => 6,
-		    'hide_empty'    => 0
-		];
-		$terms = get_terms( $args );
-
-	?>
+?>
 
 <header class="isotope-header" m-UI="cvb">
 
@@ -48,7 +56,7 @@ foreach ($isotopes as $key => $value) {
 		<a href="#" data-filter=".<?= $term->taxonomy . '-' . $term->slug; ?>">
 			<span class="icon" m-Icon="large">
 				<svg role="presentation" viewbox="0 0 32 32">
-					<use xlink:href="#icon-<?= $term->slug; ?>"></use>
+					<use xlink:href="#icon-<?= chamber_term_icon($term->slug); ?>"></use>
 				</svg>
 			</span>
 			<?= $term->name; ?>
@@ -57,7 +65,7 @@ foreach ($isotopes as $key => $value) {
 		<a href="#" data-filter="*" class="is-selected">
 			<span class="icon" m-Icon="large">
 				<svg role="presentation" viewbox="0 0 32 32">
-					<use xlink:href="#icon-all"></use>
+					<use xlink:href="#icon-bullet-list"></use>
 				</svg>
 			</span>
 			All
@@ -66,6 +74,4 @@ foreach ($isotopes as $key => $value) {
 
 </header> <!-- end isotope-header -->
 
-	<?php
-	endif;
-}
+<?php endif; ?>

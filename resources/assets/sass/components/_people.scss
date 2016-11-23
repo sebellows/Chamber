@@ -9,20 +9,21 @@
 }
 
 .vcard {
- display: flex;
- flex-direction: column;
+  display: flex;
+  flex-direction: column;
   padding: rem(0 15);
+  @include flex-callout(12);
 
-  @include breakpoint(medium) {
+  @include breakpoint(30em) {
     @include flex-callout(6);
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(medium) {
     @include flex-callout(4);
   }
 
-  @include breakpoint(xlarge) {
-    @include flex-callout(3);    
+  @include breakpoint(large) {
+    @include flex-callout(3);
   }
 }
 
@@ -57,7 +58,7 @@
 
 .vcard-media {
   height: 0;
-  padding-bottom: 62.5%;
+  padding-bottom: 100%;
   position: relative;
   overflow: hidden;
 

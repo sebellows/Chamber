@@ -9,7 +9,6 @@
  * @package chamber
  */
 
-use Chamber\Theme\Assets;
 use Chamber\Theme\Helper;
 
 ?>
@@ -37,7 +36,7 @@ use Chamber\Theme\Helper;
 				<div class="site-description">
 					<span class="screen-reader-text"><?= $description; ?></span>
 					<?php if (strcmp(strtolower($description), 'see what\s possible')) : ?>
-					<?= '<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . Assets\asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
+					<?= '<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . chamber_asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>

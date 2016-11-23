@@ -4,8 +4,13 @@ namespace Chamber\Theme;
 
 /**
  * HELPERS
+ *
+ * @package    Chamber Theme
+ * @author     Sean Bellows <sean@seanbellows.com>
+ * @copyright  Copyright (c) 2016, Sean Bellows
+ * @link       https://github.com/sebellows/chamber
+ * @license    http://www.gnu.org/licenses/gpl-3.0.html
  */
-
 class Helper
 {
 

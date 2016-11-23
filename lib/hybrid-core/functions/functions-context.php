@@ -153,7 +153,7 @@ function hybrid_body_class_filter( $classes, $class ) {
 		$classes[] = 'hfeed';
 
 	// Add class if sidebar is active
-	if (\Chamber\Theme\Sidebar::display())
+	if (chamber('sidebar')->display())
 		$classes[] = 'has-sidebar-primary';
 
 	// Add class if we're viewing the Customizer for easier styling of theme options.

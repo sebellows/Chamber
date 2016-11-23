@@ -1,6 +1,5 @@
                                     <?php
 
-use Chamber\Theme\Color;
 use Chamber\Theme\Helper;
 use Chamber\Theme\Media;
 
@@ -50,7 +49,7 @@ if ( have_rows('duplo_block') ) :
                     $color_class  = get_sub_field('duplo_block_background_color');
                     ?>
 
-                    <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '' ?>"  m-Duplo="<?= $index++; ?>" m-UI="<?= Color::set($color_class); ?>">
+                    <div class="duplo<?php !$image && $counter === 1 ? print_r(' duplo-hallmark"') : '' ?>"  m-Duplo="<?= $index++; ?>" m-UI="<?= chamber_color($color_class); ?>">
 
                         <?= Media\get_duplo_media( $image['id'], $counter, $index - 1 ); ?>
 

@@ -26,7 +26,7 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-if ( ! class_exists( 'Hybrid' ) ) {
+// if ( ! class_exists( 'Hybrid' ) ) {
 
 	/**
 	 * The Hybrid class launches the framework.  It's the organizational structure behind the
@@ -231,4 +231,4 @@ if ( ! class_exists( 'Hybrid' ) ) {
 				require_once( HYBRID_ADMIN . 'admin.php' );
 		}
 	}
-}
+// }

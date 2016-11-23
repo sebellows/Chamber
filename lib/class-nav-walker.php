@@ -3,13 +3,12 @@
 namespace Chamber\Theme;
 
 /**
- * @author roots.io
- */
-
-use Chamber\Theme\Utils;
-
-/**
  * Cleaner walker for wp_nav_menu()
+ * 
+ * @package    Soil
+ * @author     roots.io
+ * @copyright  Copyright (c) Roots
+ * @link       https://github.com/roots/soil
  *
  * Walker_Nav_Menu (WordPress default) example output:
  *   <li id="menu-item-8" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a href="/">Home</a></li>
@@ -26,16 +25,30 @@ class NavWalker extends \Walker_Nav_Menu {
     private $cpt; // Boolean, is current post a custom post type
     private $archive; // Stores the archive page for current URL
 
-    public function __construct() {
-        add_filter('nav_menu_css_class', array($this, 'cssClasses'), 10, 2);
+    /**
+     * Boot the nav-walker.
+     * 
+     * @return void
+     */
+    public function boot() {
+        add_filter('nav_menu_css_class', [ $this, 'cssClasses' ], 10, 2);
         add_filter('nav_menu_item_id', '__return_null');
         $cpt           = get_post_type();
-        $this->cpt     = in_array($cpt, get_post_types(array('_builtin' => false)));
+        $this->cpt     = in_array( $cpt, get_post_types( ['_builtin' => false ] ) );
         $this->archive = get_post_type_archive_link($cpt);
     }
 
     public function checkCurrent($classes) {
         return preg_match('/(current[-_])|active/', $classes);
+    }
+
+    /**
+     * Compare URL against relative URL
+     */
+    function url_compare($url, $rel) {
+      $url = trailingslashit($url);
+      $rel = trailingslashit($rel);
+      return ((strcasecmp($url, $rel) === 0) || root_relative_url($url) == $rel);
     }
 
     // @codingStandardsIgnoreStart
@@ -44,7 +57,7 @@ class NavWalker extends \Walker_Nav_Menu {
 
         if ($element->is_subitem) {
             foreach ($children_elements[$element->ID] as $child) {
-                if ($child->current_item_parent || Utils\url_compare($this->archive, $child->url)) {
+                if ($child->current_item_parent || $this->url_compare($this->archive, $child->url)) {
                     $element->classes[] = 'active';
                 }
             }
@@ -67,7 +80,7 @@ class NavWalker extends \Walker_Nav_Menu {
         if ($this->cpt) {
             $classes = str_replace('current_page_parent', '', $classes);
 
-            if (Utils\url_compare($this->archive, $item->url)) {
+            if ($this->url_compare($this->archive, $item->url)) {
                 $classes[] = 'active';
             }
         }
@@ -93,6 +106,8 @@ class NavWalker extends \Walker_Nav_Menu {
         return array_filter($classes);
     }
 }
+
+// (new NavWalker)->boot();
 
 /**
  * Clean up wp_nav_menu_args

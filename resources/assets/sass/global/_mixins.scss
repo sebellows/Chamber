@@ -1,5 +1,12 @@
+//// The default number of columns to use when calculating width 
+///  in `flex-callout()` mixin.
 $total-columns: 12;
 
+//// Adjust the width of a `.callout`.
+/// * created to avoid always setting padding in Foundation's `.flex-grid-column()` mixin
+/// 
+/// @param {Number} $size  The width of the `.callout`
+/// 
 @mixin flex-callout($size: init) {
   @if (type-of($size)) == 'number' {
     flex: 0 0 percentage($size / $total-columns);
@@ -18,7 +25,10 @@ $total-columns: 12;
   }
 }
 
-// Apply styles for state ONLY if the Modernizr class `.no-touchevents` is applied to root 
+//// Override parent-child inheritance by employing the `:root` selector.
+///
+/// @param {Bool} $force  Use `:root`
+///
 @mixin force-root($force: false) {
   @if ($force == true) {
     :root & {
@@ -32,7 +42,10 @@ $total-columns: 12;
   }
 }
 
-// Apply styles for state ONLY if the Modernizr class `.no-touchevents` is applied to root 
+//// Apply styles for state ONLY if the Modernizr class `.no-touchevents` is applied to root
+///
+/// @param {Bool} $force  Use `:root` to override parent element inheritance
+///
 @mixin no-touchevent($force: false) {
   @if ($force == true) {
     :root.no-touchevents & {
@@ -46,7 +59,10 @@ $total-columns: 12;
   }
 }
 
-// Apply styles for state ONLY if the Modernizr class `.touchevents` is applied to root 
+//// Apply styles for state ONLY if the Modernizr class `.touchevents` is applied to root
+///
+/// @param {Bool} $force  Use `:root` to override parent element inheritance
+/// 
 @mixin on-touchevent($force: false) {
   @if ($force == true) {
     :root.touchevents & {
@@ -60,7 +76,13 @@ $total-columns: 12;
   }
 }
 
-// Z-levels
+//// Add a box-shadow with a level of depth on z-axis.
+///
+/// @param {Int}   $depth        The depth level of the box-shadow
+/// @param {Bool}  $hoverable    Add a hover state to the element
+/// @param {Int}   $hoverDepth   The depth change if hoverable
+/// @param {Color} $shadowColor  The color of the box-shadow
+///
 @mixin z-depth($depth: 0, $hoverable: false, $hoverDepth: 3, $shadowColor: #131516) {
 
   $depths: (
@@ -87,7 +109,10 @@ $total-columns: 12;
   }
 }
 
-//// Base UI for Stripes and the main content area
+//// Base UI for many theme layout elements and components.
+/// - adds a light, varying length box-shadow
+/// 
+/// @param {Int} $zDepth  The level of shadow depth to pass onto `z-depth` mixin
 ///
 @mixin paper-ui($zDepth: 1) {
   background-color: $white;
@@ -107,7 +132,10 @@ $total-columns: 12;
 
 //// Make link color consistent across states
 ///
-/// @var $selector Add a selector to force override via specificity
+/// @param {Color}  $bgColor  Background color of parent container
+/// @param {String} $selector Use a selector to force override via specificity
+/// @param {Color}  $isLight  If $bgColor is light use this color
+/// @param {Color}  $isDark   If $bgColor is dark use this color
 ///
 @mixin consistent-color($bgColor: $white, $selector: null, $isLight: currentColor, $isDark: $white) {
 
@@ -132,6 +160,10 @@ $total-columns: 12;
 
 //// Make link color consistent across states
 /// * based on background-color
+/// 
+/// @param {Color} $bgColor  Background color of parent container
+/// @param {Color} $isLight  If $bgColor is light use this color
+/// @param {Color} $isDark   If $bgColor is dark use this color
 ///
 @mixin consistent-link-color($bgColor: $white, $isLight: currentColor, $isDark: $white) {
   &,
@@ -144,6 +176,10 @@ $total-columns: 12;
 
 //// Global styling for time and meta information
 ///
+/// @param {Color} $color  The color of the `<time>` text
+/// @param {Int}   $fontSize  The font-size
+/// @param {Keyword} $fontWeight  [ normal | bold | 300 | etc. ]
+///
 @mixin time-meta-style($color: currentColor, $fontSize: 12, $fontWeight: normal) {
   color: $color;
   font-size: rem($fontSize);
@@ -151,13 +187,19 @@ $total-columns: 12;
   text-transform: uppercase;
 }
 
+//// Horizontally center a block element.
+///
 @mixin center-block() {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-//// Apply to an parent element to pass on to any child links
+//// Set parent element to pass on  a generic link style to any child links
+///
+/// @param {Keyword} $textDecoration  [underline | none]
+/// @param {Color}   $color           the color of the link text
+/// @param {Boolean} $force           Override parent element inheritance by using `:root` selector
 ///
 @mixin add-text-link-style($textDecoration: underline, $color: color(brand-medium), $force: true) {
   a:not([class]) {
@@ -195,7 +237,11 @@ $total-columns: 12;
   }
 }
 
-//// Apply directly to links
+//// Apply a generic link style directly to links
+///
+/// @param {Keyword} $textDecoration  [underline | none]
+/// @param {Color}   $color           the color of the link text
+/// @param {Boolean} $force           Override parent element inheritance by using `:root` selector
 ///
 @mixin text-link-style($textDecoration: underline, $color: color(brand-medium), $force: true) {
   &:not([class]) {
@@ -242,6 +288,8 @@ $total-columns: 12;
   display: inline-block;
 }
 
+/// Vertically align icon to the text baseline.
+/// 
 %align-icon {
   line-height: 1;
   position: relative;
@@ -249,16 +297,28 @@ $total-columns: 12;
   vertical-align: middle;
 }
 
+/// Set the size of an icon.
+/// 
+/// @param {Number} $size
+/// 
 @mixin icon-size($size) {
   width: $size;
   height: $size;
 }
         
-//  Background svg mixin          
+/// Set an svg as the background image.
+/// 
+/// @param {String} $svg  data-uri encoded SVG
+/// 
 @mixin background-svg($svg){
     background-image: svg-url($svg);        
 }        
 
+/// Add a right-pointing arrow icon.
+/// 
+/// @param {Color} $color  Set the fill color for the SVG
+/// @param {Number} $size  The width/height of the icon
+/// 
 @mixin arrow-right-icon( $color: currentColor, $size: 1em ) {
   $fill: strip-hex($color);
   @include background-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="#{$fill}"><path d="M30.88,16.4l0-.05,0-.07,0-.07,0-.06a.72.72,0,0,0,0-.28l0-.06,0-.07,0-.07,0-.05-.09-.11L16.51,1.21a.71.71,0,0,0-1,1L28.56,15.29H1.71a.71.71,0,0,0,0,1.43H28.56L15.5,29.78a.71.71,0,1,0,1,1L30.79,16.51Z"/></svg>');
@@ -266,6 +326,11 @@ $total-columns: 12;
   @include icon-size($size);
 }
 
+/// Add a fat arrow icon (⇒).
+/// 
+/// @param {Color} $color  Set the fill color for the SVG
+/// @param {Number} $size  The width/height of the icon
+/// 
 @mixin fat-arrow-icon( $color: currentColor, $size: 1em ) {
   $fill: strip-hex($color);
   @include background-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="#{$fill}"><path d="M30.79,15.5,22.33,7a.7.7,0,0,0-1,1l3,3H1.7a.7.7,0,1,0,0,1.41h24L29.3,16l-3.59,3.59H1.7A.7.7,0,0,0,1.7,21H24.3l-3,3a.7.7,0,1,0,1,1l8.46-8.46A.7.7,0,0,0,30.79,15.5Z"/></svg>');
@@ -273,6 +338,11 @@ $total-columns: 12;
   @include icon-size($size);
 }
 
+/// Add a magnifying glass icon.
+/// 
+/// @param {Color} $color  Set the fill color for the SVG
+/// @param {Number} $size  The width/height of the icon
+/// 
 @mixin search-icon( $color: currentColor, $size: 1em ) {
   $fill: strip-hex($color);
   @include background-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.5 29.49" fill="#{$fill}"><path d="M30.54,29.58,18.9,17.92l.14-.18A10.14,10.14,0,0,0,20,6.24,10.16,10.16,0,0,0,9.87,1.35,10.17,10.17,0,0,0,1.61,8.64,10.07,10.07,0,0,0,17.75,19l.18-.14L29.58,30.54A.68.68,0,0,0,30.54,29.58ZM17.27,17.27A8.44,8.44,0,0,1,2.92,10.45a8.54,8.54,0,0,1,6.22-7.3,8.44,8.44,0,0,1,8.14,14.12Z" transform="translate(-1.25 -1.25)"/></svg>');
@@ -280,6 +350,11 @@ $total-columns: 12;
   @include icon-size($size);
 }
 
+/// Add a refresh icon (a circular arrow indicating a cycle).
+/// 
+/// @param {Color} $color  Set the fill color for the SVG
+/// @param {Number} $size  The width/height of the icon
+/// 
 @mixin refresh-icon( $color: currentColor, $size: 1em ) {
   $fill: strip-hex($color);
   @include background-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="#{$fill}"><path d="M26.61,26.61a15,15,0,0,0,2.34-3A15.3,15.3,0,0,0,30.46,20a15,15,0,0,0-.27-8.82,15.19,15.19,0,0,0-2.26-4.23,15.36,15.36,0,0,0-3.48-3.31,14.38,14.38,0,0,0-4.21-2L19.87,3a13.21,13.21,0,0,1,3.79,1.81,13.72,13.72,0,0,1,5.2,6.84,13.54,13.54,0,0,1,.25,8,13.62,13.62,0,0,1-3.51,6,13.56,13.56,0,0,1-13.22,3.51,13.66,13.66,0,0,1-9.5-9.51,13.59,13.59,0,0,1,.06-7.42A13.62,13.62,0,0,1,4.51,8.74a13.69,13.69,0,0,1,5.66-5l.36-.17V8.12h1.4V1H4.81V2.4H9.63l-.86.48A15.1,15.1,0,0,0,5.53,5.27a14.85,14.85,0,0,0-2.44,3.1A15.37,15.37,0,0,0,1.54,12a15,15,0,0,0,0,8A15.28,15.28,0,0,0,3,23.57,15,15,0,0,0,8.43,29a15,15,0,0,0,15.15,0A15,15,0,0,0,26.61,26.61Z" transform="translate(-1 -1)"/></svg>');
@@ -287,6 +362,13 @@ $total-columns: 12;
   @include icon-size($size);
 }
 
+///// TODO: remove. were part of data-grid demo.
+
+/// Add a columns icon (two perpendicular rectangles).
+/// 
+/// @param {Color} $color  Set the fill color for the SVG
+/// @param {Number} $size  The width/height of the icon
+/// 
 @mixin columns-icon( $color: currentColor, $size: 1em ) {
   $fill: strip-hex($color);
   background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%20fill%3D%22#{$fill}%22%3E%3Cpath%20d%3D%22M25%2C6.34H7A3.67%2C3.67%2C0%2C0%2C0%2C3.34%2C10V22A3.67%2C3.67%2C0%2C0%2C0%2C7%2C25.66H25A3.67%2C3.67%2C0%2C0%2C0%2C28.66%2C22V10A3.67%2C3.67%2C0%2C0%2C0%2C25%2C6.34ZM19.33%2C7.66V24.34H12.66V7.66ZM4.66%2C22V10A2.34%2C2.34%2C0%2C0%2C1%2C7%2C7.66h4.33V24.34H7A2.34%2C2.34%2C0%2C0%2C1%2C4.66%2C22Zm22.67%2C0A2.34%2C2.34%2C0%2C0%2C1%2C25%2C24.34H20.66V7.66H25A2.34%2C2.34%2C0%2C0%2C1%2C27.34%2C10Z%22/%3E%3C/svg%3E');
@@ -294,9 +376,21 @@ $total-columns: 12;
   @include icon-size($size);
 }
 
+/// Add a list icon (horizontal bars denoting a list).
+/// 
+/// @param {Color} $color  Set the fill color for the SVG
+/// @param {Number} $size  The width/height of the icon
+/// 
 @mixin list-icon( $color: currentColor, $size: 1em ) {
   $fill: strip-hex($color);
   background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%20fill%3D%22#{$fill}%22%3E%3Cpath%20d%3D%22M3.5%2C7.79A2.5%2C2.5%2C0%2C1%2C1%2C6%2C5.29%2C2.5%2C2.5%2C0%2C0%2C1%2C3.5%2C7.79Zm0-3.57A1.07%2C1.07%2C0%2C1%2C0%2C4.57%2C5.29%2C1.07%2C1.07%2C0%2C0%2C0%2C3.5%2C4.21Zm0%2C14.29A2.5%2C2.5%2C0%2C1%2C1%2C6%2C16%2C2.5%2C2.5%2C0%2C0%2C1%2C3.5%2C18.5Zm0-3.57A1.07%2C1.07%2C0%2C1%2C0%2C4.57%2C16%2C1.07%2C1.07%2C0%2C0%2C0%2C3.5%2C14.93Zm0%2C14.29A2.5%2C2.5%2C0%2C1%2C1%2C6%2C26.71%2C2.5%2C2.5%2C0%2C0%2C1%2C3.5%2C29.21Zm0-3.57a1.07%2C1.07%2C0%2C1%2C0%2C1.07%2C1.07A1.07%2C1.07%2C0%2C0%2C0%2C3.5%2C25.64ZM31%2C5.29a.71.71%2C0%2C0%2C0-.71-.71H11A.71.71%2C0%2C0%2C0%2C11%2C6H30.29A.71.71%2C0%2C0%2C0%2C31%2C5.29ZM31%2C16a.71.71%2C0%2C0%2C0-.71-.71H11a.71.71%2C0%2C0%2C0%2C0%2C1.43H30.29A.71.71%2C0%2C0%2C0%2C31%2C16Zm0%2C10.71a.71.71%2C0%2C0%2C0-.71-.71H11a.71.71%2C0%2C1%2C0%2C0%2C1.43H30.29A.71.71%2C0%2C0%2C0%2C31%2C26.71Z%22/%3E%3C/svg%3E');
   @extend %css-icon;
   @include icon-size($size);
+}
+
+@mixin animation-timing($duration: 1s, $fillIn: both, $iterations: infinite) {
+  animation-duration: $duration;
+  animation-fill-mode: $fillIn;
+  animation-iteration-count: $iterations;
+
 }

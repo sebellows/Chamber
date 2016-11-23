@@ -1,21 +1,15 @@
 <?php 
-
-use Chamber\Theme\Titles;
-use Chamber\Theme\Sidebar;
-use Chamber\Theme\Attr;
-
-
 ?>
 
 <div class="page-header">
 
-	<h1><?= Titles\title(); ?></h1>
+	<h1><?= chamber_title(); ?></h1>
 
 	<?php if (!is_archive() || !is_search() ) : ?>
-		<?php if ( is_active_sidebar('sidebar-page-header') ) : ?>
+		<?php if ( is_active_sidebar('page-header') ) : ?>
 	
 		<aside class="list-box">
-			<?php dynamic_sidebar( 'sidebar-page-header' ); ?>
+			<?php chamber('sidebar')->add( 'page-header' ); ?>
 		</aside>
 
 		<?php endif; ?>

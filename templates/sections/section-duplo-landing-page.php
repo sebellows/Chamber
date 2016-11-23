@@ -1,6 +1,5 @@
 <?php
 
-use Chamber\Theme\Color;
 use Chamber\Theme\Helper;
 use Chamber\Theme\Media;
 
@@ -49,7 +48,7 @@ if( get_row_layout('duplo_set') ) :
                     $text_only    = !$image ? ' display-type' : '';
                 ?>
 
-                <div class="duplo<?= $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= Color::set($color_class); ?>">
+                <div class="duplo<?= $text_only; ?>" m-Duplo="<?= $index; ?>" m-UI="<?= chamber_color($color_class); ?>">
 
                     <?= Media\get_duplo_media( $image['id'], $counter, $index ); ?>
 

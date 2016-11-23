@@ -9,8 +9,8 @@
 
 use Chamber\Theme\Helper;
 
-$no_post_thumbnail = has_post_thumbnail() === false ? 'no-post-thumbnail' : null;
 $abbreviated_content = Helper::limit_content_length( get_the_content(), 300 );
+
 ?>
 
 

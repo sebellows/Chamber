@@ -1,6 +1,5 @@
 <?php
 
-use Chamber\Theme\Titles;
 use Chamber\Theme\Media;
 
 $args = array(
@@ -19,7 +18,7 @@ if ($featured->have_posts()) :
         $counter++;
     endwhile;
 
-    $title = Titles\title();
+    $title = chamber_title();
 
 ?>
 

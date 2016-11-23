@@ -1,6 +1,5 @@
 <?php
 
-use Chamber\Theme\Color;
 use Chamber\Theme\Media;
 
 if( get_row_layout() == 'media_block' ) :
@@ -78,7 +77,7 @@ if( get_row_layout() == 'media_block' ) :
 
             </figure>
 
-            <div class="callout" m-UI="<?= Color::set($color_class); ?>" m-Pad="medium large">
+            <div class="callout" m-UI="<?= chamber_color($color_class); ?>" m-Pad="medium large">
 
                 <?php if ($rubric) : ?>
                     <h2 class="rubric"><?= $rubric; ?></h2>
