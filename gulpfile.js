@@ -43,6 +43,9 @@ elixir(function(mix) {
 
 	mix.copy('resources/assets/images', 'public/images');
 
+	mix.rollup( './resources/assets/js/navigation.js', './resources/assets/js/navigation.babel.js' );
+	mix.rollup( './resources/assets/js/media-block.js', './resources/assets/js/media-block.babel.js' );
+
 	mix.scriptsIn('resources/assets/js/vendor', 'public/js/vendor.js');
 
 	mix.scripts([
@@ -64,9 +67,9 @@ elixir(function(mix) {
 	], 'resources/assets/js/foundation.js');
 
 	mix.scripts([
-		'navigation.js',
+		'navigation.babel.js',
 		'skip-link-focus-fix.js',
-		'media-block.js',
+		'media-block.babel.js',
 		'app.js',
 		'datatables.js'
 	], 'public/js/app.js');
@@ -77,14 +80,11 @@ elixir(function(mix) {
 
 	mix.scripts('isotope.pkgd.js');
 
-	mix.scripts('data-grid.js');
-
 	mix.scripts('contact-form.js');
-
-	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 
 	mix.rollup('./resources/assets/js/foundation.js');
 
+	mix.svgstore('resources/assets/images/icons', 'public/images/icons', 'chamber-icons.svg');
 	// mix.webpack('filter.js');
 
 	mix.browserSync({

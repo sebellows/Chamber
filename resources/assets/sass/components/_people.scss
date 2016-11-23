@@ -156,3 +156,14 @@ $departments: (
     margin: 0 0 rem(4);
   }
 }
+
+//// IE 10-11 Support
+///
+.flexboxtweener.no-supports {
+  .vcard {
+    display: block;
+  }
+  .vcard-profile {
+    min-height: 85%;
+  }
+}

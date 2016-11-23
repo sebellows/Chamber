@@ -93,3 +93,11 @@
   .main > .entry-header:first-child {
     margin-top: $global-margin;
   }
+
+.format-gallery .entry-content-body {
+  @include breakpoint(large) {
+    flex: 0 0 em(740);
+    max-width: em(740);
+    padding: rem(30 15 30 15);
+  }
+}

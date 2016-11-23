@@ -36,7 +36,7 @@ use Chamber\Theme\Helper;
 				<div class="site-description">
 					<span class="screen-reader-text"><?= $description; ?></span>
 					<?php if (strcmp(strtolower($description), 'see what\s possible')) : ?>
-					<?= '<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="' . chamber_asset_path('images/fgcc-tagline.svg#tagline') . '" /></svg>'; ?>
+						<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="<?=chamber_asset_path() . 'images/fgcc-tagline.svg#tagline'; ?>"></use></svg>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
@@ -60,7 +60,7 @@ use Chamber\Theme\Helper;
 		<!-- Phone number and general email address for Flint &amp; Genesee -->
 		<dl class="site-contact" m-InlineList>
 			<dt class="screen-reader-text">Contact Flint &amp; Genesee by phone or email</dt>
-			<dd class="site-contact-info" rel="phone"><a href="tel:1-810-600-1404"></span><span class="icon" m-Icon="phone small"><svg aria-role="presentation" viewBox="0 1 24 24" style="fill:#fefefe;"><use xlink:href="#icon-phone"></use></svg></span><span id="phoneNumber">(810)-600-1404</span></dd>
+			<dd class="site-contact-info" rel="phone"><a href="tel:1-810-600-1404"><span class="icon" m-Icon="phone small"><svg aria-role="presentation" viewBox="0 1 24 24" style="fill:#fefefe;"><use xlink:href="#icon-phone"></use></svg></span><span id="phoneNumber">(810)-600-1404</span></a></dd>
 			<dd class="site-contact-info"><a href="mailto:info@flintandgenesee.org"><span class="icon" m-Icon="email small"><svg aria-role="presentation" viewBox="0 0 24 24" style="fill:#fefefe;"><use xlink:href="#icon-email"></use></svg></span><span id="emailAddress">info@flintandgenesee.org</span></a></dd>
 		</dl>
 

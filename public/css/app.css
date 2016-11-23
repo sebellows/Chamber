@@ -3293,10 +3293,14 @@ object {
   margin-bottom: 1.5em; }
 
 .gallery-item {
-  display: inline-block;
+  background: #fefefe;
+  float: left;
+  padding: 0.625rem;
+  position: relative;
   text-align: center;
   vertical-align: top;
-  width: 100%; }
+  width: 100%;
+  overflow: hidden; }
   .gallery-columns-2 .gallery-item {
     max-width: 50%; }
   .gallery-columns-3 .gallery-item {
@@ -3314,8 +3318,34 @@ object {
   .gallery-columns-9 .gallery-item {
     max-width: 11.11%; }
 
-.gallery-caption {
-  display: block; }
+.gallery-icon {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden; }
+  .gallery-icon > a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  .gallery-icon.landscape img {
+    max-height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: cover;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 92.5%; }
+
+.format-gallery .gallery-caption {
+  display: block;
+  left: 0.625rem;
+  bottom: 0.625rem;
+  right: 0.625rem;
+  width: auto; }
 
 /*--------------------------------------------------------------
 # Components
@@ -5351,6 +5381,12 @@ svg.icon,
   .vcard-list dd {
     margin: 0 0 0.25rem; }
 
+.flexboxtweener.no-supports .vcard {
+  display: block; }
+
+.flexboxtweener.no-supports .vcard-profile {
+  min-height: 85%; }
+
 #isotope-list {
   width: 100%; }
 
@@ -7309,6 +7345,13 @@ h2 + .list-box {
 
 .main > .entry-header:first-child {
   margin-top: 1rem; }
+
+@media screen and (min-width: 64em) {
+  .format-gallery .entry-content-body {
+    -ms-flex: 0 0 46.25em;
+    flex: 0 0 46.25em;
+    max-width: 46.25em;
+    padding: 1.875rem 0.9375rem 1.875rem 0.9375rem; } }
 
 .cta-buttons {
   color: #fefefe;

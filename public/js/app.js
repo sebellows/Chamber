@@ -1,3 +1,6 @@
+(function (exports) {
+'use strict';
+
 /**
  * File navigation.js.
  *
@@ -6,7 +9,7 @@
  */
 ( function() {
 
-  const ROOT     = document.documentElement,
+  var ROOT     = document.documentElement,
         BODY     = document.body,
         NAV      = document.querySelector( '.section-navigation' );
 
@@ -17,12 +20,7 @@
   /**
    * Sets or removes .focus class on an element.
    */
-  const CLOSE_BUTTON = `
-      <button class="menu-toggle-close" aria-controls="dept-menu" aria-expanded="true">
-        <span class="screen-reader-text">Close menu</span>
-        <span class="icon" m-Icon="close large" aria-hidden="true"><svg role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg></span>
-      </button>
-  `;
+  var CLOSE_BUTTON = "\n      <button class=\"menu-toggle-close\" aria-controls=\"dept-menu\" aria-expanded=\"true\">\n        <span class=\"screen-reader-text\">Close menu</span>\n        <span class=\"icon\" m-Icon=\"close large\" aria-hidden=\"true\"><svg role=\"presentation\" viewBox=\"0 1 24 24\"><use xlink:href=\"#icon-close\"></use></svg></span>\n      </button>\n  ";
 
   /**
    * Create a Close button for dismissing the menu modal.
@@ -59,7 +57,7 @@
    *
    * @var mixed
    */
-  const BUTTON   = document.querySelector( '.menu-toggle' ),
+  var BUTTON   = document.querySelector( '.menu-toggle' ),
         MASTHEAD = document.querySelector( '#masthead' ),
         MENU     = NAV.getElementsByTagName( 'ul' )[0],
         LINKS    = MENU.getElementsByTagName( 'a' ),
@@ -180,6 +178,10 @@
   }( NAV ) );
 } )();
 
+}((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
+
+//# sourceMappingURL=navigation.babel.js.map
+
 /**
  * File skip-link-focus-fix.js.
  *
@@ -214,6 +216,9 @@
 	}
 })();
 
+(function (exports) {
+'use strict';
+
 /**
  * File navigation.js.
  *
@@ -230,8 +235,8 @@
         return;
     }
 
-    const MEDIABLOCK = document.querySelector('.stripe.media-block');
-    const VIDEOBLOCK = MEDIABLOCK.querySelector('.flex-video');
+    var MEDIABLOCK = document.querySelector('.stripe.media-block');
+    var VIDEOBLOCK = MEDIABLOCK.querySelector('.flex-video');
 
     mediaID = typeof mediaID === "undefined" ? '' : mediaID;
 
@@ -250,7 +255,7 @@
      * @param {[array]} attrs
      */
     function setAttributes(el, attrs) {
-        for(let key in attrs) {
+        for(var key in attrs) {
             el.setAttribute(key, attrs[key]);
         }
     }
@@ -260,8 +265,10 @@
      * 
      * @param {[string]} format i.e., the image formate and size
      */
-    function addVideoPosterSrc( format, setWebP = false ) {
-        let poster = '';
+    function addVideoPosterSrc( format, setWebP ) {
+        if ( setWebP === void 0 ) setWebP = false;
+
+        var poster = '';
 
         if ( setWebP === true ) {
             poster = 'https://i.ytimg.com/vi_webp/' + mediaID + '/' + format + '.webp';
@@ -276,13 +283,13 @@
      * Add the videoPoster image and `srcset`.
      */
     function addVideoPosterImg( webp ) {
-        let sdImage  = addVideoPosterSrc( 'sddefault' ),
+        var sdImage  = addVideoPosterSrc( 'sddefault' ),
             hqImage  = addVideoPosterSrc( 'hqdefault' ),
             maxImage = addVideoPosterSrc( 'maxresdefault' );
 
-        let hiRes = webp === true ? addVideoPosterSrc( 'sddefault', webp ) : sdImage;
+        var hiRes = webp === true ? addVideoPosterSrc( 'sddefault', webp ) : sdImage;
 
-        let posterImage = '<img class="video-poster" src="'+
+        var posterImage = '<img class="video-poster" src="'+
                           hiRes+'" srcset="'+
                           hqImage+' 640w, '+
                           hiRes+' 853w, '+
@@ -295,10 +302,10 @@
      * Add the SVG play arrow icon to the play button.
      */
     function addPlayButtonSVG() {
-        let svg            = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        let pathBG         = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        let pathPlayArrow1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        let pathPlayArrow2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        var svg            = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var pathBG         = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        var pathPlayArrow1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        var pathPlayArrow2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
         setAttributes( svg, {
             'viewBox': '0 0 68 48', 
@@ -335,8 +342,8 @@
      * @param {[array]} attrs
      */
     function addVideoButton( attrs ) {
-        let videoButton     = document.createElement("button");
-        let videoButtonIcon = addPlayButtonSVG();
+        var videoButton     = document.createElement("button");
+        var videoButtonIcon = addPlayButtonSVG();
 
         setAttributes(
             videoButton,
@@ -359,10 +366,12 @@
      * 
      * @return object
      */
-    function videoPoster( attrs, webp = false ) {
-        let videoSlot        = document.querySelector('.media-block .flex-video');
-        let videoPosterImage = addVideoPosterImg( attrs, webp );
-        let videoPlayButton  = addVideoButton( attrs );
+    function videoPoster( attrs, webp ) {
+        if ( webp === void 0 ) webp = false;
+
+        var videoSlot        = document.querySelector('.media-block .flex-video');
+        var videoPosterImage = addVideoPosterImg( attrs, webp );
+        var videoPlayButton  = addVideoButton( attrs );
 
         videoSlot.innerHTML = videoPosterImage;
         videoSlot.appendChild(videoPlayButton);
@@ -375,6 +384,10 @@
     }
 
 } )();
+
+}((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
+
+//# sourceMappingURL=media-block.babel.js.map
 
 /* ========================================================================
 * DOM-based Routing

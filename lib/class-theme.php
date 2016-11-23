@@ -168,8 +168,6 @@ class Theme extends Container {
     public function getAliases()
     {
         $classes = [
-            // 'finder'             => 'Finder',
-            // 'hybrid-chamber'     => 'HybridChamber',
             'bootstrap'          => 'Bootstrap',
             'config'             => 'Config',
             'helper'             => 'Helper',

@@ -3,10 +3,14 @@
 }
 
 .gallery-item {
-	display: inline-block;
+	background: $white;
+	float: left;
+	padding: rem(10);
+	position: relative;
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+	overflow: hidden;
 
 	.gallery-columns-2 & {
 		max-width: 50%;
@@ -41,6 +45,36 @@
 	}
 }
 
-.gallery-caption {
+.gallery-icon {
+	height: 0;
+	padding-bottom: 100%;
+	position: relative;
+	overflow: hidden;
+
+	> a {
+		display: block;
+		position: absolute;
+		top: 0; left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	&.landscape img {
+		max-height: 100%;
+		width: auto;
+		max-width: none;
+		object-fit: cover;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		max-height: 92.5%;
+	}
+}
+
+.format-gallery .gallery-caption {
 	display: block;
+	left: rem(10);
+	bottom: rem(10);
+	right: rem(10);
+	width: auto;
 }

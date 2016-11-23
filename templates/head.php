@@ -24,5 +24,7 @@
 	<link rel="shortcut icon" href="/favicon.ico?v=BGBXRkkOdQ">
 	<meta name="theme-color" content="#0f4466">
 
+	<?= ie_checker_class( $_SERVER['HTTP_USER_AGENT'] ); ?>
+
 	<?php wp_head(); ?>
 </head>

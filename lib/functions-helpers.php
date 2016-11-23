@@ -113,3 +113,18 @@ if ( ! function_exists('chamber_title')) {
 		}
 	}
 }
+
+function ie_checker_class( $user_agent = '' ) {
+	if ( strpos( $user_agent, 'MSIE' ) || 
+		 strpos( $user_agent, 'Internet Explorer' ) ||
+		 strpos( $user_agent, 'Trident/7' )
+		) {
+		return '<script type="text/javascript">document.documentElement.className += " ie";</script>';
+	}
+	elseif ( strpos( $user_agent, 'MSIE' ) ) {
+		return '<script type="text/javascript">document.documentElement.className += " edge";</script>';
+	}
+	else {
+		return '';
+	}
+}
