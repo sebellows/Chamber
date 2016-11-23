@@ -36,7 +36,7 @@ use Chamber\Theme\Helper;
 				<div class="site-description">
 					<span class="screen-reader-text"><?= $description; ?></span>
 					<?php if (strcmp(strtolower($description), 'see what\s possible')) : ?>
-						<svg role="presentation" viewBox="0 0 236 24" style="width:100%;max-width:236px;"><use xlink:href="<?=chamber_asset_path() . 'images/fgcc-tagline.svg#tagline'; ?>"></use></svg>
+						<img src="<?= chamber_asset_path() . 'images/fgcc-tagline.svg'; ?>" alt="See What's Possible" title="See What's Possible" />
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
