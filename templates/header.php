@@ -74,14 +74,18 @@ use Chamber\Theme\Helper;
 		<?php get_search_form(true); ?>
 
 		<!-- Section menu toggle button -->
-		<button class="menu-toggle" aria-controls="dept-menu" aria-expanded="false">
-			<span class="screen-reader-text">Section Menu</span>
-		    <div class="bubblewrap">
-		    	<span class="bar first"></span>
-		        <span class="bar second"></span>
-		        <span class="bar third"></span>
-		    </div>
-		</button>
+		<?php if ( !is_active_sidebar('sidebar-navigation') ) : ?>
+
+			<button class="menu-toggle" aria-controls="dept-menu" aria-expanded="false">
+				<span class="screen-reader-text">Section Menu</span>
+			    <div class="bubblewrap">
+			    	<span class="bar first"></span>
+			        <span class="bar second"></span>
+			        <span class="bar third"></span>
+			    </div>
+			</button>
+
+		<?php endif; ?>
 
 	</div><!-- .top-bar-bottom -->
 
