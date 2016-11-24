@@ -20,7 +20,7 @@ function chamber_term_icon( $term ) {
 			echo 'lodging';
 			break;
 		case 'shopping':
-			echo 'shopping';
+			echo 'shopping-bag';
 			break;
 		case 'dining':
 			echo 'dining';
