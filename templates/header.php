@@ -74,7 +74,7 @@ use Chamber\Theme\Helper;
 		<?php get_search_form(true); ?>
 
 		<!-- Section menu toggle button -->
-		<?php if ( !is_active_sidebar('sidebar-navigation') ) : ?>
+		<?php if ( is_active_sidebar('sidebar-navigation') ) : ?>
 
 			<button class="menu-toggle" aria-controls="dept-menu" aria-expanded="false">
 				<span class="screen-reader-text">Section Menu</span>
