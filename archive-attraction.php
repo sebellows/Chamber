@@ -11,14 +11,14 @@
 
 <div id="app" class="isotope-archive">
 
-    <?php get_template_part('menu/isotope'); ?>  
+    <?php get_template_part('menu/isotope'); ?>
 
     <?php
         $params = [
-            'posts_per_page' => 100,
             'post_type' => 'attraction',
-            'offset' => 100,
-            'orderby' => 'rand'
+            'posts_per_page'   => -1,
+            'orderby' => 'rand',
+            'meta_query' => array(array('key' => '_thumbnail_id')) 
         ];
         $attractions_query = new WP_Query( $params );
     ?>
