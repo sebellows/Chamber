@@ -52,31 +52,12 @@ import * as lazyImages from './lazy-image-loading.js';
      * 
      * @param {[string]} format i.e., the image format and size
      */
-    function addVideoPosterSrc( format ) {
+    function setVideoPosterImage( format ) {
         let poster = '';
 
-        poster = 'https://i.ytimg.com/vi/' + mediaID + '/' + format + '.jpg';
+        poster = '<img class="lazy video-poster" data-src="https://i.ytimg.com/vi/' + mediaID + '/sddefault.jpg" />';
 
         return poster;          
-    }
-
-    /**
-     * Add the videoPoster image and `srcset`.
-     */
-    function addVideoPosterImg() {
-        let posterImage = '';
-
-        let sdImage  = addVideoPosterSrc( 'sddefault' ),
-            hqImage  = addVideoPosterSrc( 'hqdefault' ),
-            maxImage = addVideoPosterSrc( 'maxresdefault' );
-
-        posterImage = '<img class="lazy video-poster" data-src="'+
-                      sdImage+'" data-srcset="'+
-                      hqImage+' 640w, '+
-                      sdImage+' 853w, '+
-                      maxImage+' 1280w" sizes="(max-width: 100vw) 853px" alt="video poster image">';
-
-        return posterImage;
     }
 
     /**
@@ -149,7 +130,7 @@ import * as lazyImages from './lazy-image-loading.js';
      */
     function videoPoster( attrs ) {
         let videoSlot        = document.querySelector('.media-block .flex-video');
-        let videoPosterImage = addVideoPosterImg( attrs );
+        let videoPosterImage = setVideoPosterImage( attrs );
         let videoPlayButton  = addVideoButton( attrs );
 
         videoSlot.insertAdjacentHTML('afterbegin', videoPosterImage);
