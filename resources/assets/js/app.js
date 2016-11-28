@@ -43,54 +43,17 @@
                     }
                 });
 
-                // Add YouTube video to modal to prevent it from slowing down page rendering
-                if ( $(".mediabox .media" ).length > 0) {
-                    createReveal();
-                }
-
                 if ( $(".reveal").length > 0 ) {
                     new Foundation.Reveal( $(".reveal") );
                 }
 
+                $(document).on('closed.zf.reveal', function() {
+                    $("#videoBox iframe").remove();
+                } );
+
                 if ( $("#contactForm").length > 0 ) {
                     new Foundation.Abide( $("#contactForm") );
                 }
-
-                function createReveal() {
-                    var $reveal     =   '<div class="reveal" id="videoPlayerReveal" data-reveal>'+
-                    '<div id="videoBox" class="flex-video widescreen media"></div>'+
-                    '</div>';
-                    var closeButton =   '<button class="close-button" data-close aria-label="Close modal">'+
-                    '<span class="screen-reader-text">Close modal</span>'+
-                    '<span class="icon" m-Icon="close large" aria-hidden="true">'+
-                    '<svg role="presentation" viewBox="0 1 24 24"><use xlink:href="#icon-close"></use></svg>'+
-                    '</span>'+
-                    '</button>';
-
-                    $('body').append($reveal);
-
-                    // Use `setTimeout` due to delay in `.reveal` getting wrapped by overlay
-                    // Close button was moved to prevent it overlapping the video.
-                    setTimeout(function() {
-                        $('.reveal-overlay').prepend(closeButton);
-                    }, 500);
-                }
-
-                $(document).on('click', "[data-open]", function(e) {
-                    var target = $(this).attr("data-open");
-                    var mediaAttrs  = atob($(this).attr("data-media"));
-
-                    // Append the iframe attributes to an iframe in the `#videoBox`
-                    $("#videoBox").append('<iframe ' + mediaAttrs + '></iframe>');
-                    $("#" + target).css('opacity', '1');
-
-                });
-
-                $(document).on(
-                    'closed.zf.reveal', function() {
-                        $("#videoBox iframe").remove();
-                    }
-                );
 
                 // DataTables listener
                 $(document).ready(function() {

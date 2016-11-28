@@ -115,6 +115,8 @@ class Bootstrap
         add_action('wp_enqueue_scripts', [ $this, 'scriptsToFooter' ]);
         # Register scripts and styles used in Admin (not edit.php).
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminScript' ] );
+        // Load Modernizr.js in the head
+        add_action('wp_head', [$this, 'modernizrToHead'], 99);
     }
 
     /**
@@ -240,7 +242,6 @@ class Bootstrap
             wp_enqueue_script('comment-reply');
         }
 
-        wp_enqueue_script('chamber/theme/js/modernizr', get_template_directory_uri() . '/public/js/modernizr.js');
         wp_enqueue_script('chamber/theme/js/foundation', get_template_directory_uri() . '/public/js/foundation.js', ['jquery'], null, true);
         wp_enqueue_script('chamber/theme/js/vendor', get_template_directory_uri() . '/public/js/vendor.js', ['jquery'], null, true);
         wp_enqueue_script('chamber/theme/js/app', get_template_directory_uri() . '/public/js/app.js', ['jquery'], null, true);
@@ -272,6 +273,11 @@ class Bootstrap
         remove_action('wp_head', 'wp_print_scripts');
         remove_action('wp_head', 'wp_print_head_scripts', 9);
         remove_action('wp_head', 'wp_enqueue_scripts', 1);
+    }
+
+    public function modernizrToHead()
+    {
+        echo '<script src="' . get_template_directory_uri() . '/public/js/modernizr.js"></script>';
     }
 
     /**

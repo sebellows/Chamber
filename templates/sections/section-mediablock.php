@@ -52,27 +52,26 @@ if( get_row_layout() == 'media_block' ) :
                      * @var string
                      */
                     $mediaAttrs = str_replace(['<iframe ', '></iframe>'], '', $media);
-                    $hasWebP = strpos($mediaAttrs, 'webp') ? true : false;
                     $mediaAttrs = strpos($mediaAttrs, '640') !== false ? str_replace(['width="640"', 'height="'.'/\d+/'.'"'], ['width="853"', 'height="480"'], $media) : $mediaAttrs;
                 ?>
 
                 <script type="text/javascript">
                     var mediaID = "<?= $mediaID; ?>";
-                </script>
-                <script type="text/javascript">
-                    var mediaAttrs = "<?= base64_encode($mediaAttrs); ?>";
-                </script>
-                <script type="text/javascript">
-                    var hasWebP = "<?= $hasWebP; ?>";
+
+                    var mediaAttrs = '<?= base64_encode( $mediaAttrs ); ?>';
                 </script>
 
-                <div class="flex-video widescreen media"></div>
+                <div class="flex-video widescreen media">
+                    <noscript><?= $media; ?></noscript>
+                </div>
 
             <?php else : ?>
 
                 <?php $media = get_sub_field('mb_image'); ?>
-                <img src="<?= esc_url($media['url']); ?>" srcset="<?= $media['sizes']['small'] . ' ' . $media['sizes']['small-width'] . 'w,' . ' ' . $media['sizes']['large'] . ' ' . $media['sizes']['large-width'] . 'w,'; ?>" sizes="(max-width: 365px) 480px, (max-width: 701px) 768w, (max-width: 1025px) 480px, 1024px" alt="<?= $media['alt']; ?>">
-
+                <img class="lazy" data-src="<?= esc_url($media['url']); ?>" data-srcset="<?= $media['sizes']['small'] . ' ' . $media['sizes']['small-width'] . 'w,' . ' ' . $media['sizes']['large'] . ' ' . $media['sizes']['large-width'] . 'w,'; ?>" sizes="(max-width: 365px) 480px, (max-width: 701px) 768w, (max-width: 1025px) 480px, 1024px" alt="<?= $media['alt']; ?>">
+                <noscript>
+                    <img src="<?= esc_url($media['url']); ?>" srcset="<?= $media['sizes']['small'] . ' ' . $media['sizes']['small-width'] . 'w,' . ' ' . $media['sizes']['large'] . ' ' . $media['sizes']['large-width'] . 'w,'; ?>" sizes="(max-width: 365px) 480px, (max-width: 701px) 768w, (max-width: 1025px) 480px, 1024px" alt="<?= $media['alt']; ?>">
+                </noscript>
             <?php endif; ?>
 
             </figure>

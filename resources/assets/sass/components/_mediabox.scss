@@ -1,4 +1,5 @@
 .mediabox {
+  background-color: $black;
   @include flex-callout(12);
 
   @include breakpoint(large) {

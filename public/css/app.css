@@ -4172,6 +4172,7 @@ svg.icon,
       height: 2.5rem; }
 
 .mediabox {
+  background-color: #131516;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
   max-width: 100%; }
@@ -5068,6 +5069,7 @@ svg.icon,
     width: 100%;
     min-height: 100%;
     object-fit: cover;
+    left: 0;
     top: 50%;
     transform: translateY(-50%); }
 

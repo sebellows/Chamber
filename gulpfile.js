@@ -30,7 +30,7 @@ elixir(function(mix) {
 
 	mix.copy([
 		'node_modules/motion-ui/dist/motion-ui.js',
-		'node_modules/what-input/dist/what-input.js',
+		'node_modules/what-input/what-input.js',
 		'node_modules/flickity/dist/flickity.pkgd.js'
 		// 'node_modules/vue-resource/dist/vue-resource.js',
 		// 'node_modules/vue-router/dist/vue-router.js'
@@ -43,7 +43,7 @@ elixir(function(mix) {
 
 	mix.copy('resources/assets/images', 'public/images');
 
-	mix.rollup( './resources/assets/js/navigation.js', './resources/assets/js/navigation.babel.js' );
+	// mix.rollup( './resources/assets/js/navigation.js', './resources/assets/js/navigation.babel.js' );
 	mix.rollup( './resources/assets/js/media-block.js', './resources/assets/js/media-block.babel.js' );
 
 	mix.scriptsIn('resources/assets/js/vendor', 'public/js/vendor.js');
