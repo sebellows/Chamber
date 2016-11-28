@@ -237,6 +237,7 @@ function lazyLoad(){
                 LAZY[i].srcset = LAZY[i].getAttribute('data-srcset');
                 LAZY[i].removeAttribute('data-srcset');
             }
+            LAZY[i].classList.add("is-loaded");
         }
     }
     

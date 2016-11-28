@@ -3739,6 +3739,12 @@ svg.icon,
     transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 0);
     box-shadow: 0 5px 11px 0 rgba(19, 21, 22, 0.18), 0 4px 15px 0 rgba(19, 21, 22, 0.15); }
 
+.lazy {
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+  .lazy.is-loaded {
+    opacity: 1; }
+
 .reveal-overlay {
   display: none;
   -ms-flex-align: center;
