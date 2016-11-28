@@ -4178,7 +4178,7 @@ svg.icon,
       height: 2.5rem; }
 
 .mediabox {
-  background-color: #131516;
+  background-color: #003355;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
   max-width: 100%; }
@@ -5060,6 +5060,7 @@ svg.icon,
       margin-right: auto; } }
 
 .carousel-cell {
+  background-color: #003355;
   width: 100%;
   height: 400px;
   overflow: hidden; }
@@ -5199,6 +5200,7 @@ svg.icon,
       max-width: 33.3333333333%; } }
 
 .stripe.gallery .thumbnail {
+  background-color: #003355;
   float: left;
   width: 50%;
   height: 0;
