@@ -164,16 +164,8 @@ import * as lazyImages from './lazy-image-loading.js';
         return videoSlot;
     }
 
-    function lazyLoadVideoPoster() {
-        window.addEventListener('load', lazyImages.setLazy);
-        window.addEventListener('load', lazyImages.lazyLoad);
-        window.addEventListener('scroll', lazyImages.lazyLoad);
-        window.addEventListener('resize', lazyImages.lazyLoad);
-    }
-
     if ( VIDEOBLOCK ) {
         videoPoster( mediaAttrs, WEBP );
-        lazyLoadVideoPoster();
     }
 
     // Add YouTube video to modal to prevent it from slowing down page rendering
@@ -251,3 +243,10 @@ import * as lazyImages from './lazy-image-loading.js';
     });
 
 } )();
+
+( function () {
+    window.addEventListener('load', lazyImages.setLazy);
+    window.addEventListener('load', lazyImages.lazyLoad);
+    window.addEventListener('scroll', lazyImages.lazyLoad);
+    window.addEventListener('resize', lazyImages.lazyLoad);
+})();

@@ -207,16 +207,8 @@ function isInViewport(el){
         return videoSlot;
     }
 
-    function lazyLoadVideoPoster() {
-        window.addEventListener('load', setLazy);
-        window.addEventListener('load', lazyLoad);
-        window.addEventListener('scroll', lazyLoad);
-        window.addEventListener('resize', lazyLoad);
-    }
-
     if ( VIDEOBLOCK ) {
         videoPoster( mediaAttrs, WEBP );
-        lazyLoadVideoPoster();
     }
 
     // Add YouTube video to modal to prevent it from slowing down page rendering
@@ -283,6 +275,13 @@ function isInViewport(el){
     });
 
 } )();
+
+( function () {
+    window.addEventListener('load', setLazy);
+    window.addEventListener('load', lazyLoad);
+    window.addEventListener('scroll', lazyLoad);
+    window.addEventListener('resize', lazyLoad);
+})();
 
 }((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
 

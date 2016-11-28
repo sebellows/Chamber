@@ -37,7 +37,7 @@ if( get_row_layout() == 'gallery_stripe' ) :
                             <a href="<?= esc_url($image['description']); ?>">
                         <?php endif; ?>
 
-                            <img src="<?= esc_url($image['url']); ?>" alt="<?= $image['alt']; ?>" width="<?= $image['width']; ?>" height="<?= $image['height']; ?>" />
+                            <img class="lazy" data-src="<?= esc_url($image['url']); ?>" alt="<?= $image['alt']; ?>" width="<?= $image['width']; ?>" height="<?= $image['height']; ?>" />
 
                         <?php if (!empty($image['description'])) : ?>
                             </a>
