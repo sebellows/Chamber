@@ -10,17 +10,12 @@ import * as lazyImages from './lazy-image-loading.js';
 
     "use strict";
 
-    if ( ! Modernizr ) {
-        return;
-    }
-
     if ( ! document.querySelector('.stripe.media-block') ) {
         return;
     }
 
     const MEDIABLOCK  = document.querySelector('.stripe.media-block');
     const VIDEOBLOCK  = MEDIABLOCK.querySelector('.flex-video');
-    const WEBP        = Modernizr.webp;
 
     mediaID    = typeof mediaID === "undefined" ? '' : mediaID;
     mediaAttrs = typeof mediaAttrs === "undefined" ? '' : mediaAttrs;
@@ -41,21 +36,26 @@ import * as lazyImages from './lazy-image-loading.js';
         }
     }
 
+    function testImage(src) {
+        let Img = new Image();
+        Img.src = src;
+        setAttributes(Img, {
+            "class": "lazy-test",
+            "src": src,
+            "style": "display:none;"
+        });
+        return Img;
+    }
+
     /**
      * Add the image `src` for the video poster.
      * 
      * @param {[string]} format i.e., the image format and size
      */
-    function addVideoPosterSrc( format, WEBP ) {
+    function addVideoPosterSrc( format ) {
         let poster = '';
 
-        let extension = WEBP ? '.webp' : '.jpg';
-
-        if ( WEBP ) {
-            poster = 'https://i.ytimg.com/vi_webp/' + mediaID + '/' + format + extension;
-        } else {
-            poster = 'https://i.ytimg.com/vi/' + mediaID + '/' + format + extension;
-        }
+        poster = 'https://i.ytimg.com/vi/' + mediaID + '/' + format + '.jpg';
 
         return poster;          
     }
@@ -63,24 +63,18 @@ import * as lazyImages from './lazy-image-loading.js';
     /**
      * Add the videoPoster image and `srcset`.
      */
-    function addVideoPosterImg( WEBP ) {
+    function addVideoPosterImg() {
         let posterImage = '';
 
         let sdImage  = addVideoPosterSrc( 'sddefault' ),
             hqImage  = addVideoPosterSrc( 'hqdefault' ),
             maxImage = addVideoPosterSrc( 'maxresdefault' );
 
-        let hiRes = WEBP ? addVideoPosterSrc( 'sddefault', WEBP ) : sdImage;
-
-        if ( WEBP ) {
-            posterImage = '<img class="lazy video-poster" data-src="'+hiRes+'">';
-        } else {
-            posterImage = '<img class="lazy video-poster" data-src="'+
-                          hiRes+'" data-srcset="'+
-                          hqImage+' 640w, '+
-                          hiRes+' 853w, '+
-                          maxImage+' 1280w" sizes="(max-width: 100vw) 853px" alt="video poster image">';
-        }
+        posterImage = '<img class="lazy video-poster" data-src="'+
+                      sdImage+'" data-srcset="'+
+                      hqImage+' 640w, '+
+                      sdImage+' 853w, '+
+                      maxImage+' 1280w" sizes="(max-width: 100vw) 853px" alt="video poster image">';
 
         return posterImage;
     }
@@ -153,9 +147,9 @@ import * as lazyImages from './lazy-image-loading.js';
      * 
      * @return object
      */
-    function videoPoster( attrs, WEBP ) {
+    function videoPoster( attrs ) {
         let videoSlot        = document.querySelector('.media-block .flex-video');
-        let videoPosterImage = addVideoPosterImg( attrs, WEBP );
+        let videoPosterImage = addVideoPosterImg( attrs );
         let videoPlayButton  = addVideoButton( attrs );
 
         videoSlot.insertAdjacentHTML('afterbegin', videoPosterImage);
@@ -165,7 +159,7 @@ import * as lazyImages from './lazy-image-loading.js';
     }
 
     if ( VIDEOBLOCK ) {
-        videoPoster( mediaAttrs, WEBP );
+        videoPoster( mediaAttrs );
     }
 
     // Add YouTube video to modal to prevent it from slowing down page rendering

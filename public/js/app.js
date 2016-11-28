@@ -271,17 +271,12 @@ function isInViewport(el){
 
     "use strict";
 
-    if ( ! Modernizr ) {
-        return;
-    }
-
     if ( ! document.querySelector('.stripe.media-block') ) {
         return;
     }
 
     var MEDIABLOCK  = document.querySelector('.stripe.media-block');
     var VIDEOBLOCK  = MEDIABLOCK.querySelector('.flex-video');
-    var WEBP        = Modernizr.webp;
 
     mediaID    = typeof mediaID === "undefined" ? '' : mediaID;
     mediaAttrs = typeof mediaAttrs === "undefined" ? '' : mediaAttrs;
@@ -302,21 +297,26 @@ function isInViewport(el){
         }
     }
 
+    function testImage(src) {
+        var Img = new Image();
+        Img.src = src;
+        setAttributes(Img, {
+            "class": "lazy-test",
+            "src": src,
+            "style": "display:none;"
+        });
+        return Img;
+    }
+
     /**
      * Add the image `src` for the video poster.
      * 
      * @param {[string]} format i.e., the image format and size
      */
-    function addVideoPosterSrc( format, WEBP ) {
+    function addVideoPosterSrc( format ) {
         var poster = '';
 
-        var extension = WEBP ? '.webp' : '.jpg';
-
-        if ( WEBP ) {
-            poster = 'https://i.ytimg.com/vi_webp/' + mediaID + '/' + format + extension;
-        } else {
-            poster = 'https://i.ytimg.com/vi/' + mediaID + '/' + format + extension;
-        }
+        poster = 'https://i.ytimg.com/vi/' + mediaID + '/' + format + '.jpg';
 
         return poster;          
     }
@@ -324,24 +324,18 @@ function isInViewport(el){
     /**
      * Add the videoPoster image and `srcset`.
      */
-    function addVideoPosterImg( WEBP ) {
+    function addVideoPosterImg() {
         var posterImage = '';
 
         var sdImage  = addVideoPosterSrc( 'sddefault' ),
             hqImage  = addVideoPosterSrc( 'hqdefault' ),
             maxImage = addVideoPosterSrc( 'maxresdefault' );
 
-        var hiRes = WEBP ? addVideoPosterSrc( 'sddefault', WEBP ) : sdImage;
-
-        if ( WEBP ) {
-            posterImage = '<img class="lazy video-poster" data-src="'+hiRes+'">';
-        } else {
-            posterImage = '<img class="lazy video-poster" data-src="'+
-                          hiRes+'" data-srcset="'+
-                          hqImage+' 640w, '+
-                          hiRes+' 853w, '+
-                          maxImage+' 1280w" sizes="(max-width: 100vw) 853px" alt="video poster image">';
-        }
+        posterImage = '<img class="lazy video-poster" data-src="'+
+                      sdImage+'" data-srcset="'+
+                      hqImage+' 640w, '+
+                      sdImage+' 853w, '+
+                      maxImage+' 1280w" sizes="(max-width: 100vw) 853px" alt="video poster image">';
 
         return posterImage;
     }
@@ -414,9 +408,9 @@ function isInViewport(el){
      * 
      * @return object
      */
-    function videoPoster( attrs, WEBP ) {
+    function videoPoster( attrs ) {
         var videoSlot        = document.querySelector('.media-block .flex-video');
-        var videoPosterImage = addVideoPosterImg( attrs, WEBP );
+        var videoPosterImage = addVideoPosterImg( attrs );
         var videoPlayButton  = addVideoButton( attrs );
 
         videoSlot.insertAdjacentHTML('afterbegin', videoPosterImage);
@@ -426,7 +420,7 @@ function isInViewport(el){
     }
 
     if ( VIDEOBLOCK ) {
-        videoPoster( mediaAttrs, WEBP );
+        videoPoster( mediaAttrs );
     }
 
     // Add YouTube video to modal to prevent it from slowing down page rendering
