@@ -14,6 +14,10 @@
     transform: scale(1.05);
     z-index: 1;
   }
+
+  &.callout {
+    color: $white;
+  }
 }
   // For iOS so that `.cta-content` doesn't float to top
   @supports(display: inline-flex) {
