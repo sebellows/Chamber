@@ -52,7 +52,11 @@
     outline: 0 none;
   }
 
-  @include breakpoint(medium down) {
+  @include breakpoint(small only) {
+   width: 92%;
+  }
+
+  @include breakpoint(medium only) {
    width: 80%;
   }
 

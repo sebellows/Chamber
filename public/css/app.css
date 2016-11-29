@@ -3791,7 +3791,10 @@ svg.icon,
   will-change: opacity; }
   .reveal:focus {
     outline: 0 none; }
-  @media screen and (max-width: 63.9375em) {
+  @media screen and (max-width: 39.9375em) {
+    .reveal {
+      width: 92%; } }
+  @media screen and (min-width: 40em) and (max-width: 63.9375em) {
     .reveal {
       width: 80%; } }
   .reveal .reveal-content {
