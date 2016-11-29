@@ -349,8 +349,26 @@
     }
   }
 
+  [m-Duplo="2"],
+  [m-Duplo="3"],
+  [m-Duplo="4"] {
+    @include breakpoint(medium) {
+      @include grid-col(4,0);
+    }
+  }
+
   [m-Duplo="2"] {
     border-left-width: 0 !important;
+
+    @include breakpoint(small only) {
+      border-right-width: 0 !important;
+    }
+
+    @include breakpoint(medium) {
+      h2 {
+        font-size: em(18);
+      }
+    }
 
     @include breakpoint(large) {
       border-left-width: rem(2.5) !important;
@@ -390,7 +408,17 @@
     }
   }
 
+  [m-Duplo="3"] {
+    @include breakpoint(small only) {
+      border-left-width: 0 !important;
+    }
+  }
+
   [m-Duplo="4"] {
+    @include breakpoint(small only) {
+      border-right-width: 0 !important;
+    }
+
     @include breakpoint(large) {
       border-right-width: 0 !important;
     }
