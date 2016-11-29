@@ -82,7 +82,16 @@
   }
 }
 
+// When modal is showing, block scroll on document
+.is-reveal-open {
+  overflow: hidden !important;
+}
+
 #videoPlayerReveal {
   height: auto;
   min-height: initial;
+
+  @include breakpoint(small only) {
+    top: 120px !important;
+  }
 }

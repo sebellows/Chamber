@@ -3811,9 +3811,15 @@ svg.icon,
   .reveal .media {
     margin-bottom: 0; }
 
+.is-reveal-open {
+  overflow: hidden !important; }
+
 #videoPlayerReveal {
   height: auto;
   min-height: initial; }
+  @media screen and (max-width: 39.9375em) {
+    #videoPlayerReveal {
+      top: 120px !important; } }
 
 .callout p:last-child {
   margin-bottom: 0; }
@@ -5114,14 +5120,13 @@ svg.icon,
       -ms-flex-pack: end;
       justify-content: flex-end; }
       .carousel-cell img {
-        position: absolute; } }
-  .carousel-cell img {
-    width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%); }
+        width: 100%;
+        min-height: 100%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        object-fit: cover; } }
 
 .carousel-caption {
   background-color: rgba(15, 68, 102, 0.9);
