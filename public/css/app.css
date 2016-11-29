@@ -5110,13 +5110,17 @@ svg.icon,
 
 .carousel-cell {
   background-color: #003355;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 100%;
   height: 400px;
   overflow: hidden; }
   @media screen and (min-width: 40em) {
     .carousel-cell {
-      display: -ms-flexbox;
-      display: flex;
+      -ms-flex-direction: row;
+      flex-direction: row;
       -ms-flex-pack: end;
       justify-content: flex-end; }
       .carousel-cell img {
@@ -5134,6 +5138,10 @@ svg.icon,
   padding: 1.25rem 0.875rem 1.25rem 1.25rem;
   opacity: 0;
   animation-duration: 1s; }
+  @media screen and (max-width: 39.9375em) {
+    .carousel-caption {
+      -ms-flex: 1;
+      flex: 1; } }
   .carousel-caption.fadeIn {
     opacity: 1; }
   .carousel-caption h4 {

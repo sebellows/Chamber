@@ -12,12 +12,14 @@
 
 .carousel-cell {
   background-color: color(brand-dark);
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 400px;
   overflow: hidden;
 
   @include breakpoint(medium) {
-    display: flex;
+    flex-direction: row;
     justify-content: flex-end;
 
     img {
@@ -38,6 +40,10 @@
   padding: rem(20 14 20 20);
   opacity: 0;
   animation-duration: 1s;
+
+  @include breakpoint(small only) {
+    flex: 1;
+  }
 
   &.fadeIn {
     opacity: 1;
