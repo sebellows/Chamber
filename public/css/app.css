@@ -5117,6 +5117,12 @@ svg.icon,
   width: 100%;
   height: 400px;
   overflow: hidden; }
+  @media screen and (max-width: 39.9375em) {
+    .carousel-cell img {
+      max-width: none;
+      min-width: 100%;
+      width: auto;
+      max-height: 200px; } }
   @media screen and (min-width: 40em) {
     .carousel-cell {
       -ms-flex-direction: row;
@@ -5146,7 +5152,13 @@ svg.icon,
     opacity: 1; }
   .carousel-caption h4 {
     font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 1.75em; }
+    font-size: 1.25em; }
+    @media screen and (min-width: 40em) {
+      .carousel-caption h4 {
+        font-size: 1.5em; } }
+    @media screen and (min-width: 64em) {
+      .carousel-caption h4 {
+        font-size: 1.75em; } }
   .carousel-caption a:last-child {
     display: block;
     margin-top: 1em;
