@@ -309,6 +309,30 @@
             "maxlength": "",
             "rows": 4,
             "new_lines": "br"
+        },
+        {
+            "key": "field_58474d995edd3",
+            "label": "Featured Attraction",
+            "name": "attr_featured",
+            "type": "radio",
+            "instructions": "Select if you would like this attraction to appear on the featured attractions page.  Each category on the page is limited to six attractions.  If six attractions are not selected as featured, the remaining attractions to be displayed will be drawn at random.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Yes",
+                "0": "No"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "vertical",
+            "return_format": "value"
         }
     ],
     "location": [
@@ -328,5 +352,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "Contact and location information for Attractions.",
-    "modified": 1473865918
+    "modified": 1481068477
 }
