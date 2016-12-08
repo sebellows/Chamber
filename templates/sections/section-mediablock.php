@@ -56,9 +56,7 @@ if( get_row_layout() == 'media_block' ) :
                 ?>
 
                 <script type="text/javascript">
-                    console.log(<?= $media_type['value']; ?>);
                     var mediaID = "<?= $mediaID; ?>";
-
                     var mediaAttrs = '<?= base64_encode( $mediaAttrs ); ?>';
                 </script>
 

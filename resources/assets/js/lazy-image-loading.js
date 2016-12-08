@@ -1,42 +1,46 @@
+// ------------- lazy-image-loading.js ------------- //
 
-export let LAZY = [];
+export default class LazyImages {
 
-export function setLazy(){
-    LAZY = document.querySelectorAll('.lazy');
-    console.log('Found ' + LAZY.length + ' lazy images');
-}
-
-export function lazyLoad(){
-    for (let i = 0; i < LAZY.length; i++){
-        if(isInViewport(LAZY[i])){
-            if (LAZY[i].getAttribute('data-src')){
-                LAZY[i].src = LAZY[i].getAttribute('data-src');
-                LAZY[i].removeAttribute('data-src');
-            }
-            if (LAZY[i].getAttribute('data-srcset')){
-                LAZY[i].srcset = LAZY[i].getAttribute('data-srcset');
-                LAZY[i].removeAttribute('data-srcset');
-            }
-            LAZY[i].classList.add("is-loaded");
-        }
+    constructor() {
+        this.lazy = document.querySelectorAll('.lazy');
+        this.lazyLoad(this.lazy);
+        // console.log('Found ' + this.lazy.length + ' lazy images');
     }
-    
-    cleanLazy();
-}
 
-export function cleanLazy(){
-    LAZY = Array.prototype.filter.call(LAZY, function(l) { 
-        return l.getAttribute('data-src');
-    });
-}
+    lazyLoad(lazy) {
+        for (let i = 0; i < lazy.length; i++){
+            if(this.isInViewport(lazy[i])){
+                if (lazy[i].getAttribute('data-src')){
+                    lazy[i].src = lazy[i].getAttribute('data-src');
+                    lazy[i].removeAttribute('data-src');
+                }
+                if (lazy[i].getAttribute('data-srcset')){
+                    lazy[i].srcset = lazy[i].getAttribute('data-srcset');
+                    lazy[i].removeAttribute('data-srcset');
+                }
+                lazy[i].classList.add("is-loaded");
+            }
+        }
 
-export function isInViewport(el){
-    var rect = el.getBoundingClientRect();
-    
-    return (
-        rect.bottom >= 0 && 
-        rect.right  >= 0 && 
-        rect.top    <= (window.innerHeight || document.documentElement.clientHeight) && 
-        rect.left   <= (window.innerWidth || document.documentElement.clientWidth)
-     );
+        this.cleanLazy(lazy);
+    }
+
+    cleanLazy(lazy) {
+        Array.prototype.filter.call(lazy, function(l) { 
+            return l.getAttribute('data-src');
+            console.log('penis');
+        });
+    }
+
+    isInViewport(lazy) {
+        let rect = lazy.getBoundingClientRect();
+        
+        return (
+            rect.bottom >= 0 && 
+            rect.right  >= 0 && 
+            rect.top    <= (window.innerHeight || document.documentElement.clientHeight) && 
+            rect.left   <= (window.innerWidth || document.documentElement.clientWidth)
+         );
+    }
 }

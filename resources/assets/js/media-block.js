@@ -1,4 +1,4 @@
-import * as lazyImages from './lazy-image-loading.js';
+import LazyImages from './lazy-image-loading.js';
 
 /**
  * media-block.js.
@@ -223,8 +223,9 @@ import * as lazyImages from './lazy-image-loading.js';
 } )();
 
 ( function () {
-    window.addEventListener('load', lazyImages.setLazy);
-    window.addEventListener('load', lazyImages.lazyLoad);
-    window.addEventListener('scroll', lazyImages.lazyLoad);
-    window.addEventListener('resize', lazyImages.lazyLoad);
+    const LAZY = new LazyImages;
+
+    window.addEventListener('load', LAZY);
+    window.addEventListener('scroll', LAZY);
+    window.addEventListener('resize', LAZY);
 })();

@@ -1,47 +1,51 @@
 (function (exports) {
 'use strict';
 
-var LAZY = [];
+// ------------- lazy-image-loading.js ------------- //
 
-function setLazy(){
-    LAZY = document.querySelectorAll('.lazy');
-    console.log('Found ' + LAZY.length + ' lazy images');
-}
+var LazyImages = function LazyImages() {
+    this.lazy = document.querySelectorAll('.lazy');
+    this.lazyLoad(this.lazy);
+    // console.log('Found ' + this.lazy.length + ' lazy images');
+};
 
-function lazyLoad(){
-    for (var i = 0; i < LAZY.length; i++){
-        if(isInViewport(LAZY[i])){
-            if (LAZY[i].getAttribute('data-src')){
-                LAZY[i].src = LAZY[i].getAttribute('data-src');
-                LAZY[i].removeAttribute('data-src');
+LazyImages.prototype.lazyLoad = function lazyLoad (lazy) {
+        var this$1 = this;
+
+    for (var i = 0; i < lazy.length; i++){
+        if(this$1.isInViewport(lazy[i])){
+            if (lazy[i].getAttribute('data-src')){
+                lazy[i].src = lazy[i].getAttribute('data-src');
+                lazy[i].removeAttribute('data-src');
             }
-            if (LAZY[i].getAttribute('data-srcset')){
-                LAZY[i].srcset = LAZY[i].getAttribute('data-srcset');
-                LAZY[i].removeAttribute('data-srcset');
+            if (lazy[i].getAttribute('data-srcset')){
+                lazy[i].srcset = lazy[i].getAttribute('data-srcset');
+                lazy[i].removeAttribute('data-srcset');
             }
-            LAZY[i].classList.add("is-loaded");
+            lazy[i].classList.add("is-loaded");
         }
     }
-    
-    cleanLazy();
-}
 
-function cleanLazy(){
-    LAZY = Array.prototype.filter.call(LAZY, function(l) { 
+    this.cleanLazy(lazy);
+};
+
+LazyImages.prototype.cleanLazy = function cleanLazy (lazy) {
+    Array.prototype.filter.call(lazy, function(l) { 
         return l.getAttribute('data-src');
+        console.log('penis');
     });
-}
+};
 
-function isInViewport(el){
-    var rect = el.getBoundingClientRect();
-    
+LazyImages.prototype.isInViewport = function isInViewport (lazy) {
+    var rect = lazy.getBoundingClientRect();
+        
     return (
         rect.bottom >= 0 && 
         rect.right  >= 0 && 
-        rect.top    <= (window.innerHeight || document.documentElement.clientHeight) && 
+        rect.top<= (window.innerHeight || document.documentElement.clientHeight) && 
         rect.left   <= (window.innerWidth || document.documentElement.clientWidth)
      );
-}
+};
 
 /**
  * media-block.js.
@@ -255,10 +259,11 @@ function isInViewport(el){
 } )();
 
 ( function () {
-    window.addEventListener('load', setLazy);
-    window.addEventListener('load', lazyLoad);
-    window.addEventListener('scroll', lazyLoad);
-    window.addEventListener('resize', lazyLoad);
+    var LAZY = new LazyImages;
+
+    window.addEventListener('load', LAZY);
+    window.addEventListener('scroll', LAZY);
+    window.addEventListener('resize', LAZY);
 })();
 
 }((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
