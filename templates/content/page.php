@@ -8,6 +8,9 @@
  */
 
 ?>
+<?php if ( ! is_single() && is_active_sidebar('sidebar-page-header') ) {
+	$sidebar_class = 'has-sidebar-page-header';
+} ?>
 
 <article <?php hybrid_attr( 'post' ); ?>>
 

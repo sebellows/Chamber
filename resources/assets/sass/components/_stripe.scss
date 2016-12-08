@@ -1,8 +1,4 @@
 .stripe {
-  // @include breakpoint(small only) {
-  //   margin-left: rem(15);
-  //   margin-right: rem(15);
-  // }
   > .row {
     margin: rem(0 15 30 15);
     @include paper-ui;
@@ -26,16 +22,4 @@
 .stripe.duplo-set:first-child {
   margin-top: 0;
   @include clearfix;
-}
-
-.stripe {
-  input[type="text"],
-  input[type="url"],
-  input[type="email"],
-  input[type="search"],
-  input[type="password"],
-  textarea {
-    @include paper-input;
-  }
-
 }

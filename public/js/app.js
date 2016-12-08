@@ -262,16 +262,19 @@ function isInViewport(el){
 }
 
 /**
- * File navigation.js.
+ * media-block.js.
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
+ * Add videoPoster image from YouTube video to media-block stripe.
  */
 ( function () {
 
     "use strict";
 
-    if ( ! document.querySelector('.stripe.media-block') ) {
+    // if ( ! document.querySelector('.stripe.media-block') ) {
+    //     return;
+    // }
+
+    if ( ! document.querySelector('.stripe.media-block .flex-video') ) {
         return;
     }
 
@@ -318,7 +321,7 @@ function isInViewport(el){
 
         poster = '<img class="lazy video-poster" data-src="https://i.ytimg.com/vi/' + mediaID + '/sddefault.jpg" />';
 
-        return poster;          
+        return poster;
     }
 
     /**
@@ -494,6 +497,22 @@ function isInViewport(el){
 
 (function($) {
 
+    /**
+     * Prepend a class at the start of a class chain on an element.
+     *
+     * @link   https://stackoverflow.com/questions/14461853/jquery-addclass-to-first-position-of-multiple-classes
+     * @param  {array} newClasses
+     * @return {array}
+     */
+    $.fn.extend({
+        prependClass: function(newClasses) {
+            return this.each(function() {
+                var currentClasses = $(this).prop("class");
+                $(this).removeClass(currentClasses).addClass(newClasses + " " + currentClasses);
+            });
+        }
+    });
+
     // Use this variable to set up the common and page specific functions. If you
     // rename this variable, you will also need to rename the namespace below.
     var Chamber = {
@@ -501,6 +520,45 @@ function isInViewport(el){
         'common': {
             init: function() {
                 // JavaScript to be fired on all pages
+                
+                // added classes to label to denote either a checkbox/radio input
+                // and whether it is checked
+                // if ( $('input[type="checkbox"]').parent('label') ) {
+                //     $('input[type="checkbox"]').parent().addClass( "checkbox" );
+                // }
+                // if ( $('input[type="checkbox"]:checked').parent('label') ) {
+                //     $('input[type="checkbox"]').parent().addClass("filled-in");
+                // }
+                // if ( $('input[type="checkbox"]:not(:checked)').parent('label').hasClass("filled-in") ) {
+                //     $('input[type="checkbox"]').parent( $('label') ).removeClass("filled-in");
+                // }
+                // if ( $('input[type="radio"]').parent('label') ) {
+                //     $('input[type="radio"]').parent().addClass( "radio" );
+                // }
+                // if ( $('input[type="radio"]:checked').parent('label') ) {
+                //     $('input[type="radio"]').parent().addClass("filled-in");
+                // }
+                // if ( $('input[type="radio"]:not(:checked)').parent('label').hasClass("filled-in") ) {
+                //     $('input[type="radio"]').parent('label').removeClass("filled-in");
+                // }
+
+                $(document).ready( function () {
+                    $(".vfb-checkbox").each( function() {
+                        var label = $(this).find("label");
+                        var input = $(this).find("input");
+
+                        label.addClass("control checkbox");
+                        input.after( '<span class="control-indicator"></span>' );
+                    });
+
+                    $(".vfb-radio").each( function() {
+                        var label = $(this).find("label");
+                        var input = $(this).find("input");
+
+                        label.addClass("control radio");
+                        input.after( '<span class="control-indicator"></span>' );
+                    });
+                });
 
                 // toggle the searchform in the global header
                 if ($("#searchForm").length > 0) {

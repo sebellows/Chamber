@@ -1,16 +1,19 @@
 import * as lazyImages from './lazy-image-loading.js';
 
 /**
- * File navigation.js.
+ * media-block.js.
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
+ * Add videoPoster image from YouTube video to media-block stripe.
  */
 ( function () {
 
     "use strict";
 
-    if ( ! document.querySelector('.stripe.media-block') ) {
+    // if ( ! document.querySelector('.stripe.media-block') ) {
+    //     return;
+    // }
+
+    if ( ! document.querySelector('.stripe.media-block .flex-video') ) {
         return;
     }
 
@@ -57,7 +60,7 @@ import * as lazyImages from './lazy-image-loading.js';
 
         poster = '<img class="lazy video-poster" data-src="https://i.ytimg.com/vi/' + mediaID + '/sddefault.jpg" />';
 
-        return poster;          
+        return poster;
     }
 
     /**

@@ -72,10 +72,34 @@
   }
 
   .entry-title {
-    font-size: 2.5em;
+    font-size: em(40);
     line-height: 1.15;
     letter-spacing: -1px;
     margin-bottom: $global-margin;
+  }
+
+  .has-sidebar-post-header {
+    @media (min-width: em(900)) and (max-width: em(1023)) {
+      display: block;
+      flex-flow: unset;
+
+      .entry-header {
+        clear: none;
+        flex: none;
+        max-width: initial;
+      }
+
+      .entry-content-body {
+        flex: none;
+        max-width: initial;
+      }
+
+      .entry-title {
+        display: block;
+        float: left;
+        width: 63%;
+      }
+    }
   }
 
   .byline {

@@ -318,4 +318,4 @@
     str-replace(str-slice($string, $index + 
     str-length($search)), $search, $replace), 
     $string); 
-}  
+}
