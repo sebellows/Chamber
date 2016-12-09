@@ -1640,7 +1640,7 @@ label > [type='radio'] {
 label {
   display: block;
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: normal;
   line-height: 1.8;
   color: currentColor; }
@@ -2834,6 +2834,537 @@ table {
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
+.alt.button {
+  background-color: #eb6b23;
+  border: 0 none;
+  color: #fefefe; }
+  .alt.button:hover, .alt.button:focus {
+    background-color: #bc6b23;
+    border: 0 none;
+    color: #fefefe; }
+
+.reverse.hollow.button {
+  background-color: transparent;
+  border: 1px solid #fefefe;
+  color: #fefefe; }
+  .reverse.hollow.button:hover, .reverse.hollow.button:focus {
+    background-color: #fefefe;
+    border: 1px solid transparent;
+    color: #90a4ae; }
+
+.flat.button {
+  color: #45555c;
+  background-color: #eceff1;
+  border: 0 none;
+  text-transform: capitalize; }
+  .flat.button:active {
+    color: #3e4d53;
+    background-color: #cfd8dc;
+    border: 0 none; }
+  .flat.button:focus, .flat.button:hover {
+    color: #45555c;
+    background-color: #d4d7d9;
+    border: 0 none; }
+
+.icon-button {
+  border: 0 none;
+  margin: 0;
+  padding: 0.5rem; }
+
+.playButton {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  margin-left: -34px;
+  margin-top: -24px;
+  padding: 0;
+  font-size: 100%;
+  font-family: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 48px;
+  z-index: 1;
+  transition: opacity 0.25s cubic-bezier(0, 0, 0.2, 1); }
+
+.button.raised {
+  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.25s cubic-bezier(0, 0, 0.2, 1); }
+  .button.raised:hover {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 11px 0 rgba(19, 21, 22, 0.18), 0 4px 15px 0 rgba(19, 21, 22, 0.15); }
+  .button.raised:active, .button.raised:focus {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 7px 0 rgba(19, 21, 22, 0.16), 0 0 0 0.125rem #009dd7; }
+
+.chamber input[type="text"],
+.chamber input[type="email"],
+.chamber input[type="url"],
+.chamber input[type="password"],
+.chamber input[type="search"],
+.chamber input[type="number"],
+.chamber input[type="tel"],
+.chamber input[type="range"],
+.chamber input[type="date"],
+.chamber input[type="month"],
+.chamber input[type="week"],
+.chamber input[type="time"],
+.chamber input[type="datetime"],
+.chamber input[type="datetime-local"],
+.chamber input[type="color"],
+.chamber textarea {
+  border: 1px solid #eceff1;
+  border-radius: 4px;
+  background-color: #fefefe;
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .chamber input[type="text"]:hover,
+  .chamber input[type="email"]:hover,
+  .chamber input[type="url"]:hover,
+  .chamber input[type="password"]:hover,
+  .chamber input[type="search"]:hover,
+  .chamber input[type="number"]:hover,
+  .chamber input[type="tel"]:hover,
+  .chamber input[type="range"]:hover,
+  .chamber input[type="date"]:hover,
+  .chamber input[type="month"]:hover,
+  .chamber input[type="week"]:hover,
+  .chamber input[type="time"]:hover,
+  .chamber input[type="datetime"]:hover,
+  .chamber input[type="datetime-local"]:hover,
+  .chamber input[type="color"]:hover,
+  .chamber textarea:hover {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .chamber input[type="text"]:active, .chamber input[type="text"]:focus,
+  .chamber input[type="email"]:active,
+  .chamber input[type="email"]:focus,
+  .chamber input[type="url"]:active,
+  .chamber input[type="url"]:focus,
+  .chamber input[type="password"]:active,
+  .chamber input[type="password"]:focus,
+  .chamber input[type="search"]:active,
+  .chamber input[type="search"]:focus,
+  .chamber input[type="number"]:active,
+  .chamber input[type="number"]:focus,
+  .chamber input[type="tel"]:active,
+  .chamber input[type="tel"]:focus,
+  .chamber input[type="range"]:active,
+  .chamber input[type="range"]:focus,
+  .chamber input[type="date"]:active,
+  .chamber input[type="date"]:focus,
+  .chamber input[type="month"]:active,
+  .chamber input[type="month"]:focus,
+  .chamber input[type="week"]:active,
+  .chamber input[type="week"]:focus,
+  .chamber input[type="time"]:active,
+  .chamber input[type="time"]:focus,
+  .chamber input[type="datetime"]:active,
+  .chamber input[type="datetime"]:focus,
+  .chamber input[type="datetime-local"]:active,
+  .chamber input[type="datetime-local"]:focus,
+  .chamber input[type="color"]:active,
+  .chamber input[type="color"]:focus,
+  .chamber textarea:active,
+  .chamber textarea:focus {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 7px 0 rgba(19, 21, 22, 0.16), 0 0 0 0.125rem #009dd7; }
+  .chamber input[type="text"]:active, .chamber input[type="text"]:focus,
+  .chamber input[type="email"]:active,
+  .chamber input[type="email"]:focus,
+  .chamber input[type="url"]:active,
+  .chamber input[type="url"]:focus,
+  .chamber input[type="password"]:active,
+  .chamber input[type="password"]:focus,
+  .chamber input[type="search"]:active,
+  .chamber input[type="search"]:focus,
+  .chamber input[type="number"]:active,
+  .chamber input[type="number"]:focus,
+  .chamber input[type="tel"]:active,
+  .chamber input[type="tel"]:focus,
+  .chamber input[type="range"]:active,
+  .chamber input[type="range"]:focus,
+  .chamber input[type="date"]:active,
+  .chamber input[type="date"]:focus,
+  .chamber input[type="month"]:active,
+  .chamber input[type="month"]:focus,
+  .chamber input[type="week"]:active,
+  .chamber input[type="week"]:focus,
+  .chamber input[type="time"]:active,
+  .chamber input[type="time"]:focus,
+  .chamber input[type="datetime"]:active,
+  .chamber input[type="datetime"]:focus,
+  .chamber input[type="datetime-local"]:active,
+  .chamber input[type="datetime-local"]:focus,
+  .chamber input[type="color"]:active,
+  .chamber input[type="color"]:focus,
+  .chamber textarea:active,
+  .chamber textarea:focus {
+    background-color: #eceff1; }
+
+.chamber textarea {
+  width: 100%; }
+
+/*
+ * WTF, forms?
+ * Released under MIT and copyright 2014 Mark Otto.
+ * http://wtfforms.com
+ *
+ * Embedded icons from Open Iconic.
+ * Released under MIT and copyright 2014 Waybury.
+ * http://useiconic.com/open
+ */
+/*
+ * Checkboxes and radios
+ */
+.control {
+  position: relative;
+  display: inline-block;
+  padding-left: 1.5rem;
+  cursor: pointer; }
+
+.control input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  /* Put the input behind the label so it doesn't overlay text */ }
+
+.control-indicator {
+  position: absolute;
+  top: .325rem;
+  left: 0;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1;
+  color: #cfd8dc;
+  text-align: center;
+  background-color: #fefefe;
+  background-size: 50% 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hover state */
+/* Uncomment if you need it, but be aware of the sticky iOS states.
+.control:hover .control-indicator {
+  color: $white;
+  background-color: neutral(1);
+}
+*/
+/* Default */
+.control .control-indicator {
+  border: 2px solid #b0bec5; }
+
+/* Focus */
+.control input:focus ~ .control-indicator {
+  box-shadow: 0 0 0 0.075rem #fefefe, 0 0 0 0.2rem #009dd7; }
+
+/* Checked state */
+.control input:checked ~ .control-indicator {
+  color: #fefefe;
+  background-color: #009dd7;
+  border: 0 none; }
+
+/* Active */
+.control input:active ~ .control-indicator {
+  color: #fefefe;
+  background-color: #40b6e1;
+  border: 0 none; }
+
+/* Checkbox modifiers */
+.checkbox .control-indicator {
+  border-radius: .25rem; }
+
+.checkbox input:checked ~ .control-indicator {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=);
+  border: 0 none; }
+
+/* Radio modifiers */
+.radio .control-indicator {
+  border-radius: 50%; }
+
+.radio input:checked ~ .control-indicator {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQsMUMyLjMsMSwxLDIuMywxLDRzMS4zLDMsMywzczMtMS4zLDMtM1M1LjcsMSw0LDF6Ii8+DQo8L3N2Zz4NCg==);
+  border: 0 none; }
+
+/* Alternately, use another character */
+.control-x input:checked ~ .control-indicator {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOHB4IiBoZWlnaHQ9IjhweCIgdmlld0JveD0iMCAwIDggOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOCA4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xLjQsMEwwLDEuNGwwLjcsMC43bDEuOCwxLjhMMC43LDUuN0wwLDYuNGwxLjQsMS40bDAuNy0wLjdsMS44LTEuOGwxLjgsMS44bDAuNywwLjdsMS40LTEuNEw3LjEsNS43DQoJTDUuMywzLjlsMS44LTEuOGwwLjctMC43TDYuNCwwTDUuNywwLjdMMy45LDIuNUwyLjEsMC43QzIuMSwwLjcsMS40LDAsMS40LDB6Ii8+DQo8L3N2Zz4NCg==);
+  border: 0 none; }
+
+.control-dash input:checked ~ .control-indicator {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOHB4IiBoZWlnaHQ9IjhweCIgdmlld0JveD0iMCAwIDggOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOCA4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0wLDN2Mmg4VjNIMHoiLz4NCjwvc3ZnPg0K);
+  border: 0 none; }
+
+/*
+ * Select
+ */
+.select {
+  position: relative;
+  display: inline-block; }
+
+.select select,
+.vfb-form-group > select {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: .5rem 2.25rem .5rem 1rem;
+  line-height: 1.5;
+  color: #45555c;
+  border: 0;
+  border-radius: .25rem;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #eceff1;
+  border-radius: 4px;
+  background-color: #fefefe;
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  /* Active/open */
+  /* Hide the arrow in IE10 and up */ }
+  .select select:hover,
+  .vfb-form-group > select:hover {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .select select:active, .select select:focus,
+  .vfb-form-group > select:active,
+  .vfb-form-group > select:focus {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 7px 0 rgba(19, 21, 22, 0.16), 0 0 0 0.125rem #009dd7; }
+  .select select:active, .select select:focus,
+  .vfb-form-group > select:active,
+  .vfb-form-group > select:focus {
+    background-color: #eceff1; }
+  .select select:focus:-moz-focusring,
+  .vfb-form-group > select:focus:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #131516; }
+  .select select:active,
+  .vfb-form-group > select:active {
+    color: #fefefe;
+    background-color: #009dd7; }
+  .select select::-ms-expand,
+  .vfb-form-group > select::-ms-expand {
+    display: none; }
+  .select select:after,
+  .vfb-form-group > select:after {
+    position: absolute;
+    top: 50%;
+    right: 1.25rem;
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 0;
+    margin-top: -.15rem;
+    pointer-events: none;
+    border-top: .35rem solid;
+    border-right: .35rem solid transparent;
+    border-bottom: .35rem solid transparent;
+    border-left: .35rem solid transparent; }
+
+/* Hover state */
+/* Uncomment if you need it, but be aware of the sticky iOS states.
+.select select:hover {
+  background-color: neutral(1);
+}
+*/
+/* Media query to target Firefox only */
+@-moz-document url-prefix() {
+  /* Firefox hack to hide the arrow */
+  /* <option> elements inherit styles from <select>, so reset them. */
+  .select select,
+  .vfb-form-group > select {
+    text-indent: 0.01px;
+    text-overflow: '';
+    padding-right: 1rem; }
+  .select option,
+  .vfb-form-group > select option {
+    background-color: #fefefe; } }
+
+/* IE9 hack to hide the arrow */
+@media screen and (min-width: 0\0) {
+  .select select,
+  .vfb-form-group > select {
+    z-index: 1;
+    padding: .5rem 1.5rem .5rem 1rem; }
+    .select select::after,
+    .vfb-form-group > select::after {
+      z-index: 5; }
+    .select select::before,
+    .vfb-form-group > select::before {
+      position: absolute;
+      top: 0;
+      right: 1rem;
+      bottom: 0;
+      z-index: 2;
+      content: "";
+      display: block;
+      width: 1.5rem;
+      background-color: #cfd8dc; }
+    .select select:hover, .select select:focus, .select select:active,
+    .vfb-form-group > select:hover,
+    .vfb-form-group > select:focus,
+    .vfb-form-group > select:active {
+      color: #45555c;
+      background-color: #cfd8dc; } }
+
+/*
+ * File
+ */
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 2.5rem; }
+
+.file input {
+  min-width: 14rem;
+  margin: 0;
+  filter: alpha(opacity=0);
+  opacity: 0; }
+
+.file-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: #45555c;
+  background-color: #fefefe;
+  border: 0.075rem solid #cfd8dc;
+  border-radius: .25rem;
+  box-shadow: inset 0 0.2rem 0.4rem rgba(0, 0, 0, 0.05);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.file-custom:after {
+  content: "Choose file..."; }
+
+.file-custom:before {
+  position: absolute;
+  top: -.075rem;
+  right: -.075rem;
+  bottom: -.075rem;
+  z-index: 6;
+  display: block;
+  content: "Browse";
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: #45555c;
+  background-color: #cfd8dc;
+  border: 0.075rem solid #cfd8dc;
+  border-radius: 0 .25rem .25rem 0; }
+
+/* Focus */
+.file input:focus ~ .file-custom {
+  box-shadow: 0 0 0 0.075rem #fefefe, 0 0 0 0.2rem #009dd7; }
+
+/*
+ * Progress
+ */
+.progress {
+  display: inline-block;
+  height: 1rem; }
+
+.progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Remove Firefox and Opera border */
+  border: 0;
+  /* IE10 uses `color` to set the bar background-color */
+  color: #009dd7; }
+
+.progress[value]::-webkit-progress-bar {
+  background-color: #cfd8dc;
+  border-radius: .2rem; }
+
+.progress[value]::-webkit-progress-value {
+  background-color: #009dd7;
+  border-top-left-radius: .2rem;
+  border-bottom-left-radius: .2rem; }
+
+.progress[value="100"]::-webkit-progress-value {
+  border-top-right-radius: .2rem;
+  border-bottom-right-radius: .2rem; }
+
+/* Firefox styles must be entirely separate or it busts Webkit styles. */
+@-moz-document url-prefix() {
+  .progress[value] {
+    background-color: #cfd8dc;
+    border-radius: .2rem; }
+  .progress[value]::-moz-progress-bar {
+    background-color: #009dd7;
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem; }
+  .progress[value="100"]::-moz-progress-bar {
+    border-top-right-radius: .2rem;
+    border-bottom-right-radius: .2rem; } }
+
+/* IE9 hacks to accompany custom markup. We don't need to scope this via media queries, but I feel better doing it anyway. */
+@media screen and (min-width: 0\0) {
+  .progress {
+    background-color: #cfd8dc;
+    border-radius: .2rem; }
+  .progress-bar {
+    display: inline-block;
+    height: 1rem;
+    text-indent: -999rem;
+    /* Simulate hiding of value as in native `<progress>` */
+    background-color: #009dd7;
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem; }
+  .progress[width="100%"] {
+    border-top-right-radius: .2rem;
+    border-bottom-right-radius: .2rem; } }
+
+/*
+ * Control layouts
+ */
+.controls-stacked {
+  margin: 1rem 0; }
+
+.controls-stacked .control,
+.controls-stacked .progress {
+  display: block; }
+
+.controls-stacked .control + .control,
+.controls-stacked .progress + .progress {
+  margin-top: .5rem; }
+
+.controls-inline {
+  margin: 1rem 0; }
+
+.controls-inline .control {
+  display: inline-block;
+  height: 1rem; }
+
+.controls-inline .control + .control {
+  margin-left: 1rem; }
+
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
@@ -3673,72 +4204,6 @@ svg.icon,
     .site-header .search-field {
       width: 320px; } }
 
-.alt.button {
-  background-color: #eb6b23;
-  border: 0 none;
-  color: #fefefe; }
-  .alt.button:hover, .alt.button:focus {
-    background-color: #bc6b23;
-    border: 0 none;
-    color: #fefefe; }
-
-.reverse.hollow.button {
-  background-color: transparent;
-  border: 1px solid #fefefe;
-  color: #fefefe; }
-  .reverse.hollow.button:hover, .reverse.hollow.button:focus {
-    background-color: #fefefe;
-    border: 1px solid transparent;
-    color: #90a4ae; }
-
-.flat.button {
-  color: #45555c;
-  background-color: #eceff1;
-  border: 0 none;
-  text-transform: capitalize; }
-  .flat.button:active {
-    color: #3e4d53;
-    background-color: #cfd8dc;
-    border: 0 none; }
-  .flat.button:focus, .flat.button:hover {
-    color: #45555c;
-    background-color: #d4d7d9;
-    border: 0 none; }
-
-.icon-button {
-  border: 0 none;
-  margin: 0;
-  padding: 0.5rem; }
-
-.playButton {
-  position: absolute;
-  border: none;
-  background-color: transparent;
-  color: inherit;
-  cursor: pointer;
-  margin-left: -34px;
-  margin-top: -24px;
-  padding: 0;
-  font-size: 100%;
-  font-family: inherit;
-  line-height: inherit;
-  text-align: inherit;
-  left: 50%;
-  top: 50%;
-  width: 68px;
-  height: 48px;
-  z-index: 1;
-  transition: opacity 0.25s cubic-bezier(0, 0, 0.2, 1); }
-
-.button.raised {
-  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
-  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 0);
-  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
-  transition: all 0.25s cubic-bezier(0, 0, 0.2, 1); }
-  .button.raised:hover {
-    transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 0);
-    box-shadow: 0 5px 11px 0 rgba(19, 21, 22, 0.18), 0 4px 15px 0 rgba(19, 21, 22, 0.15); }
-
 .lazy {
   opacity: 0;
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -4158,18 +4623,6 @@ svg.icon,
     order: 1; }
   .stripe.duplo-set:first-child::after {
     clear: both; }
-
-.stripe input[type="text"],
-.stripe input[type="url"],
-.stripe input[type="email"],
-.stripe input[type="search"],
-.stripe input[type="password"],
-.stripe textarea {
-  border: 0 none;
-  border-radius: 4px;
-  background-color: #fefefe;
-  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
 
 .highlight {
   text-align: center; }
@@ -5075,11 +5528,20 @@ svg.icon,
     display: block; }
 
 .connections #signup {
-  border: 0 none;
+  border: 1px solid #eceff1;
   border-radius: 4px;
   background-color: #fefefe;
-  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .connections #signup:hover {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .connections #signup:active, .connections #signup:focus {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 7px 0 rgba(19, 21, 22, 0.16), 0 0 0 0.125rem #009dd7; }
+  .connections #signup:active, .connections #signup:focus {
+    background-color: #eceff1; }
   @media screen and (min-width: 64em) {
     .connections #signup {
       -ms-flex: 1 1;
@@ -5622,11 +6084,20 @@ svg.icon,
     order: 1;
     max-width: 18.75rem;
     position: relative;
-    border: 0 none;
+    border: 1px solid #eceff1;
     border-radius: 4px;
     background-color: #fefefe;
-    box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
-    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+    box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+    .fixed-table-toolbar .search-wrapper:hover {
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+    .fixed-table-toolbar .search-wrapper:active, .fixed-table-toolbar .search-wrapper:focus {
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: inset 0 1px 7px 0 rgba(19, 21, 22, 0.16), 0 0 0 0.125rem #009dd7; }
+    .fixed-table-toolbar .search-wrapper:active, .fixed-table-toolbar .search-wrapper:focus {
+      background-color: #eceff1; }
   .fixed-table-toolbar .search {
     display: block;
     margin: 0;
@@ -6234,11 +6705,20 @@ div.DTS div.dataTables_length {
   font-size: 0;
   max-width: 18.75rem;
   position: relative;
-  border: 0 none;
+  border: 1px solid #eceff1;
   border-radius: 4px;
   background-color: #fefefe;
-  box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .dataTables_wrapper .dataTables_filter label:hover {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px 0 rgba(19, 21, 22, 0.16), 0 2px 10px 0 rgba(19, 21, 22, 0.12); }
+  .dataTables_wrapper .dataTables_filter label:active, .dataTables_wrapper .dataTables_filter label:focus {
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 7px 0 rgba(19, 21, 22, 0.16), 0 0 0 0.125rem #009dd7; }
+  .dataTables_wrapper .dataTables_filter label:active, .dataTables_wrapper .dataTables_filter label:focus {
+    background-color: #eceff1; }
 
 .dataTables_wrapper input[type="search"] {
   border: 0 none;
@@ -6996,17 +7476,17 @@ div.DTS div.dataTables_length {
       flex: none;
       max-width: 100%; } }
 
-@media (min-width: 56.25em) and (max-width: 64em) {
+@media (min-width: 56.25em) and (max-width: 63.9375em) {
   .singular .list-box {
-    position: absolute;
-    top: 1.5rem;
-    right: -46.5%;
-    max-width: 18.75em; } }
+    float: right;
+    padding-left: 1.875rem;
+    position: relative;
+    width: 37%; } }
 
 h1 + .list-box,
 h2 + .list-box {
   margin-top: 2.8125rem; }
-  @media (min-width: 56.25em) and (max-width: 64em) {
+  @media (min-width: 56.25em) and (max-width: 63.9375em) {
     h1 + .list-box,
     h2 + .list-box {
       margin-top: 0; } }
@@ -7409,6 +7889,29 @@ h2 + .list-box {
   line-height: 1.15;
   letter-spacing: -1px;
   margin-bottom: 1rem; }
+
+@media (min-width: 56.25em) and (max-width: 63.9375em) {
+  .single .has-sidebar-post-header,
+  .singular .has-sidebar-post-header {
+    display: block;
+    -ms-flex-flow: unset;
+    flex-flow: unset; }
+    .single .has-sidebar-post-header .entry-header,
+    .singular .has-sidebar-post-header .entry-header {
+      clear: none;
+      -ms-flex: none;
+      flex: none;
+      max-width: initial; }
+    .single .has-sidebar-post-header .entry-content-body,
+    .singular .has-sidebar-post-header .entry-content-body {
+      -ms-flex: none;
+      flex: none;
+      max-width: initial; }
+    .single .has-sidebar-post-header .entry-title,
+    .singular .has-sidebar-post-header .entry-title {
+      display: block;
+      float: left;
+      width: 63%; } }
 
 .single .byline,
 .singular .byline {

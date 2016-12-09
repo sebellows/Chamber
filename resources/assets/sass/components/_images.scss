@@ -1,0 +1,8 @@
+.lazy {
+  opacity: 0;
+  transition: opacity .35s cubic-bezier(0.4,0.0,0.2,1);
+
+  &.is-loaded {
+    opacity: 1;
+  }
+}

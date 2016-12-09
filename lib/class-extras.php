@@ -60,8 +60,10 @@ class Extras
 
 		# Redirect `hybrid_content` to allow single page templates
 		add_action( 'template_redirect', [ $this, 'hybrid_template_redirect' ] );
-		# Prepend class to HybridCore's `hybrid_attr_post` function
+		# Prepend thumbnail class to Post Content wrapper in HybridCore's `hybrid_attr_post` function
 		add_filter( 'hybrid_attr_post', [ $this, 'hybrid_attr_post' ], 10 );
+		# Prepend `chamber` class to the body tag in HybridCore's `hybrid_attr_body` function
+		add_filter( 'hybrid_attr_body', [ $this, 'hybrid_attr_body' ], 10 );
 
 		# Remove those damn emojis.
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -262,8 +264,8 @@ class Extras
 	}
 
 	/**
-	 * Prepend a class to the Post Content wrapper when using HybridCore's 
-	 * `hybrid_attr_post` function.
+	 * Prepend a class to the Post Content wrapper depending on presence of thumbnail 
+	 * when using HybridCore's `hybrid_attr_post` function.
 	 * 
 	 * @param  String $attr  DO NOT ALTER
 	 * 
@@ -273,8 +275,28 @@ class Extras
 	    $current = join( ' ', get_post_class() );
 	    
 	    if ( strpos($current, 'has-post-thumbnail') === false ) {
-	        $attr['class'] = 'no-post-thumbnail ' . $current;
+	        $attr['class'] .= ' no-post-thumbnail';
 	    }
+
+	    if ( ! is_single() && is_active_sidebar('sidebar-page-header') ) {
+	        $attr['class'] .= ' has-sidebar-post-header';
+	    }
+
+	    return $attr;
+	}
+
+	/**
+	 * Prepend a class to the Post Content wrapper depending upon presence of 
+	 * `sidebar-post-header` when using HybridCore's `hybrid_attr_post` function.
+	 * 
+	 * @param  String $attr  The class to prepend
+	 * 
+	 * @return Array $attr   The attr array with new class appended
+	 */
+	public function hybrid_attr_body( $attr ) {
+	    $current = join( ' ', get_post_class() );
+	    
+        $attr['class'] = 'chamber ' . $current;
 
 	    return $attr;
 	}

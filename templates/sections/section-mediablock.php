@@ -57,7 +57,6 @@ if( get_row_layout() == 'media_block' ) :
 
                 <script type="text/javascript">
                     var mediaID = "<?= $mediaID; ?>";
-
                     var mediaAttrs = '<?= base64_encode( $mediaAttrs ); ?>';
                 </script>
 
@@ -66,7 +65,6 @@ if( get_row_layout() == 'media_block' ) :
                 </div>
 
             <?php else : ?>
-
                 <?php $media = get_sub_field('mb_image'); ?>
                 <img class="lazy" data-src="<?= esc_url($media['url']); ?>" data-srcset="<?= $media['sizes']['small'] . ' ' . $media['sizes']['small-width'] . 'w,' . ' ' . $media['sizes']['large'] . ' ' . $media['sizes']['large-width'] . 'w,'; ?>" sizes="(max-width: 365px) 480px, (max-width: 701px) 768w, (max-width: 1025px) 480px, 1024px" alt="<?= $media['alt']; ?>">
                 <noscript>

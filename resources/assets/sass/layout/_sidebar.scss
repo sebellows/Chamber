@@ -72,11 +72,11 @@
 /// menu holder on default pages in `page-header`
 /// 
 .singular .list-box {
-  @media (min-width: em(900)) and (max-width: em(1024)) {
-    position: absolute;
-    top: rem(24);
-    right: -46.5%;
-    max-width: em(300);
+  @media (min-width: em(900)) and (max-width: em(1023)) {
+    float: right;
+    padding-left: rem(30);
+    position: relative;
+    width: 37%;
   }
 }
 
@@ -84,7 +84,7 @@ h1 + .list-box,
 h2 + .list-box {
   margin-top: rem(45);
 
-  @media (min-width: em(900)) and (max-width: em(1024)) {
+  @media (min-width: em(900)) and (max-width: em(1023)) {
     margin-top: 0;
   }
 }

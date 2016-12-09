@@ -219,59 +219,66 @@
 (function (exports) {
 'use strict';
 
-var LAZY = [];
+// ------------- lazy-image-loading.js ------------- //
 
-function setLazy(){
-    LAZY = document.querySelectorAll('.lazy');
-    console.log('Found ' + LAZY.length + ' lazy images');
-}
+var LazyImages = function LazyImages() {
+    this.lazy = document.querySelectorAll('.lazy');
+    this.lazyLoad(this.lazy);
+    // console.log('Found ' + this.lazy.length + ' lazy images');
+};
 
-function lazyLoad(){
-    for (var i = 0; i < LAZY.length; i++){
-        if(isInViewport(LAZY[i])){
-            if (LAZY[i].getAttribute('data-src')){
-                LAZY[i].src = LAZY[i].getAttribute('data-src');
-                LAZY[i].removeAttribute('data-src');
+LazyImages.prototype.lazyLoad = function lazyLoad (lazy) {
+        var this$1 = this;
+
+    for (var i = 0; i < lazy.length; i++){
+        if(this$1.isInViewport(lazy[i])){
+            if (lazy[i].getAttribute('data-src')){
+                lazy[i].src = lazy[i].getAttribute('data-src');
+                lazy[i].removeAttribute('data-src');
             }
-            if (LAZY[i].getAttribute('data-srcset')){
-                LAZY[i].srcset = LAZY[i].getAttribute('data-srcset');
-                LAZY[i].removeAttribute('data-srcset');
+            if (lazy[i].getAttribute('data-srcset')){
+                lazy[i].srcset = lazy[i].getAttribute('data-srcset');
+                lazy[i].removeAttribute('data-srcset');
             }
-            LAZY[i].classList.add("is-loaded");
+            lazy[i].classList.add("is-loaded");
         }
     }
-    
-    cleanLazy();
-}
 
-function cleanLazy(){
-    LAZY = Array.prototype.filter.call(LAZY, function(l) { 
+    this.cleanLazy(lazy);
+};
+
+LazyImages.prototype.cleanLazy = function cleanLazy (lazy) {
+    Array.prototype.filter.call(lazy, function(l) { 
         return l.getAttribute('data-src');
+        console.log('penis');
     });
-}
+};
 
-function isInViewport(el){
-    var rect = el.getBoundingClientRect();
-    
+LazyImages.prototype.isInViewport = function isInViewport (lazy) {
+    var rect = lazy.getBoundingClientRect();
+        
     return (
         rect.bottom >= 0 && 
         rect.right  >= 0 && 
-        rect.top    <= (window.innerHeight || document.documentElement.clientHeight) && 
+        rect.top<= (window.innerHeight || document.documentElement.clientHeight) && 
         rect.left   <= (window.innerWidth || document.documentElement.clientWidth)
      );
-}
+};
 
 /**
- * File navigation.js.
+ * media-block.js.
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
+ * Add videoPoster image from YouTube video to media-block stripe.
  */
 ( function () {
 
     "use strict";
 
-    if ( ! document.querySelector('.stripe.media-block') ) {
+    // if ( ! document.querySelector('.stripe.media-block') ) {
+    //     return;
+    // }
+
+    if ( ! document.querySelector('.stripe.media-block .flex-video') ) {
         return;
     }
 
@@ -318,7 +325,7 @@ function isInViewport(el){
 
         poster = '<img class="lazy video-poster" data-src="https://i.ytimg.com/vi/' + mediaID + '/sddefault.jpg" />';
 
-        return poster;          
+        return poster;
     }
 
     /**
@@ -470,10 +477,11 @@ function isInViewport(el){
 } )();
 
 ( function () {
-    window.addEventListener('load', setLazy);
-    window.addEventListener('load', lazyLoad);
-    window.addEventListener('scroll', lazyLoad);
-    window.addEventListener('resize', lazyLoad);
+    var LAZY = new LazyImages;
+
+    window.addEventListener('load', LAZY);
+    window.addEventListener('scroll', LAZY);
+    window.addEventListener('resize', LAZY);
 })();
 
 }((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
@@ -494,6 +502,22 @@ function isInViewport(el){
 
 (function($) {
 
+    /**
+     * Prepend a class at the start of a class chain on an element.
+     *
+     * @link   https://stackoverflow.com/questions/14461853/jquery-addclass-to-first-position-of-multiple-classes
+     * @param  {array} newClasses
+     * @return {array}
+     */
+    $.fn.extend({
+        prependClass: function(newClasses) {
+            return this.each(function() {
+                var currentClasses = $(this).prop("class");
+                $(this).removeClass(currentClasses).addClass(newClasses + " " + currentClasses);
+            });
+        }
+    });
+
     // Use this variable to set up the common and page specific functions. If you
     // rename this variable, you will also need to rename the namespace below.
     var Chamber = {
@@ -501,6 +525,45 @@ function isInViewport(el){
         'common': {
             init: function() {
                 // JavaScript to be fired on all pages
+                
+                // added classes to label to denote either a checkbox/radio input
+                // and whether it is checked
+                // if ( $('input[type="checkbox"]').parent('label') ) {
+                //     $('input[type="checkbox"]').parent().addClass( "checkbox" );
+                // }
+                // if ( $('input[type="checkbox"]:checked').parent('label') ) {
+                //     $('input[type="checkbox"]').parent().addClass("filled-in");
+                // }
+                // if ( $('input[type="checkbox"]:not(:checked)').parent('label').hasClass("filled-in") ) {
+                //     $('input[type="checkbox"]').parent( $('label') ).removeClass("filled-in");
+                // }
+                // if ( $('input[type="radio"]').parent('label') ) {
+                //     $('input[type="radio"]').parent().addClass( "radio" );
+                // }
+                // if ( $('input[type="radio"]:checked').parent('label') ) {
+                //     $('input[type="radio"]').parent().addClass("filled-in");
+                // }
+                // if ( $('input[type="radio"]:not(:checked)').parent('label').hasClass("filled-in") ) {
+                //     $('input[type="radio"]').parent('label').removeClass("filled-in");
+                // }
+
+                $(document).ready( function () {
+                    $(".vfb-checkbox").each( function() {
+                        var label = $(this).find("label");
+                        var input = $(this).find("input");
+
+                        label.addClass("control checkbox");
+                        input.after( '<span class="control-indicator"></span>' );
+                    });
+
+                    $(".vfb-radio").each( function() {
+                        var label = $(this).find("label");
+                        var input = $(this).find("input");
+
+                        label.addClass("control radio");
+                        input.after( '<span class="control-indicator"></span>' );
+                    });
+                });
 
                 // toggle the searchform in the global header
                 if ($("#searchForm").length > 0) {
