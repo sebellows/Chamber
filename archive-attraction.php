@@ -2,39 +2,90 @@
 /**
  * The template for displaying archive pages of custom post types.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link    https://codex.wordpress.org/Template_Hierarchy
  *
  * @package Chamber
  */
 
+// categories to pull from
+$attractionCategories = array(
+    'arts-and-culture',
+    'dining',
+    'indoor-recreation',
+    'lodging',
+    'outdoor-recreation',
+    'shopping'
+);
+
+// number of attractions per category
+$numAttractions = 12;
+
+// our initial query for finding featured categories
+$initialParams = array(
+    'post_type'           => 'attraction',
+    'orderby'             => 'rand',
+    'attraction_category' => '',
+    'posts_per_page'      => 12,
+    'meta_query'          => array(
+        'relation' => 'AND',
+        array(
+            'key'     => 'attr_featured',
+            'value'   => '1',
+            'compare' => '='
+        )
+    )
+);
+
+$attractionsToDisplay = array();
+
+function loopAttractions($attractions)
+{
+    if ($attractions->have_posts()) {
+        while ($attractions->have_posts()) : $attractions->the_post();
+            get_template_part('templates/archive/attraction');
+        endwhile;
+    }
+}
+
 ?>
 
 <div id="app" class="isotope-archive">
-
     <?php get_template_part('menu/isotope'); ?>
+    <div class="card-grid">
 
-    <?php
-        $params = [
-            'post_type' => 'attraction',
-            'posts_per_page'   => -1,
-            'orderby' => 'rand',
-            'meta_query' => array(array('key' => '_thumbnail_id')) 
-        ];
-        $attractions_query = new WP_Query( $params );
-    ?>
+        <?php
+        foreach ($attractionCategories as $attractionCategory) {
+            $initialParams['attraction_category'] = $attractionCategory;
+            $initialResults = new WP_Query($initialParams);
 
-    <?php if ($attractions_query->have_posts()) : ?>
+            loopAttractions($initialResults);
 
-        <div class="card-grid">
+            if ($initialResults->post_count < $numAttractions) {
+                // get all our post ids... i'm sure there is an easier way
+                $initialAttractionIds = wp_list_pluck($initialResults->get_posts(), 'ID');
+                $resultsLimit = $numAttractions - $initialResults->post_count;
 
-            <?php while ($attractions_query->have_posts()) : $attractions_query->the_post(); ?>
-                <?php get_template_part('templates/archive/attraction'); ?>
-            <?php endwhile; ?>
 
-        </div><!-- .card-grid -->
+                $fillerParams = array(
+                    'post_type'           => 'attraction',
+                    'orderby'             => 'rand',
+                    'post__not_in'        => $initialAttractionIds,
+                    'attraction_category' => $attractionCategory,
+                    'posts_per_page'      => $resultsLimit,
+                    'meta_query'          => array(
+                        array('key' => '_thumbnail_id')
+                    )
 
-        <?php wp_reset_postdata(); ?>
+                );
 
-    <?php endif; ?>
+                $fillerResults = new WP_Query($fillerParams);
 
+                loopAttractions($fillerResults);
+            }
+
+            wp_reset_postdata();
+        }
+
+        ?>
+    </div>
 </div><!-- .isotope-archive -->
