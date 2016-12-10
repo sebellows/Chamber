@@ -8,6 +8,12 @@
   @else {
     @include consistent-color($bgColor);
   }
+
+  .readmore {
+    @include link-props {
+      color: foreground($bgColor, color(brand-light), darken($white,12.5%));
+    }
+  }
 }
 
 [m-UI~="primary"] {

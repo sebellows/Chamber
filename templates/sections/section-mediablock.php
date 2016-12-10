@@ -13,7 +13,7 @@ if( get_row_layout() == 'media_block' ) :
     $color_class = get_sub_field('mb_background_color');
 
     $media = $media_type['value'] == 'video' ? get_sub_field('mb_video') : get_sub_field('mb_image');
-// dd($media);
+
     ?>
 
     <section class="stripe media-block">

@@ -39,23 +39,12 @@ import LazyImages from './lazy-image-loading.js';
         }
     }
 
-    function testImage(src) {
-        let Img = new Image();
-        Img.src = src;
-        setAttributes(Img, {
-            "class": "lazy-test",
-            "src": src,
-            "style": "display:none;"
-        });
-        return Img;
-    }
-
     /**
      * Add the image `src` for the video poster.
      * 
-     * @param {[string]} format i.e., the image format and size
+     * @return {Object}
      */
-    function setVideoPosterImage( format ) {
+    function setVideoPosterImage() {
         let poster = '';
 
         poster = '<img class="lazy video-poster" data-src="https://i.ytimg.com/vi/' + mediaID + '/sddefault.jpg" />';
@@ -133,7 +122,7 @@ import LazyImages from './lazy-image-loading.js';
      */
     function videoPoster( attrs ) {
         let videoSlot        = document.querySelector('.media-block .flex-video');
-        let videoPosterImage = setVideoPosterImage( attrs );
+        let videoPosterImage = setVideoPosterImage();
         let videoPlayButton  = addVideoButton( attrs );
 
         videoSlot.insertAdjacentHTML('afterbegin', videoPosterImage);
@@ -224,8 +213,14 @@ import LazyImages from './lazy-image-loading.js';
 
 ( function () {
     const LAZY = new LazyImages;
+    const loadLazily = _ => { LAZY.lazyLoad(); };
 
-    window.addEventListener('load', LAZY);
-    window.addEventListener('scroll', LAZY);
-    window.addEventListener('resize', LAZY);
+    window.addEventListener('load', loadLazily, false);
+    window.addEventListener('resize', loadLazily, false);
+    window.addEventListener('scroll', loadLazily, false);
+
+    // window.removeEventListener('load', loadLazily, false);
+    // window.removeEventListener('resize', loadLazily, false);
+    // window.removeEventListener('scroll', loadLazily, false);
 })();
+

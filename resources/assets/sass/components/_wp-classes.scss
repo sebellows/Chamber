@@ -12,12 +12,6 @@
   text-align: left;
   text-transform: uppercase;
   margin-top: $global-margin;
-  transition: color .25s cubic-bezier(0.4,0.0.2,1);
-
-  &:focus,
-  &:hover {
-    color: color(brand-light);
-  }
 }
 
 /* Do not show the outline on the skip link target. */

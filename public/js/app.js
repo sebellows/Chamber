@@ -223,34 +223,33 @@
 
 var LazyImages = function LazyImages() {
     this.lazy = document.querySelectorAll('.lazy');
-    this.lazyLoad(this.lazy);
-    // console.log('Found ' + this.lazy.length + ' lazy images');
 };
 
-LazyImages.prototype.lazyLoad = function lazyLoad (lazy) {
+LazyImages.prototype.lazyLoad = function lazyLoad () {
         var this$1 = this;
 
-    for (var i = 0; i < lazy.length; i++){
-        if(this$1.isInViewport(lazy[i])){
-            if (lazy[i].getAttribute('data-src')){
-                lazy[i].src = lazy[i].getAttribute('data-src');
-                lazy[i].removeAttribute('data-src');
+    var images = this.lazy;
+
+    for (var i = 0; i < images.length; i++){
+        if(this$1.isInViewport(images[i])){
+            if (images[i].getAttribute('data-src')){
+                images[i].src = images[i].getAttribute('data-src');
+                images[i].removeAttribute('data-src');
             }
-            if (lazy[i].getAttribute('data-srcset')){
-                lazy[i].srcset = lazy[i].getAttribute('data-srcset');
-                lazy[i].removeAttribute('data-srcset');
+            if (images[i].getAttribute('data-srcset')){
+                images[i].srcset = images[i].getAttribute('data-srcset');
+                images[i].removeAttribute('data-srcset');
             }
-            lazy[i].classList.add("is-loaded");
+            images[i].classList.add("is-loaded");
         }
     }
 
-    this.cleanLazy(lazy);
+    this.cleanLazy();
 };
 
-LazyImages.prototype.cleanLazy = function cleanLazy (lazy) {
-    Array.prototype.filter.call(lazy, function(l) { 
+LazyImages.prototype.cleanLazy = function cleanLazy () {
+    Array.prototype.filter.call(this.lazy, function(l) { 
         return l.getAttribute('data-src');
-        console.log('penis');
     });
 };
 
@@ -263,6 +262,13 @@ LazyImages.prototype.isInViewport = function isInViewport (lazy) {
         rect.top<= (window.innerHeight || document.documentElement.clientHeight) && 
         rect.left   <= (window.innerWidth || document.documentElement.clientWidth)
      );
+};
+
+LazyImages.prototype.onChange = function onChange () {
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+
+    return args;
 };
 
 /**
@@ -304,23 +310,12 @@ LazyImages.prototype.isInViewport = function isInViewport (lazy) {
         }
     }
 
-    function testImage(src) {
-        var Img = new Image();
-        Img.src = src;
-        setAttributes(Img, {
-            "class": "lazy-test",
-            "src": src,
-            "style": "display:none;"
-        });
-        return Img;
-    }
-
     /**
      * Add the image `src` for the video poster.
      * 
-     * @param {[string]} format i.e., the image format and size
+     * @return {Object}
      */
-    function setVideoPosterImage( format ) {
+    function setVideoPosterImage() {
         var poster = '';
 
         poster = '<img class="lazy video-poster" data-src="https://i.ytimg.com/vi/' + mediaID + '/sddefault.jpg" />';
@@ -398,7 +393,7 @@ LazyImages.prototype.isInViewport = function isInViewport (lazy) {
      */
     function videoPoster( attrs ) {
         var videoSlot        = document.querySelector('.media-block .flex-video');
-        var videoPosterImage = setVideoPosterImage( attrs );
+        var videoPosterImage = setVideoPosterImage();
         var videoPlayButton  = addVideoButton( attrs );
 
         videoSlot.insertAdjacentHTML('afterbegin', videoPosterImage);
@@ -478,10 +473,15 @@ LazyImages.prototype.isInViewport = function isInViewport (lazy) {
 
 ( function () {
     var LAZY = new LazyImages;
+    var loadLazily = function (_) { LAZY.lazyLoad(); };
 
-    window.addEventListener('load', LAZY);
-    window.addEventListener('scroll', LAZY);
-    window.addEventListener('resize', LAZY);
+    window.addEventListener('load', loadLazily, false);
+    window.addEventListener('resize', loadLazily, false);
+    window.addEventListener('scroll', loadLazily, false);
+
+    // window.removeEventListener('load', loadLazily, false);
+    // window.removeEventListener('resize', loadLazily, false);
+    // window.removeEventListener('scroll', loadLazily, false);
 })();
 
 }((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));

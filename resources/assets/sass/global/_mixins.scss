@@ -184,6 +184,25 @@ $total-columns: 12;
   }
 }
 
+//// Change a link's state-based properties.
+/// 
+/// @param {Boolean} $parent  Change the properties of the default link
+///
+@mixin link-props($self: false) {
+  $include: null;
+
+  @if ($self == true) {
+    $include: '&,';
+  }
+
+  #{$include}
+  &:active,
+  &:focus,
+  &:hover {
+    @content;
+  }
+}
+
 //// Global styling for time and meta information
 ///
 /// @param {Color} $color  The color of the `<time>` text

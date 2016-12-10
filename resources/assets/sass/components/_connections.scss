@@ -44,6 +44,15 @@
     width: rem(40);
     height: rem(40);
     text-align: center;
+
+    svg {
+      transition: transform .28s cubic-bezier(0.4,0,0.2,1);
+      transform-origin: 50% 50%;
+    }
+
+    &:hover svg {
+      transform: scale(1.25);
+    }
   }
 }
 
