@@ -62,8 +62,8 @@ class Extras
 		add_action( 'template_redirect', [ $this, 'hybrid_template_redirect' ] );
 		# Prepend thumbnail class to Post Content wrapper in HybridCore's `hybrid_attr_post` function
 		add_filter( 'hybrid_attr_post', [ $this, 'hybrid_attr_post' ], 10 );
-		# Prepend `chamber` class to the body tag in HybridCore's `hybrid_attr_body` function
-		add_filter( 'hybrid_attr_body', [ $this, 'hybrid_attr_body' ], 10 );
+		# Prepend `chamber` class to the body tag in HybridCore's `hybrid_body_class_filter` function
+		add_filter( 'body_class', [ $this, 'hybrid_body_class_filter' ], 0, 4 );
 
 		# Remove those damn emojis.
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -286,19 +286,18 @@ class Extras
 	}
 
 	/**
-	 * Prepend a class to the Post Content wrapper depending upon presence of 
-	 * `sidebar-post-header` when using HybridCore's `hybrid_attr_post` function.
+	 * Prepends a body class to when using HybridCore's `hybrid_body_class_filter` function.
 	 * 
 	 * @param  String $attr  The class to prepend
 	 * 
 	 * @return Array $attr   The attr array with new class appended
 	 */
-	public function hybrid_attr_body( $attr ) {
-	    $current = join( ' ', get_post_class() );
+	public function hybrid_body_class_filter( $classes, $class ) {
+	    // $current = join( ' ', get_post_class() );
 	    
-        $attr['class'] = 'chamber ' . $current;
+        $classes = [ 'chamber' ];
 
-	    return $attr;
+        return array_map( 'esc_attr', $classes );
 	}
 
 }
