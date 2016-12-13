@@ -1,3 +1,11 @@
+/* prevent initial flash of global footer colliding with grid on page load */
+.archive-attraction .site-footer {
+  visibility: hidden;
+}
+.archive-attraction.contentinfo-is-visible .site-footer {
+  visibility: visible;
+}
+
 .attraction-details {
   border: 1px solid color(cvb);
   margin-bottom: 1rem;

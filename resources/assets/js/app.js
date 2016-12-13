@@ -263,6 +263,13 @@
 
                         return false;
                     });
+
+                    // Add a body class after isotope's layout is complete.
+                    // This prevents the footer from crashing into the card-grid
+                    // on initial page load while Isotope does its math.
+                    $container.on( 'layoutComplete', function() {
+                        $("body").addClass("contentinfo-is-visible");
+                    });
                 }
             },
             finalize: function() {
