@@ -63,11 +63,11 @@ class Hybrid {
 
 		// Set up the load order.
 		add_action( 'after_setup_theme', array( $this, 'constants' ), 1 );
-		add_action( 'after_setup_theme', array( $this, 'core' ), 1 );
-		add_action( 'after_setup_theme', array( $this, 'theme_support' ), 2 );
-		add_action( 'after_setup_theme', array( $this, 'includes' ), 3 );
-		add_action( 'after_setup_theme', array( $this, 'extensions' ), 4 );
-		add_action( 'after_setup_theme', array( $this, 'admin' ), 5 );
+		add_action( 'after_setup_theme', array( $this, 'core' ), 2 );
+		add_action( 'after_setup_theme', array( $this, 'theme_support' ), 3 );
+		add_action( 'after_setup_theme', array( $this, 'includes' ), 4 );
+		add_action( 'after_setup_theme', array( $this, 'extensions' ), 5 );
+		add_action( 'after_setup_theme', array( $this, 'admin' ), 6 );
 
 	}
 
@@ -94,7 +94,7 @@ class Hybrid {
 
 		// Sets the path to the core framework directory.
 		if ( ! defined( 'HYBRID_DIR' ) ) {
-			define( 'HYBRID_DIR', trailingslashit( HYBRID_PARENT . 'lib' . DS . basename( dirname( __FILE__ ) ) ) );
+			define( 'HYBRID_DIR', trailingslashit( HYBRID_PARENT . 'lib' . DIRECTORY_SEPARATOR . basename( dirname( __FILE__ ) ) ) );
 		}
 
 		// Sets the path to the core framework directory URI.
