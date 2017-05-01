@@ -12,22 +12,26 @@
   border: rem(2.5) solid $body-background;
   position: relative;
   overflow: hidden;
-  @include grid-col(12,0);
+  @include grid-col(12, 0);
 }
 
 .duplo-image {
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   min-height: 100%;
   background-color: neutral(1);
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-blend-mode: multiply;
+  background-blend-mode: normal;
 }
-  .no-backgrounblendmode .duplo-image {
-    opacity: .8;
-  }
+
+.no-backgrounblendmode .duplo-image {
+  opacity: .8;
+}
 
 .duplo-content {
   color: currentColor;
@@ -36,7 +40,7 @@
   justify-content: flex-end;
   height: 100%;
   padding: rem(15);
-  text-shadow: 0 1px 1px rgba(0,55,85,0.5);
+  text-shadow: 0 1px 1px rgba(0, 55, 85, 0.5);
   position: relative;
   z-index: 1;
 
@@ -78,7 +82,7 @@
     font-weight: 700;
     letter-spacing: rem(1.5);
     text-transform: uppercase;
-    margin-bottom: em(10,12);
+    margin-bottom: em(10, 12);
   }
 }
 
@@ -131,7 +135,7 @@
   height: 100%;
   padding: rem(16 20);
   text-align: center;
-  text-shadow: 0 1px 1px rgba(0,55,85,0.5);
+  text-shadow: 0 1px 1px rgba(0, 55, 85, 0.5);
   position: relative;
   z-index: 1;
 
@@ -154,7 +158,7 @@
 .duplo[m-Duplo="1"] {
   border-left-width: 0 !important;
   height: auto;
-  @include grid-col(12,0);
+  @include grid-col(12, 0);
 
   h2 {
     font-size: em(40);
@@ -178,7 +182,7 @@
 
 [m-DuploCount="1"] .duplo {
   border-left-width: 0 !important;
-  @include grid-col(12,0);
+  @include grid-col(12, 0);
 
   h2 {
     font-size: em(48);
@@ -189,7 +193,7 @@
     max-width: $global-width;
 
     @include breakpoint(medium down) {
-      justify-content: center;      
+      justify-content: center;
     }
   }
 
@@ -204,7 +208,7 @@
 
   &[m-Duplo="1"] {
     @include breakpoint(medium) {
-      @include grid-col(8,0);
+      @include grid-col(8, 0);
     }
   }
 
@@ -212,14 +216,14 @@
     border-right-width: 0 !important;
     height: 320px;
     height: 35vh;
-    @include grid-col(12,0);
+    @include grid-col(12, 0);
 
     h2 {
       font-size: 2.25em;
     }
 
     @include breakpoint(medium) {
-      @include grid-col(4,0);
+      @include grid-col(4, 0);
       height: 640px;
       height: 70vh;
     }
@@ -232,7 +236,7 @@
 
   [m-Duplo="1"] {
     @include breakpoint(medium) {
-      @include grid-col(7,0);
+      @include grid-col(7, 0);
       clear: left;
     }
   }
@@ -241,7 +245,7 @@
   [m-Duplo="3"] {
     height: 320px;
     height: 35vh;
-    @include grid-col(6,0);
+    @include grid-col(6, 0);
 
     h2 {
       font-size: 1.25em;
@@ -251,11 +255,13 @@
       }
     }
 
-    p { display: none; }
+    p {
+      display: none;
+    }
 
     @include breakpoint(medium) {
       border-right-width: 0 !important;
-      @include grid-col(5,0);
+      @include grid-col(5, 0);
 
       h2 {
         font-size: 1.25em;
@@ -300,7 +306,7 @@
     border-right-width: 0 !important;
     height: 300px;
     height: 35vh;
-    @include grid-col(12,0);
+    @include grid-col(12, 0);
 
     h2 {
       font-size: em(36);
@@ -310,7 +316,7 @@
       border-right-width: rem(2.5) !important;
       height: 600px;
       height: 70vh;
-      @include grid-col(6,0);
+      @include grid-col(6, 0);
 
       h2 {
         font-size: em(36);
@@ -321,7 +327,7 @@
   [m-Duplo="2"] {
     height: 300px;
     height: 30vh;
-    @include grid-col(12,0);
+    @include grid-col(12, 0);
 
     h2 {
       font-size: em(22);
@@ -337,7 +343,7 @@
   [m-Duplo="4"] {
     height: 300px;
     height: 30vh;
-    @include grid-col(6,0);
+    @include grid-col(6, 0);
 
     h2 {
       font-size: em(18);
@@ -353,7 +359,7 @@
   [m-Duplo="3"],
   [m-Duplo="4"] {
     @include breakpoint(medium) {
-      @include grid-col(4,0);
+      @include grid-col(4, 0);
     }
   }
 
@@ -375,7 +381,7 @@
       border-right-width: 0 !important;
       height: 300px;
       height: 35vh;
-      @include grid-col(6,0);
+      @include grid-col(6, 0);
 
       h2 {
         font-size: em(28);
@@ -392,7 +398,7 @@
     @include breakpoint(large) {
       height: 300px;
       height: 35vh;
-      @include grid-col(3,0);
+      @include grid-col(3, 0);
 
       h2 {
         font-size: em(24);
@@ -403,7 +409,7 @@
     @include breakpoint(xlarge) {
       p {
         display: block;
-        font-size: em(16,18);
+        font-size: em(16, 18);
       }
     }
   }
@@ -465,13 +471,13 @@
 
     &[m-Duplo="2"],
     [m-Duplo]:last-child {
-      @include grid-col(12,0);
+      @include grid-col(12, 0);
 
       @include breakpoint(medium) {
-        @include grid-col(9,0);
+        @include grid-col(9, 0);
       }
       @include breakpoint(large) {
-        @include grid-col(10,0);
+        @include grid-col(10, 0);
 
         .duplo-content {
           max-width: 50em;
@@ -501,7 +507,7 @@
       }
 
       @include breakpoint(medium) {
-        @include grid-col(6,0);
+        @include grid-col(6, 0);
         height: 640px;
         height: 70vh;
       }
@@ -510,7 +516,7 @@
     [m-Duplo="2"],
     [m-Duplo]:first-child + [m-Duplo] {
       @include breakpoint(medium) {
-        @include grid-col(6,0);
+        @include grid-col(6, 0);
         height: 320px;
         height: 35vh;
       }
@@ -519,7 +525,7 @@
     [m-Duplo="3"],
     [m-Duplo]:last-child {
       @include breakpoint(medium) {
-        @include grid-col(6,0);
+        @include grid-col(6, 0);
         height: 320px;
         height: 35vh;
       }
@@ -566,13 +572,13 @@
       }
 
       @include breakpoint(medium) {
-        @include grid-col(9,0);
+        @include grid-col(9, 0);
         height: 320px;
         height: 35vh;
       }
 
       @include breakpoint(large) {
-        @include grid-col(6,0);
+        @include grid-col(6, 0);
         height: 640px;
         height: 70vh;
 
@@ -587,12 +593,12 @@
       @include breakpoint(medium) {
         height: 320px;
         height: 35vh;
-        @include grid-col(4.5,0);
+        @include grid-col(4.5, 0);
       }
       @include breakpoint(large) {
         height: 320px;
         height: 35vh;
-        @include grid-col(4,0);
+        @include grid-col(4, 0);
       }
     }
 
@@ -605,7 +611,6 @@
 
 }
 
-
 //// NEWS FEED
 ///  always 4 blocks
 ///
@@ -613,7 +618,7 @@
   [m-DuploCount="4"] {
     // Duplo Header : 1 Block
     [m-Duplo="1"] {
-      @include grid-col(12,0);
+      @include grid-col(12, 0);
       height: auto;
 
       @include breakpoint(medium down) {
@@ -623,11 +628,11 @@
       @include breakpoint(large) {
         height: 640px;
         height: 70vh;
-        @include grid-col(3,0);
+        @include grid-col(3, 0);
       }
 
       @include breakpoint(xlarge) {
-        @include grid-col(2.5,0);
+        @include grid-col(2.5, 0);
       }
     }
 
@@ -654,7 +659,7 @@
       }
 
       @include breakpoint(large) {
-        @include grid-col(9,0);
+        @include grid-col(9, 0);
 
         h2 {
           font-size: em(36);
@@ -662,7 +667,7 @@
       }
 
       @include breakpoint(xlarge) {
-        @include grid-col(5.5,0);
+        @include grid-col(5.5, 0);
         height: 600px;
         height: 70vh;
 
@@ -675,7 +680,7 @@
     [m-Duplo="3"],
     [m-Duplo="4"] {
       @include breakpoint(medium) {
-        @include grid-col(6,0);
+        @include grid-col(6, 0);
 
         h2 {
           font-size: em(24);
@@ -683,11 +688,11 @@
       }
 
       @include breakpoint(large) {
-        @include grid-col(4.5,0);
+        @include grid-col(4.5, 0);
       }
 
       @include breakpoint(xlarge) {
-        @include grid-col(4,0);
+        @include grid-col(4, 0);
       }
     }
 
