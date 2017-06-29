@@ -72,7 +72,8 @@ elixir(function (mix) {
         'media-block.babel.js',
         'app.js',
         'datatables.js',
-        'mlive.js'
+        'mlive.js',
+        'scroll-scope.js'
     ], 'public/js/app.js');
 
     mix.scripts('modernizr.js');
