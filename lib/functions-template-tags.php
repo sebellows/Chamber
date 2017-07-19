@@ -137,8 +137,8 @@ function validate_gravatar($id_or_email) {
  * 
  */
 function post_pagination($args = [], $class = 'pagination') {
-
-    if ($GLOBALS['wp_query']->max_num_pages <= 1) return;
+    if ($GLOBALS['wp_query']->max_num_pages <= 1 ||
+    $GLOBALS['wp_query']->query['max_num_pages'] <= 1) return;
 
     $args = wp_parse_args( $args, [
         'mid_size'           => 2,
