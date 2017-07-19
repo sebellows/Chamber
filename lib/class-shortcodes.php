@@ -95,7 +95,7 @@ class Shortcodes
         if (isset($arg['category']) && term_exists($arg['category'])) {
             // get our posts
             query_posts(array(
-                'category-name'  => $arg['category'],
+                'category_name'  => $arg['category'],
                 'posts_per_page' => $arg['items'],
                 'post_type'      => 'post',
                 'orderby'        => 'id',
@@ -107,7 +107,7 @@ class Shortcodes
                 ob_start();
                 while (have_posts()) {
                     the_post();
-                    get_template_part('templates/content/post');
+                    get_template_part('templates/content/post-shortcode');
                 }
                 wp_reset_postdata();
 
