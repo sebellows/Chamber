@@ -1,68 +1,86 @@
 .site-navigation {
-	.menu {
-		> li {
-			margin-left: rem-calc(5px);
+  .menu {
+    > li {
+      margin-left: rem-calc(5px);
 
-			&:first-child {
-				margin-left: 0;
-			}
+      &:first-child {
+        margin-left: 0;
+      }
 
-			> a {
-				border-radius: 2px;
-				font-size: em(12);
-				font-weight: 700;
-				text-transform: uppercase;
-				padding: rem-calc(8 12);
+      > a {
+        border-radius: 2px;
+        font-size: em(12);
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: rem-calc(8 12);
 
-				@include breakpoint(large) {
-					font-size: em(14);
-				}
-			}
-		}
-	}
+        @include breakpoint(large) {
+          font-size: em(14);
+        }
+      }
+    }
+  }
 
-	.active > a {
-		background-color: color(brand-dark);
-		box-shadow: inset 0 0 5px transparentize($black,.2);
-	}
+  .active > a {
+    background-color: color(brand-dark);
+    box-shadow: inset 0 0 5px transparentize($black, .2);
+  }
 
-	li.button-link {
-		> a {
-			background: transparent;
-			border: 1px solid $primary-color;
-			margin: rem-calc(0 5 0 0);
-			transition: background-color 0.25s linear;
-		}
+  li.button-link {
+    > a {
+      background: transparent;
+      border: 1px solid $primary-color;
+      margin: rem-calc(0 5 0 0);
+      transition: background-color 0.25s linear;
+    }
 
-		> a:active,
-		> a:focus,
-		&.active > a {
-			background: transparent;
-			border: 1px solid $primary-color;
-		}
-	}
+    > a:active,
+    > a:focus,
+    &.active > a {
+      background: transparent;
+      border: 1px solid $primary-color;
+    }
+  }
 }
 
-	@include breakpoint(medium down) {
-		.site-navigation .menu > li > a {
-			padding: rem(5 8);
-			font-family: "Roboto Condensed", HelveticaNeue-CondensedBold, "Arial Narrow", sans-serif;
-		}
-	}
+@include breakpoint(small only) {
+  .site-navigation .menu {
+    flex-wrap: wrap;
+  }
+  .site-navigation .menu .login,
+  .site-navigation .menu .join {
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  #menu-site-menu .login a,
+  #menu-site-menu .join a {
+    display: block;
+  }
+}
 
-	@include breakpoint(medium only) {
-		.site-navigation .menu {
-			flex-wrap: wrap;
-			justify-content: flex-end;
+@include breakpoint(medium down) {
+  .site-navigation .menu > li > a {
+    padding: rem(5 8);
+    font-family: "Roboto Condensed", HelveticaNeue-CondensedBold, "Arial Narrow", sans-serif;
+  }
+}
 
-			> li:not(.button-link) {
-				margin-bottom: rem(4);
-			}
-		}
-	}
+@include breakpoint(medium only) {
+  .site-navigation .menu {
+    flex-wrap: wrap;
+    justify-content: flex-end;
 
-	// Non-mobile hover state
-	[data-whatinput="mouse"] .site-navigation li.button-link > a:hover {
-		background-color: $primary-color;
-		border: 1px solid $primary-color;
-	}
+    > li:not(.button-link) {
+      margin-bottom: rem(4);
+    }
+  }
+}
+
+// Non-mobile hover state
+[data-whatinput="mouse"] .site-navigation li.button-link > a:hover {
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+}
