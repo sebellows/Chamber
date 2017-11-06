@@ -100,7 +100,8 @@ class Shortcodes
                 'post_type'      => 'post',
                 'orderby'        => 'id',
                 'order'          => 'desc',
-                'max_num_pages'  => 1
+                'max_num_pages'  => 1,
+                'no_paging'      => 1,
             ));
             if (have_posts()) {
                 // buffer our output to be returned
