@@ -79,12 +79,12 @@ class Contact {
 
 		// MAILTO (address to mail to)
 		if ( empty( $_POST['mailto'] ) ) {
-			$errorMSG = 'Name is required!';
+			$errorMSG = 'Mail to is required!';
 		} else {
 			$mailto = $_POST['mailto'];
 		}
 
-		$subject = 'Contact Form submission: ' . $_POST['contact-title'];
+		$subject = 'Contact Form submission: ' . $_POST['title'];
 		$headers = 'From: ' . $name . '<' . $email . '>';
 		$headers .= "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";

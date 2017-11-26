@@ -6,8 +6,7 @@ use Chamber\Theme\Contact;
 if ( get_row_layout() == 'contact_us' ) :
 
 	// PHP mailer variables
-	$split_mailto = list( $userName, $mailDomain ) = explode( "@", get_sub_field( 'contact_email' ) );
-	$mailto = json_encode( $split_mailto );
+	$mailto = str_replace( ' ', '', get_sub_field( 'contact_email' ) );
 	$confirmation = get_sub_field( 'contact_confirmation_message' );
 
 	// Stripe variables
@@ -19,9 +18,6 @@ if ( get_row_layout() == 'contact_us' ) :
 	?>
 
     <section class="stripe contact-us">
-        <script>
-            var mailto = <?= $mailto; ?>;
-        </script>
         <div class="row" m-UI="<?= chamber_color( $bg_color ); ?>"
         ">
 
@@ -75,11 +71,11 @@ if ( get_row_layout() == 'contact_us' ) :
                     <span class="form-error">The message is empty.</span>
                 </label>
 
+                <input type="hidden" id="contact-title" value="<?php echo $title; ?>">
+                <input type="hidden" id="contact-mailto" value="<?php echo $mailto; ?>">
                 <input type="hidden" name="submitted" value="1" data-abide-ignore>
 
                 <p><input type="submit" class="secondary hollow button" id="contactFormSubmit" value="Submit" name="buttonSubmit"></p>
-
-                <input type="hidden" name="contact-title" value="<?php echo $title; ?>">
 
 				<?php wp_nonce_field( 'contact_nonce' ); ?>
 

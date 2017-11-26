@@ -19,10 +19,11 @@
             e.preventDefault();
 
             // Initiate Variables With Form Content
-            var name    = $("#name").val();
-            var email   = $("#email").val();
+            var name = $("#name").val();
+            var email = $("#email").val();
             var message = $("#message").val();
-            mailto = typeof mailto === "undefined" ? '' : mailto;
+            var contactMailto = $("#contact-mailto").val();
+            var contactTitle = $("#contact-title").val();
 
             $.ajax({
                 type: "POST",
@@ -30,13 +31,14 @@
                 url: ajax_contactform.ajaxurl,
                 data: {
                     action: "chamber_contact_form",
-                    mailto: mailto[0]+'@'+mailto[1],
+                    mailto: contactMailto,
+                    title: contactTitle,
                     name: name,
                     email: email,
                     message: message,
                     contact_nonce: ajax_contactform.contact_nonce
                 },
-                success : function(text) {
+                success: function (text) {
                     if (text == "success") {
                         formSuccess();
                         submitMSG(true, text);
@@ -45,7 +47,7 @@
                         submitMSG(false, text);
                     }
                 },
-                completed : function(text) {
+                completed: function (text) {
                     submitMSG(true, text + ' is complete, m\'man!');
                 }
             });
@@ -55,10 +57,11 @@
             e.preventDefault();
 
             // Initiate Variables With Form Content
-            var name    = $("#name").val();
-            var email   = $("#email").val();
+            var name = $("#name").val();
+            var email = $("#email").val();
             var message = $("#message").val();
-            mailto = typeof mailto === "undefined" ? '' : mailto[0]+'@'+mailto[1];
+            var contactMailto = $("#contact-mailto").val();
+            var contactTitle = $("#contact-title").val();
 
             $.ajax({
                 type: "POST",
@@ -66,13 +69,14 @@
                 url: ajax_contactform.ajaxurl,
                 data: {
                     action: "chamber_contact_form",
-                    mailto: mailto,
+                    mailto: contactMailto,
+                    title: contactTitle,
                     name: name,
                     email: email,
                     message: message,
                     contact_nonce: ajax_contactform.contact_nonce
                 },
-                success : function(text) {
+                success: function (text) {
                     if (text == "success") {
                         formSuccess();
                         submitMSG(true, text);
@@ -81,11 +85,11 @@
                         submitMSG(false, text);
                     }
                 },
-                completed : function(text) {
+                completed: function (text) {
                     submitMSG(true, text + ' is complet, m\'man!');
                 }
             });
-        })
+        });
 
 
     function formSuccess() {
@@ -93,14 +97,14 @@
         submitMSG(true, "Message Submitted!");
     }
 
-    function formError(){
-        $("#contactForm").removeClass().addClass('flash animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    function formError() {
+        $("#contactForm").removeClass().addClass('flash animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
             $(this).removeClass();
         });
     }
 
     function submitMSG(valid, msg) {
-        if(valid){
+        if (valid) {
             var msgClasses = "success callout pulsate";
         } else {
             var msgClasses = "alert callout";
