@@ -102,19 +102,19 @@ class Contact {
 		if ( $success && $errorMSG == '' ) {
 			echo 'success';
 		} else {
-			global $ts_mail_errors;
-			global $phpmailer;
-			if ( ! isset( $ts_mail_errors ) ) {
-				$ts_mail_errors = array();
-			}
-			if ( isset( $phpmailer ) ) {
-				$ts_mail_errors[] = $phpmailer->ErrorInfo;
-			}
-			echo '<pre>';
-			print_r( $ts_mail_errors );
-			exit;
 			if ( $errorMSG == '' ) {
 				echo 'Something went wrong :(';
+				global $ts_mail_errors;
+				global $phpmailer;
+				if ( ! isset( $ts_mail_errors ) ) {
+					$ts_mail_errors = array();
+				}
+				if ( isset( $phpmailer ) ) {
+					$ts_mail_errors[] = $phpmailer->ErrorInfo;
+				}
+				echo '<pre>';
+				print_r( $ts_mail_errors );
+				exit;
 			} else {
 				echo $errorMSG;
 			}
