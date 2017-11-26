@@ -91,9 +91,9 @@ class Contact {
 
 		// prepare email body text
 		$body = '';
-		$body .= 'Name: ' . $name . '\r\n';
-		$body .= 'E-Mail: ' . $email . '\r\n\r\n';
-		$body .= 'Message: ' . $message . '\n';
+		$body .= "Name: " . $name . "\r\n";
+		$body .= "E-Mail: " . $email . "\r\n";
+		$body .= "Message: " . $message . "\r\n";
 
 		// send email
 		$success = wp_mail( $mailto, $subject, nl2br( $body ), $headers );
@@ -104,7 +104,8 @@ class Contact {
 		} else {
 			if ( $errorMSG == '' ) {
 				echo 'Something went wrong :(';
-				global $ts_mail_errors;
+				/*global $ts_mail_errors;
+				// uncomment to troubleshoot e-mail issues - Joel
 				global $phpmailer;
 				if ( ! isset( $ts_mail_errors ) ) {
 					$ts_mail_errors = array();
@@ -114,7 +115,7 @@ class Contact {
 				}
 				echo '<pre>';
 				print_r( $ts_mail_errors );
-				exit;
+				exit;*/
 			} else {
 				echo $errorMSG;
 			}
