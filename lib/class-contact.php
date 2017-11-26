@@ -85,7 +85,7 @@ class Contact {
 		}
 
 		$subject = 'Contact Form submission: ' . $_POST['title'];
-		$headers = 'From: ' . $name . '<' . $email . '>';
+		$headers = "From: " . $name . "<" . $email . ">\r\n";
 		$headers .= "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
@@ -102,6 +102,17 @@ class Contact {
 		if ( $success && $errorMSG == '' ) {
 			echo 'success';
 		} else {
+			global $ts_mail_errors;
+			global $phpmailer;
+			if ( ! isset( $ts_mail_errors ) ) {
+				$ts_mail_errors = array();
+			}
+			if ( isset( $phpmailer ) ) {
+				$ts_mail_errors[] = $phpmailer->ErrorInfo;
+			}
+			echo '<pre>';
+			print_r( $ts_mail_errors );
+			exit;
 			if ( $errorMSG == '' ) {
 				echo 'Something went wrong :(';
 			} else {
