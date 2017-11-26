@@ -12,10 +12,10 @@
   display: flex;
   flex-direction: column;
   padding: rem(0 15);
-  @include flex-callout(12);
+  @include flex-callout(6);
 
   @include breakpoint(30em) {
-    @include flex-callout(6);
+    @include flex-callout(4);
   }
 
   @include breakpoint(medium) {
@@ -23,7 +23,7 @@
   }
 
   @include breakpoint(large) {
-    @include flex-callout(3);
+    @include flex-callout(2.4);
   }
 }
 
@@ -64,7 +64,8 @@
 
   img {
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     object-fit: cover;
   }
@@ -98,26 +99,26 @@
 }
 
 $departments: (
-  'convention-and-visitors-bureau': (
-    dept: 'convention-and-visitors-bureau',
-    color: color(cvb)
-  ),
-  'economic_development': (
-    dept: 'economic_development',
-    color: color(development)
-  ),
-  'educationtraining': (
-    dept: 'educationtraining',
-    color: color(education)
-  ),
-  'memberservices': (
-    dept: 'memberservices',
-    color: color(members)
-  ),
-  'sharedservices': (
-    dept: 'sharedservices',
-    color: color(shared)
-  )
+        'convention-and-visitors-bureau': (
+                dept: 'convention-and-visitors-bureau',
+                color: color(cvb)
+        ),
+        'economic_development': (
+                dept: 'economic_development',
+                color: color(development)
+        ),
+        'educationtraining': (
+                dept: 'educationtraining',
+                color: color(education)
+        ),
+        'memberservices': (
+                dept: 'memberservices',
+                color: color(members)
+        ),
+        'sharedservices': (
+                dept: 'sharedservices',
+                color: color(shared)
+        )
 );
 
 .vcard {
@@ -143,7 +144,7 @@ $departments: (
   dt {
     clear: left;
     display: inline-block;
-    font-size: em(10,12);
+    font-size: em(10, 12);
     line-height: (1.6 * 12) / 10;
     text-transform: uppercase;
     float: left;
