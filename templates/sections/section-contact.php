@@ -5,40 +5,41 @@ use Chamber\Theme\Contact;
 
 if ( get_row_layout() == 'contact_us' ) :
 
-    // PHP mailer variables
-    $split_mailto = list($userName, $mailDomain) = explode("@", get_sub_field( 'contact_email' ));
-$mailto = json_encode($split_mailto);
-    $confirmation  = get_sub_field( 'contact_confirmation_message' );
+	// PHP mailer variables
+	$split_mailto = list( $userName, $mailDomain ) = explode( "@", get_sub_field( 'contact_email' ) );
+	$mailto = json_encode( $split_mailto );
+	$confirmation = get_sub_field( 'contact_confirmation_message' );
 
-    // Stripe variables
-    $title   = get_sub_field( 'contact_title' );
-    $summary = get_sub_field( 'contact_summary' );
-    $bg_color = get_sub_field( 'contact_background_color' );
+	// Stripe variables
+	$title    = get_sub_field( 'contact_title' );
+	$summary  = get_sub_field( 'contact_summary' );
+	$bg_color = get_sub_field( 'contact_background_color' );
 
 
-?>
+	?>
 
-<section class="stripe contact-us">
-    <script>
-        var mailto = <?= $mailto; ?>;
-    </script>
-    <div class="row" m-UI="<?= chamber_color($bg_color); ?>"">
+    <section class="stripe contact-us">
+        <script>
+            var mailto = <?= $mailto; ?>;
+        </script>
+        <div class="row" m-UI="<?= chamber_color( $bg_color ); ?>"
+        ">
 
-        <?php if ( $title || $summary ) : ?>
-            <div class="callout" m-Pad="medium large">
-        <?php endif; ?>
+		<?php if ( $title || $summary ) : ?>
+        <div class="callout" m-Pad="medium large">
+			<?php endif; ?>
 
-                <?php if ( $title ) : ?>
-                    <h2><?= $title; ?></h2>
-                <?php endif; ?>
+			<?php if ( $title ) : ?>
+                <h2><?= $title; ?></h2>
+			<?php endif; ?>
 
-                <?php if ( $summary ) : ?>
-                    <?= $summary; ?>
-                <?php endif; ?>
+			<?php if ( $summary ) : ?>
+				<?= $summary; ?>
+			<?php endif; ?>
 
-        <?php if ( $title || $summary ) : ?>
-            </div>
-        <?php endif; ?>
+			<?php if ( $title || $summary ) : ?>
+        </div>
+	<?php endif; ?>
 
         <div class="callout" m-Pad="medium large">
 
@@ -78,14 +79,16 @@ $mailto = json_encode($split_mailto);
 
                 <p><input type="submit" class="secondary hollow button" id="contactFormSubmit" value="Submit" name="buttonSubmit"></p>
 
-                <?php wp_nonce_field( 'contact_nonce' ); ?>
+                <input type="hidden" name="contact-title" value="<?php echo $title; ?>">
+
+				<?php wp_nonce_field( 'contact_nonce' ); ?>
 
             </form>
 
         </div>
 
-    </div>
+        </div>
 
-</section><!-- .contact-us -->
+    </section><!-- .contact-us -->
 
 <?php endif; ?>
