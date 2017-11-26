@@ -36,6 +36,11 @@
     display: block;
   }
 
+  [rel="name"], [rel="department"], [rel="job-title"], [rel="email"] {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+  }
+
   [rel="name"] {
     font-family: $header-font-family;
     font-size: em(24);
