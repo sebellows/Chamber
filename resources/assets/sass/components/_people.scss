@@ -13,17 +13,35 @@
   flex-direction: column;
   padding: rem(0 15);
   @include flex-callout(6);
+  .contact-full {
+    display: none;
+  }
+  .contact-mobile a {
+    padding: 0 10px 0 0;
+  }
 
   @include breakpoint(30em) {
     @include flex-callout(4);
+    .contact-mobile {
+      display: inline-block;
+    }
   }
 
   @include breakpoint(medium) {
     @include flex-callout(4);
+    .contact-mobile {
+      display: inline-block;
+    }
   }
 
   @include breakpoint(large) {
     @include flex-callout(2.4);
+    .contact-full {
+      display: inline-block;
+    }
+    .contact-mobile {
+      display: none;
+    }
   }
 }
 
