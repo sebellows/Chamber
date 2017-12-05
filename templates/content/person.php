@@ -33,7 +33,7 @@ $department = array_shift( $terms );
         <div class="vcard-content">
             <dl class="vcard-list">
                 <dt class="screen-reader-text">Name:</dt>
-                <dd rel="name"><?= $first_name; ?><?php $initial ? print_r( $initial . '. ' ) : ''; ?><?= $last_name; ?></dd>
+                <dd rel="name"><?= $first_name; ?> <?= $last_name; ?></dd>
                 <dt class="screen-reader-text">Department:</dt>
                 <dd rel="department"><a href="<?= esc_url( get_permalink( print_r( $department->slug ) ) ); ?>"><?= $department->name; ?></a></dd>
                 <dt class="screen-reader-text">Job title:</dt>
